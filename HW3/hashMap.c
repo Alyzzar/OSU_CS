@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <assert.h>
 #include "hashMap.h"
 #include "structs.h"
 #include <string.h>
@@ -71,12 +72,6 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 	newLink->next = ht->table[hashIndex];
 	ht->table[hashIndex] = newLink;
 	ht->count++;
-	/*STEP 5 - Resize the table (This part is optional)*/
-	/*Only resize if necessary*/
-	float loadFactor = ht->count/(ht->tableSize);
-	if (loadFactor > MAX_LOAD_FACTOR){
-		_resizeTable(ht);
-	}
 }
 
 ValueType* atMap (struct hashMap * ht, KeyType k)
