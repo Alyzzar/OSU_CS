@@ -20,10 +20,26 @@ char* getWord(FILE *file); /* prototype */
 
 int main (int argc, const char * argv[]) {
     /*Write this function*/
+	char* s = argv[1];
+	
+	printf("Assignment 3\n");
+	if(argc==2){
+		hashMap* wordList;
+		initMap(wordList, 100)
+		char* word;
+		word = getWord(s);
+		while (word != NULL){
+			printf("word: %s \n", word);
+			insertMap(wordList, word);
+			word = getWord(s);
+		}
+		
+		return 0;	
+	} else {
+		printf("Please enter a valid textfile.\n");
+	}
+	freeMap(wordList);
 }
-
-
-
 
 char* getWord(FILE *file)
 {
@@ -45,7 +61,7 @@ char* getWord(FILE *file)
 		if((character >= '0' && character <= '9') || /*is a number*/
 		   (character >= 'A' && character <= 'Z') || /*or an uppercase letter*/
 		   (character >= 'a' && character <= 'z') || /*or a lowercase letter*/
-		   character == 39) /*or is an apostrophy*/
+		   character == 39) /*or is an apostrophe*/
 		{
 			word[length] = character;
 			length++;
