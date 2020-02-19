@@ -63,7 +63,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 	struct Link * newLink = (struct Link *) malloc(sizeof(struct Link));
 	assert (newLink);
 	/*Assign value to the new link*/
-	newLink->value = v;
+	newLink->val = v;
 	/*STEP 3 - Insert elem into the table*/
 	/*Add to bucket at the front*/
 	newLink->next = ht->table[hashIndex];
@@ -81,7 +81,7 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 	struct Link *cur
 	cur = ht->table[hashIndex];
 	while (cur != 0){
-		if(EQ(cur->value, value)){
+		if(EQ(cur->val, k)){
 			return 1;
 		}
 		cur = cur->next;
@@ -92,11 +92,12 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 int containsKey (struct hashMap * ht, KeyType k)
 {  /*write this*/
 	int hash = stringHash1(k);
-	int hashIndex = (int)(labs(hash) % ht->tablesize);
+	int hashIndex = (int)(labs(hash) % ht->tableSize);
+	struct Link *cur;
 	struct Link *cur
 	cur = ht->table[hashIndex];
 	while (cur != 0){
-		if(EQ(cur->elem.value, elem.value)){
+		if(EQ(&cur, hash)){
 			return 1;
 		}
 		cur = cur->next;
@@ -114,7 +115,7 @@ void removeKey (struct hashMap * ht, KeyType k)
 	last = ht->table[hashIndex];
 
 	while(cur != 0){
-		if(EQ(cur->value, value)){
+		if(EQ(cur->val, k)){
 			/*REMOVE*/
 			/*The special case*/
 			if (cur == ht->table[hashIndex]){
