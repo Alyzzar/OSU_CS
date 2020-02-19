@@ -82,7 +82,7 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 	cur = ht->table[hashIndex];
 	while (cur != 0){
 		if(EQ(cur->value, k)){
-			&return cur->value;
+			return &cur->value;
 		}
 		cur = cur->next;
 	}
