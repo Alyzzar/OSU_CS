@@ -106,7 +106,8 @@ int containsLinkedList(LinkedList *l, TYPE val)
 {
 	/* write this function */
 	assert(!isEmptyLinkedList(l));
-	struct dlink *cur = l->head->next;
+	struct Link *cur;
+	cur = l->head->next;
 	while(cur != l->tail){
 		/*’==’ can only be used on char and numbers, therefore we use a custom EQ() function to compare struct dlink*/
 		if(EQ(cur->value, val)){
@@ -142,13 +143,11 @@ void removeLinkedList (LinkedList *l, TYPE val)
 		/* write this part of the function */
 		cur = l->head->next;
 		prev = l->head;
-		int looping = 1;
-		while (looping > 0){
+		while (cur != ;->tail){
 			if(cur->val == val){
 				cur->next->prev = prev;
 				prev->next = cur->next;
 				free(cur);
-				looping = 0;
 				break;
 			}
 			prev = cur;
