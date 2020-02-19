@@ -102,12 +102,11 @@ void addLinkedList (LinkedList *l, TYPE val)
   pushLinkedList(l,val);
 }
 
-int containsLinkedList(LinkedList *l, TYPE val)
-{
+int containsLinkedList(LinkedList *l, TYPE val){
 	/* write this function */
 	assert(!isEmptyLinkedList(l));
 	struct Link *cur;
-	cur = l->head->next;\
+	cur = l->head->next;
 	int looping = 1;
 	while(looping > 0){
 		if(EQ(cur->val, val)){
@@ -128,7 +127,6 @@ void _removeLink(struct Link *prev, struct Link *cur)
 
 void removeLinkedList (LinkedList *l, TYPE val)
 {
-
 	struct Link *cur;
 	struct Link *prev;
 
@@ -144,10 +142,13 @@ void removeLinkedList (LinkedList *l, TYPE val)
 		/* write this part of the function */
 		cur = l->head->next;
 		prev = l->head;
-		while (cur != l->tail){
+		int looping;
+		looping = 1;
+		while (looping > 0){
 			if(cur->val == val){
 				prev->next = cur->next;
 				free(cur);
+				looping = 0;
 				break;
 			}
 			prev = cur;
