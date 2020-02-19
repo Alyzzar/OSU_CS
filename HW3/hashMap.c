@@ -34,6 +34,7 @@ void initMap (struct hashMap * ht, int tableSize)
 		ht->table[index] = NULL;
 }
 
+
 void freeMap (struct hashMap * ht)
 {  /*write this*/
 	struct hashLink *cur;
@@ -52,7 +53,6 @@ void freeMap (struct hashMap * ht)
 	free(ht);
 }
 
-
 void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 {  /*write this*/
 	/*STEP 1 - Compute the index of elem in the table from the key*/
@@ -60,7 +60,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 	int hash = stringHash1(k);
 	int hashIndex = (int) (labs(hash) % ht->tableSize);
 	/*STEP 2 - Allocate memory for new elem*/
-	struct Link * newLink = (struct Link *) malloc(sizeof(struct Link));
+	struct hashLink * newLink = (struct hashLink *) malloc(sizeof(struct hashLink));
 	assert (newLink);
 	/*Assign value to the new link*/
 	newLink->val = v;
@@ -78,7 +78,7 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 { /*write this?*/
 	int hash = stringHash1(k);
 	int hashIndex = (int)(labs(hash) % ht->tableSize);
-	struct Link *cur
+	struct hashLink *cur
 	cur = ht->table[hashIndex];
 	while (cur != 0){
 		if(EQ(cur->val, k)){
@@ -93,8 +93,8 @@ int containsKey (struct hashMap * ht, KeyType k)
 {  /*write this*/
 	int hash = stringHash1(k);
 	int hashIndex = (int)(labs(hash) % ht->tableSize);
-	struct Link *cur;
-	struct Link *cur
+	struct hashLink *cur;
+	struct hashLink *cur
 	cur = ht->table[hashIndex];
 	while (cur != 0){
 		if(EQ(&cur, hash)){
@@ -109,7 +109,7 @@ void removeKey (struct hashMap * ht, KeyType k)
 {  /*write this?*/
 	int hash = stringHash1(k);
 	int hashIndex = (int) (labs(hash) % ht->tablesize);
-	struct Link *cur, *last;
+	struct hashLink *cur, *last;
 	
 	cur = ht->table[hashIndex];
 	last = ht->table[hashIndex];
