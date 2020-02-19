@@ -20,12 +20,12 @@ char* getWord(FILE *file); /* prototype */
 
 int main (int argc, const char * argv[]) {
     /*Write this function*/
-	char* s = argv[1];
+	FILE* s = argv[1];
 	
 	printf("Assignment 3\n");
 	if(argc==2){
 		hashMap* wordList;
-		initMap(wordList, 100)
+		initMap(wordList, 100);
 		char* word;
 		word = getWord(s);
 		while (word != NULL){
@@ -34,11 +34,11 @@ int main (int argc, const char * argv[]) {
 			word = getWord(s);
 		}
 		
-		return 0;	
+		freeMap(wordList);
 	} else {
 		printf("Please enter a valid textfile.\n");
 	}
-	freeMap(wordList);
+	return 0;
 }
 
 char* getWord(FILE *file)
