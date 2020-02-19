@@ -81,8 +81,8 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 	struct hashLink *cur;
 	cur = ht->table[hashIndex];
 	while (cur != 0){
-		if(EQ(cur->value, k)){
-			return 1;
+		if(EQ(&cur, hash)){
+			return cur;
 		}
 		cur = cur->next;
 	}
@@ -108,14 +108,14 @@ int containsKey (struct hashMap * ht, KeyType k)
 void removeKey (struct hashMap * ht, KeyType k)
 {  /*write this?*/
 	int hash = stringHash1(k);
-	int hashIndex = (int) (labs(hash) % ht->tablesize);
+	int hashIndex = (int) (labs(hash) % ht->tableSize);
 	struct hashLink *cur, *last;
 	
 	cur = ht->table[hashIndex];
 	last = ht->table[hashIndex];
 
 	while(cur != 0){
-		if(EQ(cur->value, k)){
+		if(EQ(&cur, hash)){
 			/*REMOVE*/
 			/*The special case*/
 			if (cur == ht->table[hashIndex]){
