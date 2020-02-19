@@ -36,7 +36,7 @@ void initMap (struct hashMap * ht, int tableSize)
 
 void freeMap (struct hashMap * ht)
 {  /*write this*/
-	struct Link *cur, *last;
+	struct Link *cur;
 	
 	cur = ht->table[0];
 
@@ -56,7 +56,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 {  /*write this*/
 	/*STEP 1 - Compute the index of elem in the table from the key*/
 	/*Use elem.key, since we passed in elem by value, not address*/
-	int hash = k;
+	int hash = HASH(k);
 	/*HASH() doesn’t know the current tablesize. Good practice to re-adjust the hashIndex before insert.*/
 	int hashIndex = (int) (labs(hash) % ht->tablesize);
 	/*STEP 2 - Allocate memory for new elem*/
@@ -82,7 +82,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 
 ValueType* atMap (struct hashMap * ht, KeyType k)
 { /*write this?*/
-	int hash = k;
+	int hash = HASH(k);
 	int hashIndex = (int)(labs(hash) % ht->tablesize);
 	struct Link *cur
 	cur = ht->table[hashIndex];
@@ -97,7 +97,7 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 
 int containsKey (struct hashMap * ht, KeyType k)
 {  /*write this*/
-	int hash = k;
+	int hash = HASH(k);
 	int hashIndex = (int)(labs(hash) % ht->tablesize);
 	struct Link *cur
 	cur = ht->table[hashIndex];
@@ -112,7 +112,7 @@ int containsKey (struct hashMap * ht, KeyType k)
 
 void removeKey (struct hashMap * ht, KeyType k)
 {  /*write this?*/
-	int hash = k;
+	int hash = HASH(k);
 	int hashIndex = (int) (labs(hash) % ht->tablesize);
 	struct Link *cur, *last;
 	
@@ -151,8 +151,8 @@ int sizeMap (struct hashMap *ht)
 }
 
 /*
- * int capacityMap(struct hashMap *ht)
- * {  /*write this*/
+int capacityMap(struct hashMap *ht)
+{  /*write this*/
 	return tableSize;
 }
 
