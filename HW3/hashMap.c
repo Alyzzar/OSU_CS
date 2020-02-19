@@ -58,7 +58,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 	/*Use elem.key, since we passed in elem by value, not address*/
 	int hash = HASH(k);
 	/*HASH() doesn’t know the current tablesize. Good practice to re-adjust the hashIndex before insert.*/
-	int hashIndex = (int) (labs(hash) % ht->tablesize);
+	int hashIndex = (int) (labs(hash) % ht->tableSize);
 	/*STEP 2 - Allocate memory for new elem*/
 	struct Link * newLink = (struct Link *) malloc(sizeof(struct Link));
 	assert (newLink);
@@ -83,7 +83,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 ValueType* atMap (struct hashMap * ht, KeyType k)
 { /*write this?*/
 	int hash = HASH(k);
-	int hashIndex = (int)(labs(hash) % ht->tablesize);
+	int hashIndex = (int)(labs(hash) % ht->tableSize);
 	struct Link *cur
 	cur = ht->table[hashIndex];
 	while (cur != 0){
@@ -152,16 +152,16 @@ int sizeMap (struct hashMap *ht)
 
 /*
 int capacityMap(struct hashMap *ht)
-{  /*write this*/
+{  /*write this*
 	return tableSize;
 }
 
 int emptyBuckets(struct hashMap *ht)
-{  /*write this*/
+{  /*write this*
 
 }
 
 float tableLoad(struct hashMap *ht)
-{  /*write this*/
+{  /*write this*
 }
 */
