@@ -34,10 +34,9 @@ void initMap (struct hashMap * ht, int tableSize)
 		ht->table[index] = NULL;
 }
 
-
 void freeMap (struct hashMap * ht)
 {  /*write this*/
-	struct Link *cur;
+	struct hashLink *cur;
 	
 	cur = ht->table[0];
 
@@ -52,6 +51,7 @@ void freeMap (struct hashMap * ht)
 	/*Free the map*/
 	free(ht);
 }
+
 
 void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 {  /*write this*/
