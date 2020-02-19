@@ -104,7 +104,18 @@ void addLinkedList (LinkedList *l, TYPE val)
 
 int containsLinkedList(LinkedList *l, TYPE val)
 {
-/* write this function */
+	/* write this function */
+	assert(!isEmptyLinkedList(l));
+	struct dlink *cur = l->head->next;
+	while(current != l->tail){
+		/*’==’ can only be used on char and numbers, therefore we use a custom EQ() function to compare struct dlink*/
+		if(EQ(current->value, val)){
+			return 1;
+		}
+		current = current->next;
+	}
+	/*e not found*/
+	return 0;
 }
 
 void _removeLink(struct Link *prev, struct Link *cur)
@@ -122,16 +133,28 @@ void removeLinkedList (LinkedList *l, TYPE val)
 	assert(containsLinkedList(l, val));
 
 	/* special case for head */
-	if(l->head->val == val)
-		{
-			cur = l->head;
-			l->head = l->head->next;
-			free(cur);
-		}
-	else {	
-           /* write this part of the function */
+	if(l->head->val == val){
+		cur = l->head;
+		l->head = l->head->next;
+		free(cur);
 	}
-		
+	else {	
+		/* write this part of the function */
+		cur = l->head->next;
+		prev = l->head;
+		int looping = 1;
+		while (looping > 0){
+			if(cur->val == val){
+				cur->next->prev = prev
+				prev->next = cur->next;
+				free(cur);
+				looping = 0;
+				break;
+			}
+			prev = cur;
+			cur = cur->next;
+		}
+	}
 }
 
  
