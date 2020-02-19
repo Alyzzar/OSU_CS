@@ -56,8 +56,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 {  /*write this*/
 	/*STEP 1 - Compute the index of elem in the table from the key*/
 	/*Use elem.key, since we passed in elem by value, not address*/
-	int hash = HASH(k);
-	/*HASH() doesn’t know the current tablesize. Good practice to re-adjust the hashIndex before insert.*/
+	int hash = stringHash1(k);
 	int hashIndex = (int) (labs(hash) % ht->tableSize);
 	/*STEP 2 - Allocate memory for new elem*/
 	struct Link * newLink = (struct Link *) malloc(sizeof(struct Link));
@@ -82,7 +81,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 
 ValueType* atMap (struct hashMap * ht, KeyType k)
 { /*write this?*/
-	int hash = HASH(k);
+	int hash = stringHash1(k);
 	int hashIndex = (int)(labs(hash) % ht->tableSize);
 	struct Link *cur
 	cur = ht->table[hashIndex];
@@ -97,7 +96,7 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 
 int containsKey (struct hashMap * ht, KeyType k)
 {  /*write this*/
-	int hash = HASH(k);
+	int hash = stringHash1(k);
 	int hashIndex = (int)(labs(hash) % ht->tablesize);
 	struct Link *cur
 	cur = ht->table[hashIndex];
@@ -112,7 +111,7 @@ int containsKey (struct hashMap * ht, KeyType k)
 
 void removeKey (struct hashMap * ht, KeyType k)
 {  /*write this?*/
-	int hash = HASH(k);
+	int hash = stringHash1(k);
 	int hashIndex = (int) (labs(hash) % ht->tablesize);
 	struct Link *cur, *last;
 	
