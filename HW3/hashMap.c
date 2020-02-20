@@ -153,18 +153,18 @@ int sizeMap (struct hashMap *ht)
 	return size;
 }
 
-/*
 int capacityMap(struct hashMap *ht)
-{  /*write this*
-	return tableSize;
+{  /*write this*/
+	return ht->tableSize;
 }
 
+/*
 int emptyBuckets(struct hashMap *ht)
 {  /*write this*
 
-}
+}*/
 
 float tableLoad(struct hashMap *ht)
-{  /*write this*
+{  /*write this*/
+	return ht->count/(float)ht->tableSize;
 }
-*/
