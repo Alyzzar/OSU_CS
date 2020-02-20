@@ -71,15 +71,14 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 	assert (newLink);
 	/*Assign value to the new link*/
 	newLink->value = v;
-	newLink->key = (KeyType) malloc(strlen(k) + 1);
+	newLink->key = (KeyType) malloc(sizeof(char) * (strlen(k) + 1));
 	strcpy(newLink->key, k);
+	newLink->key[strlen(k)] = '\0';
 	/*STEP 3 - Insert elem into the table*/
 	/*Add to bucket at the front*/
 	newLink->next = ht->table[hashIndex];
 	ht->table[hashIndex] = newLink;
 	/*STEP 4 - Increment number of elements*/
-	newLink->next = ht->table[hashIndex];
-	ht->table[hashIndex] = newLink;
 	ht->count++;
 }
 
@@ -98,7 +97,6 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 	return NULL;	
 }
 
-int containsKey (struct hashMap * ht, KeyType k)
 int containsKey (struct hashMap * ht, KeyType k)
 {  /*write this*/
 	int hash = stringHash1(k);
