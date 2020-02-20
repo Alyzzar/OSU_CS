@@ -33,10 +33,10 @@ int main (int argc, const char * argv[]) {
 		word = getWord(file);
 		while (word != NULL){
 			if(containsKey(wordList, word) != 0){
-				printf("- - Recurring word, atMap()value: %d, word: %s\n", *atMap(wordList, word) + 1, word);
+				/*printf("- - Recurring word, atMap()value: %d, word: %s\n", *atMap(wordList, word) + 1, word);*/
 				(*atMap(wordList, word))++;
 			} else {
-				printf("- - First occurance of word - %s\n", word);
+				/*printf("- - First occurance of word - %s\n", word);*/
 				insertMap(wordList, word, 1);
 			}
 			free(word);
