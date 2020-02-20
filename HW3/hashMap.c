@@ -39,7 +39,7 @@ void initMap (struct hashMap * ht, int tableSize)
 	ht->count = 0;
 	
 	printf("- - Filling with null values \n");
-	for(index = 0; index < tableSize; index++)
+	for(index = 0; index < ht->tableSize; index++)
 		ht->table[index] = NULL;
 }
 
@@ -47,7 +47,8 @@ void initMap (struct hashMap * ht, int tableSize)
 void freeMap (struct hashMap * ht)
 {  /*write this*/
 	printf("- - Deallocating Memory - tableSize: %d\n", tableSize);
-	for(index = 0; index < tableSize; index++){
+	int index;
+	for(index = 0; index < ht->tableSize; index++){
 		free(ht->table[index]);
 	}
 	/*Free the map*/
