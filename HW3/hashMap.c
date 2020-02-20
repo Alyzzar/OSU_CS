@@ -29,16 +29,16 @@ void initMap (struct hashMap * ht, int tableSize)
 	if(ht == NULL){
 		return;
 	}
-	printf("- - Allocating Memory - tableSize: %d\n", tableSize);
+	/*printf("- - Allocating Memory - tableSize: %d\n", tableSize);*/
 	ht->table = (hashLink**)malloc(sizeof(hashLink*) * tableSize);
 	
-	printf("- - Defining table size \n");
+	/*printf("- - Defining table size \n");*/
 	ht->tableSize = tableSize;
 	
-	printf("- - Setting count to 0 \n");
+	/*printf("- - Setting count to 0 \n");*/
 	ht->count = 0;
 	
-	printf("- - Filling with null values \n");
+	/*printf("- - Filling with null values \n");*/
 	for(index = 0; index < ht->tableSize; index++)
 		ht->table[index] = NULL;
 }
@@ -47,7 +47,7 @@ void initMap (struct hashMap * ht, int tableSize)
 void freeMap (struct hashMap * ht)
 {  /*write this*/
 	int index;
-	printf("- - Deallocating Memory - tableSize: %d\n", ht->tableSize);
+	/*printf("- - Deallocating Memory - tableSize: %d\n", ht->tableSize);*/
 	for(index = 0; index < ht->tableSize; index++){
 		free(ht->table[index]);
 	}
