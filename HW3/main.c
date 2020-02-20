@@ -39,7 +39,7 @@ int main (int argc, const char * argv[]) {
 				printf("- - First occurance of word - %s\n", word);
 				insertMap(wordList, word, 1);
 			}
-			free(word)
+			free(word);
 			word = getWord(file);
 		}
 		printWords(wordList);
