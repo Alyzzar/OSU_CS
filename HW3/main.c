@@ -29,7 +29,7 @@ int main (int argc, const char * argv[]) {
 		printf("- initMap() \n");
 		initMap(wordList, 100);
 		while (word != NULL){
-			if(containsKey(ht, word) != 0){
+			if(containsKey(wordList, word) != 0){
 				printf("- atMap() -- Value: %d\n", atMap(wordList, word) + 1);
 				insertMap(wordList, word, *atMap(wordList, word) + 1);
 			} else {
