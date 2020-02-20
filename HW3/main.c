@@ -15,7 +15,7 @@
  to free this memory when you no longer need it.
  */
 char* getWord(FILE *file); /* prototype */
-int concordance(struct hashMap *ht, char * word, FILE *file);
+void concordance(struct hashMap *ht, char * word, FILE *file);
 /****************************************/
 
 int main (int argc, const char * argv[]) {
@@ -78,7 +78,6 @@ void concordance(struct hashMap *ht, char* word, FILE *file){
 	if(containsKey(ht, word) != 0){
 		insertMap(ht, word, *atMap(ht, word) + 1);
 	} else {
-		insertMap(ht, word, 1)
+		insertMap(ht, word, 1);
 	}
 }
-
