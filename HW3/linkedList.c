@@ -155,5 +155,3 @@ void removeLinkedList (LinkedList *l, TYPE val)
 		}
 	}
 }
-
- 
