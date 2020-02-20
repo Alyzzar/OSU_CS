@@ -20,7 +20,7 @@ void concordance(struct hashMap *ht, char * word, FILE *file);
 
 int main (int argc, const char * argv[]) {
     /*Write this function*/
-	FILE* file = argv[1];
+	FILE* file = fopen(argv[1], "r");
 	
 	printf("Assignment 3\n");
 	if(argc==2){
