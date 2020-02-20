@@ -15,20 +15,27 @@
  to free this memory when you no longer need it.
  */
 char* getWord(FILE *file); /* prototype */
-void concordance(struct hashMap *ht, char * word, FILE *file);
 /****************************************/
 
 int main (int argc, const char * argv[]) {
-    /*Write this function*/
-	FILE* file = fopen(argv[1], "r");
-	
 	printf("Assignment 3\n");
+    /*Write this function*/
+	printf("- FOpen \n");
+	FILE* file = fopen(argv[1], "r");
+
 	if(argc==2){
+		printf("- Define variables \n");
 		hashMap* wordList;
 		char* word;
+		printf("- initMap() \n");
 		initMap(wordList, 100);
 		while (word != NULL){
-			concordance(wordList, word, file);
+			if(containsKey(ht, word) != 0){
+				printf("- atMap() -- Value: %d\n", atMap(ht, word) + 1);
+				insertMap(ht, word, *atMap(ht, word) + 1);
+			} else {
+				insertMap(ht, word, 1);
+			}
 			word = getWord(file);
 		}
 		freeMap(wordList);
@@ -72,12 +79,4 @@ char* getWord(FILE *file){
 	}
 	word[length] = '\0';
 	return word;
-}
-
-void concordance(struct hashMap *ht, char* word, FILE *file){
-	if(containsKey(ht, word) != 0){
-		insertMap(ht, word, *atMap(ht, word) + 1);
-	} else {
-		insertMap(ht, word, 1);
-	}
 }
