@@ -99,6 +99,7 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 }
 
 int containsKey (struct hashMap * ht, KeyType k)
+int containsKey (struct hashMap * ht, KeyType k)
 {  /*write this*/
 	int hash = stringHash1(k);
 	int hashIndex = (int)(labs(hash) % ht->tableSize);
@@ -143,14 +144,7 @@ void removeKey (struct hashMap * ht, KeyType k)
 
 int sizeMap (struct hashMap *ht)
 {  /*write this*/
-	int size;
-	int i;
-	for(i = 0; i < ht->tableSize; i++){
-		if(ht->table[i] != NULL){
-			size++;
-		}
-	}
-	return size;
+	return ht->count;
 }
 
 int capacityMap(struct hashMap *ht)
@@ -158,11 +152,18 @@ int capacityMap(struct hashMap *ht)
 	return ht->tableSize;
 }
 
-/*
-int emptyBuckets(struct hashMap *ht)
-{  /*write this*
 
-}*/
+int emptyBuckets(struct hashMap *ht)
+{  /*write this*/
+	int size;
+	int i;
+	for(i = 0; i < ht->tableSize; i++){
+		if(ht->table[i] == NULL){
+			size++;
+		}
+	}
+	return size;
+}
 
 float tableLoad(struct hashMap *ht)
 {  /*write this*/
