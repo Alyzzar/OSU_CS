@@ -19,7 +19,7 @@ char* getWord(FILE *file); /* prototype */
 
 int main (int argc, const char * argv[]) {
 	FILE* file;
-	hashMap* wordList = (hashMap*)malloc(sizeof(hasMap));
+	hashMap* wordList = (hashMap*)malloc(sizeof(hashMap));
 	char* word;
 	printf("Assignment 3\n");
     /*Write this function*/
