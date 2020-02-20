@@ -26,14 +26,18 @@ int stringHash2(char * str)
 void initMap (struct hashMap * ht, int tableSize)
 {
 	int index;
-	if(ht == NULL)
+	if(ht == NULL){
 		return;
+	}
 	printf("- - Allocating Memory - tableSize: %d\n", tableSize);
 	ht->table = (hashLink**)malloc(sizeof(hashLink*) * tableSize);
+	
 	printf("- - Defining table size \n");
 	ht->tableSize = tableSize;
+	
 	printf("- - Setting count to 0 \n");
 	ht->count = 0;
+	
 	printf("- - Filling with null values \n");
 	for(index = 0; index < tableSize; index++)
 		ht->table[index] = NULL;
@@ -67,6 +71,8 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 	assert (newLink);
 	/*Assign value to the new link*/
 	newLink->value = v;
+	newLink->key = (keyType *) malloc(strlen(k) + 1);
+	strcpy(newLink->key, k);
 	/*STEP 3 - Insert elem into the table*/
 	/*Add to bucket at the front*/
 	newLink->next = ht->table[hashIndex];
