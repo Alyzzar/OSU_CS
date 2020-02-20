@@ -31,7 +31,7 @@ int main (int argc, const char * argv[]) {
 		while (word != NULL){
 			if(containsKey(ht, word) != 0){
 				printf("- atMap() -- Value: %d\n", atMap(wordList, word) + 1);
-				insertMap(wordList, word, *atMap(ht, word) + 1);
+				insertMap(wordList, word, *atMap(wordList, word) + 1);
 			} else {
 				insertMap(wordList, word, 1);
 			}
