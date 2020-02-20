@@ -22,7 +22,7 @@ int main (int argc, const char * argv[]) {
 	FILE* file;
 	hashMap* wordList = (hashMap*)malloc(sizeof(hashMap));
 	char* word;
-	/*printf("Assignment 3\n");*/
+	printf("Assignment 3\n");
     /*Write this function*/
 	/*printf("- FOpen \n");*/
 	file = fopen(argv[1], "r");
@@ -39,6 +39,7 @@ int main (int argc, const char * argv[]) {
 				printf("- - First occurance of word - %s\n", word);
 				insertMap(wordList, word, 1);
 			}
+			free(word)
 			word = getWord(file);
 		}
 		printWords(wordList);
@@ -53,7 +54,7 @@ int main (int argc, const char * argv[]) {
 void printWords(struct hashMap * ht){
 	/*Prints out the contents of the hashmap*/
 	int index;
-	printf("- Print() wordList \n");
+	printf("- Hashmap Contents: \n");
 	for(index = 0; index < ht->tableSize; index++){
 		if(ht->table[index] != NULL){
 			printf("%10s - # of occurances: %d\n", ht->table[index]->key, ht->table[index]->value);
