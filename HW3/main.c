@@ -27,7 +27,7 @@ int main (int argc, const char * argv[]) {
 	file = fopen(argv[1], "r");
 	if(argc==2){
 		printf("- initMap() \n");
-		initMap(wordList, 100);
+		initMap(wordList, 16);
 		printf("- while() for concordance \n");
 		while (word != NULL){
 			if(containsKey(wordList, word) != 0){
