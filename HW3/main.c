@@ -29,6 +29,7 @@ int main (int argc, const char * argv[]) {
 		printf("- initMap() \n");
 		initMap(wordList, 16);
 		printf("- while() for concordance \n");
+		getWord(file);
 		while (word != NULL){
 			if(containsKey(wordList, word) != 0){
 				printf("- - Recurring word, atMap()value: %d\n", atMap(wordList, word) + 1);
