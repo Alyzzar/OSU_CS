@@ -15,6 +15,7 @@
  to free this memory when you no longer need it.
  */
 char* getWord(FILE *file); /* prototype */
+void printWords(struct hashMap * ht);
 /****************************************/
 
 int main (int argc, const char * argv[]) {
@@ -51,6 +52,7 @@ int main (int argc, const char * argv[]) {
 
 void printWords(struct hashMap * ht){
 	/*Prints out the contents of the hashmap*/
+	int index;
 	printf("- Print() wordList \n");
 	for(index = 0; index < ht->tableSize; index++){
 		if(*ht->table[index]->key != NULL){
