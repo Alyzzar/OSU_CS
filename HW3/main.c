@@ -21,30 +21,36 @@ int main (int argc, const char * argv[]) {
 	FILE* file;
 	hashMap* wordList = (hashMap*)malloc(sizeof(hashMap));
 	char* word;
-	printf("Assignment 3\n");
+	/*printf("Assignment 3\n");*/
     /*Write this function*/
-	printf("- FOpen \n");
+	/*printf("- FOpen \n");*/
 	file = fopen(argv[1], "r");
 	if(argc==2){
-		printf("- initMap() \n");
+		/*printf("- initMap() \n");*/
 		initMap(wordList, 100);
-		printf("- while() for concordance \n");
+		/*printf("- while() for concordance \n");*/
 		word = getWord(file);
 		while (word != NULL){
 			if(containsKey(wordList, word) != 0){
-				/*printf("- - Recurring word, atMap()value: %d, word: %s\n", *atMap(wordList, word) + 1, word);*/
+				printf("- - Recurring word, atMap()value: %d, word: %s\n", *atMap(wordList, word) + 1, word);
 				(*atMap(wordList, word))++;
 			} else {
-				/*printf("- - First occurance of word - %s\n", word);*/
+				printf("- - First occurance of word - %s\n", word);
 				insertMap(wordList, word, 1);
 			}
 			word = getWord(file);
 		}
+		printf("- Print() wordList \n");
+		
 		freeMap(wordList);
 	} else {
 		printf("Please enter a valid textfile.\n");
 	}
 	return 0;
+}
+
+void printWords(struct hashMap * ht){
+	/*Prints out the contents of the hashmap*/
 }
 
 char* getWord(FILE *file){
