@@ -1,81 +1,159 @@
-#include <assert.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <assert.h>
 #include "hashMap.h"
+#include "structs.h"
+#include <string.h>
 
-/*
- the getWord function takes a FILE pointer and returns you a string which was
- the next word in the in the file. words are defined (by this function) to be
- characters or numbers separated by periods, spaces, or newlines.
- 
- when there are no more words in the input file this function will return NULL.
- 
- this function will malloc some memory for the char* it returns. it is your job
- to free this memory when you no longer need it.
- */
-char* getWord(FILE *file); /* prototype */
-/****************************************/
+int stringHash1(char * str)
+{
+	int i;
+	int r = 0;
+	for (i = 0; str[i] != '\0'; i++)
+		r += str[i];
+	return r;
+}
 
-int main (int argc, const char * argv[]) {
-	FILE* file;
-	hashMap* wordList;
-	char* word;
-	printf("Assignment 3\n");
-    /*Write this function*/
-	printf("- FOpen \n");
-	file = fopen(argv[1], "r");
-	if(argc==2){
-		printf("- initMap() \n");
-		initMap(wordList, 100);
-		while (word != NULL){
-			if(containsKey(ht, word) != 0){
-				printf("- atMap() -- Value: %d\n", atMap(ht, word) + 1);
-				insertMap(ht, word, *atMap(ht, word) + 1);
-			} else {
-				insertMap(ht, word, 1);
-			}
-			word = getWord(file);
+int stringHash2(char * str)
+{
+	int i;
+	int r = 0;
+	for (i = 0; str[i] != '\0'; i++)
+		r += (i+1) * str[i]; /*the difference between 1 and 2 is on this line*/
+	return r;
+}
+
+void initMap (struct hashMap * ht, int tableSize)
+{
+	int index;
+	if(ht == NULL)
+		return;
+	ht->table = (hashLink**)malloc(sizeof(hashLink*) * tableSize);
+	ht->tableSize = tableSize;
+	ht->count = 0;
+	for(index = 0; index < tableSize; index++)
+		ht->table[index] = NULL;
+}
+
+
+void freeMap (struct hashMap * ht)
+{  /*write this*/
+	struct hashLink *cur;
+	
+	cur = ht->table[0];
+
+	while(cur != 0){
+		/*REMOVE and free all*/
+		/*Free the individual elements*/
+		cur = cur->next;
+		free(cur);
+		cur = 0;
+		ht->count--;
+	}
+	/*Free the map*/
+	free(ht);
+}
+
+void insertMap (struct hashMap * ht, KeyType k, ValueType v)
+{  /*write this*/
+	int hash = stringHash1(k);
+	int hashIndex = (int) (labs(hash) % ht->tableSize);
+	/*STEP 2 - Allocate memory for new elem*/
+	struct hashLink * newLink = (struct hashLink *) malloc(sizeof(struct hashLink));
+	assert (newLink);
+	/*Assign value to the new link*/
+	newLink->value = v;
+	/*STEP 3 - Insert elem into the table*/
+	/*Add to bucket at the front*/
+	newLink->next = ht->table[hashIndex];
+	ht->table[hashIndex] = newLink;
+	/*STEP 4 - Increment number of elements*/
+	newLink->next = ht->table[hashIndex];
+	ht->table[hashIndex] = newLink;
+	ht->count++;
+}
+
+ValueType* atMap (struct hashMap * ht, KeyType k)
+{ /*write this*/
+	int hash = stringHash1(k);
+	int hashIndex = (int)(labs(hash) % ht->tableSize);
+	struct hashLink *cur;
+	cur = ht->table[hashIndex];
+	while (cur != 0){
+		if(EQ(cur->key, k)){
+			return &cur->value;
 		}
-		freeMap(wordList);
-	} else {
-		printf("Please enter a valid textfile.\n");
+		cur = cur->next;
+	}
+	return NULL;	
+}
+
+int containsKey (struct hashMap * ht, KeyType k)
+{  /*write this*/
+	int hash = stringHash1(k);
+	int hashIndex = (int)(labs(hash) % ht->tableSize);
+	struct hashLink *cur;
+	cur = ht->table[hashIndex];
+	while (cur != 0){
+		if(EQ(cur->key, k)){
+			return 1;
+		}
+		cur = cur->next;
 	}
 	return 0;
 }
 
-char* getWord(FILE *file){
-	int length = 0;
-	int maxLength = 16;
-	char character;
-    
-	char* word = (char*)malloc(sizeof(char) * maxLength);
-	assert(word != NULL);
-    
-	while( (character = fgetc(file)) != EOF)
-	{
-		if((length+1) > maxLength)
-		{
-			maxLength *= 2;
-			word = (char*)realloc(word, maxLength);
+void removeKey (struct hashMap * ht, KeyType k)
+{  /*write this?*/
+	int hash = stringHash1(k);
+	int hashIndex = (int) (labs(hash) % ht->tableSize);
+	struct hashLink *cur, *last;
+	
+	cur = ht->table[hashIndex];
+	last = ht->table[hashIndex];
+
+	while(cur != 0){
+		if(EQ(cur->key, k)){
+			/*REMOVE*/
+			/*The special case*/
+			if (cur == ht->table[hashIndex]){
+				ht->table[hashIndex] = cur->next;
+			}
+			last->next = cur->next;
+			free(cur);
+			/*Free elem*/
+			cur = 0;
+			ht->count--;
+		} else {
+			last = cur;
+			cur = cur->next;
 		}
-		if((character >= '0' && character <= '9') || /*is a number*/
-		   (character >= 'A' && character <= 'Z') || /*or an uppercase letter*/
-		   (character >= 'a' && character <= 'z') || /*or a lowercase letter*/
-		   character == 39) /*or is an apostrophe*/
-		{
-			word[length] = character;
-			length++;
-		}
-		else if(length > 0)
-			break;
 	}
-    
-	if(length == 0)
-	{
-		free(word);
-		return NULL;
-	}
-	word[length] = '\0';
-	return word;
 }
+
+int sizeMap (struct hashMap *ht)
+{  /*write this*/
+	int size;
+	int i;
+	for(i = 0; i < ht->tableSize; i++){
+		if(ht->table[i] != NULL){
+			size++;
+		}
+	}
+	return size;
+}
+
+/*
+int capacityMap(struct hashMap *ht)
+{  /*write this*
+	return tableSize;
+}
+
+int emptyBuckets(struct hashMap *ht)
+{  /*write this*
+
+}
+
+float tableLoad(struct hashMap *ht)
+{  /*write this*
+}
+*/
