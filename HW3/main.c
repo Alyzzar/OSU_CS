@@ -18,23 +18,22 @@ char* getWord(FILE *file); /* prototype */
 /****************************************/
 
 int main (int argc, const char * argv[]) {
+	FILE* file;
+	hashMap* wordList;
+	char* word;
 	printf("Assignment 3\n");
     /*Write this function*/
 	printf("- FOpen \n");
-	FILE* file = fopen(argv[1], "r");
-
+	file = fopen(argv[1], "r");
 	if(argc==2){
-		printf("- Define variables \n");
-		hashMap* wordList;
-		char* word;
 		printf("- initMap() \n");
 		initMap(wordList, 100);
 		while (word != NULL){
 			if(containsKey(ht, word) != 0){
-				printf("- atMap() -- Value: %d\n", atMap(ht, word) + 1);
-				insertMap(ht, word, *atMap(ht, word) + 1);
+				printf("- atMap() -- Value: %d\n", atMap(wordList, word) + 1);
+				insertMap(wordList, word, *atMap(ht, word) + 1);
 			} else {
-				insertMap(ht, word, 1);
+				insertMap(wordList, word, 1);
 			}
 			word = getWord(file);
 		}
