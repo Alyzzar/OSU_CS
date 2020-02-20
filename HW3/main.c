@@ -40,7 +40,7 @@ int main (int argc, const char * argv[]) {
 			}
 			word = getWord(file);
 		}
-		printf("- Print() wordList \n");
+		printWords();
 		
 		freeMap(wordList);
 	} else {
@@ -51,6 +51,12 @@ int main (int argc, const char * argv[]) {
 
 void printWords(struct hashMap * ht){
 	/*Prints out the contents of the hashmap*/
+	printf("- Print() wordList \n");
+	for(index = 0; index < ht->tableSize; index++){
+		if(*ht->table[index]->key != NULL){
+			printf("%s: %d occurances", ht->table[index]->key, ht->table[index]->value);
+		}
+	}
 }
 
 char* getWord(FILE *file){
