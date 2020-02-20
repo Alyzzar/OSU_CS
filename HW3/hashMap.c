@@ -28,7 +28,7 @@ void initMap (struct hashMap * ht, int tableSize)
 	int index;
 	if(ht == NULL)
 		return;
-	printf("- - Allocating Memory \n");
+	printf("- - Allocating Memory - tableSize: %d\n", tableSize);
 	ht->table = (hashLink**)malloc(sizeof(hashLink*) * tableSize);
 	printf("- - Defining table size \n");
 	ht->tableSize = tableSize;
