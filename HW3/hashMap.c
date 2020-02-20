@@ -86,7 +86,7 @@ ValueType* atMap (struct hashMap * ht, KeyType k)
 		}
 		cur = cur->next;
 	}
-	return 0;	
+	return NULL;	
 }
 
 int containsKey (struct hashMap * ht, KeyType k)
