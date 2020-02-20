@@ -46,17 +46,9 @@ void initMap (struct hashMap * ht, int tableSize)
 
 void freeMap (struct hashMap * ht)
 {  /*write this*/
-	struct hashLink *cur;
-	
-	cur = ht->table[0];
-
-	while(cur != 0){
-		/*REMOVE and free all*/
-		/*Free the individual elements*/
-		cur = cur->next;
-		free(cur);
-		cur = 0;
-		ht->count--;
+	printf("- - Deallocating Memory - tableSize: %d\n", tableSize);
+	for(index = 0; index < tableSize; index++){
+		free(ht->table[index]);
 	}
 	/*Free the map*/
 	free(ht);
