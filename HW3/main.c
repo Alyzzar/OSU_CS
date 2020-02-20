@@ -56,7 +56,7 @@ void printWords(struct hashMap * ht){
 	printf("- Print() wordList \n");
 	for(index = 0; index < ht->tableSize; index++){
 		if(ht->table[index] != NULL){
-			printf("%s: %d occurances", ht->table[index]->key, ht->table[index]->value);
+			printf("%s - # of occurances: %d\n", ht->table[index]->key, ht->table[index]->value);
 		}
 	}
 }
