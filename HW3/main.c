@@ -28,11 +28,13 @@ int main (int argc, const char * argv[]) {
 	if(argc==2){
 		printf("- initMap() \n");
 		initMap(wordList, 100);
+		printf("- while() for concordance \n");
 		while (word != NULL){
 			if(containsKey(wordList, word) != 0){
-				printf("- atMap() -- Value: %d\n", atMap(wordList, word) + 1);
+				printf("- - Recurring word, atMap()value: %d\n", atMap(wordList, word) + 1);
 				insertMap(wordList, word, *atMap(wordList, word) + 1);
 			} else {
+				printf("- - First occurance of word \n");
 				insertMap(wordList, word, 1);
 			}
 			word = getWord(file);
