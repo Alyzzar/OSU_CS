@@ -55,8 +55,6 @@ void freeMap (struct hashMap * ht)
 
 void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 {  /*write this*/
-	/*STEP 1 - Compute the index of elem in the table from the key*/
-	/*Use elem.key, since we passed in elem by value, not address*/
 	int hash = stringHash1(k);
 	int hashIndex = (int) (labs(hash) % ht->tableSize);
 	/*STEP 2 - Allocate memory for new elem*/
@@ -75,13 +73,13 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 }
 
 ValueType* atMap (struct hashMap * ht, KeyType k)
-{ /*write this?*/
+{ /*write this*/
 	int hash = stringHash1(k);
 	int hashIndex = (int)(labs(hash) % ht->tableSize);
 	struct hashLink *cur;
 	cur = ht->table[hashIndex];
 	while (cur != 0){
-		if(EQ(cur->value, *k)){
+		if(EQ(cur->key, *k)){
 			return &cur->value;
 		}
 		cur = cur->next;
@@ -96,7 +94,7 @@ int containsKey (struct hashMap * ht, KeyType k)
 	struct hashLink *cur;
 	cur = ht->table[hashIndex];
 	while (cur != 0){
-		if(EQ(cur->value, *k)){
+		if(EQ(cur->key, *k)){
 			return 1;
 		}
 		cur = cur->next;
@@ -114,7 +112,7 @@ void removeKey (struct hashMap * ht, KeyType k)
 	last = ht->table[hashIndex];
 
 	while(cur != 0){
-		if(EQ(cur->value, *k)){
+		if(EQ(cur->key, *k)){
 			/*REMOVE*/
 			/*The special case*/
 			if (cur == ht->table[hashIndex]){
