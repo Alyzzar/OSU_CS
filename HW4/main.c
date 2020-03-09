@@ -86,20 +86,25 @@ void printBreadthFirstTree(struct AVLTree *tree)
     /* FIX ME */
     int height = h(tree->root);
     int i;
-    for (i=1; i<=height; i++) {
+    printf("- - PRINTING BREADTH FIRST\n");
+	for (i=1; i<=height; i++) {
+		printf("- - - PRINT i = %d \n", i);
 		printGivenLevel(tree->root, i);
 	}
 }
 
-void printGivenLevel(struct AVLnode* root, int level) 
+void printGivenLevel(struct AVLnode* current, int level) 
 {
-    if (root == NULL) 
-        return; 
-    if (level == 1) 
-        printf("%d ", root->val); 
-    else if (level > 1) 
-    { 
-        printGivenLevel(root->left, level-1); 
-        printGivenLevel(root->right, level-1); 
+    if (current == NULL){
+		printf("- - - CURR == NULL \n");
+		return; 
+	}
+    if (level == 1){
+		printf("%d ", current->val);
+	}
+    else if (level > 1){ 
+		printf("- - - RECURSSIVE CALL \n");
+        printGivenLevel(current->left, level-1); 
+        printGivenLevel(current->right, level-1); 
     } 
 } 
