@@ -117,7 +117,7 @@ int travMinVal(struct AVLnode *current, int *v, TYPE *path, int n){
 		
 		/*Return the lower of the two values*/
 		path[n] = current->val;
-		*v += current->val;
+		v += current->val;
 		if(current->left->val > current->right->val){
 			/*RIGHT IS SMALLER*/
 			rightVal = travMinVal(current->right, v, path, n + 1) + 1;
