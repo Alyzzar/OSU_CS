@@ -121,12 +121,12 @@ struct AVLnode * AVLnodeAdd(struct	AVLnode * current, TYPE newValue)
 		/*Make a new node and return a pointer to it*/
 		struct AVLnode *new = (struct AVLnode *) malloc (sizeof(struct AVLnode));
 		assert (new != 0);
-		new->value = newValue;
+		new->val = newValue;
 		new->left = new->right = 0;
 		return new;
 	} else {
 		/*Recursion for left and right to find correct location*/
-		if (val < current->val){
+		if (newValue < current->val){
 			current->left = AVLnodeAdd(current->left, val);
 		} else {
 			current->right = AVLnodeAdd(current->right, val);
