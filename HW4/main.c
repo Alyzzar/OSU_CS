@@ -4,6 +4,7 @@
 #include <sys/time.h>
 #include "avl.h"
 
+#define pathLen 100
 
 int FindMinPath(struct AVLTree *tree, TYPE *path);
 void printBreadthFirstTree(struct AVLTree *tree);
@@ -22,7 +23,7 @@ int main(int argc, char** argv) {
 	int len, i;
 	TYPE num; /* value to add to the tree from a file */
 	struct timeval stop, start; /* variables for measuring execution time */
-	int pathArray[50];  /* static array with values of nodes along the min-cost path of the AVL tree -- as can be seen, the tree cannot have the depth greater than 50 which is fairly sufficient for out purposes*/
+	int pathArray[pathLen];  /* static array with values of nodes along the min-cost path of the AVL tree -- as can be seen, the tree cannot have the depth greater than 50 which is fairly sufficient for out purposes*/
 
 	struct AVLTree *tree;
 	
@@ -48,6 +49,11 @@ int main(int argc, char** argv) {
 	printBreadthFirstTree(tree);
 
 	gettimeofday(&start, NULL);
+	
+	/* Reset all values of pathArray to 0*/
+	for (i = 0; i < pathLen; i++){
+		pathArray[i] = 0;
+	}
 
 	/* Find the minimum-cost path in the AVL tree*/
 	len = FindMinPath(tree, pathArray);
