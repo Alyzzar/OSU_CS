@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include "avl.h"
 
-#define pathLen 100
+#define maxLen 100
 
 int FindMinPath(struct AVLTree *tree, TYPE *path);
 void printBreadthFirstTree(struct AVLTree *tree);
@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
 	int outputLen, i, inputLen;
 	TYPE num; /* value to add to the tree from a file */
 	struct timeval stop, start; /* variables for measuring execution time */
-	int pathArray[pathLen];  /* static array with values of nodes along the min-cost path of the AVL tree -- as can be seen, the tree cannot have the depth greater than 50 which is fairly sufficient for out purposes*/
+	int pathArray[maxLen];  /* static array with values of nodes along the min-cost path of the AVL tree -- as can be seen, the tree cannot have the depth greater than 50 which is fairly sufficient for out purposes*/
 
 	struct AVLTree *tree;
 	
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 	gettimeofday(&start, NULL);
 	
 	/* Reset all values of pathArray to 0*/
-	for (i = 0; i < pathLen; i++){
+	for (i = 0; i < maxLen; i++){
 		pathArray[i] = 0;
 	}
 
@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
 }
 
 /**
-/* -------------------
+* -------------------
 	This function Sets the target_leaf_ref to refer 
 	the leaf node of the maximum path sum. Also, 
 	returns the min_sum using min_sum_ref 
@@ -109,7 +109,7 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
 } 
 
 
-/* --------------------
+* --------------------
 Finds the minimum-cost path in an AVL tree
    Input arguments: 
         tree = pointer to the tree,
@@ -150,8 +150,8 @@ Finds the minimum-cost path in an AVL tree
        tree exists and is not NULL
 */
 int FindMinPath(struct AVLTree *tree, TYPE *path){
-	int pathLen = travMinVal(tree->root, path, 0)
-	return pathLen;
+	int outputLen = travMinVal(tree->root, path, 0)
+	return outputLen;
 }
 
 int travMinVal(struct AVLnode *current, TYPE *path, int n){
