@@ -78,67 +78,6 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-/**
-* -------------------
-	This function Sets the target_leaf_ref to refer 
-	the leaf node of the maximum path sum. Also, 
-	returns the min_sum using min_sum_ref 
-*
-void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref, TYPE *path, int n){ 
-	
-    if (node == NULL) 
-        return; 
-
-    *Update current sum to hold sum of nodes on path *
-    *from root to this node *
-    curr_sum = curr_sum + node->val; 
-
-    * If this is a leaf node and path to this node has *
-    * maximum sum so far, then make this node target_leaf *
-    if (node->left == NULL && node->right == NULL) { 
-        if (*min_sum_ref == 0 || curr_sum < *min_sum_ref) { 
-            *min_sum_ref = curr_sum; 
-            *target_leaf_ref = node; 
-        } 
-    } 
-
-    * If this is not a leaf node, then recur down *
-    * to find the target_leaf *
-    getTargetLeaf(node->left, min_sum_ref, curr_sum, target_leaf_ref, path, n + 1);
-    getTargetLeaf(node->right, min_sum_ref, curr_sum, target_leaf_ref, path, n + 1);
-	path[n] = node->val;
-} 
-
-
-* --------------------
-Finds the minimum-cost path in an AVL tree
-   Input arguments: 
-        tree = pointer to the tree,
-        path = pointer to array that stores values of nodes along the min-cost path, 
-   Output: return the min-cost path length 
-
-   pre: assume that
-       path is already allocated sufficient memory space 
-       tree exists and is not NULL
-*
-int FindMinPath(struct AVLTree *tree, TYPE *path)
-{
-	*Theoretically, min-cost path is the far left branch*
-	
-	* FIX ME *
-    int min_sum_ref = 0;
-	int n = 0;
-	struct AVLnode* target_leaf;
-	
-	if(tree == NULL || tree->root == 0) return 0;
-	getTargetLeaf(tree->root, &min_sum_ref, 0, &target_leaf, path, n);
-	if(min_sum_ref > h(tree->root) + 1){
-		return h(tree->root) + 1;
-	}
-	return min_sum_ref;
-}
-**/
-
 /* --------------------
 Finds the minimum-cost path in an AVL tree
    Input arguments: 
@@ -159,9 +98,20 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 	int leftVal;
 	int rightVal;
 	if(current != NULL){
-		leftVal = travMinVal(current->left, path, n + 1);
-		rightVal = travMinVal(current->right, path, n + 1);
+		if(current->left == NULL){
+			leftVal = 0;
+		} else {
+			leftVal = travMinVal(current->left, path, n + 1);
+		}
+		
+		if(current->right == NULL){
+			rightVal = 0;
+		} else {
+			rightVal = travMinVal(current->right, path, n + 1);
+		}
+		
 		/*Return the lower of the two values*/
+		printf("Comparing L[%d] and R[%d]\n", leftVal, rightVal);
 		if(leftVal > rightVal){
 			path[n] = current->val;
 			return rightVal + current->val;
