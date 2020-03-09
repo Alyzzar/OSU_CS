@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include "avl.h"
 
-#define maxLen 100
+#define maxLen 2500
 
 int FindMinPath(struct AVLTree *tree, TYPE *path);
 int travMinVal(struct AVLnode *current, int *v, TYPE *path, int n);
