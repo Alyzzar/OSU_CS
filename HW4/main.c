@@ -36,6 +36,9 @@ int main(int argc, char** argv) {
 	/* Close the file  */
 	fclose(file);
 	
+	/*Balancing tree*/
+	_balance(tree->root);
+	
 	printf("\nPrinting the tree breadth-first : \n");
 	printBreadthFirstTree(tree);
 
@@ -86,7 +89,7 @@ void printBreadthFirstTree(struct AVLTree *tree)
     /* FIX ME */
     int height = h(tree->root);
 	int i;
-	printf("- - height = %d", height);
+	printf("- - height = %d \n", height);
     printf("- - PRINTING BREADTH FIRST\n");
 	for (i = 1; i <= height; i++) {
 		printf("- - - PRINT i = %d \n", i);
