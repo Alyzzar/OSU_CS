@@ -97,8 +97,6 @@ int FindMinPath(struct AVLTree *tree, TYPE *path){
 int travMinVal(struct AVLnode *current, TYPE *path, int n){
 	int leftVal;
 	int rightVal;
-	int leftChild = 1;
-	int rightChild = 1;
 	if(current != NULL){
 		if(current->left == NULL){
 			/*If no left child*/
