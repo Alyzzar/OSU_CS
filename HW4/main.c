@@ -8,7 +8,7 @@
 int FindMinPath(struct AVLTree *tree, TYPE *path);
 void printBreadthFirstTree(struct AVLTree *tree);
 void printGivenLevel(struct AVLnode* root, int level);
-void getTargetLeaf(struct node* node, int* min_sum_ref, int curr_sum, struct node** target_leaf_ref);
+void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref);
 
 /* -----------------------
 The main function
@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
 */
 void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref){ 
     if (node == NULL) 
-        return 0; 
+        return; 
   
     // Update current sum to hold sum of nodes on path 
     // from root to this node 
@@ -76,7 +76,7 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
     // If this is a leaf node and path to this node has 
     // maximum sum so far, then make this node target_leaf 
     if (node->left == NULL && node->right == NULL) { 
-        if (curr_sum < *min_sum_ref) { 
+        if (*min_sum_ref == 0 || curr_sum < *min_sum_ref) { 
             *min_sum_ref = curr_sum; 
             *target_leaf_ref = node; 
         } 
@@ -102,12 +102,12 @@ Finds the minimum-cost path in an AVL tree
 int FindMinPath(struct AVLTree *tree, TYPE *path)
 {
                /* FIX ME */
-    int length = 0;
+    int min_sum_ref = 0;
 	if(tree == NULL || tree->root == 0){
 		return 0;
 	}
 	struct AVLnode* target_leaf;
-	getTargetLeaf(node, &length, 0, &target_leaf);
+	getTargetLeaf(node, &min_sum_ref, 0, &target_leaf);
 	
 	return length;
 }
