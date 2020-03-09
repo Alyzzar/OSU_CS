@@ -106,7 +106,7 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 			leftChild = 0;
 		} else {
 			/*Recurssive -> left child*/
-			leftVal = travMinVal(current->left, path, n + 1);
+			leftVal = travMinVal(current->left, path, n + 1) + 1;
 		}
 		
 		if(current->right == NULL){
@@ -115,17 +115,40 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 			rightChild = 0;
 		} else {
 			/*Recurssive -> right child*/
-			rightVal = travMinVal(current->right, path, n + 1);
+			rightVal = travMinVal(current->right, path, n + 1) + 1;
 		}
 		
 		/*Return the lower of the two values*/
-		printf("Comparing L[%d] and R[%d]\n", leftVal, rightVal);
-		if(leftVal > rightVal){
-			path[n] = current->val;
-			return rightVal + 1;
+		/*printf("Comparing L[%d] and R[%d]\n", leftVal, rightVal);*/
+		path[n] = current->val;
+		if(leftChild == 1){
+			/*LEFT EXISTS*/
+			if(rightChild == 0){
+				/*ONLY LEFT EXISTS*/
+				path[n] = current->val;
+				return leftVal;
+			} else {
+				/*RIGHT DOES EXIST: COMPARE LEFT AND RIGHT*/
+				if(leftVal > rightVal){
+					/*RIGHT IS SMALLER*/
+					path[n] = current->val;
+					return rightVal;	
+				} else {
+					/*LEFT IS SMALLER*/
+					path[n] = current->val;
+					return leftVal;
+				}
+			}
 		} else {
-			path[n] = current->val;
-			return leftVal + 1;
+			/*LEFT DOESN'T EXIST*/
+			if(rightChild == 0){
+				/*NEITHER EXISTS*/
+				return 0;
+			} else {
+				/*ONLY RIGHT EXISTS*/
+				path[n] = current->val;
+				return leftVal;
+			}
 		}
 	}
 	return 0;
