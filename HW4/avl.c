@@ -94,8 +94,8 @@ struct AVLnode * rotateRight(struct AVLnode * current)
         /* FIX ME */
 	current->left = newtop->right;
 	newtop->right = current;
-	_setHeight(current);
-	_setHeight(newtop);
+	setHeight(current);
+	setHeight(newtop);
 	return newtop;
 }
 
