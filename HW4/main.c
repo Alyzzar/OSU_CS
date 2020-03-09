@@ -97,27 +97,32 @@ int FindMinPath(struct AVLTree *tree, TYPE *path){
 int travMinVal(struct AVLnode *current, TYPE *path, int n){
 	int leftVal;
 	int rightVal;
+	int leftChild = 1;
+	int rightChild = 1;
 	if(current != NULL){
 		if(current->left == NULL){
 			leftVal = 0;
+			leftChild = 0;
 		} else {
 			leftVal = travMinVal(current->left, path, n + 1);
 		}
 		
 		if(current->right == NULL){
 			rightVal = 0;
+			rightChild = 0;
 		} else {
 			rightVal = travMinVal(current->right, path, n + 1);
 		}
 		
 		/*Return the lower of the two values*/
 		printf("Comparing L[%d] and R[%d]\n", leftVal, rightVal);
-		if(leftVal > rightVal){
+		if(leftVal > rightVal && rightChild){
 			path[n] = current->val;
-			return rightVal + current->val;
-		}
-		path[n] = current->val;
-		return leftVal + current->val;
+			return rightVal + 1;
+		} else if (leftChild){
+			path[n] = current->val;
+			return leftVal + 1;
+		} else return 0;
 	}
 	return 0;
 }
