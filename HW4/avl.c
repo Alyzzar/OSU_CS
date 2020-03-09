@@ -105,7 +105,7 @@ struct AVLnode * _balance(struct AVLnode * current)
 	/* FIX ME */
 	
 	int rotation = bf(current);
-	
+	printf(rotation);
 	if(rotation < - 1){
 		int drotation = bf(current->left);
 		if(drotation > 0){
