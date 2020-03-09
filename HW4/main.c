@@ -87,7 +87,8 @@ Printing the contents of an AVL tree in breadth-first fashion
 void printBreadthFirstTree(struct AVLTree *tree)
 {
     /* FIX ME */
-    int height = h(tree->root);
+    /**int height = h(tree->root);**/
+	int height = 5;
 	int i;
 	printf("- - height = %d \n", height);
     printf("- - PRINTING BREADTH FIRST\n");
