@@ -94,8 +94,8 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
 
     /* If this is not a leaf node, then recur down */
     /* to find the target_leaf */
-    getTargetLeaf(node->left, min_sum_ref, curr_sum, target_leaf_ref, n + 1);
-    getTargetLeaf(node->right, min_sum_ref, curr_sum, target_leaf_ref, n + 1);
+    getTargetLeaf(node->left, min_sum_ref, curr_sum, target_leaf_ref, path, n + 1);
+    getTargetLeaf(node->right, min_sum_ref, curr_sum, target_leaf_ref, path, n + 1);
 	path[n] = node->val;
 } 
 
