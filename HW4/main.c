@@ -47,9 +47,9 @@ int main(int argc, char** argv) {
 	
 	/*Balancing tree*/
 	/*_balance(tree->root);*/
-	
+	printf("\n- - ASSIGNMENT 4 - -\n");
 	printf("inputLen: %d",inputLen);
-	printf("\nPrinting the tree breadth-first : \n");
+	printf("\nPrinting the tree breadth-first: \n");
 	printBreadthFirstTree(tree);
 
 	gettimeofday(&start, NULL);
@@ -151,18 +151,14 @@ void printBreadthFirstTree(struct AVLTree *tree)
     int height = h(tree->root);
 	int i;
 	printf("Height = %d \n", height);
-    /*printf("- - PRINTING BREADTH FIRST\n");*/
 	for (i = 1; i <= height + 1; i++) {
-			printf(" ");
 		printGivenLevel(tree->root, i);
-		
 	}
 }
 
 void printGivenLevel(struct AVLnode* current, int level) 
 {
     if (current == NULL){
-		/*printf(". ");*/
 		return; 
 	}
     if (level == 1){
