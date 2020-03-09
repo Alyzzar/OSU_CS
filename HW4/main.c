@@ -101,28 +101,32 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 	int rightChild = 1;
 	if(current != NULL){
 		if(current->left == NULL){
+			/*If no left child*/
 			leftVal = 0;
 			leftChild = 0;
 		} else {
+			/*Recurssive -> left child*/
 			leftVal = travMinVal(current->left, path, n + 1);
 		}
 		
 		if(current->right == NULL){
+			/*If no right child*/
 			rightVal = 0;
 			rightChild = 0;
 		} else {
+			/*Recurssive -> right child*/
 			rightVal = travMinVal(current->right, path, n + 1);
 		}
 		
 		/*Return the lower of the two values*/
 		printf("Comparing L[%d] and R[%d]\n", leftVal, rightVal);
-		if(leftVal > rightVal && rightChild){
+		if(leftVal > rightVal){
 			path[n] = current->val;
 			return rightVal + 1;
-		} else if (leftChild){
+		} else {
 			path[n] = current->val;
 			return leftVal + 1;
-		} else return 0;
+		}
 	}
 	return 0;
 }
