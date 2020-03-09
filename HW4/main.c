@@ -8,6 +8,8 @@
 int FindMinPath(struct AVLTree *tree, TYPE *path);
 void printBreadthFirstTree(struct AVLTree *tree);
 void printGivenLevel(struct AVLnode* root, int level);
+void updateHeight(struct AVLTree *tree);
+void travUpdateHeight(struct AVLNode *current);
 
 
 /* -----------------------
