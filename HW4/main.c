@@ -111,7 +111,7 @@ void printGivenLevel(struct AVLnode* current, int level)
 		/*printf("- - - RECURSSIVE CALL \n");*/
         printf("-> left: ");
 		printGivenLevel(current->left, level - 1); 
-        printf("-> right: ")
+        printf("-> right: ");
 		printGivenLevel(current->right, level - 1); 
     } 
 } 
