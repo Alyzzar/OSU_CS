@@ -101,7 +101,6 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 		if(current->left == NULL){
 			/*If no left child*/
 			leftVal = 0;
-			leftChild = 0;
 		} else {
 			/*Recurssive -> left child*/
 			leftVal = travMinVal(current->left, path, n + 1) + 1;
@@ -110,7 +109,6 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 		if(current->right == NULL){
 			/*If no right child*/
 			rightVal = 0;
-			rightChild = 0;
 		} else {
 			/*Recurssive -> right child*/
 			rightVal = travMinVal(current->right, path, n + 1) + 1;
