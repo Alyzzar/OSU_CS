@@ -107,17 +107,17 @@ struct AVLnode * _balance(struct AVLnode * current)
 	int rotation = bf(current);
 	
 	if(rotation < - 1){
-		int drotation = _height (bf(current->left);
+		int drotation = h(bf(current->left);
 		if(drotation > 0){
-			current->left = _rotateLeft(current->left);
+			current->left = rotateLeft(current->left);
 		}
-		return _rotateRight(current);
+		return rotateRight(current);
 	} else if (rotation > 1){
-		int drotation = _height (bf(current->right);
+		int drotation = h(bf(current->right);
 		if(drotation < 0){
-			current->right = _rotateLeft(current->right);
+			current->right = rotateLeft(current->right);
 		}
-		return _rotateLeft(current);
+		return rotateLeft(current);
 	}
 	setHeight(current);
 	return current;
@@ -254,5 +254,3 @@ struct AVLnode * _removeAllNodes(struct AVLTree * tree, struct AVLnode * cur, TY
    return _balance(cur);
   
 }
-
-
