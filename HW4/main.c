@@ -20,7 +20,7 @@ The main function
 int main(int argc, char** argv) {
 
 	FILE *file;
-	int len, i;
+	int outputLen, i, inputLen;
 	TYPE num; /* value to add to the tree from a file */
 	struct timeval stop, start; /* variables for measuring execution time */
 	int pathArray[pathLen];  /* static array with values of nodes along the min-cost path of the AVL tree -- as can be seen, the tree cannot have the depth greater than 50 which is fairly sufficient for out purposes*/
@@ -34,7 +34,8 @@ int main(int argc, char** argv) {
 
 	/* Read input file and add numbers to the AVL tree */
 	while((fscanf(file, "%i", &num)) != EOF){
-		addAVLTree(tree, num);		
+		addAVLTree(tree, num);	
+		inputLen++;
 	}
 	/* Close the file  */
 	fclose(file);
@@ -56,13 +57,13 @@ int main(int argc, char** argv) {
 	}
 
 	/* Find the minimum-cost path in the AVL tree*/
-	len = FindMinPath(tree, pathArray);
+	outputLen = FindMinPath(tree, pathArray);
 	
 	gettimeofday(&stop, NULL);
 
 	/* Print out all numbers on the minimum-cost path */
 	printf("\nThe minimum-cost path is: \n");
-	for(i = 0; i < len; i++)
+	for(i = 0; i < outputLen; i++)
 		printf("%d ", pathArray[i]);
 	printf("\n");
 
@@ -153,7 +154,7 @@ void printBreadthFirstTree(struct AVLTree *tree)
 void printGivenLevel(struct AVLnode* current, int level) 
 {
     if (current == NULL){
-		/*printf("N ");*/
+		printf(". ");
 		return; 
 	}
     if (level == 1){
