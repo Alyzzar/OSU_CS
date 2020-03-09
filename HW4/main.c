@@ -92,13 +92,12 @@ Finds the minimum-cost path in an AVL tree
 int FindMinPath(struct AVLTree *tree, TYPE *path){
 	int *outputVal = 0;
 	int outputLen = travMinVal(tree->root, outputVal, path, 0);
-	return outputLen + 1;
+	return outputLen;
 }
 
 int travMinVal(struct AVLnode *current, int *v, TYPE *path, int n){
 	int leftVal;
 	int rightVal;
-	printf("%d", (int)v);
 	if(current != NULL){
 		if(current->right == NULL){
 			/*If no right child*/
