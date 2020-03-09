@@ -88,12 +88,12 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
     if (node == NULL) 
         return; 
 
-    /*Update current sum to hold sum of nodes on path */
-    /*from root to this node */
+    *Update current sum to hold sum of nodes on path *
+    *from root to this node *
     curr_sum = curr_sum + node->val; 
 
-    /* If this is a leaf node and path to this node has */
-    /* maximum sum so far, then make this node target_leaf */
+    * If this is a leaf node and path to this node has *
+    * maximum sum so far, then make this node target_leaf *
     if (node->left == NULL && node->right == NULL) { 
         if (*min_sum_ref == 0 || curr_sum < *min_sum_ref) { 
             *min_sum_ref = curr_sum; 
@@ -101,8 +101,8 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
         } 
     } 
 
-    /* If this is not a leaf node, then recur down */
-    /* to find the target_leaf */
+    * If this is not a leaf node, then recur down *
+    * to find the target_leaf *
     getTargetLeaf(node->left, min_sum_ref, curr_sum, target_leaf_ref, path, n + 1);
     getTargetLeaf(node->right, min_sum_ref, curr_sum, target_leaf_ref, path, n + 1);
 	path[n] = node->val;
@@ -122,9 +122,9 @@ Finds the minimum-cost path in an AVL tree
 *
 int FindMinPath(struct AVLTree *tree, TYPE *path)
 {
-	/*Theoretically, min-cost path is the far left branch*
+	*Theoretically, min-cost path is the far left branch*
 	
-	/* FIX ME *
+	* FIX ME *
     int min_sum_ref = 0;
 	int n = 0;
 	struct AVLnode* target_leaf;
@@ -138,9 +138,19 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 }
 **/
 
+/* --------------------
+Finds the minimum-cost path in an AVL tree
+   Input arguments: 
+        tree = pointer to the tree,
+        path = pointer to array that stores values of nodes along the min-cost path, 
+   Output: return the min-cost path length 
+
+   pre: assume that
+       path is already allocated sufficient memory space 
+       tree exists and is not NULL
+*/
 int FindMinPath(struct AVLTree *tree, TYPE *path){
-	int n = 0;
-	travMinVal()
+	pathLen = travMinVal(tree->root, 0)
 	return pathLen;
 }
 
@@ -158,6 +168,7 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 		path[n] = current->val;
 		return leftVal + current->val;
 	}
+	return 0;
 }
 
 /* -----------------------
