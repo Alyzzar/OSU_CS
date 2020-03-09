@@ -101,12 +101,12 @@ Finds the minimum-cost path in an AVL tree
 */
 int FindMinPath(struct AVLTree *tree, TYPE *path)
 {
-               /* FIX ME */
+    /* FIX ME */
     int min_sum_ref = 0;
 	struct AVLnode* target_leaf;
 	if(tree == NULL || tree->root == 0) return 0;
-	getTargetLeaf(node, &min_sum_ref, 0, &target_leaf);
-	return length;
+	getTargetLeaf(tree->root, &min_sum_ref, 0, &target_leaf);
+	return min_sum_ref;
 }
 
 /* -----------------------
