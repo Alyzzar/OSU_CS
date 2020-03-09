@@ -105,7 +105,7 @@ void printBreadthFirstTree(struct AVLTree *tree)
 void printGivenLevel(struct AVLnode* current, int level) 
 {
     if (current == NULL){
-		printf("N ");
+		/*printf("N ");*/
 		return; 
 	}
     if (level == 1){
