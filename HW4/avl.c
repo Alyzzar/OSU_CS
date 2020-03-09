@@ -127,9 +127,9 @@ struct AVLnode * AVLnodeAdd(struct	AVLnode * current, TYPE newValue)
 	} else {
 		/*Recursion for left and right to find correct location*/
 		if (newValue < current->val){
-			current->left = AVLnodeAdd(current->left, val);
+			current->left = AVLnodeAdd(current->left, newValue);
 		} else {
-			current->right = AVLnodeAdd(current->right, val);
+			current->right = AVLnodeAdd(current->right, newValue);
 		}
 	}
 	return current;
