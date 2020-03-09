@@ -10,7 +10,7 @@ void printBreadthFirstTree(struct AVLTree *tree);
 void printGivenLevel(struct AVLnode* root, int level);
 void updateHeight(struct AVLTree *tree);
 void travUpdateHeight(struct AVLnode *current);
-
+void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref, TYPE *path, int n);
 
 /* -----------------------
 The main function
@@ -74,7 +74,8 @@ int main(int argc, char** argv) {
 	the leaf node of the maximum path sum. Also, 
 	returns the min_sum using min_sum_ref 
 */
-void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref){ 
+void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref, TYPE *path, int n){ 
+	
     if (node == NULL) 
         return; 
 
@@ -93,8 +94,9 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
 
     /* If this is not a leaf node, then recur down */
     /* to find the target_leaf */
-    getTargetLeaf(node->left, min_sum_ref, curr_sum, target_leaf_ref); 
-    getTargetLeaf(node->right, min_sum_ref, curr_sum, target_leaf_ref); 
+    getTargetLeaf(node->left, min_sum_ref, curr_sum, target_leaf_ref, n + 1);
+    getTargetLeaf(node->right, min_sum_ref, curr_sum, target_leaf_ref, n + 1);
+	path[n] = node->val;
 } 
 
 
@@ -115,9 +117,11 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 	
 	/* FIX ME */
     int min_sum_ref = 0;
+	int n = 0;
 	struct AVLnode* target_leaf;
+	
 	if(tree == NULL || tree->root == 0) return 0;
-	getTargetLeaf(tree->root, &min_sum_ref, 0, &target_leaf);
+	getTargetLeaf(tree->root, &min_sum_ref, 0, &target_leaf, path, n);
 	return min_sum_ref;
 }
 
@@ -132,7 +136,7 @@ void printBreadthFirstTree(struct AVLTree *tree)
     int height = h(tree->root);
 	int i;
 	printf("- - height = %d \n", height);
-    printf("- - PRINTING BREADTH FIRST\n");
+    /*printf("- - PRINTING BREADTH FIRST\n");*/
 	for (i = 1; i <= height; i++) {
 		/*printf("\n- - PRINT i = %d \n", i);*/
 		printf("\n");
