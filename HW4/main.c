@@ -36,8 +36,11 @@ int main(int argc, char** argv) {
 	/* Close the file  */
 	fclose(file);
 	
+	/*Update height of the tree*/
+	updateHeight();
+	
 	/*Balancing tree*/
-	_balance(tree->root);
+	/*_balance(tree->root);*/
 	
 	printf("\nPrinting the tree breadth-first : \n");
 	printBreadthFirstTree(tree);
@@ -87,8 +90,7 @@ Printing the contents of an AVL tree in breadth-first fashion
 void printBreadthFirstTree(struct AVLTree *tree)
 {
     /* FIX ME */
-    /**int height = h(tree->root);**/
-	int height = 100;
+    int height = h(tree->root);
 	int i;
 	printf("- - height = %d \n", height);
     printf("- - PRINTING BREADTH FIRST\n");
@@ -115,3 +117,16 @@ void printGivenLevel(struct AVLnode* current, int level)
 		printGivenLevel(current->right, level - 1); 
     } 
 } 
+
+void updateHeight(struct AVLTree *tree){
+	/*calls traversal (post-order) to update height of each node*/
+	travUpdateHeight(tree->root);
+}
+
+void travUpdateHeight(struct AVLnode* current){
+	if(current != 0){
+		travUpdateHeight(current->left);
+		travUpdateHeight(current->right);
+		setHeight(current);
+	}
+}
