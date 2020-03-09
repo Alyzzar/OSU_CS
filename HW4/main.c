@@ -7,7 +7,7 @@
 
 int FindMinPath(struct AVLTree *tree, TYPE *path);
 void printBreadthFirstTree(struct AVLTree *tree);
-void printGivenLevel(struct node* root, int level);
+void printGivenLevel(struct AVLnode* root, int level);
 
 
 /* -----------------------
@@ -95,7 +95,7 @@ void printBreadthFirstTree(struct AVLTree *tree)
 	}
 }
 
-void printGivenLevel(struct node* root, int level) 
+void printGivenLevel(struct AVLnode* root, int level) 
 {
     if (root == NULL) 
         return; 
