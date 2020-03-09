@@ -85,8 +85,8 @@ void printBreadthFirstTree(struct AVLTree *tree)
 {
     /* FIX ME */
     int height = h(tree->root);
+	int i;
 	printf("- - height = %d", height);
-    int i;
     printf("- - PRINTING BREADTH FIRST\n");
 	for (i = 1; i <= height; i++) {
 		printf("- - - PRINT i = %d \n", i);
