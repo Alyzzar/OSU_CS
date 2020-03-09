@@ -7,7 +7,7 @@
 #define maxLen 100
 
 int FindMinPath(struct AVLTree *tree, TYPE *path);
-int travMinVal(struct AVLnode *current, TYPE *path, int n);
+int travMinVal(struct AVLnode *current, int v, TYPE *path, int n);
 void printBreadthFirstTree(struct AVLTree *tree);
 void printGivenLevel(struct AVLnode* root, int level);
 void updateHeight(struct AVLTree *tree);
@@ -90,38 +90,41 @@ Finds the minimum-cost path in an AVL tree
        tree exists and is not NULL
 */
 int FindMinPath(struct AVLTree *tree, TYPE *path){
-	int outputLen = travMinVal(tree->root, path, 0);
+	int *outputVal = 0;
+	int outputLen = travMinVal(tree->root, outputVal, path, 0);
 	return outputLen + 1;
 }
 
-int travMinVal(struct AVLnode *current, TYPE *path, int n){
+int travMinVal(struct AVLnode *current, int v, TYPE *path, int n){
 	int leftVal;
 	int rightVal;
 	if(current != NULL){
 		if(current->right == NULL){
 			/*If no right child*/
-			rightVal = 0;
+			rightVal = 1000000;
 		} else {
 			/*Recurssive -> right child*/
-			rightVal = travMinVal(current->right, path, n + 1) + 1;
+			rightVal = travMinVal(current->right, v, path, n + 1) + 1;
 		}
 		
 		if(current->left == NULL){
 			/*If no left child*/
-			leftVal = 0;
+			leftVal = 1000000;
 		} else {
 			/*Recurssive -> left child*/
-			leftVal = travMinVal(current->left, path, n + 1) + 1;
+			leftVal = travMinVal(current->left, v, path, n + 1) + 1;
 		}
 		
 		/*Return the lower of the two values*/
 		path[n] = current->val;
-		if(leftVal > rightVal){
+		if(current->left->val > current->right->val){
 			/*RIGHT IS SMALLER*/
-			rightVal = travMinVal(current->right, path, n + 1) + 1;
+			v += current->right->val;
+			rightVal = travMinVal(current->right, v, path, n + 1) + 1;
 			return rightVal;	
 		} else {
 			/*LEFT IS SMALLER*/
+			v += current->left->val;
 			return leftVal;
 		}
 		/*NEITHER EXISTS*/
