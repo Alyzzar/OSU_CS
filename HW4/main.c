@@ -77,7 +77,7 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 {
                /* FIX ME */
         
-
+	return 0;
 }
 
 /* -----------------------
@@ -88,9 +88,8 @@ Printing the contents of an AVL tree in breadth-first fashion
 void printBreadthFirstTree(struct AVLTree *tree)
 {
     /* FIX ME */
-    int h;
-	h = h(tree->root); 
-    int i; 
+    int h = h(tree->root);
+    int i;
     for (i=1; i<=h; i++) {
 		printGivenLevel(tree->root, i);
 	}
