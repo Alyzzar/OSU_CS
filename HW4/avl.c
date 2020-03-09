@@ -79,9 +79,10 @@ struct AVLnode * rotateLeft(struct AVLnode * current)
 
 
     /* FIX ME */
-
-
-
+	current->right = newtop->left;
+	newtop->left = current;
+	_setHeight(current);
+	_setHeight(newtop);
 	return newtop;
 }
 
@@ -90,9 +91,11 @@ struct AVLnode * rotateRight(struct AVLnode * current)
 {
 	struct AVLnode * newtop = current->left;
 
-
         /* FIX ME */
-
+	current->left = newtop->right;
+	newtop->right = current;
+	_setHeight(current);
+	_setHeight(newtop);
 	return newtop;
 }
 
@@ -104,7 +107,7 @@ struct AVLnode * _balance(struct AVLnode * current)
 
 
        /* FIX ME */
-
+	
 
 	setHeight(current);
 	return current;
@@ -113,12 +116,23 @@ struct AVLnode * _balance(struct AVLnode * current)
 /* add newValue to subtree of current node */
 struct AVLnode * AVLnodeAdd(struct	AVLnode * current, TYPE newValue)
 {
-
-
-     /* FIX ME */
-
-
-
+	/* FIX ME */
+	if (current == 0){
+		/*Make a new node and return a pointer to it*/
+		struct Node *new = (struct Node *) malloc (sizeof(struct Node));
+		assert (new != 0);
+		new->value = newValue;
+		new->left = new->right = 0;
+		return new;
+	} else {
+		/*Recursion for left and right to find correct location*/
+		if (val < current->val){
+			current->left = _addNode(current->left, val);
+		} else {
+			current->right = _addNode(current->right, val);
+		}
+	}
+	return current;
 }
 
 /* add val to AVL tree */
