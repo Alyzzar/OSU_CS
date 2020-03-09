@@ -91,7 +91,7 @@ Finds the minimum-cost path in an AVL tree
 */
 int FindMinPath(struct AVLTree *tree, TYPE *path){
 	int *outputVal = 0;
-	int outputLen = travMinVal(tree->root, outputVal, path, 0);
+	int outputLen = travMinVal(tree->root, &outputVal, path, 0);
 	return outputLen + 1;
 }
 
@@ -104,7 +104,7 @@ int travMinVal(struct AVLnode *current, int v, TYPE *path, int n){
 			rightVal = 1000000;
 		} else {
 			/*Recurssive -> right child*/
-			rightVal = travMinVal(current->right, v, path, n + 1) + 1;
+			rightVal = travMinVal(current->right, &v, path, n + 1) + 1;
 		}
 		
 		if(current->left == NULL){
@@ -112,7 +112,7 @@ int travMinVal(struct AVLnode *current, int v, TYPE *path, int n){
 			leftVal = 1000000;
 		} else {
 			/*Recurssive -> left child*/
-			leftVal = travMinVal(current->left, v, path, n + 1) + 1;
+			leftVal = travMinVal(current->left, &v, path, n + 1) + 1;
 		}
 		
 		/*Return the lower of the two values*/
@@ -120,7 +120,7 @@ int travMinVal(struct AVLnode *current, int v, TYPE *path, int n){
 		if(current->left->val > current->right->val){
 			/*RIGHT IS SMALLER*/
 			v += current->right->val;
-			rightVal = travMinVal(current->right, v, path, n + 1) + 1;
+			rightVal = travMinVal(current->right, &v, path, n + 1) + 1;
 			return rightVal;	
 		} else {
 			/*LEFT IS SMALLER*/
