@@ -71,7 +71,7 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
   
     /*Update current sum to hold sum of nodes on path */
     /*from root to this node */
-    curr_sum = curr_sum + node->data; 
+    curr_sum = curr_sum + node->val; 
   
     /* If this is a leaf node and path to this node has */
     /* maximum sum so far, then make this node target_leaf */
@@ -82,8 +82,8 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
         } 
     } 
   
-    // If this is not a leaf node, then recur down 
-    // to find the target_leaf 
+    /* If this is not a leaf node, then recur down */
+    /* to find the target_leaf */
     getTargetLeaf(node->left, min_sum_ref, curr_sum, target_leaf_ref); 
     getTargetLeaf(node->right, min_sum_ref, curr_sum, target_leaf_ref); 
 } 
