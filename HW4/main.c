@@ -47,6 +47,7 @@ int main(int argc, char** argv) {
 	/*Balancing tree*/
 	/*_balance(tree->root);*/
 	
+	printf("inputLen: %d",inputLen);
 	printf("\nPrinting the tree breadth-first : \n");
 	printBreadthFirstTree(tree);
 
@@ -130,7 +131,7 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 	
 	if(tree == NULL || tree->root == 0) return 0;
 	getTargetLeaf(tree->root, &min_sum_ref, 0, &target_leaf, path, n);
-	if(min_sum_ref > inputLen){
+	if(min_sum_ref > h(tree->root)){
 		return inputLen;
 	}
 	return min_sum_ref;
