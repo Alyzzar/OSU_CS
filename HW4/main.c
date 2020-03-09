@@ -33,6 +33,7 @@ int main(int argc, char** argv) {
 	assert(file != 0);
 
 	/* Read input file and add numbers to the AVL tree */
+	inputLen = 0;
 	while((fscanf(file, "%i", &num)) != EOF){
 		addAVLTree(tree, num);	
 		inputLen++;
@@ -58,7 +59,7 @@ int main(int argc, char** argv) {
 
 	/* Find the minimum-cost path in the AVL tree*/
 	outputLen = FindMinPath(tree, pathArray);
-	printf("- - outputLen = %d\n", outputLen);
+	printf("\nOutputLen = %d", outputLen);
 	gettimeofday(&stop, NULL);
 
 	/* Print out all numbers on the minimum-cost path */
@@ -129,6 +130,9 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 	
 	if(tree == NULL || tree->root == 0) return 0;
 	getTargetLeaf(tree->root, &min_sum_ref, 0, &target_leaf, path, n);
+	if(min_sum_ref > inputLen){
+		return inputLen;
+	}
 	return min_sum_ref;
 }
 
