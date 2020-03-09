@@ -150,7 +150,7 @@ Finds the minimum-cost path in an AVL tree
        tree exists and is not NULL
 */
 int FindMinPath(struct AVLTree *tree, TYPE *path){
-	pathLen = travMinVal(tree->root, 0)
+	int pathLen = travMinVal(tree->root, path, 0)
 	return pathLen;
 }
 
@@ -158,8 +158,8 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 	int leftVal;
 	int rightVal;
 	if(current != NULL){
-		leftVal = travMinVal(current->left, n + 1);
-		rightVal = travMinVal(current->right, n + 1);
+		leftVal = travMinVal(current->left, path, n + 1);
+		rightVal = travMinVal(current->right, path, n + 1);
 		/*Return the lower of the two values*/
 		if(leftVal > rightVal){
 			path[n] = current->val;
