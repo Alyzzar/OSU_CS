@@ -119,39 +119,18 @@ int travMinVal(struct AVLnode *current, TYPE *path, int n){
 		}
 		
 		/*Return the lower of the two values*/
-		/*printf("Comparing L[%d] and R[%d]\n", leftVal, rightVal);*/
 		path[n] = current->val;
-		if(leftChild == 1){
-			/*LEFT EXISTS*/
-			if(rightChild == 0){
-				/*ONLY LEFT EXISTS*/
-				path[n] = current->val;
-				return leftVal;
-			} else {
-				/*RIGHT DOES EXIST: COMPARE LEFT AND RIGHT*/
-				if(leftVal > rightVal){
-					/*RIGHT IS SMALLER*/
-					path[n] = current->val;
-					return rightVal;	
-				} else {
-					/*LEFT IS SMALLER*/
-					path[n] = current->val;
-					return leftVal;
-				}
-			}
+		if(leftVal > rightVal){
+			/*RIGHT IS SMALLER*/
+			return rightVal;	
 		} else {
-			/*LEFT DOESN'T EXIST*/
-			if(rightChild == 0){
-				/*NEITHER EXISTS*/
-				return 0;
-			} else {
-				/*ONLY RIGHT EXISTS*/
-				path[n] = current->val;
-				return leftVal;
-			}
+			/*LEFT IS SMALLER*/
+			return leftVal;
 		}
+		/*NEITHER EXISTS*/
+		return 1;
 	}
-	return 0;
+	return 1;
 }
 
 /* -----------------------
