@@ -98,7 +98,7 @@ int FindMinPath(struct AVLTree *tree, TYPE *path){
 int travMinVal(struct AVLnode *current, int *v, TYPE *path, int n){
 	int leftVal;
 	int rightVal;
-	printf("%d, %d, %d", (int)v, (int)*v, (int)&v);
+	printf("%d", (int)v);
 	if(current != NULL){
 		if(current->right == NULL){
 			/*If no right child*/
