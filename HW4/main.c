@@ -132,7 +132,7 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 	if(tree == NULL || tree->root == 0) return 0;
 	getTargetLeaf(tree->root, &min_sum_ref, 0, &target_leaf, path, n);
 	if(min_sum_ref > h(tree->root)){
-		return inputLen;
+		return h(tree->root);
 	}
 	return min_sum_ref;
 }
