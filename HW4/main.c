@@ -69,12 +69,12 @@ void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct 
     if (node == NULL) 
         return; 
   
-    // Update current sum to hold sum of nodes on path 
-    // from root to this node 
+    /*Update current sum to hold sum of nodes on path */
+    /*from root to this node */
     curr_sum = curr_sum + node->data; 
   
-    // If this is a leaf node and path to this node has 
-    // maximum sum so far, then make this node target_leaf 
+    /* If this is a leaf node and path to this node has */
+    /* maximum sum so far, then make this node target_leaf */
     if (node->left == NULL && node->right == NULL) { 
         if (*min_sum_ref == 0 || curr_sum < *min_sum_ref) { 
             *min_sum_ref = curr_sum; 
@@ -103,12 +103,9 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 {
                /* FIX ME */
     int min_sum_ref = 0;
-	if(tree == NULL || tree->root == 0){
-		return 0;
-	}
 	struct AVLnode* target_leaf;
+	if(tree == NULL || tree->root == 0) return 0;
 	getTargetLeaf(node, &min_sum_ref, 0, &target_leaf);
-	
 	return length;
 }
 
