@@ -9,7 +9,7 @@ int FindMinPath(struct AVLTree *tree, TYPE *path);
 void printBreadthFirstTree(struct AVLTree *tree);
 void printGivenLevel(struct AVLnode* root, int level);
 void updateHeight(struct AVLTree *tree);
-void travUpdateHeight(struct AVLNode *current);
+void travUpdateHeight(struct AVLnode *current);
 
 
 /* -----------------------
@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 	fclose(file);
 	
 	/*Update height of the tree*/
-	updateHeight();
+	updateHeight(tree);
 	
 	/*Balancing tree*/
 	/*_balance(tree->root);*/
