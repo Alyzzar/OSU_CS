@@ -100,7 +100,7 @@ void printGivenLevel(struct AVLnode* root, int level)
     if (root == NULL) 
         return; 
     if (level == 1) 
-        printf("%d ", root->data); 
+        printf("%d ", root->val); 
     else if (level > 1) 
     { 
         printGivenLevel(root->left, level-1); 
