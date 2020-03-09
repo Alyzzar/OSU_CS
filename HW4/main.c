@@ -1,117 +1,260 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <sys/time.h>
 #include "avl.h"
 
 
-int FindMinPath(struct AVLTree *tree, TYPE *path);
-void printBreadthFirstTree(struct AVLTree *tree);
-void printGivenLevel(struct AVLnode* root, int level);
-
-
-/* -----------------------
-The main function
-  param: argv = pointer to the name (and path) of a file that the program reads for adding elements to the AVL tree
-*/
-int main(int argc, char** argv) {
-
-	FILE *file;
-	int len, i;
-	TYPE num; /* value to add to the tree from a file */
-	struct timeval stop, start; /* variables for measuring execution time */
-	int pathArray[50];  /* static array with values of nodes along the min-cost path of the AVL tree -- as can be seen, the tree cannot have the depth greater than 50 which is fairly sufficient for out purposes*/
-
-	struct AVLTree *tree;
+/* Alocate and initialize AVL tree structure. */
+struct AVLTree * newAVLTree()
+{
+	struct AVLTree *tree = (struct AVLTree *)malloc(sizeof(struct AVLTree));
+	assert(tree != 0);
 	
-	tree = newAVLTree(); /*initialize and return an empty tree */
-	
-	file = fopen(argv[1], "r"); 	/* filename is passed in argv[1] */
-	assert(file != 0);
+	initAVLTree(tree);
+	return tree;
+}
 
-	/* Read input file and add numbers to the AVL tree */
-	while((fscanf(file, "%i", &num)) != EOF){
-		addAVLTree(tree, num);		
+/* Initialize AVL tree structure. */
+void initAVLTree(struct AVLTree *tree)
+{
+	tree->cnt = 0;
+	tree->root = 0;
+
+}
+
+void _freeAVL(struct AVLnode *node)
+{
+	if (node != 0) {
+		_freeAVL(node->left);
+		_freeAVL(node->right);		
+		free(node);
 	}
-	/* Close the file  */
-	fclose(file);
-	
-	/*Balancing tree*/
-	_balance(tree->root);
-	
-	printf("\nPrinting the tree breadth-first : \n");
-	printBreadthFirstTree(tree);
-
-	gettimeofday(&start, NULL);
-
-	/* Find the minimum-cost path in the AVL tree*/
-	len = FindMinPath(tree, pathArray);
-	
-	gettimeofday(&stop, NULL);
-
-	/* Print out all numbers on the minimum-cost path */
-	printf("\nThe minimum-cost path is: \n");
-	for(i = 0; i < len; i++)
-		printf("%d ", pathArray[i]);
-	printf("\n");
-
-	printf("\nYour execution time to find the mincost path is %f microseconds\n", (double) (stop.tv_usec - start.tv_usec));
-
-        /* Free memory allocated to the tree */
-	deleteAVLTree(tree); 
-	
-	return 0;
 }
 
-/* --------------------
-Finds the minimum-cost path in an AVL tree
-   Input arguments: 
-        tree = pointer to the tree,
-        path = pointer to array that stores values of nodes along the min-cost path, 
-   Output: return the min-cost path length 
-
-   pre: assume that
-       path is already allocated sufficient memory space 
-       tree exists and is not NULL
-*/
-int FindMinPath(struct AVLTree *tree, TYPE *path)
+/* Deallocate nodes in AVL tree. */
+void clearAVLTree(struct AVLTree *tree)
 {
-   return 0;
+	_freeAVL(tree->root);
+	tree->root = 0;
+	tree->cnt  = 0;
 }
 
-/* -----------------------
-Printing the contents of an AVL tree in breadth-first fashion
-  param: pointer to a tree
-  pre: assume that tree was initialized well before calling this function
-*/
-void printBreadthFirstTree(struct AVLTree *tree)
+/* Deallocate nodes in AVL tree and deallocate the AVL tree structure. */
+void deleteAVLTree(struct AVLTree *tree)
 {
+	clearAVLTree(tree);
+	free(tree);
+}
+
+
+/* return height of current node */
+int h(struct AVLnode *current)
+{
+	if (current == 0)
+		return -1;
+	return current->height;
+}
+
+/* set height for current node */
+void setHeight (struct AVLnode * current)
+{
+	int lch = h(current->left);
+	int rch = h(current->right);
+	if (lch < rch)
+		current->height = 1 + rch;
+	else
+		current->height = 1 + lch;
+}
+
+/* return balance factor value */
+int bf(struct AVLnode * current)
+{
+	return h(current->right) - h(current->left);
+}
+
+/* left-rotate subtree of current node */
+struct AVLnode * rotateLeft(struct AVLnode * current)
+{
+	struct AVLnode * newtop = current->right;
+
+
     /* FIX ME */
-    /**int height = h(tree->root);**/
-	int height = 5;
-	int i;
-	printf("- - height = %d \n", height);
-    printf("- - PRINTING BREADTH FIRST\n");
-	for (i = 1; i <= height; i++) {
-		printf("\n- - PRINT i = %d \n", i);
-		printGivenLevel(tree->root, i);
+	current->right = newtop->left;
+	newtop->left = current;
+	setHeight(current);
+	setHeight(newtop);
+	return newtop;
+}
+
+/* right-rotate subtree of current node */
+struct AVLnode * rotateRight(struct AVLnode * current)
+{
+	struct AVLnode * newtop = current->left;
+
+        /* FIX ME */
+	current->left = newtop->right;
+	newtop->right = current;
+	setHeight(current);
+	setHeight(newtop);
+	return newtop;
+}
+
+/* balance subtree of current node */
+struct AVLnode * _balance(struct AVLnode * current)
+{
+	/* FIX ME */
+	
+	int rotation = bf(current);
+	
+	if(rotation < - 1){
+		int drotation = bf(current->left);
+		if(drotation > 0){
+			current->left = rotateLeft(current->left);
+		}
+		return rotateRight(current);
+	} else if (rotation > 1){
+		int drotation = bf(current->right);
+		if(drotation < 0){
+			current->right = rotateLeft(current->right);
+		}
+		return rotateLeft(current);
+	}
+	setHeight(current);
+	return current;
+}
+
+/* add newValue to subtree of current node */
+struct AVLnode * AVLnodeAdd(struct	AVLnode * current, TYPE newValue)
+{
+	/* FIX ME */
+	if (current == 0){
+		/*Make a new node and return a pointer to it*/
+		struct AVLnode *new = (struct AVLnode *) malloc (sizeof(struct AVLnode));
+		assert (new != 0);
+		new->val = newValue;
+		new->left = new->right = 0;
+		return new;
+	} else {
+		/*Recursion for left and right to find correct location*/
+		if (newValue < current->val){
+			current->left = AVLnodeAdd(current->left, newValue);
+			printf("Added %d to the left of %d\n", current->left, current);
+		} else {
+			current->right = AVLnodeAdd(current->right, newValue);
+			printf("Added %d to the right of %d\n", current->right, current);
+		}
+	}
+	return current;
+}
+
+/* add val to AVL tree */
+void addAVLTree(struct AVLTree *tree, TYPE val)
+{
+	tree->root = AVLnodeAdd(tree->root, val);	
+	tree->cnt++;
+}
+
+/* determine if val is contained in the AVL tree */
+int containsAVLTree(struct AVLTree *tree, TYPE val)
+{
+	struct AVLnode* cur = tree->root;
+
+	while(cur != 0){
+		if (EQ(cur->val, val))	
+			return 1;
+		else if (LT(val, cur->val))
+			cur = cur->left;
+		else
+			cur = cur->right;
+	}
+
+	return 0; 
+}
+
+/* find leftmost value from subtree of current node */
+TYPE _leftMost(struct AVLnode *cur)
+{
+	while(cur->left != 0)
+		cur = cur->left;
+	return cur->val;
+}
+
+/* remove leftmost node from subtree of current node */
+struct AVLnode * _removeLeftmost(struct AVLnode * cur)
+{
+	struct AVLnode * temp;
+
+	if(cur->left != 0){
+		cur->left = _removeLeftmost(cur->left);
+		return _balance(cur);
+	}
+
+	temp = cur->right;
+	free(cur);
+	return temp;
+}
+
+/* remove val from subtree of cur node */
+struct AVLnode * _removeNode(struct AVLnode * cur, TYPE val)
+{
+	struct AVLnode * temp;
+
+	if(EQ(val, cur->val)){
+		if(cur->right != 0){
+			cur->val = _leftMost(cur->right);
+			cur->right = _removeLeftmost(cur->right);
+			return _balance(cur);
+		} else {
+			temp = cur->left;
+			free(cur);
+			return temp;
+		}
+	} else if (LT(val, cur->val))
+		cur->left = _removeNode(cur->left, val);
+	else cur->right = _removeNode(cur->right, val);
+
+	return _balance(cur);
+}
+
+/* remove val from AVL tree */
+void removeAVLTree(struct AVLTree * tree, TYPE val)
+{
+	if(containsAVLTree(tree, val)){
+		tree->root = _removeNode(tree->root, val);
+		tree->cnt--;
 	}
 }
 
-void printGivenLevel(struct AVLnode* current, int level) 
+/* remove val from AVL tree */
+void removeAllAVLTree(struct AVLTree * tree, TYPE val)
 {
-    if (current == NULL){
-		printf("N ");
-		return; 
-	}
-    if (level == 1){
-		printf("%d ", current->val);
-		return;
-	} else { 
-		/*printf("- - - RECURSSIVE CALL \n");*/
-        printf("-> left: ");
-		printGivenLevel(current->left, level - 1); 
-        printf("-> right: ");
-		printGivenLevel(current->right, level - 1); 
-    } 
-} 
+	if(containsAVLTree(tree, val))
+		tree->root = _removeAllNodes(tree, tree->root, val);
+}
+
+
+struct AVLnode * _removeAllNodes(struct AVLTree * tree, struct AVLnode * cur, TYPE val){
+   struct AVLnode * temp = NULL;
+   while(EQ(val, cur->val)){
+      if(cur->right != 0){
+         cur->val = _leftMost(cur->right);
+         cur->right = _removeLeftmost(cur->right);
+         tree->cnt--;
+      } else {
+         temp = cur->left;
+         free(cur);
+         tree->cnt--;
+         cur = temp;
+      }
+   }
+   if (cur){  
+      if (LT(val, cur->val))
+         cur->left = _removeAllNodes(tree,cur->left, val);
+      else 
+         cur->right = _removeAllNodes(tree,cur->right, val);
+   }
+   return _balance(cur);
+  
+}
+
+
