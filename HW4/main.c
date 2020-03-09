@@ -112,7 +112,6 @@ Finds the minimum-cost path in an AVL tree
 int FindMinPath(struct AVLTree *tree, TYPE *path)
 {
 	/*Theoretically, min-cost path is the far left branch*/
-    return 0;
 	
 	/* FIX ME */
     int min_sum_ref = 0;
