@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
 
 	/* Find the minimum-cost path in the AVL tree*/
 	outputLen = FindMinPath(tree, pathArray);
-	printf("- - outputLen = %d\n", outputLen)
+	printf("- - outputLen = %d\n", outputLen);
 	gettimeofday(&stop, NULL);
 
 	/* Print out all numbers on the minimum-cost path */
