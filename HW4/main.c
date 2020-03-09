@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
 
 	/* Find the minimum-cost path in the AVL tree*/
 	outputLen = FindMinPath(tree, pathArray);
-	
+	printf("- - outputLen = %d\n", outputLen)
 	gettimeofday(&stop, NULL);
 
 	/* Print out all numbers on the minimum-cost path */
@@ -142,12 +142,12 @@ void printBreadthFirstTree(struct AVLTree *tree)
     /* FIX ME */
     int height = h(tree->root);
 	int i;
-	printf("- - height = %d \n", height);
+	printf("Height = %d \n", height);
     /*printf("- - PRINTING BREADTH FIRST\n");*/
 	for (i = 1; i <= height + 1; i++) {
 		/*printf("\n- - PRINT i = %d \n", i);*/
-		printf("\n");
 		printGivenLevel(tree->root, i);
+		printf("\n");
 	}
 }
 
