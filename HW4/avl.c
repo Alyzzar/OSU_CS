@@ -138,8 +138,10 @@ struct AVLnode * AVLnodeAdd(struct	AVLnode * current, TYPE newValue)
 		/*Recursion for left and right to find correct location*/
 		if (newValue < current->val){
 			current->left = AVLnodeAdd(current->left, newValue);
+			printf("Added %d to the left of %d\n", current->left, current);
 		} else {
 			current->right = AVLnodeAdd(current->right, newValue);
+			printf("Added %d to the right of %d\n", current->right, current);
 		}
 	}
 	return current;
