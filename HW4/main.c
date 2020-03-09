@@ -88,9 +88,9 @@ Printing the contents of an AVL tree in breadth-first fashion
 void printBreadthFirstTree(struct AVLTree *tree)
 {
     /* FIX ME */
-    int h = h(tree->root);
+    int height = h(tree->root);
     int i;
-    for (i=1; i<=h; i++) {
+    for (i=1; i<=height; i++) {
 		printGivenLevel(tree->root, i);
 	}
 }
