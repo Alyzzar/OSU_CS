@@ -7,11 +7,12 @@
 #define maxLen 100
 
 int FindMinPath(struct AVLTree *tree, TYPE *path);
+int travMinVal(struct AVLnode *current, TYPE *path, int n);
 void printBreadthFirstTree(struct AVLTree *tree);
 void printGivenLevel(struct AVLnode* root, int level);
 void updateHeight(struct AVLTree *tree);
 void travUpdateHeight(struct AVLnode *current);
-void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref, TYPE *path, int n);
+
 
 /* -----------------------
 The main function
@@ -150,7 +151,7 @@ Finds the minimum-cost path in an AVL tree
        tree exists and is not NULL
 */
 int FindMinPath(struct AVLTree *tree, TYPE *path){
-	int outputLen = travMinVal(tree->root, path, 0)
+	int outputLen = travMinVal(tree->root, path, 0);
 	return outputLen;
 }
 
