@@ -7,6 +7,7 @@
 
 int FindMinPath(struct AVLTree *tree, TYPE *path);
 void printBreadthFirstTree(struct AVLTree *tree);
+void printGivenLevel(struct node* root, int level);
 
 
 /* -----------------------
@@ -79,8 +80,6 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 
 }
 
-
-
 /* -----------------------
 Printing the contents of an AVL tree in breadth-first fashion
   param: pointer to a tree
@@ -88,11 +87,23 @@ Printing the contents of an AVL tree in breadth-first fashion
 */
 void printBreadthFirstTree(struct AVLTree *tree)
 {
-   
     /* FIX ME */
-
-
+    int h = height(tree->root); 
+    int i; 
+    for (i=1; i<=h; i++) {
+		printGivenLevel(tree->root, i);
+	}
 }
 
-
-
+void printGivenLevel(struct node* root, int level) 
+{
+    if (root == NULL) 
+        return; 
+    if (level == 1) 
+        printf("%d ", root->data); 
+    else if (level > 1) 
+    { 
+        printGivenLevel(root->left, level-1); 
+        printGivenLevel(root->right, level-1); 
+    } 
+} 
