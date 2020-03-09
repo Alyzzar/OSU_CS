@@ -77,12 +77,12 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-
+/**
 /* -------------------
 	This function Sets the target_leaf_ref to refer 
 	the leaf node of the maximum path sum. Also, 
 	returns the min_sum using min_sum_ref 
-*/
+*
 void getTargetLeaf(struct AVLnode* node, int* min_sum_ref, int curr_sum, struct AVLnode** target_leaf_ref, TYPE *path, int n){ 
 	
     if (node == NULL) 
@@ -119,12 +119,12 @@ Finds the minimum-cost path in an AVL tree
    pre: assume that
        path is already allocated sufficient memory space 
        tree exists and is not NULL
-*/
+*
 int FindMinPath(struct AVLTree *tree, TYPE *path)
 {
-	/*Theoretically, min-cost path is the far left branch*/
+	/*Theoretically, min-cost path is the far left branch*
 	
-	/* FIX ME */
+	/* FIX ME *
     int min_sum_ref = 0;
 	int n = 0;
 	struct AVLnode* target_leaf;
@@ -135,6 +135,29 @@ int FindMinPath(struct AVLTree *tree, TYPE *path)
 		return h(tree->root) + 1;
 	}
 	return min_sum_ref;
+}
+**/
+
+int FindMinPath(struct AVLTree *tree, TYPE *path){
+	int n = 0;
+	travMinVal()
+	return pathLen;
+}
+
+int travMinVal(struct AVLnode *current, TYPE *path, int n){
+	int leftVal;
+	int rightVal;
+	if(current != NULL){
+		leftVal = travMinVal(current->left, n + 1);
+		rightVal = travMinVal(current->right, n + 1);
+		/*Return the lower of the two values*/
+		if(leftVal > rightVal){
+			path[n] = current->val;
+			return rightVal + current->val;
+		}
+		path[n] = current->val;
+		return leftVal + current->val;
+	}
 }
 
 /* -----------------------
@@ -184,7 +207,7 @@ void updateHeight(struct AVLTree *tree){
 }
 
 void travUpdateHeight(struct AVLnode* current){
-	if(current != 0){
+	if(current != NULL){
 		travUpdateHeight(current->left);
 		travUpdateHeight(current->right);
 		setHeight(current);
