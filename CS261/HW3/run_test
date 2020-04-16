@@ -1,0 +1,2 @@
+gcc -Wall -ansi -o test.out hashMap.c linkedList.c test.c;
+./test.out;
