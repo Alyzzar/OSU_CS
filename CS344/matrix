@@ -129,7 +129,7 @@ add(){
 					fi
 				else
 					# Correction not needed
-					cur_elem=$(($m1[$n_elem] + $m2[$n_elem]))
+					cur_elem=$((${m1[$n_elem]} + ${m2[$n_elem]}))
 				fi
 				
 				# Prints the combined element
