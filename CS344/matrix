@@ -22,7 +22,7 @@ dims(){
 	done
 	
 	#print the rows and columns, and new line
-	printf "n_rows n_cols\n"
+	printf "$n_rows $n_cols\n"
 }
 
 #	mean()	Mean row vector of the input matrix
