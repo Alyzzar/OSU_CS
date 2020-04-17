@@ -111,7 +111,7 @@ add(){
 				# Iterate horizontally
 				
 				# n_elem converts 2D dimensions to 1D position in array
-				n_elem=$(($j + ($j * $i)))
+				n_elem=$(($j + ($n1_cols * $i)))
 				cur_elem=0
 				
 				if [ $n1_cols != $n2_cols ]; then
@@ -135,14 +135,14 @@ add(){
 				
 				# Prints the combined element				
 				# Adds a tab between elements
-				if [ $i != "0" ]; then
+				if [ $j != "0" ]; then
 					printf "\t"
 				fi
 				# printf "$cur_elem"
 				printf "${m1[$n_elem]}\n"
 			done
 			# Print new lines between the transposed rows
-			printf "\n"
+			printf "ADD COMPLETE\n"
 		done
 		
 	fi
