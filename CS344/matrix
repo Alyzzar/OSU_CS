@@ -78,22 +78,22 @@ transpose(){
 # # Input:	Two matrices with the same dimesions (direction is irrelevant)
 # #	Output: One matrix with the dimesions of the first matrix
 add(){
-	dimensions1=($(dims $1))
-	n1_rows=${dimensions1[0]}
-	n1_cols=${dimensions1[1]}
+	n1_rows=$(cat $1 | wc -l)
+	n1_cols=$(awk '{print NF}' $1 | sort -nu | tail -n 1)
 
-	dimensions2=($(dims $2))
-	n2_rows=${dimensions2[0]}
-	n2_cols=${dimensions2[1]}
+	n2_rows=$(cat $2 | wc -l)
+	n2_cols=$(awk '{print NF}' $2 | sort -nu | tail -n 1)
 	
 	if [n1_rows != n2_rows] || [n1_cols != n2_cols]; then
+		# Dimensions are not the same
 		if [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
-			# Dimensions are neither the same or mirrored; invalid
+			# Dimensions are not mirrored
 			printf "Error: Matrices unmatched. Invalid operation.\n" >&2
 			exit 1
 		fi
+		# Else, dimensions are mirrored: valid
 	else 
-		# Dimensions are valid
+		# Dimensions are the same: valid
 		
 		for ((i = 0; i < n1_rows; i++)); do
 			# Iterate vertically
