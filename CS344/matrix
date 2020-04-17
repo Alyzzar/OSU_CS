@@ -6,18 +6,17 @@
 # # Input:  MxN matrix
 # # Output: Prints the row and col count of the input matrix
 dims(){
-	read $1
 	n_cols=0
 	n_rows=0
 	
 	printf "Counting columns"
-	for elem in $1; do
+	for elem in $data_file; do
 		# Count cols
 		n_cols=$((n_cols++))
 	done
 	
 	printf "Counting rows"
-	for elem in $(cat $1 | cut -d $'\t' -f 1); do 
+	for elem in $(cat $data_file | cut -d $'\t' -f 1); do 
 		# Count rows (seperate elems by tabs, fields)
 		# Cut is dependent on number of columns
 		n_rows=$((n_rows++))
