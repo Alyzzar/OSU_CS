@@ -154,7 +154,7 @@ fi
 # Selecting option
 # For 2 parameter options
 if [ $1 = "dims" ] || [ $1 = "transpose" ] || [ $1 = "mean" ]; then 
-	if [$# -gt "2"]; then
+	if [ $# -gt "2" ]; then
 	# Too many inputs passed in
 		printf "Error: Excess inputs.\n" >&2
 		exit 1
@@ -184,7 +184,7 @@ if [ $1 = "dims" ] || [ $1 = "transpose" ] || [ $1 = "mean" ]; then
 	
 # For 3 parameter options
 else 
-	if [$# != "3"]; then
+	if [ $# != "3" ]; then
 		# Too many/few inputs passed in
 		printf "Error: Option requires two input matrices.\n" >&2
 		exit 1
