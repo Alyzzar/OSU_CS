@@ -111,7 +111,7 @@ add(){
 				# Iterate horizontally
 				
 				# n_elem converts 2D dimensions to 1D position in array
-				n_elem=$(($i + ($j * $i)))
+				n_elem=$(($j + ($j * $i)))
 				cur_elem=0
 				
 				if [ $n1_cols != $n2_cols ]; then
