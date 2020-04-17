@@ -153,7 +153,7 @@ fi
 
 # Selecting option
 # For 2 parameter options
-if [$1 = "dims"] || [$1 = "transpose"] || [$1 = "mean"]; then 
+if [ $1 = "dims" ] || [ $1 = "transpose" ] || [ $1 = "mean" ]; then 
 	if [$# -gt "2"]; then
 	# Too many inputs passed in
 		printf "Error: Excess inputs.\n" >&2
@@ -163,10 +163,10 @@ if [$1 = "dims"] || [$1 = "transpose"] || [$1 = "mean"]; then
 	
 	# Determine if arguments will be passed in from file or from stdin. Check if file is readable
 	data_file="data_file_$$"
-	if ["$#" = "1"]; then
+	if [ "$#" = "1" ]; then
 		cat > "$data_file" 
 		# Read from stdin
-	elif ["$#" = "2"]; then
+	elif [ "$#" = "2" ]; then
 		data_file=$2
 		# Read from existing file
 	fi
@@ -181,6 +181,7 @@ if [$1 = "dims"] || [$1 = "transpose"] || [$1 = "mean"]; then
 	
 	rm -rf data_file_*
 	# Remove temp files
+	
 # For 3 parameter options
 else 
 	if [$# != "3"]; then
