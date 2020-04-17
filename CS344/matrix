@@ -64,7 +64,7 @@ transpose(){
 		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
 			# Iterate down columns (vertically)
 			# Adds a tab between elements
-			if [ $i != "0"]; then
+			if [ $i != "0" ]; then
 				printf "\t"
 			fi
 			# Prints the element
