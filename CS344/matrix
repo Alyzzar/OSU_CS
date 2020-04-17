@@ -63,12 +63,11 @@ transpose(){
 		# Iterate across columns (horizontally)
 		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
 			# Iterate down columns (vertically)
-			# Adds a tab between elements
-			if [ $i != "0" ]; then
-				printf "\t"
-			fi
 			# Prints the element
 			printf "$elem"
+			
+			# Adds a tab between elements
+			printf "\t"
 		done
 		# Print new lines between the transposed rows
 		printf "\n"
