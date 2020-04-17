@@ -41,7 +41,7 @@ mean(){
 		done
 		
 		# Adds a tab between elements
-		if [ $i != "0"]; then
+		if [ $i != "0" ]; then
 			printf "\t"
 		fi
 		
