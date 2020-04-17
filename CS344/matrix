@@ -29,7 +29,7 @@ dims(){
 # # Input:  MxN matrix
 # # Output: 1xN row vector (each element is mean of associated column)
 mean(){
-	dimensions = ($(dims $1))
+	dimensions=($(dims $1))
 	n_rows=${dimensions[0]}
 	n_cols=${dimensions[1]}
 	
