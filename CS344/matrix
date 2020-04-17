@@ -2,9 +2,6 @@
 
 #given m1, m2
 
-m1 = "1\t2\t3\n4\t5\t6\n"
-m2 = "1\t2\n3\t4\n5\t6\n"
-
 #Input:  MxN matrix
 #Output: 1xN row vector (each element is mean of associated column)
 mean(){
@@ -25,15 +22,19 @@ mean(){
 #Input:  Row of matrix 
 #Output: Mean of row
 meanRow(){
+	echo 'running meanRow()'
 	m = $1
 	read $m
+	echo 'read $m'
 	sum = 0
 	count = 0
+	echo 'running loop'
 	for i in $m
 	do
 		sum = 'expr $sum + $i'
 		count = 'expr $count = 1'
 	done
+	echo 'completed loop'
 	mean = $(( ( $sum + ( $count/2 ) * ( ( $sum > 0 ) * 2-1 ) ) /$count ))
 	#returns the mean of the row to stdout
 	echo "mean"
