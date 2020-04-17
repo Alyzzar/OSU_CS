@@ -56,9 +56,8 @@ mean(){
 # # Input: 	MxN matrix
 # # Output: NxM matrix with flipped values
 transpose(){
-	dimensions=($(dims $1))
-	n_rows=${dimensions[0]}
-	n_cols=${dimensions[1]}
+	n_rows=$(cat $1 | wc -l)
+	n_cols=$(awk '{print NF}' $1 | sort -nu | tail -n 1)
 	
 	for ((i = 0; i < n_cols; i++)); do
 		# Iterate across columns (horizontally)
