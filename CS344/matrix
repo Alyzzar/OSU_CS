@@ -9,6 +9,8 @@ dims(){
 	n_cols=0
 	n_rows=0
 	
+	read $data_file
+	
 	printf "Counting columns in $data_file\n"
 	for elem in $data_file; do
 		# Count cols
