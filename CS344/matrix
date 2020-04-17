@@ -9,13 +9,13 @@ dims(){
 	n_cols=0
 	n_rows=0
 	
-	printf "Counting cols in $1"
+	printf "Counting cols in $1\n"
 	#Count columns by counting tabs on first line
-	 n_cols=$(($($1 tr -dc \\t | wc -c)+1))
+	 n_cols=$(awk '{print NF}' file | sort -nu | tail -n 1)
 	
-	printf "Counting rows in $1"
+	printf "Counting rows in $1\n"
 	#Count rows by counting lines
-	n_rows=$(($(cat $1 | wc -l)+1))
+	n_rows=$(cat $1 | wc -l)
 	
 	#print the rows and columns, and new line
 	printf "$n_rows $n_cols\n"
