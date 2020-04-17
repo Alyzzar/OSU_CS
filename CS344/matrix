@@ -11,7 +11,7 @@ dims(){
 	
 	printf "Counting cols in $1\n"
 	#Count columns by counting tabs on first line
-	 n_cols=$(awk '{print NF}' file | sort -nu | tail -n 1)
+	 n_cols=$(awk '{print NF}' $1 | sort -nu | tail -n 1)
 	
 	printf "Counting rows in $1\n"
 	#Count rows by counting lines
