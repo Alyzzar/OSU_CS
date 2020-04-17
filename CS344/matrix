@@ -93,9 +93,9 @@ add(){
 	else 
 		# Dimensions are the same: valid
 		
-		for ((i = 0; i < n1_rows; i++)); do
+		for ((i = 0; i < $n1_rows; i++)); do
 			# Iterate vertically
-			for ((j = 0; j < n1_cols; j++)); do 
+			for ((j = 0; j < $n1_cols; j++)); do 
 				# Change this so that it actually outputs an elem, not an int.
 			
 				# Iterate horizontally
@@ -104,23 +104,24 @@ add(){
 					printf "\t"
 				fi
 				
-				if [n1_cols != n2_cols]; then
+				if [ $n1_cols != $n2_cols ]; then
 					# Correction for the narrower matrix
 					# Row = 2* Rounded((curr row) + (curr col)/(n_cols))
 					# Col = (curr col) % half of n_cols
 					
 					# Determine which matrix is wider
-					if [n1_cols -lt n2_cols]; then
+					if [$n1_cols -lt $n2_cols]; then
 						printf "m1 narrower\n"
 						
-					elif [n1_cols -gt n2_cols]; then
+					elif [$n1_cols -gt $n2_cols]; then
 						printf "m2 narrower\n"
 						
 					fi
 				fi
 				
 				# Prints the combined element
-				printf $(($j + $q))
+				printf "Add completed.\n"
+				#printf $(($j + $q))
 			done
 			# Print new lines between the transposed rows
 			printf "\n"
