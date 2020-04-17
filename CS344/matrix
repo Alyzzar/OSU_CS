@@ -153,9 +153,7 @@ fi
 
 # Selecting option
 # For 2 parameter options
-if [$1 = "dims"]
-	|| [$1 = "transpose"]
-	|| [$1 = "mean"]; then
+if [$1 = "dims"] || [$1 = "transpose"] || [$1 = "mean"]; then 
 	if [$# -gt "2"]; then
 	# Too many inputs passed in
 		printf "Error: Excess inputs.\n" >&2
