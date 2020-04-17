@@ -90,8 +90,8 @@ add(){
 	n2_rows=${dimensions2[0]}
 	n2_cols=${dimensions2[1]}
 	
-	if [n1_rows != n2_rows] || [n1_cols != n2_cols]
-	&& [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
+	if [[n1_rows != n2_rows] || [n1_cols != n2_cols]]
+	&& [[n1_rows != n2_cols] || [n1_cols != n2_rows]]; then
 		# Dimensions are neither the same or mirrored; invalid
 		printf "Error: Matrices unmatched. Invalid operation.\n" >&2
 		exit 1
