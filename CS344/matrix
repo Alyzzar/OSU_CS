@@ -23,8 +23,7 @@ dims(){
 # # Input:  MxN matrix
 # # Output: 1xN row vector (each element is mean of associated column)
 mean(){
-	# Count row and cols using same methods from dims()
-	n_rows=$(cat $1 | wc -l)
+	# Count cols using same methods from dims()
 	n_cols=$(awk '{print NF}' $1 | sort -nu | tail -n 1)
 	
 	printf "Finding mean of columns\n"
