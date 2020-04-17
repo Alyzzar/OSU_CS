@@ -45,7 +45,7 @@ mean(){
 			printf "\t"
 		fi
 		
-		printf "%d" $(((sum + (n_rows/2)*( (sum>0)*2-1 )) / n_rows))
+		printf "%d" $(((sum + ($n_rows/2)*( (sum>0)*2-1 )) / $n_rows))
 		# Equation provided. Prints mean of the row
 	done
 	#New line for formatting
@@ -59,7 +59,7 @@ transpose(){
 	n_rows=$(cat $1 | wc -l)
 	n_cols=$(awk '{print NF}' $1 | sort -nu | tail -n 1)
 	
-	for ((i = 0; i < n_cols; i++)); do
+	for ((i = 0; i < $n_cols; i++)); do
 		# Iterate across columns (horizontally)
 		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
 			# Iterate down columns (vertically)
