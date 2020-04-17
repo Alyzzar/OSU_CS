@@ -110,10 +110,10 @@ add(){
 					# Col = (curr col) % half of n_cols
 					
 					# Determine which matrix is wider
-					if [$n1_cols -lt $n2_cols]; then
+					if [ $n1_cols -lt $n2_cols ]; then
 						printf "m1 narrower\n"
 						
-					elif [$n1_cols -gt $n2_cols]; then
+					elif [ $n1_cols -gt $n2_cols ]; then
 						printf "m2 narrower\n"
 						
 					fi
