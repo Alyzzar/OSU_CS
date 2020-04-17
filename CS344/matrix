@@ -30,7 +30,7 @@ mean(){
 	printf "Finding mean of columns\n"
 	printf "$n_rows $n_cols\n"
 	
-	for ((i = 0; i < $n_cols; i++)); do
+	for ((i=0; i < $n_cols; i++)); do
 		# Reset columns sum to 0 at beginning of each loop
 		sum=0;
 		
@@ -59,7 +59,7 @@ transpose(){
 	n_rows=$(cat $1 | wc -l)
 	n_cols=$(awk '{print NF}' $1 | sort -nu | tail -n 1)
 	
-	for ((i = 0; i < $n_cols; i++)); do
+	for ((i=0; i < $n_cols; i++)); do
 		# Iterate across columns (horizontally)
 		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
 			# Iterate down columns (vertically)
@@ -84,6 +84,13 @@ add(){
 	n2_rows=$(cat $2 | wc -l)
 	n2_cols=$(awk '{print NF}' $2 | sort -nu | tail -n 1)
 	
+	#declare two arrays, store files inside
+	declare -a m1
+	m1=('cat "$1"')
+	
+	declare -a m2
+	m2=('cat "$2"')
+	
 	#if [n1_rows != n2_rows] || [n1_cols != n2_cols]
 	#&& [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
 	if [[ ($n1_rows != $n2_rows || $n1_cols != $n2_cols) && ($n1_rows != $n2_cols || $n1_cols != $n2_rows) ]]; then
@@ -93,12 +100,15 @@ add(){
 	else 
 		# Dimensions are the same: valid
 		
-		for ((i = 0; i < $n1_rows; i++)); do
+		for ((i=0; i < $n1_rows; i++)); do
 			# Iterate vertically
-			for ((j = 0; j < $n1_cols; j++)); do 
-				# Change this so that it actually outputs an elem, not an int.
-			
+			for ((j=0; j < $n1_cols; j++)); do 
 				# Iterate horizontally
+				
+				# n_elem converts 2D dimensions to 1D position in array
+				n_elem=$(($i + ($j * $i)))
+				cur_elem=0
+				
 				# Adds a tab between elements
 				if [ $i != "0" ]; then
 					printf "\t"
@@ -117,11 +127,13 @@ add(){
 						printf "m2 narrower\n"
 						
 					fi
+				else
+					# Correction not needed
+					cur_elem=$(($m1[$n_elem] + $m2[$n_elem]))
 				fi
 				
 				# Prints the combined element
-				printf "Add completed.\n"
-				#printf $(($j + $q))
+				printf "$cur_elem"
 			done
 			# Print new lines between the transposed rows
 			printf "\n"
