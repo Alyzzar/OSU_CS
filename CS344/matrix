@@ -130,6 +130,7 @@ add(){
 				else
 					# Correction not needed
 					# cur_elem=$((${m1[$n_elem]} + ${m2[$n_elem]}))
+					printf "cur_elem set - correction not needed\n"
 				fi
 				
 				# Prints the combined element				
@@ -138,7 +139,7 @@ add(){
 					printf "\t"
 				fi
 				# printf "$cur_elem"
-				printf "${m1[$n_elem]}"
+				printf "${m1[$n_elem]}\n"
 			done
 			# Print new lines between the transposed rows
 			printf "\n"
