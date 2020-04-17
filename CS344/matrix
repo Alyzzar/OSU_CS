@@ -85,11 +85,8 @@ add(){
 	n2_cols=$(awk '{print NF}' $2 | sort -nu | tail -n 1)
 	
 	#declare two arrays, store files inside
-	declare -a m1
-	m1=('cat "$1"')
-	
-	declare -a m2
-	m2=('cat "$2"')
+	mapfile -t m1 < $1
+	mapfile -t m2 < $2
 	
 	#if [n1_rows != n2_rows] || [n1_cols != n2_cols]
 	#&& [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
