@@ -90,8 +90,7 @@ add(){
 	n2_rows=${dimensions2[0]}
 	n2_cols=${dimensions2[1]}
 	
-	if [[n1_rows != n2_rows] || [n1_cols != n2_cols]]
-	&& [[n1_rows != n2_cols] || [n1_cols != n2_rows]]; then
+	if [[n1_rows != n2_rows] || [n1_cols != n2_cols]] && [[n1_rows != n2_cols] || [n1_cols != n2_rows]]; then
 		# Dimensions are neither the same or mirrored; invalid
 		printf "Error: Matrices unmatched. Invalid operation.\n" >&2
 		exit 1
@@ -101,6 +100,8 @@ add(){
 		for ((i = 0; i < n1_rows; i++)); do
 			# Iterate vertically
 			for ((j = 0; j < n1_cols; j++)); do 
+				# Change this so that it actually outputs an elem, not an int.
+			
 				# Iterate horizontally
 				# Adds a tab between elements
 				if [ $i != "0"]; then
@@ -108,11 +109,17 @@ add(){
 				fi
 				
 				if [n1_cols != n2_cols]; then
-					# Correction for mismatched matrices
+					# Correction for the narrower matrix
+					# Row = 2* Rounded((curr row) + (curr col)/(n_cols))
+					# Col = (curr col) % half of n_cols
+					
+					# Determine which matrix is wider
 					if [n1_cols -lt n2_cols]
-					
-					elif [n1_cols -lt n2_cols]
-					
+						printf "m1 narrower\n"
+						
+					elif [n1_cols -gt n2_cols]
+						printf "m2 narrower\n"
+						
 					fi
 				fi
 				
