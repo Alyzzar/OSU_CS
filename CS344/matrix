@@ -139,7 +139,7 @@ add(){
 					printf "\t"
 				fi
 				# printf "$cur_elem"
-				printf "${m1[$n_elem]}\n"
+				printf "${m1[$n_elem]}, n_elem = $n_elem\n"
 			done
 			# Print new lines between the transposed rows
 			printf "ADD COMPLETE\n"
