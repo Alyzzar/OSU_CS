@@ -9,13 +9,13 @@ dims(){
 	n_cols=0
 	n_rows=0
 	
-	printf "Counting columns"
+	printf "Counting columns in $data_file\n"
 	for elem in $data_file; do
 		# Count cols
 		n_cols=$((n_cols++))
 	done
 	
-	printf "Counting rows"
+	printf "Counting rows $data_file\n"
 	for elem in $(cat $data_file | cut -d $'\t' -f 1); do 
 		# Count rows (seperate elems by tabs, fields)
 		# Cut is dependent on number of columns
