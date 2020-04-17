@@ -114,11 +114,6 @@ add(){
 				n_elem=$(($i + ($j * $i)))
 				cur_elem=0
 				
-				# Adds a tab between elements
-				if [ $i != "0" ]; then
-					printf "\t"
-				fi
-				
 				if [ $n1_cols != $n2_cols ]; then
 					# Correction for the narrower matrix
 					# Row = 2* Rounded((curr row) + (curr col)/(n_cols))
@@ -137,8 +132,13 @@ add(){
 					cur_elem=$((${m1[$n_elem]} + ${m2[$n_elem]}))
 				fi
 				
-				# Prints the combined element
-				printf "$cur_elem"
+				# Prints the combined element				
+				# Adds a tab between elements
+				if [ $i != "0" ]; then
+					printf "\t"
+				fi
+				# printf "$cur_elem"
+				printf "${m1[$n_elem]}"
 			done
 			# Print new lines between the transposed rows
 			printf "\n"
