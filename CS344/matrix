@@ -87,10 +87,14 @@ add(){
 	#declare two arrays, store files inside
 	##mapfile -t m1 < $1
 	##mapfile -t m2 < $2
-	declare -a m1
-	m1=$(cat $1)
-	declare -a m2
-	m2=$(cat $2)
+	
+	#declare -a m1
+	#m1=$(cat $1)
+	#declare -a m2
+	#m2=$(cat $2)
+	
+	read -a m1 < $1
+	read -a m2 < $2
 	
 	#if [n1_rows != n2_rows] || [n1_cols != n2_cols]
 	#&& [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
