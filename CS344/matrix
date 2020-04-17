@@ -84,8 +84,9 @@ add(){
 	n2_rows=$(cat $2 | wc -l)
 	n2_cols=$(awk '{print NF}' $2 | sort -nu | tail -n 1)
 	
-	if [n1_rows != n2_rows] || [n1_cols != n2_cols]
-	&& [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
+	#if [n1_rows != n2_rows] || [n1_cols != n2_cols]
+	#&& [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
+	if [[ ($n1_rows != $n2_rows || $n1_cols != $n2_cols) && ($n1_rows != $n2_cols || $n1_cols != $n2_rows) ]]; then
 		# Dimensions are not identical, and not mirrored
 		printf "Error: Matrices unmatched. Invalid operation.\n" >&2
 		exit 1
