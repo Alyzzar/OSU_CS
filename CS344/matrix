@@ -9,18 +9,15 @@ dims(){
 	n_cols=0
 	n_rows=0
 	
-	printf "Counting columns in $data_file\n"
-	for elem in $1; do
-		# Count cols
-		n_cols=$((n_cols++))
-	done
+	#Count columns by counting \t tab characters
+	 n_cols=$(head -n1 $1 | grep -o "\t" | wc -l)
 	
-	printf "Counting rows $data_file\n"
-	for elem in $(cat $1 | cut -d $'\t' -f 1); do 
-		# Count rows (seperate elems by tabs, fields)
-		# Cut is dependent on number of columns
-		n_rows=$((n_rows++))
-	done
+	#Count rows by counting \n new line characters
+	while IFS= read -rN1 char; do
+		if [[ "$char" == $'\n' ]]; then
+			((++n_rows))
+		fi
+	done < "$file"
 	
 	#print the rows and columns, and new line
 	printf "$n_rows $n_cols\n"
