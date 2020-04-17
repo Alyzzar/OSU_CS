@@ -116,10 +116,10 @@ add(){
 					# Col = (curr col) % half of n_cols
 					
 					# Determine which matrix is wider
-					if [n1_cols -lt n2_cols]
+					if [n1_cols -lt n2_cols]; then
 						printf "m1 narrower\n"
 						
-					elif [n1_cols -gt n2_cols]
+					elif [n1_cols -gt n2_cols]; then
 						printf "m2 narrower\n"
 						
 					fi
@@ -165,7 +165,7 @@ if [$1 = "dims"]
 	
 	# Determine if arguments will be passed in from file or from stdin. Check if file is readable
 	data_file="data_file_$$"
-	if["$#" = "1"]; then
+	if ["$#" = "1"]; then
 		cat > "$data_file" 
 		# Read from stdin
 	elif ["$#" = "2"]; then
