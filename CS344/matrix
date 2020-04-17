@@ -1,42 +1,193 @@
 #!/bin/bash
 
-#given m1, m2
+# given m1, m2
 
-#Input:  MxN matrix
-#Output: 1xN row vector (each element is mean of associated column)
-mean(){
-	m = $1
-	#for each column, convert to row
-	col = 0
-	row = 0
+# dims()    Dimensions of the input matrix 
+# # Input:  MxN matrix
+# # Output: Prints the row and col count of the input matrix
+dims(){
+	read $1
+	n_cols=0
+	n_rows=0
 	
-	for i in $m1
-	do
-		cut -f i $1
-		#i++ to skip spaces/tabs
-		i = $((i++))
+	for elem in $1; do
+		# Count cols
+		n_cols=$((n_cols++))
 	done
-
+	
+	for elem in $(cat $1 | cut -d $'\t' -f $((n_cols + 1))); do 
+		# Count rows (seperate elems by tabs, fields)
+		# Cut is dependent on number of columns
+		n_rows=$((n_rows++))
+	done
+	
+	#print the rows and columns, and new line
+	printf "n_rows n_cols\n"
 }
 
-#Input:  Row of matrix 
-#Output: Mean of row
-meanRow(){
-	echo 'running meanRow()'
-	m = $1
-	read $m
-	echo 'read $m'
-	sum = 0
-	count = 0
-	echo 'running loop'
-	for i in $m
-	do
-		sum = 'expr $sum + $i'
-		count = 'expr $count = 1'
+#	mean()	Mean row vector of the input matrix
+# # Input:  MxN matrix
+# # Output: 1xN row vector (each element is mean of associated column)
+mean(){
+	dimensions = ($(dims $1))
+	n_rows=${dimensions[0]}
+	n_cols=${dimensions[1]}
+	
+	sum=0;
+	
+	for ((i = 0; i < n_cols; i++)); do
+		# Iterate across columns (horizontally)
+		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
+			# Iterate down columns (vertically)
+			sum=$((sum + elem))
+		done
+		
+		# Adds a tab between elements
+		if [ $i != "0"]; then
+			printf "\t"
+		fi
+		
+		printf "%d" $(((sum + (n_rows/2)*( (sum>0)*2-1 )) / n_rows))
+		# Equation provided. Prints mean of the row
 	done
-	echo 'completed loop'
-	mean = $(( ( $sum + ( $count/2 ) * ( ( $sum > 0 ) * 2-1 ) ) /$count ))
-	#returns the mean of the row to stdout
-	echo "mean"
+	#New line for formatting
+	printf "\n"
 }
 
+#	transpose()	Flips input matrix diagonally
+# # Input: 	MxN matrix
+# # Output: NxM matrix with flipped values
+transpose(){
+	dimensions=($(dims $1))
+	n_rows=${dimensions[0]}
+	n_cols=${dimensions[1]}
+	
+	for ((i = 0; i < n_cols; i++)); do
+		# Iterate across columns (horizontally)
+		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
+			# Iterate down columns (vertically)
+			# Adds a tab between elements
+			if [ $i != "0"]; then
+				printf "\t"
+			fi
+			# Prints the element
+			printf "$elem"
+		done
+		# Print new lines between the transposed rows
+		printf "\n"
+	done
+}
+
+#	add()	Adds two matrices
+# # Input:	Two matrices with the same dimesions (direction is irrelevant)
+# #	Output: One matrix with the dimesions of the first matrix
+add(){
+	dimensions1=($(dims $1))
+	n1_rows=${dimensions1[0]}
+	n1_cols=${dimensions1[1]}
+
+	dimensions2=($(dims $2))
+	n2_rows=${dimensions2[0]}
+	n2_cols=${dimensions2[1]}
+	
+	if [n1_rows != n2_rows] || [n1_cols != n2_cols]
+	&& [n1_rows != n2_cols] || [n1_cols != n2_rows]; then
+		# Dimensions are neither the same or mirrored; invalid
+		printf "Error: Matrices unmatched. Invalid operation.\n" >&2
+		exit 1
+	else 
+		# Dimensions are valid
+		
+		for ((i = 0; i < n1_rows; i++)); do
+			# Iterate vertically
+			for ((j = 0; j < n1_cols; j++)); do 
+				# Iterate horizontally
+				# Adds a tab between elements
+				if [ $i != "0"]; then
+					printf "\t"
+				fi
+				
+				if [n1_cols != n2_cols]; then
+					# Correction for mismatched matrices
+					if [n1_cols -lt n2_cols]
+					
+					elif [n1_cols -lt n2_cols]
+					
+					fi
+				fi
+				
+				# Prints the combined element
+				printf $(($j + $q))
+			done
+			# Print new lines between the transposed rows
+			printf "\n"
+		done
+		
+	fi
+}
+#####################################################################
+# Main script
+
+# matrix [optn] [arg1] 	[arg2]
+# matrix $1		$2		$3
+
+# Use number of parameters the script is run with to decide to read from stdin or a file
+
+# Error case for invalid option
+if [ $# = "0" ]; then
+    printf "Error: Must input a valid option.\n" >&2
+    exit 1
+elif [ $1 != "dims" ] && [ $1 != "transpose" ] && [ $1 != "mean" ] && [ $1 != "add" ] && [ $1 != "multiply" ]; then
+    printf "Error: Invalid option.\n" >&2
+    exit 1
+fi
+
+# Selecting option
+# For 2 parameter options
+if [$1 = "dims"]
+	|| [$1 = "transpose"]
+	|| [$1 = "mean"]; then
+	if [$# -gt "2"]; then
+	# Too many inputs passed in
+		printf "Error: Excess inputs.\n" >&2
+		exit 1
+	fi
+	# Otherwise, number of options is valid
+	
+	# Determine if arguments will be passed in from file or from stdin. Check if file is readable
+	data_file="data_file_$$"
+	if["$#" = "1"]; then
+		cat > "$data_file" 
+		# Read from stdin
+	elif ["$#" = "2"]; then
+		data_file=$2
+		# Read from existing file
+	fi
+	
+	if [[ ! -r $data_file ]]; then
+        printf "Error: Input file unreadable.\n" >&2
+        exit 1
+    fi
+	
+	# If everything works, call the option
+	$1 $data_file
+	
+	rm -rf data_file_*
+	# Remove temp files
+# For 3 parameter options
+else 
+	if [$# != "3"]; then
+		# Too many/few inputs passed in
+		printf "Error: Option requires two input matrices.\n" >&2
+		exit 1
+	elif [[ ! -r $2 || ! -w $2 || ! -r $3 || ! -w $3 ]]; then
+		# File can't be read
+        printf "Error: Input file(s) unreadable.\n" >&2
+		exit 1
+	fi
+	# No errors, can run option. Use terminal inputs.
+	$1 $2 $3
+fi
+
+# End of main script
+#####################################################################
