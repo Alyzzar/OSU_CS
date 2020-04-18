@@ -109,10 +109,10 @@ add(){
 				else
 					# They match. Correct the column number, then add.
 					cor_col=$(((j) * 2))
-					A_line=${m1[$i]}
-					B_line=${m2[$i]}
-					A_char=${A_line[$cor_col]}
-					B_char=${B_line[$cor_col]}
+					a_line=(${m1[$i]})
+					b_line=(${m2[$i]})
+					a_char=${A_line[$cor_col]}
+					b_char=${B_line[$cor_col]}
 					cur_elem=$((A_char + B_char))
 					# printf "j:cor_col: $j, $cor_col  "
 				fi
