@@ -53,7 +53,7 @@ transpose(){
 	n_rows=$(cat $1 | wc -l)
 	n_cols=$(( $(cat $1 | wc -w)/(n_rows) ))
 	col_tot=$((n_cols))
-	printf "col_tot = $col_tot"
+	printf "col_tot = $col_tot\n"
 	
 	for ((i=0; i < $n_cols; i++)); do
 		# Iterate across columns (horizontally)
@@ -66,7 +66,7 @@ transpose(){
 			
 			# Adds a tab between elements, using corrected columns total variable
 			if [[ $col_count -lt $col_tot ]]; then
-				printf "$col_count,\t"
+				printf "::$col_count\t"
 			fi
 		done
 		# Print new lines between the transposed rows
