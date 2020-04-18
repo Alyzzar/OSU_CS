@@ -150,7 +150,7 @@ multiply(){
 	
 	# Check columns of m1 != rows of m2
 	
-	if [[ (n1_cols = n2_rows) ]]; then
+	if [[ (n1_cols != n2_rows) ]]; then
 		printf "Error: Matrices are incompatible.\n" >&2
 		exit 1
 	else 
