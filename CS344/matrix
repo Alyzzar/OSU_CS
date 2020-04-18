@@ -60,8 +60,9 @@ transpose(){
 			# Prints the element
 			printf "$elem"
 			
-			# Adds a tab between elements
-			if [ $j != $((n_cols - 1)) ]; then
+			# Adds a tab between elements, using corrected column variable
+			cor_col = $((n_cols - 1))
+			if [ $j != $cor_col ]; then
 				printf "\t"
 			fi
 		done
