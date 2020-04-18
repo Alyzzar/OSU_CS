@@ -65,7 +65,7 @@ transpose(){
 			printf "$elem"
 			
 			# Adds a tab between elements, using corrected columns total variable
-			if [[ $col_count -lt $col_tot ]]; then
+			if [[ $col_count -lt $n_rows ]]; then
 				printf "::$col_count\t"
 			fi
 		done
