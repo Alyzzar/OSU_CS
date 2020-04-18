@@ -58,7 +58,7 @@ transpose(){
 		col_count = 0
 		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
 			# Iterate down columns (vertically)
-			col_count=$(col_count+1))
+			col_count=$((col_count+1))
 			# Prints the element
 			printf "$elem"
 			
