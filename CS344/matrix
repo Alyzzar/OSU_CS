@@ -61,7 +61,7 @@ transpose(){
 			printf "$elem"
 			
 			# Adds a tab between elements
-			if [ $i != $((n_cols - 1)) ]; then
+			if [ $j != $((n_cols - 1)) ]; then
 				printf "\t"
 			fi
 		done
