@@ -61,7 +61,7 @@ transpose(){
 			# Iterate down columns (vertically)
 			col_count=$((col_count+1))
 			# Prints the element
-			printf "$elem"
+			printf "%d" $elem
 			
 			# Adds a tab between elements, using n_rows as final column
 			if [[ $col_count -lt $n_rows ]]; then
@@ -120,7 +120,7 @@ add(){
 				if [ $j != "0" ]; then
 					printf "\t"
 				fi
-				printf "$cur_elem"
+				printf "%d" $cur_elem
 			done
 			# Print new lines between the transposed rows
 			printf "\n"
