@@ -63,7 +63,7 @@ transpose(){
 			# Adds a tab between elements, using corrected column variable
 			cor_col=$((n_cols - 1))
 			if [[ $j != $cor_col ]]; then
-				printf "\t"
+				printf "a\t"
 			fi
 		done
 		# Print new lines between the transposed rows
