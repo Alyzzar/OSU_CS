@@ -52,7 +52,7 @@ mean(){
 transpose(){
 	n_rows=$(cat $1 | wc -l)
 	n_cols=$(( $(cat $1 | wc -w)/(n_rows) ))
-	printf "col_tot = $col_tot\n"
+	# printf "col_tot = $col_tot\n"
 	
 	for ((i=0; i < $n_cols; i++)); do
 		# Iterate across columns (horizontally)
