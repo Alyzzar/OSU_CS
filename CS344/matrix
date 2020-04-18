@@ -122,7 +122,7 @@ add(){
 				if [ $j != "0" ]; then
 					printf "\t"
 				fi
-				printf "$cur_elem"
+				# printf "$cur_elem"
 			done
 			# Print new lines between the transposed rows
 			printf "\nROW COMPLETE\n"
