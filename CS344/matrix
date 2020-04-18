@@ -55,15 +55,17 @@ transpose(){
 	
 	for ((i=0; i < $n_cols; i++)); do
 		# Iterate across columns (horizontally)
+		col_count = 0
 		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
 			# Iterate down columns (vertically)
+			col_count=$(col_count+1))
 			# Prints the element
 			printf "$elem"
 			
-			# Adds a tab between elements, using corrected column variable
-			cor_col=$((n_cols - 1))
-			if [[ $j -lt $cor_col ]]; then
-				printf ":$j, $n_cols, $cor_col\t"
+			# Adds a tab between elements, using corrected columns total variable
+			col_tot=$((n_cols - 1))
+			if [[ $col_count -lt $col_tot ]]; then
+				printf ":$col_count, $n_cols, $col_tot\t"
 			fi
 		done
 		# Print new lines between the transposed rows
