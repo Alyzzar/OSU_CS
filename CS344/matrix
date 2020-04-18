@@ -107,15 +107,12 @@ add(){
 					printf "Error: Matrices unmatched. Invalid operation.\n" >&2
 					exit 1
 				else
-					# They match. Correct the column number, then add.
-					cor_col=$(((j) * 2))
+					# They match.
 					a_line=(${m1[$i]})
 					b_line=(${m2[$i]})
-					a_num=${a_line[$cor_col]}
-					b_num=${b_line[$cor_col]}
-					# printf "A:$a_line + B:$b_line - - a:$a_char + b:$b_char\n"
+					a_num=${a_line[$j]}
+					b_num=${b_line[$j]}
 					cur_elem=$((a_num + b_num))
-					# printf "j:cor_col: $j, $cor_col  "
 				fi
 				
 				# Prints the combined element				
