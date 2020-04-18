@@ -125,7 +125,7 @@ add(){
 				printf "$cur_elem"
 			done
 			# Print new lines between the transposed rows
-			printf "\nROW COMPLETE\n"
+			printf "\n"
 		done
 		
 	fi
