@@ -8,7 +8,7 @@
 dims(){
 	read $1
 	n_rows=$(cat $1 | wc -l)
-	n_cols=$(((cat $1 | wc -w)/(n_rows)))
+	n_cols=$(( $(cat $1 | wc -w)/(n_rows) ))
 	
 	#print the rows and columns, and new line
 	printf "$n_rows $n_cols\n"
