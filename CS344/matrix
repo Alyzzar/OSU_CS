@@ -110,7 +110,7 @@ add(){
 					exit 1
 				else
 					# They match. Correct the col number, then add.
-					cor_col=$(((j + 1) * 2  - 1))
+					cor_col=$(((j) * 2))
 					A=${m1[$i]:$cor_col:1}
 					B=${m2[$i]:$cor_col:1}
 					cur_elem=$((A + B))
