@@ -61,7 +61,9 @@ transpose(){
 			printf "$elem"
 			
 			# Adds a tab between elements
-			printf "\t"
+			if [ $i != $((n_cols - 1)) ]; then
+				printf "\t"
+			fi
 		done
 		# Print new lines between the transposed rows
 		printf "\n"
