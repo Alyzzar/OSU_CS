@@ -55,7 +55,7 @@ transpose(){
 	
 	for ((i=0; i < $n_cols; i++)); do
 		# Iterate across columns (horizontally)
-		col_count = 0
+		col_count=0
 		for elem in $(cat $1 | cut -d $'\t' -f $((i + 1))); do 
 			# Iterate down columns (vertically)
 			col_count=$((col_count+1))
