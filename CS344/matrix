@@ -6,7 +6,6 @@
 # # Input:  MxN matrix
 # # Output: Prints the row and col count of the input matrix
 dims(){
-	read $1
 	n_rows=$(cat $1 | wc -l)
 	n_cols=$(( $(cat $1 | wc -w)/(n_rows) ))
 	
@@ -20,7 +19,7 @@ dims(){
 mean(){
 	# Count row and cols using same methods from dims()
 	n_rows=$(cat $1 | wc -l)
-	n_cols=$(((cat $1 | wc -w)/(n_rows)))
+	n_cols=$(( $(cat $1 | wc -w)/(n_rows) ))
 	
 	# printf "Finding mean of columns\n"
 	# printf "$n_rows $n_cols\n"
@@ -52,7 +51,7 @@ mean(){
 # # Output: NxM matrix with flipped values
 transpose(){
 	n_rows=$(cat $1 | wc -l)
-	n_cols=$(((cat $1 | wc -w)/(n_rows)))
+	n_cols=$(( $(cat $1 | wc -w)/(n_rows) ))
 	
 	for ((i=0; i < $n_cols; i++)); do
 		# Iterate across columns (horizontally)
@@ -74,10 +73,10 @@ transpose(){
 # #	Output: One matrix with the dimesions of the first matrix
 add(){
 	n1_rows=$(cat $1 | wc -l)
-	n1_cols=$(((cat $1 | wc -w)/(n1_rows)))
+	n1_cols=$(( $(cat $1 | wc -w)/(n1_rows) ))
 
 	n2_rows=$(cat $2 | wc -l)
-	n2_cols=$(((cat $2 | wc -w)/(n2_rows)))
+	n2_cols=$(( $(cat $2 | wc -w)/(n2_rows) ))
 	
 	# Declare two arrays, store files inside
 	while read row; do
@@ -130,10 +129,10 @@ add(){
 # #	Output: One matrix with the dimesions of the first matrix
 multiply(){
 	n1_rows=$(cat $1 | wc -l)
-	n1_cols=$(((cat $1 | wc -w)/(n1_rows)))
+	n1_cols=$(( $(cat $1 | wc -w)/(n1_rows) ))
 
 	n2_rows=$(cat $2 | wc -l)
-	n2_cols=$(((cat $2 | wc -w)/(n2_rows)))
+	n2_cols=$(( $(cat $2 | wc -w)/(n2_rows) ))
 	
 	# Declare two arrays, store files inside
 	while read row; do
