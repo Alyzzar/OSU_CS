@@ -113,6 +113,7 @@ add(){
 					b_line=(${m2[$i]})
 					a_char=${A_line[$cor_col]}
 					b_char=${B_line[$cor_col]}
+					printf "A:$a_line + B:$b_line - - a:$a_char + b:$b_char\n"
 					cur_elem=$((a_char + b_char))
 					# printf "j:cor_col: $j, $cor_col  "
 				fi
