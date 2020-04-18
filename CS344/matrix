@@ -111,10 +111,10 @@ add(){
 					cor_col=$(((j) * 2))
 					a_line=(${m1[$i]})
 					b_line=(${m2[$i]})
-					a_char=${a_line[$cor_col]}
-					b_char=${b_line[$cor_col]}
-					printf "A:$a_line + B:$b_line - - a:$a_char + b:$b_char\n"
-					cur_elem=$((a_char + b_char))
+					a_num=${a_line[$cor_col]}
+					b_num=${b_line[$cor_col]}
+					# printf "A:$a_line + B:$b_line - - a:$a_char + b:$b_char\n"
+					cur_elem=$((a_num + b_num))
 					# printf "j:cor_col: $j, $cor_col  "
 				fi
 				
