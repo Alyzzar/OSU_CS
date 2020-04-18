@@ -45,7 +45,7 @@ mean(){
 			printf "\t"
 		fi
 		
-		printf "%d" $(((sum + ($n_rows/2)*( (sum>0)*2-1 )) / $n_rows))
+		printf "%d" $(((sum + (n_rows/2)*( (sum>0)*2-1 )) / n_rows))
 		# Equation provided. Prints mean of the row
 	done
 	#New line for formatting
@@ -111,9 +111,10 @@ add(){
 					printf "Error: Matrices unmatched. Invalid operation.\n" >&2
 					exit 1
 				else
-					# They match. Add
-					A=${m1[$i]:$j:1}
-					B=${m2[$i]:$j:1}
+					# They match. Correct the col number, then add.
+					cor_col=$((j * 2 - 1))
+					A=${m1[$i]:$cor_col:1}
+					B=${m2[$i]:$cor_col:1}
 					cur_elem=$((A + B))
 				fi
 				
