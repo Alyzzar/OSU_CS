@@ -112,6 +112,7 @@ add(){
 					exit 1
 				else
 					# They match. Correct the col number, then add.
+					printf "j:cor_col: $j, $cor_col  "
 					cor_col=$((j * 2 - 1))
 					A=${m1[$i]:$cor_col:1}
 					B=${m2[$i]:$cor_col:1}
