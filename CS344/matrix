@@ -92,7 +92,7 @@ add(){
         m2+=("$row") # Store each row of matrix 2 in an array as a string
     done < "$2"
 
-	if [[ ($n1_rows != $n2_rows || $n1_cols != $n2_cols) && ($n1_rows != $n2_cols || $n1_cols != $n2_rows) ]]; then
+	if [[ ($n1_rows != $n2_rows || $n1_cols != $n2_cols)]]; then
 		# Dimensions are not identical, and not mirrored
 		printf "Error: Matrices unmatched. Invalid operation.\n" >&2
 		exit 1
