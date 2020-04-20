@@ -156,13 +156,13 @@ multiply(){
 		
 		for ((i=0; i < $n1_rows; i++)); do
 			# Iterate (Rows in A)
-			row_val=0
 			for ((j=0; j < $n2_cols; j++)); do 
 				# Iterate (Cols in B)
+				row_val=0
 				for ((k=0; k < $n2_rows; k++)); do
 					# Iterate (Shared dimension, Cols in A == Rows in B)
 					a_line=(${m1[$i]})
-					b_line=(${m2[$j]})
+					b_line=(${m2[$k]})
 					# a_num is index [i][j] of A
 					# b_num is index [j][i] of B
 					a_num=${a_line[$k]}
