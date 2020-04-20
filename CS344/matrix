@@ -166,7 +166,7 @@ multiply(){
 					# a_num is index [i][j] of A
 					# b_num is index [j][i] of B
 					a_num=${a_line[$k]}
-					b_num=${b_line[$k]}
+					b_num=${b_line[$j]}
 					
 					
 					# row_val is sum of A_row[i] * B_col[i]
