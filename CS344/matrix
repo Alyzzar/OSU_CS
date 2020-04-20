@@ -167,22 +167,19 @@ multiply(){
 					# b_num is index [j][i] of B
 					a_num=${a_line[$k]}
 					b_num=${b_line[$j]}
-					
-					
+						
 					# row_val is sum of A_row[i] * B_col[i]
 					row_val=$((row_val+(a_num * b_num)))
 					
-					# Prints the combined element				
-					# Adds a tab between elements
-					if [ $j != "0" ]; then
-						printf "\n"
-					fi
-					
 					#Trace statements
 					# printf "a_num, b_num == $a_num, $b_num ==> row_val:"
-					
-					printf "%d" $row_val
 				done
+				# Prints the combined element				
+				# Adds a tab between elements
+				if [ $j != "0" ]; then
+					printf "\n"
+				fi
+				printf "%d" $row_val
 			done
 			# Print new lines between the rows
 			printf "\n"
