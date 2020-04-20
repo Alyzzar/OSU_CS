@@ -149,9 +149,7 @@ multiply(){
 		printf "Error: Matrices are incompatible.\n" >&2
 		exit 1
 	else 
-		# Do the multiplication
-		printf "Multiplying matrices. \n"
-		
+		# Valid matrices, multiply A and B
 		# Loop to multiply elements in row[i] of A by col[i] of B
 		
 		for ((i=0; i < $n1_rows; i++)); do
@@ -170,9 +168,7 @@ multiply(){
 						
 					# row_val is sum of A_row[i] * B_col[i]
 					row_val=$((row_val+(a_num * b_num)))
-					
-					#Trace statements
-					# printf "a_num, b_num == $a_num, $b_num ==> row_val:"
+
 				done
 				# Prints the combined element				
 				# Adds a tab between elements
