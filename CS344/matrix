@@ -177,7 +177,7 @@ multiply(){
 				# Prints the combined element				
 				# Adds a tab between elements
 				if [ $j != "0" ]; then
-					printf "\n"
+					printf "\t"
 				fi
 				printf "%d" $row_val
 			done
