@@ -103,17 +103,12 @@ add(){
 			# Iterate vertically
 			for ((j=0; j < $n1_cols; j++)); do 
 				# Iterate horizontally
-				# if [ $n1_cols != $n2_cols ] || [ $n1_rows != $n2_rows ]; then
-				# 	printf "Error: Matrices unmatched. Invalid operation.\n" >&2
-				# 	exit 1
-				# else
-					# They match.
-					a_line=(${m1[$i]})
-					b_line=(${m2[$i]})
-					a_num=${a_line[$j]}
-					b_num=${b_line[$j]}
-					cur_elem=$((a_num + b_num))
-				# fi
+				# They match.
+				a_line=(${m1[$i]})
+				b_line=(${m2[$i]})
+				a_num=${a_line[$j]}
+				b_num=${b_line[$j]}
+				cur_elem=$((a_num + b_num))
 				
 				# Prints the combined element				
 				# Adds a tab between elements
@@ -159,7 +154,34 @@ multiply(){
 		
 		# Loop to multiply elements in row[i] of A by col[i] of B
 		
-		
+		for ((i=0; i < $n1_rows; i++)); do
+			# Iterate (Rows in A)
+			row_val=0
+			for ((j=0; j < $n2_cols; j++)); do 
+				# Iterate (Cols in B)
+				for ((k=0; k < $n2_rows; k++)); do
+					# Iterate (Shared dimension, Cols in A == Rows in B)
+					a_line=(${m1[$i]})
+					b_line=(${m2[$j]})
+					# a_num is index [i][j] of A
+					# b_num is index [j][i] of B
+					a_num=${a_line[$k]}
+					b_num=${b_line[$k]}
+
+					# row_val is sum of A_row[i] * B_col[i]
+					row_val=$((row_val+(a_num * b_num)))
+					
+					# Prints the combined element				
+					# Adds a tab between elements
+					if [ $j != "0" ]; then
+						printf "\t"
+					fi
+					printf "%d" $row_val
+				done
+			done
+			# Print new lines between the rows
+			printf "\n"
+		done
 		
 	fi
 
