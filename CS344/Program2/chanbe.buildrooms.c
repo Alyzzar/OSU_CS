@@ -190,8 +190,8 @@ void initializeRooms(struct room** rooms){
 	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
 		rooms[i] = (struct room*)malloc(sizeof(struct room));
-		rooms[i].name = "";
-		rooms[i].type = "";
+		setName(rooms[i], "");
+		setType(rooms[i], "");
 		setType(rooms[i], "");
 		setNumOut(rooms[i], 0);
 	}
