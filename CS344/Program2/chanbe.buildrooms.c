@@ -291,8 +291,8 @@ void exportRooms(){
 		printf(" - Generating connections\n");
 		//Write connections to file
 		for(j = 0; j < getNumOut(rooms[i]); j++){
-			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(rooms[i]));
-			printf(file_connection, "Generating connection %d: %s\n", j, getName(rooms[i]));
+			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(rooms[i].outboundConnections[j]));
+			printf(file_connection, "Generating connection %d: %s\n", j, getName(rooms[i].outboundConnections[j]));
 			
 			printf(" - - Writing connection %d\n", j);
 			write (file_connection);
