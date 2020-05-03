@@ -178,8 +178,10 @@ void exportRooms(){
 	ssize_t nread, nwritten;
 	
 	printf("Variables defined, generating rooms\n");
-	// Malloc space for 7 room structs
-	struct room* rooms = malloc(TOT_ROOMS * sizeof(*rooms));
+	// Allocate space for 7 room structs
+	// struct room* rooms = malloc(TOT_ROOMS * sizeof(*rooms));
+	struct room (*rooms)[7];
+	rooms=malloc(sizeof(*rooms)*10)
 	// Create 7 rooms w/ generated (pre-listed) names
 	printf("Gen. names\n");
 	generateNames(rooms);
@@ -232,7 +234,7 @@ void exportRooms(){
 	free (file_connection);
 	free (file_header);
 	free (file_footer);
-	free (rooms);
+	//free (rooms);
 }
 
 int main (void) {
