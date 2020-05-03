@@ -11,12 +11,13 @@ struct room {
 	char* name;
 	char* type;
 	int numOutboundConnections;
-	struct room* outboundConnections[MAX_CONNECTIONS]
+	struct room* outboundConnections[MAX_CONNECTIONS];
 };
 
 // Returns true if all rooms have 3 to 6 outbound connections, false otherwise
-bool IsGraphFull(struct room* rooms){
+int IsGraphFull(struct room* rooms){
   ...
+  return 0;
 }
 
 // Adds a random, valid outbound connection from a Room to another Room
