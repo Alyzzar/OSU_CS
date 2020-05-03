@@ -223,7 +223,7 @@ void printOutbound(struct room* x){
 	int i;
 	printf(" - PRINT OUTBOUNDS\n");
 	for (i = 0; i < getNumOut(x); i++){
-		printf(" - - CONNECTION %d: %s", (i+1), getName(getOutbound(x)));
+		printf(" - - CONNECTION %d: %s", (i+1), getName(getOutbound(x, j)));
 	}
 }
 
