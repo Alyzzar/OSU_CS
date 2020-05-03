@@ -49,9 +49,17 @@ void ConnectRoom(struct room* x, struct room* y){
 	n_y = getNumOut(y);
 	x->outboundConnections[n_x] = y;
 	y->outboundConnections[n_y] = x;
+	
 	//Increase number of connections in each struct
+	printf(" - x numOut: %d -> "x->numOutboundConnections);
 	x->numOutboundConnections++;
+	printf("%d", x->numOutboundConnections);
+	
+	printf(" - y numOut: %d -> "y->numOutboundConnections);
 	y->numOutboundConnections++;
+	printf("%d", y->numOutboundConnections);
+	//setNumOut(x, getNumOut(x) + 1);
+	//setNumOut(y, getNumOut(y) + 1);
 }
 
 // Adds a random, valid outbound connection from a Room to another Room
@@ -132,9 +140,9 @@ void generateNames(struct room** rooms){
 	// Create array of 10 potential room names
 	char names[10][16] = {"Living Room", "Office", "Game Room", "Foyer", "Library", "Master Bedroom", "Guest Bedroom", "Dining Room", "Family Room", "Garage"};
 	int taken[10] = {0,0,0,0,0,0,0,0,0,0};
-	printf(" - loop to gen names\n");
+	//printf(" - loop to gen names\n");
 	for(i = 0; i < TOT_ROOMS; i++){
-		printf(" - - Room %d\n", i);
+		//printf(" - - Room %d\n", i);
 		while (1) {
 			//printf(" - - - Generating rand_num\n");
 			rand_num = rand() % 10;
@@ -142,7 +150,7 @@ void generateNames(struct room** rooms){
 			if (taken[rand_num] == 0){
 				//printf(" - - - - taken[rand_num] == 0\n");
 				setName(rooms[i], names[rand_num]);
-				printf(" - - - - Name successfully set to %s\n", getName(rooms[i]));
+				//printf(" - - - - Name successfully set to %s\n", getName(rooms[i]));
 				taken[rand_num] = 1;
 				//printf(" - - - - taken[rand_num] => 1. Loop break\n");
 				break;
