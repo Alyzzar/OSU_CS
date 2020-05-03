@@ -95,8 +95,6 @@ void ConnectRoom(struct room* x, struct room* y){
 	//printf(" - y numOut: %d -> ",y->numOutboundConnections);
 	y->numOutboundConnections++;
 	//printf("%d\n", y->numOutboundConnections);
-	//setNumOut(x, getNumOut(x) + 1);
-	//setNumOut(y, getNumOut(y) + 1);
 }
 
 // Adds a random, valid outbound connection from a Room to another Room
@@ -205,9 +203,16 @@ void initializeRooms(struct room** rooms){
 		rooms[i] = (struct room*)malloc(sizeof(struct room));
 		setName(rooms[i], "");
 		setType(rooms[i], "");
-		setType(rooms[i], "");
 		setNumOut(rooms[i], 0);
 	}
+}
+
+void deinitializeRooms (struct room** rooms){
+	int i;
+	for (i = 0; i < TOT_ROOMS; i++){
+		free (rooms[i]);
+	}
+	free(rooms);
 }
 
 //Prints value of a room for testing purposes
@@ -314,7 +319,7 @@ void exportRooms(){
 	free (file_header);
 	free (file_footer);
 	free (curr_file);
-	//free (rooms);
+	deinitializeRooms(rooms);
 }
 
 int main (void) {
