@@ -124,9 +124,9 @@ void generateNames(struct room** rooms){
 	// Create array of 10 potential room names
 	char names[10][16] = {"Living Room", "Office", "Game Room", "Foyer", "Library", "Master Bedroom", "Guest Bedroom", "Dining Room", "Family Room", "Garage"};
 	int taken[10] = {0,0,0,0,0,0,0,0,0,0};
-	//printf(" - loop to gen names\n");
+	printf(" - loop to gen names\n");
 	for(i = 0; i < TOT_ROOMS; i++){
-		//printf(" - - Room %d\n", i);
+		printf(" - - Room %d\n", i);
 		while (1) {
 			//printf(" - - - Generating rand_num\n");
 			rand_num = rand() % 10;
@@ -134,7 +134,7 @@ void generateNames(struct room** rooms){
 			if (taken[rand_num] == 0){
 				//printf(" - - - - taken[rand_num] == 0\n");
 				setName(rooms[i], names[rand_num]);
-				//printf(" - - - - Name successfully set.\n");
+				printf(" - - - - Name successfully set to %s\n", names[rand_name]);
 				taken[rand_num] = 1;
 				//printf(" - - - - taken[rand_num] => 1. Loop break\n");
 				break;
