@@ -124,7 +124,7 @@ void generateNames(struct room** rooms){
 			if (taken[rand_num] == 0){
 				setName(rooms[i], names[rand_num]);
 				taken[rand_num] = 1;
-				printf(" - - - Set name -> break\n")
+				printf(" - - - Set name -> break\n");
 				break;
 			}
 		}
