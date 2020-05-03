@@ -128,7 +128,7 @@ void generateNames(struct room** rooms){
 }
 
 // Set room types
-void setTypes(struct room** rooms){
+void generateTypes(struct room** rooms){
 	int i, rand_num;
 	// Set random room to start and end
 	rand_num = rand() % 7;
@@ -164,17 +164,20 @@ void exportRooms(){
 	char *file_footer = malloc(buffer);
 	ssize_t nread, nwritten;
 	
+	printf("Variables defined, generating room names and types\n");
 	// Create 7 rooms w/ generated (pre-listed) names
 	struct room* rooms[TOT_ROOMS];
 	generateNames(rooms);
-	//***Create a function to randomly assign one START and one END room***//
+	generateTypes(rooms);
 	
+	printf("Generating room connections\n");
 	// Create all connections in graph
 	while (IsGraphFull(rooms) == 0)
 	{
 	  AddRandomConnection(rooms);
 	}
 	
+	printf("Generating file directory\n");
 	// Generate file directory
 	sprintf(dir_name, "%s%d", "chanbe.rooms.", pid);
 	
@@ -182,8 +185,8 @@ void exportRooms(){
 		mkdir(dir_name, 0700);
 	}
 	
+	printf("Generating file for write\n")
 	// Open file to write
-
 	for(i = 0; i < TOT_ROOMS; i++){
 		// Create and open room file
 		sprintf(file_path, "%s/%s_room", dir_name, getName(rooms[i]));
