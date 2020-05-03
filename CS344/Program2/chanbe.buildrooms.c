@@ -319,7 +319,7 @@ void exportRooms(){
 	free (file_header);
 	free (file_footer);
 	free (curr_file);
-	deinitializeRooms(rooms);
+	//deinitializeRooms(rooms);
 }
 
 int main (void) {
