@@ -99,7 +99,11 @@ char* getName(struct room* room){
 }
 
 void setName(struct room* room, char* name){
-	room->name = name;
+	//Allocate new memory
+	room->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
+	strcpy(room->name, name);
+	//Add null terminator
+	room->name[strlen(name)] = '\0';
 }
 
 char* getType(struct room* room){
@@ -107,7 +111,11 @@ char* getType(struct room* room){
 }
 
 void setType(struct room* room, char* type){
-	room->type = type;
+	//Allocate new memory
+	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
+	strcpy(room->type, type);
+	//Add null terminator
+	room->type[strlen(type)] = '\0';
 }
 
 int getNumOut(struct room* room){
@@ -182,7 +190,8 @@ void initializeRooms(struct room** rooms){
 	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
 		rooms[i] = (struct room*)malloc(sizeof(struct room));
-		setName(rooms[i], "");
+		rooms[i].name = "";
+		rooms[i].type = "";
 		setType(rooms[i], "");
 		setNumOut(rooms[i], 0);
 	}
