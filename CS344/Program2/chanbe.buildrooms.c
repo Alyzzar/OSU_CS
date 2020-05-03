@@ -43,6 +43,7 @@ int CanAddConnectionFrom(struct room* x){
 
 // Connects Rooms x and y together, does not check if this connection is valid
 void ConnectRoom(struct room* x, struct room* y){
+	printf("Connecting Rooms %s and %s", getName(x), getName(y));
 	int n_x, n_y;
 	//Create the connection by linking pointers
 	n_x = getNumOut(x);
@@ -51,13 +52,13 @@ void ConnectRoom(struct room* x, struct room* y){
 	y->outboundConnections[n_y] = x;
 	
 	//Increase number of connections in each struct
-	printf(" - x numOut: %d -> "x->numOutboundConnections);
+	printf(" - x numOut: %d -> ",x->numOutboundConnections);
 	x->numOutboundConnections++;
-	printf("%d", x->numOutboundConnections);
+	printf("%d\n", x->numOutboundConnections);
 	
-	printf(" - y numOut: %d -> "y->numOutboundConnections);
+	printf(" - y numOut: %d -> ",y->numOutboundConnections);
 	y->numOutboundConnections++;
-	printf("%d", y->numOutboundConnections);
+	printf("%d\n", y->numOutboundConnections);
 	//setNumOut(x, getNumOut(x) + 1);
 	//setNumOut(y, getNumOut(y) + 1);
 }
