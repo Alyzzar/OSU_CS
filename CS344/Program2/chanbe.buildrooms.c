@@ -185,7 +185,7 @@ void exportRooms(){
 		mkdir(dir_name, 0700);
 	}
 	
-	printf("Generating file for write\n")
+	printf("Generating file for write\n");
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
 		// Create and open room file
