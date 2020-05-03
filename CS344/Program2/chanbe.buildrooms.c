@@ -135,7 +135,7 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 
 // Returns true if Rooms x and y are the same Room, false otherwise
 int IsSameRoom(struct room* x, struct room* y){
-	if (&x == &y) return 1;
+	if (x == y) return 1;
 	return 0;
 }
 
@@ -216,6 +216,15 @@ void printRoom(struct room* x){
 	printf(" - - Name: %s\n", getName(x));
 	printf(" - - Type: %s\n", getType(x));
 	printf(" - - nOut: %d\n", getNumOut(x));
+}
+
+//Prints outbound rooms for testing purposes
+void printOutbound(struct room* x){
+	int i;
+	printf(" - PRINT OUTBOUNDS\n");
+	for (i = 0; i < getNumOut(x); i++){
+		printf(" - - CONNECTION %d: %s", (i+1), getName(getOutbound(x)));
+	}
 }
 
 // Generates rooms/connections, and exports rooms to files
