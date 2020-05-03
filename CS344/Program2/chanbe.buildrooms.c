@@ -267,12 +267,14 @@ void exportRooms(){
 		printf(" - Generated file name = %s\n", curr_file);
 		
 		// Set file_path to be the location of the file (../dir/file)
-		//sprintf(file_path, "%s/%s", dir_name, curr_file);
+		sprintf(file_path, "%s/%s", dir_name, curr_file);
 		printf(" - Current directory = %s\n",dir_name);
 		printf(" - Generated file path = %s\n", file_path);
 		
 		printf(" - Creating file to read/write\n");
 		file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
+		
+		printf(" - Successfully created and opened file\n");
 		
 		if(file_descriptor == -1){
 			printf("Error, could not generate room files at \"%s\"\n", file_path);
@@ -280,7 +282,6 @@ void exportRooms(){
 			exit(1);
 		}
 		
-		printf(" - Successfully created and opened file\n");
 		//Write header to the file
 		file_header = "";
 		printf(" - Generating header\n");
