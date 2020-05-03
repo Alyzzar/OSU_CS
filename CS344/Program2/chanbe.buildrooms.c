@@ -283,7 +283,6 @@ void exportRooms(){
 		}
 		
 		//Write header to the file
-		file_header = "";
 		printf(" - Generating header\n");
 		sprintf(file_header, "ROOM NAME: %d: %s\n", i, getName(rooms[i]));
 		printf(" - - Writing header\n");
@@ -297,7 +296,6 @@ void exportRooms(){
 			write (file_connection);
 		}
 		//Write footer to the file
-		file_footer = "";
 		printf(" - Generating footer\n");
 		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
 		printf(" - Writing footer\n");
