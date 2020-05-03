@@ -24,8 +24,8 @@ int IsGraphFull(struct room** rooms){
 
 // Adds a random, valid outbound connection from a Room to another Room
 void AddRandomConnection(struct room** rooms){
-  struct room* A;
-  struct room* B;
+  struct room* A;	//Pointer to a connectable random room
+  struct room* B;	//Pointer to a different, connectable random room
 
   while(1){
     A = GetRandomRoom(rooms);
@@ -39,15 +39,14 @@ void AddRandomConnection(struct room** rooms){
   }
   while(CanAddConnectionFrom(B) == 0 || IsSameRoom(A, B) == 1 || ConnectionAlreadyExists(A, B) == 1);
 
-  ConnectRoom(A, B);  // TODO: Add this connection to the real variables, 
-  ConnectRoom(B, A);  //  because this A and B will be destroyed when this function terminates
+  ConnectRoom(A, B);
+  ConnectRoom(B, A);
 }
 
 // Returns a random Room, does NOT validate if connection can be added
-struct room GetRandomRoom(struct room** rooms){
+struct room* GetRandomRoom(struct room** rooms){
 	int rand_num = rand() % TOT_ROOMS;
 	return rooms[rand_num];
-	
 }
 
 // Returns true if a connection can be added from Room x (< 6 outbound connections), false otherwise
@@ -64,7 +63,7 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 	// for loop to see if y exists in x's outbound rooms
 	int i = 0;
 	for (i = 0; i < getNumOut(x); i++){
-		if (IsSameRoom(x.outboundConnections[i], y)){
+		if (IsSameRoom(x->outboundConnections[i], y)){
 			// X is connected to Y
 			return 1;
 		}
@@ -103,11 +102,11 @@ char* getType(struct room* room){
 	return room->type;
 }
 
-char* setType(struct room* room, char* type){
+void setType(struct room* room, char* type){
 	room->type = type;
 }
 
-char* getNumOut(struct room* room){
+int getNumOut(struct room* room){
 	return room->numOutboundConnections;
 }
 
