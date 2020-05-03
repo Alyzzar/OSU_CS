@@ -202,6 +202,7 @@ void exportRooms(){
 	char *file_connection = malloc(buffer);
 	char *file_header = malloc(buffer);
 	char *file_footer = malloc(buffer);
+	char *curr_file = malloc(buffer);
 	ssize_t nread, nwritten;
 	
 	printf("Variables defined, generating rooms\n");
@@ -235,7 +236,12 @@ void exportRooms(){
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
 		// Create and open room file
-		sprintf(file_path, "%s/%s_room", dir_name, getName(rooms[i]));
+		sprintf(curr_file, "%s_ROOM, getName(rooms[i]));
+		printf(" - Generated file name = %s\n", curr_file);
+		sprintf(file_path, "%s/%s", dir_name, curr_file);
+		printf(" - Generated file path = %s\n, file_path");
+		//sprintf(file_path, "%s/%s", dir_name, getName(rooms[i]));
+		printf(" - Creating file to read/write\n");
 		file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
 		
 		if(file_descriptor == -1){
@@ -244,24 +250,30 @@ void exportRooms(){
 			exit(1);
 		}
 		
+		printf(" - Successfully created and opened file\n");
 		//Write header to the file
 		file_header = "";
+		printf(" - Generating header\n");
 		sprintf(file_header, "ROOM NAME: %d: %s\n", i, getName(rooms[i]));
-		nwritten = write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
+		write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
+		
 		//Write connections to file
 		for(j = 0; j < getNumOut(rooms[i]); j++){
 			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(rooms[i]));
-			nwritten = write (file_connection);
+			write (file_connection);
 		}
 		//Write footer to the file
 		file_footer = "";
+		printf(" - Generating footer\n");
 		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
+		write(file_descriptor, file_footer, strlen(file_footer) * sizeof(char));
 	}
 	free (dir_name);
 	free (file_path);
 	free (file_connection);
 	free (file_header);
 	free (file_footer);
+	free (curr_file);
 	//free (rooms);
 }
 
