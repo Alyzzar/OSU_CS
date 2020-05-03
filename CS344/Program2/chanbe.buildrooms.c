@@ -119,8 +119,9 @@ void generateNames(struct room** rooms){
 	for(i = 0; i < TOT_ROOMS; i++){
 		printf(" - - Room %d\n", i);
 		while (1) {
+			printf(" - - - Generating rand_num\n");
 			rand_num = rand() % 10;
-			printf(" - - - rand_num: %d", rand_num);
+			printf(" - - - rand_num: %d\n", rand_num);
 			if (taken[rand_num] == 0){
 				setName(rooms[i], names[rand_num]);
 				taken[rand_num] = 1;
