@@ -8,27 +8,18 @@
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
 
+// Create struct for rooms
 struct room { 
 	char* name;
 	char* type;
 	int numOutboundConnections;
-	char* outboundConnections[MAX_CONNECTIONS];
+	struct room* outboundConnections[MAX_CONNECTIONS];
 };
 
-struct game {
-	int turnCount;
-	char* start;
-	char* end;
-	char* path;
-	struct room* currRoom;
-};
-
-// Gets the name of the room
 char* getName(struct room* room){
 	return room->name;
 }
 
-// Sets the name of the room
 void setName(struct room* room, char* name){
 	//Allocate new memory
 	room->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
@@ -37,12 +28,10 @@ void setName(struct room* room, char* name){
 	room->name[strlen(name)] = '\0';
 }
 
-// Gets room type
 char* getType(struct room* room){
 	return room->type;
 }
 
-// Sets room type
 void setType(struct room* room, char* type){
 	//Allocate new memory
 	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
@@ -51,137 +40,292 @@ void setType(struct room* room, char* type){
 	room->type[strlen(type)] = '\0';
 }
 
-// Gets the numOutboundConnections for a room
 int getNumOut(struct room* room){
 	return room->numOutboundConnections;
 }
 
-// Sets the numOutboundConnections for a room
 void setNumOut(struct room* room, int num){
 	room->numOutboundConnections = num;
 }
 
-// Gets a room (name only) coming out of the room
-char* getOutbound(struct room* room, int n){
+struct room* getOutbound(struct room* room, int n){
 	return room->outboundConnections[n];
 }
 
-// Sets the start room in game struct
-void setStart(struct game* game, char* start){
-	//Allocate new memory
-	game->start = (char*)malloc(sizeof(char) * (strlen(start) + 1));
-	strcpy(game->start, start);
-	//Add null terminator
-	game->start[strlen(start)] = '\0';
-}
-
-// Set the end room in game struct
-void setEnd(struct game* game, char* end){
-	//Allocate new memory
-	game->end = (char*)malloc(sizeof(char) * (strlen(end) + 1));
-	strcpy(game->end, end);
-	//Add null terminator
-	game->end[strlen(end)] = '\0';
-}
-
-// Gets turn count
-int getCount(struct game* game){
-	return game->turnCount;
-}
-
-// Gets game path
-char* getPath(struct game* game){
-	return game->path;
-}
-
-// Adds room to path
-void addPath(struct game* game, struct room* room){
-	char* old_path;
-	int n_strlen = strlen(getPath(game)) + strlen(getName(room));
-	game->path = (char*)malloc(sizeof(char) * (n_strlen + 3));
-	sprintf(game->path, "%s\n%s", old_path, room);
-	game->path[n_strlen] = '\0';
-}
-
-// Initializes values in rooms array
-void initializeRoom(struct room* room){
-	room = (struct room*)malloc(sizeof(struct room));
-	setName(room, "");
-	setType(room, "");
-	setNumOut(room, 0);
-}
-
-void initializeGame(struct game* game){
-	game->turnCount = 0;
-	setStart(game, "[NO VALUE]");
-	setEnd(game, "[NO VALUE]");
-	initializeRoom(game->currRoom)
-}
-
-int assignRoom(struct room* x, struct room* y){
-	free (x);
-	x = (struct room*)malloc(sizeof(struct room));
-	setName(x, getName(y));
-	setType(x, getType(y));
-	setNumOut(x, getNumOut(y));
-}
-
-// Parses file of desired name into currRoom;
-struct room* parseRoom(struct room* room){
+// Returns true if all rooms have 3 to 6 outbound connections, false otherwise
+int IsGraphFull(struct room** rooms){
 	int i;
-	struct room* n_room;
-	initializeRoom(n_room);
-	
-	//assign room name;
-	
-	//check room type in file
-	if(1 == 1){	//if room type is END_ROOM
-		//Game is complete
-		
-		return n_room;
-	}
-	//Look for greatest integer value: Save to numOutboundConnections.
-	
-	//Use for loop to parse remaining outbound connections.
-	//set current line to be 2, read until on last connection.
-	for(i = 0; i < room->numOutboundConnections; i++){
-		printf("test %d\n", i);
-	}
-	return n_room;
-}
-
-int turn(struct game* game){
-	int i;
-	int running = 1;
-	//Print initial information
-	printf("CURRENT LOCATION: %s\nPOSSIBLE CONNECTIONS: ", );
-	for (i = 0; i < getNumOut(game->currRoom); i++){
-		printf("%s", getName(game->currRoom));
-		//Print comma, unless in last spot
-		if(i < (getNumOut(game->currRoom) - 1)){
-			printf(", ");
+	for (i = 0; i < TOT_ROOMS; i++){
+		if(getNumOut(rooms[i]) < 3){
+			return 0;
 		}
 	}
-	printf(".\nWHERE TO? >");
-	//User input
-	
-	
-	
-	parseRoom(currRoom);
-	printf("\n");
+	return 1;
 }
 
-void main(){
-	struct game* game;
-	int running = 1;
-	//Open most recent file with stat()
-	
-	//Game runs until parseRoom find END_ROOM
-	while (running > 0){
-		running = turn(game);
-		game->turnCount++;
+// Returns a random Room, does NOT validate if connection can be added
+struct room* GetRandomRoom(struct room** rooms){
+	int rand_num = rand() % TOT_ROOMS;
+	return rooms[rand_num];
+}
+
+// Returns true if a connection can be added from Room x (< 6 outbound connections), false otherwise
+int CanAddConnectionFrom(struct room* x){
+	if (getNumOut(x) < MAX_CONNECTIONS){
+	  return 1;
 	}
-	//Game over, prints turncount and path taken
-	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getCount(game), getPath(game));
-	//Terminates
+	return 0;
+}
+
+// Connects Rooms x and y together, does not check if this connection is valid
+void ConnectRoom(struct room* x, struct room* y){
+	//printf("Connecting Rooms %s and %s\n", getName(x), getName(y));
+	int n_x, n_y;
+	//Create the connection by linking pointers
+	n_x = getNumOut(x);
+	n_y = getNumOut(y);
+	x->outboundConnections[n_x] = y;
+	y->outboundConnections[n_y] = x;
+	
+	//Increase number of connections in each struct
+	//printf(" - x numOut: %d -> ",x->numOutboundConnections);
+	x->numOutboundConnections++;
+	//printf("%d\n", x->numOutboundConnections);
+	
+	//printf(" - y numOut: %d -> ",y->numOutboundConnections);
+	y->numOutboundConnections++;
+	//printf("%d\n", y->numOutboundConnections);
+}
+
+// Adds a random, valid outbound connection from a Room to another Room
+void AddRandomConnection(struct room** rooms){
+  struct room* x;	//Pointer to a connectable random room
+  struct room* y;	//Pointer to a different, connectable random room
+
+  while(1){
+    x = GetRandomRoom(rooms);
+
+    if (CanAddConnectionFrom(x) == 1)
+      break;
+  }
+
+  do{
+    y = GetRandomRoom(rooms);
+  }
+  while(CanAddConnectionFrom(y) == 0 || IsSameRoom(x, y) == 1 || ConnectionAlreadyExists(x, y) == 1);
+
+  ConnectRoom(x, y);
+}
+
+// Returns true if a connection from Room x to Room y already exists, false otherwise
+int ConnectionAlreadyExists(struct room* x, struct room* y){	
+	int connections = 0;
+	// for loop to see if y exists in x's outbound rooms
+	int i = 0;
+	for (i = 0; i < getNumOut(x); i++){
+		if (IsSameRoom(x->outboundConnections[i], y)){
+			// X is connected to Y
+			return 1;
+		}
+	}
+	return 0;
+}
+
+// Returns true if Rooms x and y are the same Room, false otherwise
+int IsSameRoom(struct room* x, struct room* y){
+	if (x == y) return 1;
+	return 0;
+}
+
+// Set room names
+void generateNames(struct room** rooms){
+	int i, rand_num;
+	// Create array of 10 potential room names
+	char names[10][16] = {"Aldaraan", "Bespin", "Coruscant", "Dathomir", "Endor", "Felucia", "Geonosis", "Mandalore", "Mustafar", "Kamino"};
+	int taken[10] = {0,0,0,0,0,0,0,0,0,0};
+	//printf(" - loop to gen names\n");
+	for(i = 0; i < TOT_ROOMS; i++){
+		//printf(" - - Room %d\n", i);
+		while (1) {
+			//printf(" - - - Generating rand_num\n");
+			rand_num = rand() % 10;
+			//printf(" - - - rand_num: %d\n", rand_num);
+			if (taken[rand_num] == 0){
+				//printf(" - - - - taken[rand_num] == 0\n");
+				setName(rooms[i], names[rand_num]);
+				//printf(" - - - - Name successfully set to %s\n", getName(rooms[i]));
+				taken[rand_num] = 1;
+				//printf(" - - - - taken[rand_num] => 1. Loop break\n");
+				break;
+			}
+			//printf(" - - - Name not set, looping... \n");
+		}
+	}
+}
+
+// Set room types
+void generateTypes(struct room** rooms){
+	int i, rand_num;
+	
+	// Set START_ROOM
+	rand_num = rand() % 7;
+	//printf(" - set room[%d] = START_ROOM\n", rand_num);
+	setType(rooms[rand_num], "START_ROOM");
+	
+	// Set END_ROOM
+	while(1){
+		//printf(" - Loop to find unset room for END_ROOM\n");
+		rand_num = rand() % 7;
+		//printf(" - rand_num = %d\n", rand_num);
+		if(strcmp(getType(rooms[rand_num]), "START_ROOM") != 0){
+			//printf(" - - set room[%d] = END_ROOM\n", rand_num);
+			setType(rooms[rand_num], "END_ROOM");
+			//printf(" - - break loop\n");
+			break;
+		}
+	}
+	
+	// Set MID_ROOM
+	for (i = 0; i < TOT_ROOMS; i++){
+		//printf(" - Loop to find unset room for MID_ROOM\n");
+		if((strcmp(getType(rooms[i]), "START_ROOM") != 0) && (strcmp(getType(rooms[i]), "END_ROOM") != 0 )){
+			//printf(" - - set room[%d] = MID_ROOM\n", rand_num);
+			setType(rooms[i], "MID_ROOM");
+			//printf(" - - break loop\n");
+		}
+	}
+}
+
+//Initializes values in rooms array
+void initializeRooms(struct room** rooms){
+	int i;
+	for (i = 0; i < TOT_ROOMS; i++){
+		rooms[i] = (struct room*)malloc(sizeof(struct room));
+		setName(rooms[i], "");
+		setType(rooms[i], "");
+		setNumOut(rooms[i], 0);
+	}
+}
+
+void deinitializeRooms (struct room** rooms){
+	int i;
+	for (i = 0; i < TOT_ROOMS; i++){
+		free (rooms[i]);
+	}
+	free(rooms);
+}
+
+//Prints value of a room for testing purposes
+void printRoom(struct room* x){
+	printf(" - PRINT ROOM\n");
+	printf(" - - Name: %s\n", getName(x));
+	printf(" - - Type: %s\n", getType(x));
+	printf(" - - nOut: %d\n", getNumOut(x));
+}
+
+//Prints outbound rooms for testing purposes
+void printOutbound(struct room* x){
+	int i;
+	printf(" - PRINT OUTBOUNDS\n");
+	for (i = 0; i < getNumOut(x); i++){
+		printf(" - - CONNECTION %d: %s\n", (i+1), getName(getOutbound(x, i)));
+	}
+}
+
+// Generates rooms/connections, and exports rooms to files
+void exportRooms(){
+	//Variables
+	int i;
+	int j;
+	int pid = getpid();
+	int buffer = 128 * sizeof(char);
+	int file_descriptor;
+	struct stat st = {0};
+	char *dir_name = malloc(buffer);
+	char *file_path = malloc(buffer);
+	char *file_connection = malloc(buffer);
+	char *file_header = malloc(buffer);
+	char *file_footer = malloc(buffer);
+	char *curr_file = malloc(buffer);
+	ssize_t nread, nwritten;
+	
+	//printf("Variables defined, generating rooms\n");
+	// Allocate space for 7 room structs
+	struct room* rooms[TOT_ROOMS];
+	initializeRooms(rooms);
+	
+	// Create 7 rooms w/ generated (pre-listed) names
+	//printf("Gen. names\n");
+	generateNames(rooms);
+	//printf("Gen. types\n");
+	generateTypes(rooms);
+	
+	//printf("Generating room connections\n");
+	// Create all connections in graph
+	// Runs until graph is full (every room has 3 - 6 connections)
+	while (IsGraphFull(rooms) == 0)
+	{
+	  AddRandomConnection(rooms);
+	}
+	
+	//printf("Generating file directory\n");
+	// Generate file directory
+	sprintf(dir_name, "%s%d", "chanbe.rooms.", pid);
+	
+	if (stat(dir_name, &st) == -1){
+		mkdir(dir_name, 0700);
+	}
+	
+	//printf("Generating file for write\n");
+	// Open file to write
+	for(i = 0; i < TOT_ROOMS; i++){
+		// Set curr_file to be the generated file's name
+		sprintf(curr_file, "%s_ROOM", getName(rooms[i]));
+		//printf(" - Generated file name = %s\n", curr_file);
+		
+		// Set file_path to be the location of the file (../dir/file)
+		sprintf(file_path, "%s/%s", dir_name, curr_file);
+		//printf(" - Current directory = %s\n",dir_name);
+		//printf(" - Generated file path = %s\n", file_path);
+		
+		//printf(" - Creating file to read/write\n");
+		file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
+		
+		//printf(" - Successfully created and opened file\n");
+		
+		if(file_descriptor == -1){
+			printf("Error, could not generate room files at \"%s\"\n", file_path);
+			perror("In main ()");
+			exit(1);
+		}
+		
+		//Write header to the file
+		sprintf(file_header, "ROOM NAME: %s\n", getName(rooms[i]));
+		write(file_descriptor, file_header, (strlen(file_header) + 1) * sizeof(char));
+		
+		//Writing connections
+		for(j = 0; j < getNumOut(rooms[i]); j++){
+			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(getOutbound(rooms[i], j)));
+			write (file_descriptor, file_connection, (strlen(file_connection) + 1) * sizeof(char));
+		}
+		
+		//Write footer to the file
+		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
+		write(file_descriptor, file_footer, (strlen(file_footer) + 1) * sizeof(char));
+	}
+	free (dir_name);
+	free (file_path);
+	free (file_connection);
+	free (file_header);
+	free (file_footer);
+	free (curr_file);
+	deinitializeRooms(rooms);
+}
+
+int main (void) {
+	//Create seed for random variables
+	srand((unsigned) time(0));
+	//Run program
+	exportRooms();
+	printf("File generation complete.");
 }
