@@ -158,7 +158,7 @@ void generateTypes(struct room** rooms){
 	
 	// Set MID_ROOM
 	for (i = 0; i < 10; i++){
-		prinf(" - Loop to find unset room for MID_ROOM\n");
+		printf(" - Loop to find unset room for MID_ROOM\n");
 		if((getType(rooms[i]) != "START_ROOM") && (getType(rooms[i]) != "END_ROOM")){
 			printf(" - - set room[%d] = MID_ROOM\n", rand_num);
 			setType(rooms[i], "MID_ROOM");
