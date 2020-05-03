@@ -189,7 +189,7 @@ void initializeRooms(struct room** rooms){
 }
 
 //Prints value of a room for testing purposes
-void printRoom(struct room x){
+void printRoom(struct room* x){
 	printf(" - PRINT ROOM\n");
 	printf(" - - Name: %s\n", getName(x));
 	printf(" - - Type: %s\n", getType(x));
