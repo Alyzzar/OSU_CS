@@ -87,6 +87,22 @@ int IsSameRoom(struct room* x, struct room* y){
 	return 0;
 }
 
+char* getName(struct room* room){
+	return room.name;
+}
+
+void setName(struct room* room, char* name){
+	room.name = name;
+}
+
+char* getType(struct room* room){
+	return room.type;
+}
+
+char* getType(struct room* room){
+	return room.type;
+}
+
 // Set room names
 void generateNames(struct room** rooms){
 	int i, rand_num;
@@ -97,7 +113,7 @@ void generateNames(struct room** rooms){
 		while (1) {
 			rand_num = rand() % 10;
 			if (taken[rand_num] == 0){
-				rooms[i].name = names[rand_num];
+				setName(rooms[i], names[rand_num]);
 				taken[rand_num] = 1;
 				break;
 			}
@@ -110,18 +126,18 @@ void setTypes(struct room** rooms){
 	int i, rand_num;
 	// Set random room to start and end
 	rand_num = rand() % 7;
-	rooms[rand_num].type = "START_ROOM"
+	setType(rooms[rand_num], "START_ROOM");
 	while(1){
 		rand_num = rand() % 7;
-		if(rooms[rand_num].type != "START_ROOM"){
-			rooms[rand_num].type = "END_ROOM";
+		if(getType(rooms[rand_num]) != "START_ROOM"){
+			setType(rooms[rand_num], "END_ROOM");
 			break;
 		}
 	}
 	
 	for(i = 0; i < 10; i++){
-		if((rooms[i].type != "START_ROOM") && (rooms[i].type != "END_ROOM")){
-			rooms[i].type = "MID_ROOM";
+		if((getType(rooms[i]) != "START_ROOM") && (getType(rooms[i]) != "END_ROOM")){
+			setType(rooms[i], "MID_ROOM");
 		}
 	}
 }
