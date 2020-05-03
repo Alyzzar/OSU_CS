@@ -212,7 +212,6 @@ void deinitializeRooms (struct room** rooms){
 	for (i = 0; i < TOT_ROOMS; i++){
 		free (rooms[i]);
 	}
-	free(rooms);
 }
 
 //Prints value of a room for testing purposes
@@ -305,7 +304,7 @@ void exportRooms(){
 		
 		//Writing connections
 		for(j = 0; j < getNumOut(rooms[i]); j++){
-			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(getOutbound(rooms[i], j)));
+			sprintf(file_connection, "CONNECTION %d: %s\n", (j + 1), getName(getOutbound(rooms[i], j)));
 			write (file_descriptor, file_connection, (strlen(file_connection) + 1) * sizeof(char));
 		}
 		
@@ -327,5 +326,5 @@ int main (void) {
 	srand((unsigned) time(0));
 	//Run program
 	exportRooms();
-	printf("File generation complete.");
+	//printf("File generation complete.");
 }
