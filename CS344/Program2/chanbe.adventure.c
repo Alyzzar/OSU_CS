@@ -127,17 +127,17 @@ int assignRoom(struct room* x, struct room* y){
 }
 
 // Parses file of desired name into currRoom;
-void parseRoom(struct room* room){
+int parseRoom(struct room* room, char* name){
 	int i;
 
-	
 	//assign room name;
+	//Determine correct capitalization from file.
 	
 	//check room type in file
 	if(1 == 1){	//if room type is END_ROOM
 		//Game is complete
 		
-		return n_room;
+		return 0;
 	}
 	//Look for greatest integer value: Save to numOutboundConnections.
 	
@@ -146,13 +146,14 @@ void parseRoom(struct room* room){
 	for(i = 0; i < room->numOutboundConnections; i++){
 		printf("test %d\n", i);
 	}
-	return n_room;
+	return 1;
 }
 
 int turn(struct game* game){
 	int i;
 	int running = 1;
 	char* n_name = malloc(64 * sizeof(char));
+	char* selection = malloc(64 * sizeof(char));
 	
 	//Print initial information
 	printf("CURRENT LOCATION: %s\nPOSSIBLE CONNECTIONS: ", getName(game->currRoom));
@@ -169,7 +170,9 @@ int turn(struct game* game){
 	
 	struct room* n_room;
 	initializeRoom(n_room);
-	parseRoom(n_room, n_name);
+	
+	assignRoom(game->currRoom, parseRoom(game->currRoom, selection);
+	
 	printf("\n");
 }
 
