@@ -262,12 +262,15 @@ void exportRooms(){
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
 		printRoom(rooms[i]);
-		// Create and open room file
+		// Set curr_file to be the generated file's name
 		sprintf(curr_file, "%s_ROOM", getName(rooms[i]));
 		printf(" - Generated file name = %s\n", curr_file);
-		sprintf(file_path, "%s/%s", dir_name, curr_file);
-		printf(" - Generated file path = %s\n, file_path");
-		//sprintf(file_path, "%s/%s", dir_name, getName(rooms[i]));
+		
+		// Set file_path to be the location of the file (../dir/file)
+		//sprintf(file_path, "%s/%s", dir_name, curr_file);
+		printf(" - Current directory = %s\n",dir_name);
+		printf(" - Generated file path = %s\n", file_path);
+		
 		printf(" - Creating file to read/write\n");
 		file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
 		
