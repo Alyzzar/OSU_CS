@@ -187,7 +187,7 @@ void exportRooms(){
 
 	for(i = 0; i < TOT_ROOMS; i++){
 		// Create and open room file
-		sprintf(file_path, "%s/%s_room", dir_name, rooms[i].name);
+		sprintf(file_path, "%s/%s_room", dir_name, getName(rooms[i]));
 		file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
 		
 		if(file_descriptor == -1){
@@ -198,12 +198,12 @@ void exportRooms(){
 		
 		//Write header to the file
 		file_header = "";
-		sprintf(file_header, "ROOM NAME: %d: %s\n", i, rooms[i].name);
+		sprintf(file_header, "ROOM NAME: %d: %s\n", i, getName(rooms[i]));
 		nwritten = write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
 		//Write connections to file
 		for(j = 0; j < getNumOut(rooms[i]); j++){
-			sprintf(file_connection, "CONNECTION %d: %s\n", j, rooms[i].name);
-			nwritten = write (file_connection)
+			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(rooms[i]));
+			nwritten = write (file_connection);
 		}
 		//Write footer to the file
 		file_footer = "";
@@ -218,7 +218,7 @@ void exportRooms(){
 
 int main (void) {
 	//Create seed for random variables
-	srand((unsigned) time(&t));
+	srand((unsigned) time(0));
 	//Run program
 	exportRooms();
 }
