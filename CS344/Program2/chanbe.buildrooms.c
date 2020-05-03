@@ -18,8 +18,12 @@ struct room {
 
 // Returns true if all rooms have 3 to 6 outbound connections, false otherwise
 int IsGraphFull(struct room** rooms){
-  //...
-  return 0;
+	for (i = 0; i < TOT_ROOMS; i++){
+		if(getNumOut(rooms[i] < 3){
+			return 0;
+		}
+	}
+	return 1;
 }
 
 // Returns a random Room, does NOT validate if connection can be added
@@ -119,17 +123,17 @@ void generateNames(struct room** rooms){
 	// Create array of 10 potential room names
 	char names[10][16] = {"Living Room", "Office", "Game Room", "Foyer", "Library", "Master Bedroom", "Guest Bedroom", "Dining Room", "Family Room", "Garage"};
 	int taken[10] = {0,0,0,0,0,0,0,0,0,0};
-	printf(" - loop to gen names\n");
+	//printf(" - loop to gen names\n");
 	for(i = 0; i < TOT_ROOMS; i++){
-		printf(" - - Room %d\n", i);
+		//printf(" - - Room %d\n", i);
 		while (1) {
 			//printf(" - - - Generating rand_num\n");
 			rand_num = rand() % 10;
-			printf(" - - - rand_num: %d\n", rand_num);
+			//printf(" - - - rand_num: %d\n", rand_num);
 			if (taken[rand_num] == 0){
 				//printf(" - - - - taken[rand_num] == 0\n");
 				setName(rooms[i], names[rand_num]);
-				printf(" - - - - Name successfully set.\n");
+				//printf(" - - - - Name successfully set.\n");
 				taken[rand_num] = 1;
 				//printf(" - - - - taken[rand_num] => 1. Loop break\n");
 				break;
@@ -145,29 +149,29 @@ void generateTypes(struct room** rooms){
 	
 	// Set START_ROOM
 	rand_num = rand() % 7;
-	printf(" - set room[%d] = START_ROOM\n", rand_num);
+	//printf(" - set room[%d] = START_ROOM\n", rand_num);
 	setType(rooms[rand_num], "START_ROOM");
 	
 	// Set END_ROOM
 	while(1){
-		printf(" - Loop to find unset room for END_ROOM\n");
+		//printf(" - Loop to find unset room for END_ROOM\n");
 		rand_num = rand() % 7;
-		printf(" - rand_num = %d\n", rand_num);
+		//printf(" - rand_num = %d\n", rand_num);
 		if(strcmp(getType(rooms[rand_num]), "START_ROOM") != 0){
-			printf(" - - set room[%d] = END_ROOM\n", rand_num);
+			//printf(" - - set room[%d] = END_ROOM\n", rand_num);
 			setType(rooms[rand_num], "END_ROOM");
-			printf(" - - break loop\n");
+			//printf(" - - break loop\n");
 			break;
 		}
 	}
 	
 	// Set MID_ROOM
-	for (i = 0; i < 7; i++){
-		printf(" - Loop to find unset room for MID_ROOM\n");
+	for (i = 0; i < TOT_ROOMS; i++){
+		//printf(" - Loop to find unset room for MID_ROOM\n");
 		if((strcmp(getType(rooms[i]), "START_ROOM") != 0) && (strcmp(getType(rooms[i]), "END_ROOM") != 0 )){
-			printf(" - - set room[%d] = MID_ROOM\n", rand_num);
+			//printf(" - - set room[%d] = MID_ROOM\n", rand_num);
 			setType(rooms[i], "MID_ROOM");
-			printf(" - - break loop\n");
+			//printf(" - - break loop\n");
 		}
 	}
 }
@@ -212,6 +216,7 @@ void exportRooms(){
 	
 	printf("Generating room connections\n");
 	// Create all connections in graph
+	// Runs until graph is full (every room has 3 - 6 connections)
 	while (IsGraphFull(rooms) == 0)
 	{
 	  AddRandomConnection(rooms);
