@@ -128,7 +128,7 @@ void generateNames(struct room** rooms){
 				printf(" - - - Set name -> break\n");
 				break;
 			}
-			printf(" - - - Name not set, looping... \n")
+			printf(" - - - Name not set, looping... \n");
 		}
 	}
 }
