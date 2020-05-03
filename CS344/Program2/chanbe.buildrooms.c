@@ -303,9 +303,12 @@ void exportRooms(){
 		
 		printf(" - Generating connections\n");
 		//Write connections to file
+		prinf (" = = = PRINTING CONNECTIONS = = =\n");
+		printOutbound(rooms[i]);
+		
 		for(j = 0; j < getNumOut(rooms[i]); j++){
-			printf (" = = = = PRINTING OUTBOUND ROOMS = = = =\n");
-			printRoom(getOutbound(rooms[i], j));
+			//printf (" = = = = PRINTING OUTBOUND ROOMS = = = =\n");
+			//printRoom(getOutbound(rooms[i], j));
 			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(getOutbound(rooms[i], j)));
 			printf("Generating connection %d: %s\n", j, getName(getOutbound(rooms[i], j)));
 			
