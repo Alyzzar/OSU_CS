@@ -23,19 +23,19 @@ int IsGraphFull(struct room** rooms){
 }
 
 // Adds a random, valid outbound connection from a Room to another Room
-void AddRandomConnection(){
+void AddRandomConnection(struct room** rooms){
   struct room* A;
   struct room* B;
 
   while(1){
-    A = GetRandomRoom();
+    A = GetRandomRoom(rooms);
 
     if (CanAddConnectionFrom(A) == 1)
       break;
   }
 
   do{
-    B = GetRandomRoom();
+    B = GetRandomRoom(rooms);
   }
   while(CanAddConnectionFrom(B) == 0 || IsSameRoom(A, B) == 1 || ConnectionAlreadyExists(A, B) == 1);
 
