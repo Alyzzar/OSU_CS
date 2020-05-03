@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <fcntl.h>
+#include <string.h>
 
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
@@ -71,7 +73,7 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 }
 
 // Connects Rooms x and y together, does not check if this connection is valid
-void ConnectRoom(struct room x, struct room* y){
+void ConnectRoom(struct room* x, struct room* y){
 	int n_x, n_y;
 	n_x = x.numOutboundConnections;
 	n_y = y.numOutboundConnections;
@@ -173,7 +175,7 @@ void exportRooms(){
 		//Write header to the file
 		file_header = "";
 		sprintf(file_header, "ROOM NAME: %d: %s\n", i, rooms[i].name);
-		nwritten = write(file_descriptor, file_header, strlen(header) * sizeof(char));
+		nwritten = write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
 		//Write connections to file
 		for(j = 0; j < rooms[i].numOutboundConnections; j++){
 			sprintf(file_connection, "CONNECTION %d: %s\n", j, rooms[i].name);
