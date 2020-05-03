@@ -149,7 +149,7 @@ void generateTypes(struct room** rooms){
 		}
 	}
 	
-	for(i = 0; i < 10; i++){
+	for (i = 0; i < 10; i++){
 		if((getType(rooms[i]) != "START_ROOM") && (getType(rooms[i]) != "END_ROOM")){
 			setType(rooms[i], "MID_ROOM");
 		}
@@ -158,7 +158,10 @@ void generateTypes(struct room** rooms){
 
 //Initializes values in rooms array
 void initializeRooms(){
-	
+	int i;
+	for (i = 0; i < TOT_ROOMS; i++){
+		rooms[i] = (struct room*)malloc(sizeof(struct room));
+	}
 }
 
 // Generates rooms/connections, and exports rooms to files
@@ -179,9 +182,9 @@ void exportRooms(){
 	
 	printf("Variables defined, generating rooms\n");
 	// Allocate space for 7 room structs
-	// struct room* rooms = malloc(TOT_ROOMS * sizeof(*rooms));
-	struct room (*rooms)[7];
-	rooms=malloc(sizeof(*rooms)*10)
+	struct room* rooms[TOT_ROOMS];
+	
+	
 	// Create 7 rooms w/ generated (pre-listed) names
 	printf("Gen. names\n");
 	generateNames(rooms);
