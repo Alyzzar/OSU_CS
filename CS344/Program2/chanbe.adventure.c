@@ -1,5 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <string.h>
+
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
+
+struct room { 
+	char* name;
+	char* type;
+	int numOutboundConnections;
+	char* outboundConnections[MAX_CONNECTIONS];
+};
 
 struct game {
 	int turnCount;
@@ -8,13 +22,6 @@ struct game {
 	char* path;
 	struct room currRoom;
 }
-
-struct room { 
-	char* name;
-	char* type;
-	int numOutboundConnections;
-	char* outboundConnections[MAX_CONNECTIONS];
-};
 
 // Gets the name of the room
 char* getName(struct room* room){
