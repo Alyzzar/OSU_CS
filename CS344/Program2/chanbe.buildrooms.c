@@ -139,7 +139,7 @@ int IsSameRoom(struct room* x, struct room* y){
 void generateNames(struct room** rooms){
 	int i, rand_num;
 	// Create array of 10 potential room names
-	char names[10][16] = {"Living Room", "Office", "Game Room", "Foyer", "Library", "Master Bedroom", "Guest Bedroom", "Dining Room", "Family Room", "Garage"};
+	char names[10][16] = {"Aldaraan", "Bespin", "Coruscant", "Dathomir", "Endor", "Felucia", "Geonosis", "Mandalore", "Mustafar", "Kamino"};
 	int taken[10] = {0,0,0,0,0,0,0,0,0,0};
 	//printf(" - loop to gen names\n");
 	for(i = 0; i < TOT_ROOMS; i++){
