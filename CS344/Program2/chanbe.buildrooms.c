@@ -99,7 +99,7 @@ char* getName(struct room* room){
 }
 
 void setName(struct room* room, char* name){
-	room->name = name;
+	strcpy(room->name, name);
 }
 
 char* getType(struct room* room){
