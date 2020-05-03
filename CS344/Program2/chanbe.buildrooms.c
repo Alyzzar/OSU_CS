@@ -22,6 +22,20 @@ int IsGraphFull(struct room** rooms){
   return 0;
 }
 
+// Returns a random Room, does NOT validate if connection can be added
+struct room* GetRandomRoom(struct room** rooms){
+	int rand_num = rand() % TOT_ROOMS;
+	return rooms[rand_num];
+}
+
+// Returns true if a connection can be added from Room x (< 6 outbound connections), false otherwise
+int CanAddConnectionFrom(struct room* x){
+	if (getNumOut(x) < MAX_CONNECTIONS){
+	  return 1;
+	}
+	return 0;
+}
+
 // Adds a random, valid outbound connection from a Room to another Room
 void AddRandomConnection(struct room** rooms){
   struct room* x;	//Pointer to a connectable random room
@@ -40,20 +54,6 @@ void AddRandomConnection(struct room** rooms){
   while(CanAddConnectionFrom(y) == 0 || IsSameRoom(x, y) == 1 || ConnectionAlreadyExists(x, y) == 1);
 
   ConnectRoom(x, y);
-}
-
-// Returns a random Room, does NOT validate if connection can be added
-struct room* GetRandomRoom(struct room** rooms){
-	int rand_num = rand() % TOT_ROOMS;
-	return rooms[rand_num];
-}
-
-// Returns true if a connection can be added from Room x (< 6 outbound connections), false otherwise
-int CanAddConnectionFrom(struct room* x){
-	if (getNumOut(x) < MAX_CONNECTIONS){
-	  return 1;
-	}
-	return 0;
 }
 
 // Returns true if a connection from Room x to Room y already exists, false otherwise
