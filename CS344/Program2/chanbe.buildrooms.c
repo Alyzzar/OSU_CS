@@ -263,7 +263,7 @@ void exportRooms(){
 	  AddRandomConnection(rooms);
 	}
 	
-	printf("Generating file directory\n");
+	//printf("Generating file directory\n");
 	// Generate file directory
 	sprintf(dir_name, "%s%d", "chanbe.rooms.", pid);
 	
@@ -271,7 +271,7 @@ void exportRooms(){
 		mkdir(dir_name, 0700);
 	}
 	
-	printf("Generating file for write\n");
+	//printf("Generating file for write\n");
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
 		//printRoom(rooms[i]);
@@ -336,4 +336,5 @@ int main (void) {
 	srand((unsigned) time(0));
 	//Run program
 	exportRooms();
+	printf("File generation complete.");
 }
