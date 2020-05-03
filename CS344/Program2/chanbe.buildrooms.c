@@ -164,10 +164,12 @@ void exportRooms(){
 	char *file_footer = malloc(buffer);
 	ssize_t nread, nwritten;
 	
-	printf("Variables defined, generating room names and types\n");
-	// Create 7 rooms w/ generated (pre-listed) names
+	printf("Variables defined, generating rooms\n");
 	struct room* rooms[TOT_ROOMS];
+	// Create 7 rooms w/ generated (pre-listed) names
+	printf("Gen. names\n");
 	generateNames(rooms);
+	printf("Gen. types\n");
 	generateTypes(rooms);
 	
 	printf("Generating room connections\n");
