@@ -99,7 +99,7 @@ char* getName(struct room* room){
 }
 
 void setName(struct room* room, char* name){
-	strcpy(room->name, name);
+	room->name = name;
 }
 
 char* getType(struct room* room){
@@ -134,7 +134,7 @@ void generateNames(struct room** rooms){
 			if (taken[rand_num] == 0){
 				//printf(" - - - - taken[rand_num] == 0\n");
 				setName(rooms[i], names[rand_num]);
-				printf(" - - - - Name successfully set to %s\n", names[rand_num]);
+				printf(" - - - - Name successfully set to %s\n", getName(rooms[i]));
 				taken[rand_num] = 1;
 				//printf(" - - - - taken[rand_num] => 1. Loop break\n");
 				break;
