@@ -36,6 +36,19 @@ int CanAddConnectionFrom(struct room* x){
 	return 0;
 }
 
+// Connects Rooms x and y together, does not check if this connection is valid
+void ConnectRoom(struct room* x, struct room* y){
+	int n_x, n_y;
+	//Create the connection by linking pointers
+	n_x = getNumOut(x);
+	n_y = getNumOut(y);
+	x->outboundConnections[n_x] = y;
+	y->outboundConnections[n_y] = x;
+	//Increase number of connections in each struct
+	x->numOutboundConnections++;
+	y->numOutboundConnections++;
+}
+
 // Adds a random, valid outbound connection from a Room to another Room
 void AddRandomConnection(struct room** rooms){
   struct room* x;	//Pointer to a connectable random room
@@ -68,19 +81,6 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 		}
 	}
 	return 0;
-}
-
-// Connects Rooms x and y together, does not check if this connection is valid
-void ConnectRoom(struct room* x, struct room* y){
-	int n_x, n_y;
-	//Create the connection by linking pointers
-	n_x = getNumOut(x);
-	n_y = getNumOut(y);
-	x->outboundConnections[n_x] = y;
-	y->outboundConnections[n_y] = x;
-	//Increase number of connections in each struct
-	x->numOutboundConnections++;
-	y->numOutboundConnections++;
 }
 
 // Returns true if Rooms x and y are the same Room, false otherwise
