@@ -20,8 +20,8 @@ struct game {
 	char* start;
 	char* end;
 	char* path;
-	struct room currRoom;
-}
+	struct room* currRoom;
+};
 
 // Gets the name of the room
 char* getName(struct room* room){
@@ -105,10 +105,10 @@ void addPath(struct game* game, struct room* room){
 
 // Initializes values in rooms array
 void initializeRoom(struct room* room){
-	rooms[i] = (struct room*)malloc(sizeof(struct room));
-	setName(rooms[i], "");
-	setType(rooms[i], "");
-	setNumOut(rooms[i], 0);
+	room = (struct room*)malloc(sizeof(struct room));
+	setName(room, "");
+	setType(room, "");
+	setNumOut(room, 0);
 }
 
 void initializeGame(struct game* game){
@@ -118,22 +118,36 @@ void initializeGame(struct game* game){
 	initializeRoom(game->currRoom)
 }
 
+int assignRoom(struct room* x, struct room* y){
+	free (x);
+	x = (struct room*)malloc(sizeof(struct room));
+	setName(x, getName(y));
+	setType(x, getType(y));
+	setNumOut(x, getNumOut(y));
+}
+
 // Parses file of desired name into currRoom;
-int parseRoom(struct room* room){
+struct room* parseRoom(struct room* room){
 	int i;
-	//check room type
-	if(){	//if room type is END_ROOM
+	struct room* n_room;
+	initializeRoom(n_room);
+	
+	//assign room name;
+	
+	//check room type in file
+	if(1 == 1){	//if room type is END_ROOM
 		//Game is complete
-	return 0;
+		
+		return n_room;
 	}
 	//Look for greatest integer value: Save to numOutboundConnections.
 	
 	//Use for loop to parse remaining outbound connections.
 	//set current line to be 2, read until on last connection.
 	for(i = 0; i < room->numOutboundConnections; i++){
-		
+		printf("test %d\n", i);
 	}
-	return 1;
+	return n_room;
 }
 
 int turn(struct game* game){
@@ -151,8 +165,9 @@ int turn(struct game* game){
 	printf(".\nWHERE TO? >");
 	//User input
 	
-	//Call parseRoom()
-	running = parseRoom();
+	
+	
+	parseRoom(currRoom);
 	printf("\n");
 }
 
