@@ -15,7 +15,7 @@ struct room {
 };
 
 // Returns true if all rooms have 3 to 6 outbound connections, false otherwise
-int IsGraphFull(struct room* rooms){
+int IsGraphFull(struct room** rooms){
   //...
   return 0;
 }
@@ -28,28 +28,28 @@ void AddRandomConnection(){
   while(1){
     A = GetRandomRoom();
 
-    if (CanAddConnectionFrom(A) == true)
+    if (CanAddConnectionFrom(A) == 1)
       break;
   }
 
   do{
     B = GetRandomRoom();
   }
-  while(CanAddConnectionFrom(B) == false || IsSameRoom(A, B) == true || ConnectionAlreadyExists(A, B) == true);
+  while(CanAddConnectionFrom(B) == 0 || IsSameRoom(A, B) == 1 || ConnectionAlreadyExists(A, B) == 1);
 
   ConnectRoom(A, B);  // TODO: Add this connection to the real variables, 
   ConnectRoom(B, A);  //  because this A and B will be destroyed when this function terminates
 }
 
 // Returns a random Room, does NOT validate if connection can be added
-struct room GetRandomRoom(struct room* rooms){
+struct room GetRandomRoom(struct room** rooms){
 	int rand_num = rand() % TOT_ROOMS;
 	return rooms[rand_num];
 	
 }
 
 // Returns true if a connection can be added from Room x (< 6 outbound connections), false otherwise
-int CanAddConnectionFrom(struct room x){
+int CanAddConnectionFrom(struct room* x){
 	if (x.numOutboundConnections < MAX_CONNECTIONS){
 	  return 1;
 	}
@@ -57,7 +57,7 @@ int CanAddConnectionFrom(struct room x){
 }
 
 // Returns true if a connection from Room x to Room y already exists, false otherwise
-int ConnectionAlreadyExists(struct room x, struct room y){	
+int ConnectionAlreadyExists(struct room* x, struct room* y){	
 	int connections = 0;
 	// for loop to see if y exists in x's outbound rooms
 	int i = 0;
@@ -71,19 +71,19 @@ int ConnectionAlreadyExists(struct room x, struct room y){
 }
 
 // Connects Rooms x and y together, does not check if this connection is valid
-void ConnectRoom(struct room x, struct room y){
+void ConnectRoom(struct room x, struct room* y){
 	x.outboundConnections[x.numOutboundConnections] = &y;
 	y.outboundConnections[y.numOutboundConnections] = &x;
 }
 
 // Returns true if Rooms x and y are the same Room, false otherwise
-int IsSameRoom(struct room x, struct room y){
+int IsSameRoom(struct room* x, struct room* y){
 	if (&x == &y) return 1;
 	return 0;
 }
 
 // Set room names
-void generateNames(struct room* rooms){
+void generateNames(struct room** rooms){
 	int i, rand_num;
 	// Create array of 10 potential room names
 	char names[10][16] = {"Living Room", "Office", "Game Room", "Foyer", "Library", "Master Bedroom", "Guest Bedroom", "Dining Room", "Family Room", "Garage"};
@@ -101,7 +101,7 @@ void generateNames(struct room* rooms){
 }
 
 // Set room types
-void setTypes(struct room* rooms){
+void setTypes(struct room** rooms){
 	int i, rand_num;
 	// Set random room to start and end
 	rand_num = rand() % 7;
