@@ -115,7 +115,7 @@ void initializeGame(struct game* game){
 	game->turnCount = 0;
 	setStart(game, "[NO VALUE]");
 	setEnd(game, "[NO VALUE]");
-	initializeRoom(game->currRoom)
+	initializeRoom(game->currRoom);
 }
 
 int assignRoom(struct room* x, struct room* y){
@@ -127,10 +127,9 @@ int assignRoom(struct room* x, struct room* y){
 }
 
 // Parses file of desired name into currRoom;
-struct room* parseRoom(struct room* room){
+void parseRoom(struct room* room){
 	int i;
-	struct room* n_room;
-	initializeRoom(n_room);
+
 	
 	//assign room name;
 	
@@ -153,8 +152,10 @@ struct room* parseRoom(struct room* room){
 int turn(struct game* game){
 	int i;
 	int running = 1;
+	char* n_name = malloc(64 * sizeof(char));
+	
 	//Print initial information
-	printf("CURRENT LOCATION: %s\nPOSSIBLE CONNECTIONS: ", );
+	printf("CURRENT LOCATION: %s\nPOSSIBLE CONNECTIONS: ", getName(game->currRoom));
 	for (i = 0; i < getNumOut(game->currRoom); i++){
 		printf("%s", getName(game->currRoom));
 		//Print comma, unless in last spot
@@ -164,10 +165,11 @@ int turn(struct game* game){
 	}
 	printf(".\nWHERE TO? >");
 	//User input
+	//Sets the current room
 	
-	
-	
-	parseRoom(currRoom);
+	struct room* n_room;
+	initializeRoom(n_room);
+	parseRoom(n_room, n_name);
 	printf("\n");
 }
 
