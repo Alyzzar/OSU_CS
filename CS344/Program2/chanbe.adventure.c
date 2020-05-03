@@ -168,7 +168,7 @@ int turn(struct game* game){
 	
 	struct room* n_room;
 	initializeRoom(n_room);
-	parseRoom(game->currRoom, n_room, selection)
+	parseRoom(game->currRoom, n_room, selection);
 	
 	assignRoom(game->currRoom, n_room);
 	
