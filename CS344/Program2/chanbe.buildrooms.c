@@ -109,6 +109,10 @@ int getNumOut(struct room* room){
 	return room->numOutboundConnections;
 }
 
+void setNumOut(struct room* room, int num){
+	room->numOutboundConnections = num;
+}
+
 // Set room names
 void generateNames(struct room** rooms){
 	int i, rand_num;
@@ -173,6 +177,9 @@ void initializeRooms(struct room** rooms){
 	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
 		rooms[i] = (struct room*)malloc(sizeof(struct room));
+		setName(rooms[i], "");
+		setType(rooms[i], "");
+		setNumOut(rooms[i], 0);
 	}
 }
 
