@@ -72,8 +72,11 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 
 // Connects Rooms x and y together, does not check if this connection is valid
 void ConnectRoom(struct room x, struct room* y){
-	x.outboundConnections[x.numOutboundConnections] = &y;
-	y.outboundConnections[y.numOutboundConnections] = &x;
+	int n_x, n_y;
+	n_x = x.numOutboundConnections;
+	n_y = y.numOutboundConnections;
+	x.outboundConnections[n_x] = y;
+	y.outboundConnections[n_y] = x;
 }
 
 // Returns true if Rooms x and y are the same Room, false otherwise
