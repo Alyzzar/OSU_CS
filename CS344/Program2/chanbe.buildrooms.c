@@ -236,7 +236,7 @@ void exportRooms(){
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
 		// Create and open room file
-		sprintf(curr_file, "%s_ROOM, getName(rooms[i]));
+		sprintf(curr_file, "%s_ROOM", getName(rooms[i]));
 		printf(" - Generated file name = %s\n", curr_file);
 		sprintf(file_path, "%s/%s", dir_name, curr_file);
 		printf(" - Generated file path = %s\n, file_path");
