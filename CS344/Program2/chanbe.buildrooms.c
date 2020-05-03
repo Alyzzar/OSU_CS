@@ -274,7 +274,6 @@ void exportRooms(){
 	//printf("Generating file for write\n");
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
-		//printRoom(rooms[i]);
 		// Set curr_file to be the generated file's name
 		sprintf(curr_file, "%s_ROOM", getName(rooms[i]));
 		//printf(" - Generated file name = %s\n", curr_file);
@@ -296,30 +295,18 @@ void exportRooms(){
 		}
 		
 		//Write header to the file
-		//printf(" - Generating header\n");
 		sprintf(file_header, "ROOM NAME: %s\n", getName(rooms[i]));
-		//printf(" - - Writing header\n");
 		write(file_descriptor, file_header, (strlen(file_header) + 1) * sizeof(char)));
 		
-		//printf(" - Generating connections\n");
-		//Write connections to file
-		//printOutbound(rooms[i]);
-		
+		//Writing connections
 		for(j = 0; j < getNumOut(rooms[i]); j++){
-			//printRoom(getOutbound(rooms[i], j));
 			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(getOutbound(rooms[i], j)));
-			//printf("Generating connection %d: %s\n", j, getName(getOutbound(rooms[i], j)));
-			
-			//printf(" - - Writing connection %d\n", j);
 			write (file_descriptor, file_connection, (strlen(file_connection) + 1) * sizeof(char));
 		}
 		
 		//Write footer to the file
-		//printf(" - Generating footer\n");
 		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
-		//printf(" - Writing footer\n");
 		write(file_descriptor, file_footer, (strlen(file_footer) + 1) * sizeof(char));
-		//printf(" - Write successful, terminating\n");
 	}
 	free (dir_name);
 	free (file_path);
