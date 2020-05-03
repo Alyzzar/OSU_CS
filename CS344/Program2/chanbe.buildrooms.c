@@ -297,7 +297,7 @@ void exportRooms(){
 		
 		//Write header to the file
 		//printf(" - Generating header\n");
-		sprintf(file_header, "ROOM NAME: %d: %s\n", i, getName(rooms[i]));
+		sprintf(file_header, "ROOM NAME: %s\n", getName(rooms[i]));
 		//printf(" - - Writing header\n");
 		write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
 		
@@ -312,8 +312,9 @@ void exportRooms(){
 			printf("Generating connection %d: %s\n", j, getName(getOutbound(rooms[i], j)));
 			
 			printf(" - - Writing connection %d\n", j);
-			write (file_connection);
+			write (file_descriptor, file_connection, strlen(file_header) * sizeof(char));
 		}
+		
 		//Write footer to the file
 		//printf(" - Generating footer\n");
 		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
