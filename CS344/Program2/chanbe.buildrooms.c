@@ -16,6 +16,38 @@ struct room {
 	struct room* outboundConnections[MAX_CONNECTIONS];
 };
 
+char* getName(struct room* room){
+	return room->name;
+}
+
+void setName(struct room* room, char* name){
+	//Allocate new memory
+	room->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
+	strcpy(room->name, name);
+	//Add null terminator
+	room->name[strlen(name)] = '\0';
+}
+
+char* getType(struct room* room){
+	return room->type;
+}
+
+void setType(struct room* room, char* type){
+	//Allocate new memory
+	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
+	strcpy(room->type, type);
+	//Add null terminator
+	room->type[strlen(type)] = '\0';
+}
+
+int getNumOut(struct room* room){
+	return room->numOutboundConnections;
+}
+
+void setNumOut(struct room* room, int num){
+	room->numOutboundConnections = num;
+}
+
 // Returns true if all rooms have 3 to 6 outbound connections, false otherwise
 int IsGraphFull(struct room** rooms){
 	int i;
@@ -101,38 +133,6 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 int IsSameRoom(struct room* x, struct room* y){
 	if (&x == &y) return 1;
 	return 0;
-}
-
-char* getName(struct room* room){
-	return room->name;
-}
-
-void setName(struct room* room, char* name){
-	//Allocate new memory
-	room->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
-	strcpy(room->name, name);
-	//Add null terminator
-	room->name[strlen(name)] = '\0';
-}
-
-char* getType(struct room* room){
-	return room->type;
-}
-
-void setType(struct room* room, char* type){
-	//Allocate new memory
-	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
-	strcpy(room->type, type);
-	//Add null terminator
-	room->type[strlen(type)] = '\0';
-}
-
-int getNumOut(struct room* room){
-	return room->numOutboundConnections;
-}
-
-void setNumOut(struct room* room, int num){
-	room->numOutboundConnections = num;
 }
 
 // Set room names
