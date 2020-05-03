@@ -24,23 +24,22 @@ int IsGraphFull(struct room** rooms){
 
 // Adds a random, valid outbound connection from a Room to another Room
 void AddRandomConnection(struct room** rooms){
-  struct room* A;	//Pointer to a connectable random room
-  struct room* B;	//Pointer to a different, connectable random room
+  struct room* x;	//Pointer to a connectable random room
+  struct room* y;	//Pointer to a different, connectable random room
 
   while(1){
-    A = GetRandomRoom(rooms);
+    x = GetRandomRoom(rooms);
 
-    if (CanAddConnectionFrom(A) == 1)
+    if (CanAddConnectionFrom(x) == 1)
       break;
   }
 
   do{
-    B = GetRandomRoom(rooms);
+    y = GetRandomRoom(rooms);
   }
-  while(CanAddConnectionFrom(B) == 0 || IsSameRoom(A, B) == 1 || ConnectionAlreadyExists(A, B) == 1);
+  while(CanAddConnectionFrom(y) == 0 || IsSameRoom(x, y) == 1 || ConnectionAlreadyExists(x, y) == 1);
 
-  ConnectRoom(A, B);
-  ConnectRoom(B, A);
+  ConnectRoom(x, y);
 }
 
 // Returns a random Room, does NOT validate if connection can be added
@@ -163,6 +162,7 @@ void exportRooms(){
 	char *file_connection = malloc(buffer);
 	char *file_header = malloc(buffer);
 	char *file_footer = malloc(buffer);
+	ssize_t nread, nwritten;
 	
 	// Create 7 rooms w/ generated (pre-listed) names
 	struct room* rooms[TOT_ROOMS];
@@ -170,7 +170,7 @@ void exportRooms(){
 	//***Create a function to randomly assign one START and one END room***//
 	
 	// Create all connections in graph
-	while (IsGraphFull(rooms) == false)
+	while (IsGraphFull(rooms) == 0)
 	{
 	  AddRandomConnection(rooms);
 	}
@@ -178,7 +178,7 @@ void exportRooms(){
 	// Generate file directory
 	sprintf(dir_name, "%s%d", "chanbe.rooms.", pid);
 	
-	if (stat(dir_name, $st) == -1){
+	if (stat(dir_name, &st) == -1){
 		mkdir(dir_name, 0700);
 	}
 	
