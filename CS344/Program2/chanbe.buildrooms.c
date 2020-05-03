@@ -75,10 +75,14 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 // Connects Rooms x and y together, does not check if this connection is valid
 void ConnectRoom(struct room* x, struct room* y){
 	int n_x, n_y;
+	//Create the connection by linking pointers
 	n_x = getNumOut(x);
 	n_y = getNumOut(y);
 	x->outboundConnections[n_x] = y;
 	y->outboundConnections[n_y] = x;
+	//Increase number of connections in each struct
+	x->numOutboundConnections++;
+	y->numOutboundConnections++;
 }
 
 // Returns true if Rooms x and y are the same Room, false otherwise
@@ -99,12 +103,8 @@ char* getType(struct room* room){
 	return room->type;
 }
 
-char* getType(struct room* room){
-	return room->type;
-}
-
-char* getNumOut(struct room* room){
-	return room->numOutboundConnections;
+char* setType(struct room* room, char* type){
+	room->type = type;
 }
 
 char* getNumOut(struct room* room){
@@ -207,7 +207,7 @@ void exportRooms(){
 		}
 		//Write footer to the file
 		file_footer = "";
-		sprintf(file_footer, "ROOM TYPE: %s\n", rooms[i].type);
+		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
 	}
 	free (dir_name);
 	free (file_path);
