@@ -48,7 +48,7 @@ void setNumOut(struct room* room, int num){
 	room->numOutboundConnections = num;
 }
 
-int getOutbound(struct room* room, int n){
+struct room* getOutbound(struct room* room, int n){
 	return room->outboundConnections[n];
 }
 
