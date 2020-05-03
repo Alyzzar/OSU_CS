@@ -157,7 +157,7 @@ void generateTypes(struct room** rooms){
 }
 
 //Initializes values in rooms array
-void initializeRooms(){
+void initializeRooms(struct room** rooms){
 	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
 		rooms[i] = (struct room*)malloc(sizeof(struct room));
@@ -183,7 +183,7 @@ void exportRooms(){
 	printf("Variables defined, generating rooms\n");
 	// Allocate space for 7 room structs
 	struct room* rooms[TOT_ROOMS];
-	
+	initializeRooms(rooms);
 	
 	// Create 7 rooms w/ generated (pre-listed) names
 	printf("Gen. names\n");
