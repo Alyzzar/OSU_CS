@@ -119,18 +119,18 @@ void generateNames(struct room** rooms){
 	for(i = 0; i < TOT_ROOMS; i++){
 		printf(" - - Room %d\n", i);
 		while (1) {
-			printf(" - - - Generating rand_num\n");
+			//printf(" - - - Generating rand_num\n");
 			rand_num = rand() % 10;
 			printf(" - - - rand_num: %d\n", rand_num);
 			if (taken[rand_num] == 0){
-				printf(" - - - - taken[rand_num] == 0\n");
+				//printf(" - - - - taken[rand_num] == 0\n");
 				setName(rooms[i], names[rand_num]);
 				printf(" - - - - Name successfully set.\n");
 				taken[rand_num] = 1;
-				printf(" - - - - taken[rand_num] => 1. Loop break\n");
+				//printf(" - - - - taken[rand_num] => 1. Loop break\n");
 				break;
 			}
-			printf(" - - - Name not set, looping... \n");
+			//printf(" - - - Name not set, looping... \n");
 		}
 	}
 }
@@ -138,20 +138,31 @@ void generateNames(struct room** rooms){
 // Set room types
 void generateTypes(struct room** rooms){
 	int i, rand_num;
-	// Set random room to start and end
+	
+	// Set START_ROOM
 	rand_num = rand() % 7;
+	printf(" - set room[%d] = START_ROOM\n", rand_num);
 	setType(rooms[rand_num], "START_ROOM");
+	
+	// Set END_ROOM
 	while(1){
+		printf(" - Loop to find unset room for END_ROOM\n");
 		rand_num = rand() % 7;
 		if(getType(rooms[rand_num]) != "START_ROOM"){
+			printf(" - - set room[%d] = END_ROOM\n", rand_num);
 			setType(rooms[rand_num], "END_ROOM");
+			printf(" - - break loop\n");
 			break;
 		}
 	}
 	
+	// Set MID_ROOM
 	for (i = 0; i < 10; i++){
+		prinf(" - Loop to find unset room for MID_ROOM\n");
 		if((getType(rooms[i]) != "START_ROOM") && (getType(rooms[i]) != "END_ROOM")){
+			printf(" - - set room[%d] = MID_ROOM\n", rand_num);
 			setType(rooms[i], "MID_ROOM");
+			printf(" - - break loop\n");
 		}
 	}
 }
