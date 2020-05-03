@@ -22,8 +22,8 @@ int IsGraphFull(struct room** rooms){
 
 // Adds a random, valid outbound connection from a Room to another Room
 void AddRandomConnection(){
-  struct room A;  // Maybe a struct, maybe global arrays of ints
-  struct room B;
+  struct room* A;
+  struct room* B;
 
   while(1){
     A = GetRandomRoom();
