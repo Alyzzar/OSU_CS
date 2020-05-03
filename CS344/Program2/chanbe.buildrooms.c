@@ -52,7 +52,7 @@ struct room GetRandomRoom(struct room** rooms){
 
 // Returns true if a connection can be added from Room x (< 6 outbound connections), false otherwise
 int CanAddConnectionFrom(struct room* x){
-	if (x.numOutboundConnections < MAX_CONNECTIONS){
+	if (getNumOut(x) < MAX_CONNECTIONS){
 	  return 1;
 	}
 	return 0;
@@ -63,7 +63,7 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 	int connections = 0;
 	// for loop to see if y exists in x's outbound rooms
 	int i = 0;
-	for (i = 0; i < x.numOutboundConnections; i++){
+	for (i = 0; i < getNumOut(x); i++){
 		if (IsSameRoom(x.outboundConnections[i], y)){
 			// X is connected to Y
 			return 1;
@@ -75,10 +75,10 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 // Connects Rooms x and y together, does not check if this connection is valid
 void ConnectRoom(struct room* x, struct room* y){
 	int n_x, n_y;
-	n_x = x.numOutboundConnections;
-	n_y = y.numOutboundConnections;
-	x.outboundConnections[n_x] = y;
-	y.outboundConnections[n_y] = x;
+	n_x = getNumOut(x);
+	n_y = getNumOut(y);
+	x->outboundConnections[n_x] = y;
+	y->outboundConnections[n_y] = x;
 }
 
 // Returns true if Rooms x and y are the same Room, false otherwise
@@ -88,19 +88,27 @@ int IsSameRoom(struct room* x, struct room* y){
 }
 
 char* getName(struct room* room){
-	return room.name;
+	return room->name;
 }
 
 void setName(struct room* room, char* name){
-	room.name = name;
+	room->name = name;
 }
 
 char* getType(struct room* room){
-	return room.type;
+	return room->type;
 }
 
 char* getType(struct room* room){
-	return room.type;
+	return room->type;
+}
+
+char* getNumOut(struct room* room){
+	return room->numOutboundConnections;
+}
+
+char* getNumOut(struct room* room){
+	return room->numOutboundConnections;
 }
 
 // Set room names
@@ -193,7 +201,7 @@ void exportRooms(){
 		sprintf(file_header, "ROOM NAME: %d: %s\n", i, rooms[i].name);
 		nwritten = write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
 		//Write connections to file
-		for(j = 0; j < rooms[i].numOutboundConnections; j++){
+		for(j = 0; j < getNumOut(rooms[i]); j++){
 			sprintf(file_connection, "CONNECTION %d: %s\n", j, rooms[i].name);
 			nwritten = write (file_connection)
 		}
