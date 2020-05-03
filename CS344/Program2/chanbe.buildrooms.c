@@ -286,17 +286,21 @@ void exportRooms(){
 		file_header = "";
 		printf(" - Generating header\n");
 		sprintf(file_header, "ROOM NAME: %d: %s\n", i, getName(rooms[i]));
+		printf(" - - Writing header\n");
 		write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
 		
+		printf(" - Generating connections\n");
 		//Write connections to file
 		for(j = 0; j < getNumOut(rooms[i]); j++){
 			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(rooms[i]));
+			printf(" - Writing connection %d\n", j);
 			write (file_connection);
 		}
 		//Write footer to the file
 		file_footer = "";
 		printf(" - Generating footer\n");
 		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
+		printf(" - Writing footer\n");
 		write(file_descriptor, file_footer, strlen(file_footer) * sizeof(char));
 	}
 	free (dir_name);
