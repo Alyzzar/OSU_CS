@@ -231,18 +231,18 @@ void exportRooms(){
 	char *curr_file = malloc(buffer);
 	ssize_t nread, nwritten;
 	
-	printf("Variables defined, generating rooms\n");
+	//printf("Variables defined, generating rooms\n");
 	// Allocate space for 7 room structs
 	struct room* rooms[TOT_ROOMS];
 	initializeRooms(rooms);
 	
 	// Create 7 rooms w/ generated (pre-listed) names
-	printf("Gen. names\n");
+	//printf("Gen. names\n");
 	generateNames(rooms);
-	printf("Gen. types\n");
+	//printf("Gen. types\n");
 	generateTypes(rooms);
 	
-	printf("Generating room connections\n");
+	//printf("Generating room connections\n");
 	// Create all connections in graph
 	// Runs until graph is full (every room has 3 - 6 connections)
 	while (IsGraphFull(rooms) == 0)
@@ -264,17 +264,17 @@ void exportRooms(){
 		printRoom(rooms[i]);
 		// Set curr_file to be the generated file's name
 		sprintf(curr_file, "%s_ROOM", getName(rooms[i]));
-		printf(" - Generated file name = %s\n", curr_file);
+		//printf(" - Generated file name = %s\n", curr_file);
 		
 		// Set file_path to be the location of the file (../dir/file)
 		sprintf(file_path, "%s/%s", dir_name, curr_file);
-		printf(" - Current directory = %s\n",dir_name);
-		printf(" - Generated file path = %s\n", file_path);
+		//printf(" - Current directory = %s\n",dir_name);
+		//printf(" - Generated file path = %s\n", file_path);
 		
-		printf(" - Creating file to read/write\n");
+		//printf(" - Creating file to read/write\n");
 		file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
 		
-		printf(" - Successfully created and opened file\n");
+		//printf(" - Successfully created and opened file\n");
 		
 		if(file_descriptor == -1){
 			printf("Error, could not generate room files at \"%s\"\n", file_path);
@@ -283,23 +283,26 @@ void exportRooms(){
 		}
 		
 		//Write header to the file
-		printf(" - Generating header\n");
+		//printf(" - Generating header\n");
 		sprintf(file_header, "ROOM NAME: %d: %s\n", i, getName(rooms[i]));
-		printf(" - - Writing header\n");
+		//printf(" - - Writing header\n");
 		write(file_descriptor, file_header, strlen(file_header) * sizeof(char));
 		
 		printf(" - Generating connections\n");
 		//Write connections to file
 		for(j = 0; j < getNumOut(rooms[i]); j++){
 			sprintf(file_connection, "CONNECTION %d: %s\n", j, getName(rooms[i]));
-			printf(" - Writing connection %d\n", j);
+			printf(file_connection, "Generating connection %d: %s\n", j, getName(rooms[i]));
+			
+			printf(" - - Writing connection %d\n", j);
 			write (file_connection);
 		}
 		//Write footer to the file
-		printf(" - Generating footer\n");
+		//printf(" - Generating footer\n");
 		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
-		printf(" - Writing footer\n");
+		//printf(" - Writing footer\n");
 		write(file_descriptor, file_footer, strlen(file_footer) * sizeof(char));
+		printf(" - Write successful, terminating\n");
 	}
 	free (dir_name);
 	free (file_path);
