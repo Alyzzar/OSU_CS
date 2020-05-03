@@ -233,7 +233,7 @@ void exportRooms(){
 	int i;
 	int j;
 	int pid = getpid();
-	int buffer = 64 * sizeof(char);
+	int buffer = 128 * sizeof(char);
 	int file_descriptor;
 	struct stat st = {0};
 	char *dir_name = malloc(buffer);
