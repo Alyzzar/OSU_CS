@@ -127,7 +127,7 @@ int assignRoom(struct room* x, struct room* y){
 }
 
 // Parses file of desired name into currRoom;
-int parseRoom(struct room* room, char* name){
+struct room* parseRoom(struct room* c_room, struct room* n_room, char* name){
 	int i;
 
 	//assign room name;
@@ -143,7 +143,7 @@ int parseRoom(struct room* room, char* name){
 	
 	//Use for loop to parse remaining outbound connections.
 	//set current line to be 2, read until on last connection.
-	for(i = 0; i < room->numOutboundConnections; i++){
+	for(i = 0; i < n_room->numOutboundConnections; i++){
 		printf("test %d\n", i);
 	}
 	return 1;
@@ -171,7 +171,7 @@ int turn(struct game* game){
 	struct room* n_room;
 	initializeRoom(n_room);
 	
-	assignRoom(game->currRoom, parseRoom(game->currRoom, selection);
+	assignRoom(game->currRoom, parseRoom(game->currRoom, n_room, selection));
 	
 	printf("\n");
 }
