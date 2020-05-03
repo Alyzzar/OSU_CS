@@ -18,8 +18,9 @@ struct room {
 
 // Returns true if all rooms have 3 to 6 outbound connections, false otherwise
 int IsGraphFull(struct room** rooms){
+	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
-		if(getNumOut(rooms[i] < 3){
+		if(getNumOut(rooms[i]) < 3){
 			return 0;
 		}
 	}
