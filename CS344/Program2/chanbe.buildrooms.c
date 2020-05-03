@@ -148,6 +148,7 @@ void generateTypes(struct room** rooms){
 	while(1){
 		printf(" - Loop to find unset room for END_ROOM\n");
 		rand_num = rand() % 7;
+		printf(" - rand_num = %d\n", rand_num);
 		if(strcmp(getType(rooms[rand_num]), "START_ROOM") != 0){
 			printf(" - - set room[%d] = END_ROOM\n", rand_num);
 			setType(rooms[rand_num], "END_ROOM");
