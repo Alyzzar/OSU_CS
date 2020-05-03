@@ -16,7 +16,7 @@ struct room {
 
 // Returns true if all rooms have 3 to 6 outbound connections, false otherwise
 int IsGraphFull(struct room* rooms){
-  ...
+  //...
   return 0;
 }
 
@@ -25,7 +25,7 @@ void AddRandomConnection(){
   struct room A;  // Maybe a struct, maybe global arrays of ints
   struct room B;
 
-  while(true){
+  while(1){
     A = GetRandomRoom();
 
     if (CanAddConnectionFrom(A) == true)
@@ -106,13 +106,19 @@ void setTypes(struct room* rooms){
 	// Set random room to start and end
 	rand_num = rand() % 7;
 	rooms[rand_num].type = "START_ROOM"
-	rand_num = rand() % 7;
-	if(rooms[rand_num].type)
+	while(1){
+		rand_num = rand() % 7;
+		if(rooms[rand_num].type != "START_ROOM"){
+			rooms[rand_num].type = "END_ROOM";
+			break;
+		}
+	}
 	
 	for(i = 0; i < 10; i++){
-		
+		if((rooms[i].type != "START_ROOM") && (rooms[i].type != "END_ROOM")){
+			rooms[i].type = "MID_ROOM";
+		}
 	}
-
 }
 
 // Generates rooms/connections, and exports rooms to files
