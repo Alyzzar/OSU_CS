@@ -188,6 +188,14 @@ void initializeRooms(struct room** rooms){
 	}
 }
 
+//Prints value of a room for testing purposes
+void printRoom(struct room x){
+	printf(" - PRINT ROOM\n");
+	printf(" - - Name: %s\n", getName(x));
+	printf(" - - Type: %s\n", getType(x));
+	printf(" - - nOut: %s\n", getNumOut(x));
+}
+
 // Generates rooms/connections, and exports rooms to files
 void exportRooms(){
 	//Variables
@@ -235,6 +243,7 @@ void exportRooms(){
 	printf("Generating file for write\n");
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
+		printRoom(rooms[i]);
 		// Create and open room file
 		sprintf(curr_file, "%s_ROOM", getName(rooms[i]));
 		printf(" - Generated file name = %s\n", curr_file);
