@@ -296,7 +296,7 @@ void exportRooms(){
 		
 		//Write header to the file
 		sprintf(file_header, "ROOM NAME: %s\n", getName(rooms[i]));
-		write(file_descriptor, file_header, (strlen(file_header) + 1) * sizeof(char)));
+		write(file_descriptor, file_header, (strlen(file_header) + 1) * sizeof(char));
 		
 		//Writing connections
 		for(j = 0; j < getNumOut(rooms[i]); j++){
