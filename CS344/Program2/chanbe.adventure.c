@@ -174,7 +174,7 @@ void initializeGame(struct game** game){
 	setEnd(*game, "");
 	printf("INITIALIZE: END = %s\n", (*game)->end);
 	(*game)->turnCount = 1;
-	printf("INITIALIZE: TURNCOUNT = %s\n", getTurn(*game));
+	printf("INITIALIZE: TURNCOUNT = %d\n", getTurn(*game));
 
 	//Initialize path with length of 1
 	(*game)->path = (char*)malloc(sizeof(char));
