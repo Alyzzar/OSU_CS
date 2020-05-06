@@ -258,7 +258,8 @@ struct room* findType (struct game* game, char* type){
 	int running = 1;
 	//char directory[256];
 	char file_name[256];
-	char line[256];
+	char* line = NULL;
+	size_t buffer = 0;
 	struct stat st;
 	struct dirent* dir_info;
 	// Set directory
@@ -272,7 +273,7 @@ struct room* findType (struct game* game, char* type){
 	
 	while (running) {
 		//Search through file line by line until NULL
-		while (fgets(line, sizeof(line), f)) {
+		while (getline(&line, &buffer, f)) {
 			//Look for line with substring matching type
 			if (strstr(line, type) != NULL) {
 				//This file contains the correct room.
