@@ -267,10 +267,12 @@ struct room* findType (struct game* game, const char* type){
 	DIR* dir = opendir(game->directory);
 	
 	// Read until the first file:
+	dir_info = readdir(dir);
+	
 	do{
-        dir_info = readdir(dir);
-		printf(" - - DIR: %s\n", dir_info->d_name);
-    } while (strstr(dir_info->d_name, "_ROOM") == NULL);
+        printf(" - - DIR: %s\n", dir_info->d_name);
+		dir_info = readdir(dir);
+	} while (strstr(dir_info->d_name, "_ROOM") == NULL);
 	
 	strcpy(file_name, dir_info->d_name);
 	//open the first file
