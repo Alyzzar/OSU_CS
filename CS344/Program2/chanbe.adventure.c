@@ -112,8 +112,12 @@ int setDir(struct game* game){
 	if (dirToCheck > 0){
 		//Loop through subdirectories (Searching for chanbe.rooms.*)
 		while ((fileInDir = readdir(dirToCheck)) != NULL){
+			printf(" - - FILE: %s\n", fileInDir->d_name);
+			
 			// If directory has prefix (chanbe.rooms.*)
 			if (strstr(fileInDir->d_name, targetDirPrefix) != NULL){
+				printf(" - - - Matching prefix found. Setting dir().\n");
+				
 				stat(fileInDir->d_name, &dirAttributes);
 				if ((int)dirAttributes.st_mtime > newestDirTime){
 					newestDirTime = (int)dirAttributes.st_mtime;
@@ -181,8 +185,7 @@ void initializeGame(struct game** game){
 	printf(" - Game path initialized, creating currRoom.\n");
 	initializeRoom(&(*game)->currRoom);
 	
-	//Initialize directory with length of 1
-	(*game)->directory = (char*)malloc(sizeof(char));
+	//Initialize directory
 	setDir(*game);
 }
 
@@ -386,7 +389,7 @@ void main(){
 	initializeGame(&game);
 	printf("Game values initialized.\n");
 	
-	if (game->directory != 0){
+	if (game->directory == NULL || game->directory = 0){
 		printf("NO COMPATIBLE ROOMS FOUND. GAME TERMINATING.\n");
 	} else {
 		//Directory successfully found. Game continuing.
