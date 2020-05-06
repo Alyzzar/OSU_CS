@@ -258,8 +258,8 @@ struct room* findType (struct game* game, char* type){
 	int running = 1;
 	//char directory[256];
 	char file_name[256];
-	char* line = NULL;
-	size_t buffer = 0;
+	char* line;
+	size_t buffer = 64;
 	struct stat st;
 	struct dirent* dir_info;
 	// Set directory
