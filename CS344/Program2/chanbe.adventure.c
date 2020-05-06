@@ -154,6 +154,8 @@ int turn(struct game* game){
 	char* selection = malloc(64 * sizeof(char));
 	
 	//Print initial information
+	printf(" - Running turn().\n");
+	
 	printf("CURRENT LOCATION: %s\nPOSSIBLE CONNECTIONS: ", getName(game->currRoom));
 	for (i = 0; i < getNumOut(game->currRoom); i++){
 		printf("%s", getName(game->currRoom));
@@ -176,12 +178,20 @@ int turn(struct game* game){
 }
 
 void main(){
-	struct game* game;
+	//Initialize variables and objects.
 	int running = 1;
+	struct game* game;
+	prinf("Game object initialized.\n");
+	initializeGame(game);
+	
+	printf("Game sequence starting.\n");
 	//Open most recent file with stat()
+	
+	printf("Opening files.\n");
 	
 	//Game runs until parseRoom find END_ROOM
 	while (running > 0){
+		printf("Game loop %d.\n", game->turnCount);
 		running = turn(game);
 		game->turnCount++;
 	}
