@@ -284,6 +284,7 @@ struct room* findType (struct game* game, const char* type){
 		printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
 		while (getline(&line, &buffer, f) != -1) {
+			printf(" - - - LINE %d: %s"\n, (i + 1), line);
 			//Look for line with substring matching type
 			if (strstr(line, type) != NULL) {
 				//This file contains the correct room.
@@ -310,54 +311,7 @@ struct room* findType (struct game* game, const char* type){
 
 // Returns the room of a specific name. For use with traversing to outbound rooms
 struct room* findName (struct game* game, char* name){
-	// Set variables
-	FILE *f;
-	int i;
-	int running = 1;
-	//char directory[256];
-	char file_name[256];
-	size_t buffer = 64 * sizeof(char);
-	struct stat st;
-	struct dirent* dir_info;
-	char* line = (char *) malloc(buffer);
-	
-	DIR* dir = opendir(game->directory);
-	
-	// Read the first file (Copy the first file's name into char* file_name)
-	do{
-        dir_info = readdir(dir);
-		printf(" - - CHANBE.ROOMS: %s\n", dir_info->d_name);
-    } while (strstr(dir_info->d_name, "_ROOM") == NULL);
-	
-	strcpy(file_name, dir_info->d_name);
-	//open the first file
-	f = fopen(file_name, "r");
-	printf(" - - CHANBE.ROOMS: %s\n", file_name);
-	i = 0;
-	while (running && (i < TOT_ROOMS)) {
-		//Search through file line by line until NULL
-		while (getline(&line, &buffer, f) != -1) {
-			//Look for line with substring matching name
-			if (strstr(line, name) != NULL) {
-				//This file contains the correct room.
-				//Parse and return this room.
-					printf("%s FOUND. PARSING.\n", name);
-				free(line);
-				return parseRoom(f, game);
-			}
-		//Reached end of file.
-		}
-		fclose(f);
-		//Iterate to next file.
-		dir_info = readdir(dir);
-		strcpy(file_name, dir_info->d_name);
-		if(i <= (TOT_ROOMS - 1)){
-			f = fopen(file_name, "r");
-			i++;
-		}
-	}
-	printf("NO %s ROOM FOUND. TERMINATING.\n", name);
-	free(line);
+	//COPY IN findType() AND CHANGE VARIABLES
 	return NULL;
 }
 
