@@ -266,19 +266,20 @@ struct room* findType (struct game* game, const char* type){
 	
 	DIR* dir = opendir(game->directory);
 	
-	// Read the first file (Copy the first file's name into char* file_name)
+	// Read until the first file:
 	do{
         dir_info = readdir(dir);
-		printf("CHANBE.ROOMS: %s\n", dir_info->d_name);
+		printf(" - - DIR: %s\n", dir_info->d_name);
     } while (strstr(dir_info->d_name, "_ROOM") == NULL);
 	
 	strcpy(file_name, dir_info->d_name);
 	//open the first file
 	f = fopen(file_name, "r");
-	printf("CHANBE.ROOMS: %s\n", file_name);
 	
 	i = 0;
 	while (running && (i < TOT_ROOMS)) {
+		//Print the current room
+		printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
 		while (getline(&line, &buffer, f) != -1) {
 			//Look for line with substring matching type
