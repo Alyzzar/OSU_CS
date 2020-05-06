@@ -258,13 +258,13 @@ struct room* findType (struct game* game, char* type){
 	int running = 1;
 	//char directory[256];
 	char file_name[256];
-	char* line;
-	size_t buffer = 64;
+	size_t buffer = 64 * sizeof(char);
 	struct stat st;
 	struct dirent* dir_info;
-	// Set directory
-	//sprintf(directory, "%s/", game->directory);
+	char* line = (char *) malloc(buffer);
+	
 	DIR* dir = opendir(game->directory);
+	
 	// Read the first file (Copy the first file's name into char* file_name)
 	dir_info = readdir(dir);
 	strcpy(file_name, dir_info->d_name);
