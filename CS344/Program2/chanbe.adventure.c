@@ -255,6 +255,7 @@ struct room* parseRoom(FILE* f, struct game* game){
 struct room* findType (struct game* game, const char* type){
 	// Set variables
 	FILE *f;
+	int i;
 	int running = 1;
 	//char directory[256];
 	char file_name[256];
@@ -276,7 +277,7 @@ struct room* findType (struct game* game, const char* type){
 	f = fopen(file_name, "r");
 	printf("CHANBE.ROOMS: %s\n", file_name);
 	
-	while (running) {
+	while (running && (i < TOT_ROOMS)) {
 		//Search through file line by line until NULL
 		while (getline(&line, &buffer, f) != -1) {
 			//Look for line with substring matching type
@@ -293,6 +294,7 @@ struct room* findType (struct game* game, const char* type){
 		dir_info = readdir(dir);
 		strcpy(file_name, dir_info->d_name);
 		f = fopen(file_name, "r");
+		i++;
 	}
 	fclose(f);
 	printf("NO %s ROOM FOUND. TERMINATING.\n", type);
@@ -304,6 +306,7 @@ struct room* findType (struct game* game, const char* type){
 struct room* findName (struct game* game, char* name){
 	// Set variables
 	FILE *f;
+	int i;
 	int running = 1;
 	//char directory[256];
 	char file_name[256];
@@ -317,21 +320,22 @@ struct room* findName (struct game* game, char* name){
 	// Read the first file (Copy the first file's name into char* file_name)
 	do{
         dir_info = readdir(dir);
-		printf("CHANBE.ROOMS: %s\n", dir_info->d_name);
+		printf(" - - CHANBE.ROOMS: %s\n", dir_info->d_name);
     } while (strstr(dir_info->d_name, "chanbe.rooms.") == NULL);
 	
 	strcpy(file_name, dir_info->d_name);
 	//open the first file
 	f = fopen(file_name, "r");
-	printf("CHANBE.ROOMS: %s\n", file_name);
-	
-	while (running) {
+	printf(" - - CHANBE.ROOMS: %s\n", file_name);
+	i = 0
+	while (running && (i < TOT_ROOMS)) {
 		//Search through file line by line until NULL
 		while (getline(&line, &buffer, f) != -1) {
 			//Look for line with substring matching name
 			if (strstr(line, name) != NULL) {
 				//This file contains the correct room.
 				//Parse and return this room.
+				printf("")
 				free(line);
 				return parseRoom(f, game);
 			}
@@ -342,6 +346,7 @@ struct room* findName (struct game* game, char* name){
 		dir_info = readdir(dir);
 		strcpy(file_name, dir_info->d_name);
 		f = fopen(file_name, "r");
+		i++;
 	}
 	fclose(f);
 	printf("NO %s ROOM FOUND. TERMINATING.\n", name);
