@@ -160,11 +160,11 @@ int getTurn (struct game* game){
 }
 
 // Initializes values in rooms array
-void initializeRoom(struct room* room){
-	room = (struct room*)malloc(sizeof(struct room));
-	setName(room, "");
-	setType(room, "");
-	setNumOut(room, 0);
+void initializeRoom(struct room** room){
+	*room = (struct room*)malloc(sizeof(struct *room));
+	setName(*room, "");
+	setType(*room, "");
+	setNumOut(*room, 0);
 }
 
 void initializeGame(struct game** game){
@@ -179,7 +179,7 @@ void initializeGame(struct game** game){
 	//Initialize path with length of 1
 	(*game)->path = (char*)malloc(sizeof(char));
 	printf(" - Game path initialized, creating currRoom.\n");
-	initializeRoom((*game)->currRoom);
+	initializeRoom(&(*game)->currRoom);
 	
 	//Initialize directory with length of 1
 	(*game)->directory = (char*)malloc(sizeof(char));
