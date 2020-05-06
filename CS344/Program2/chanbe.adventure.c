@@ -278,6 +278,7 @@ struct room* findType (struct game* game, char* type){
 			if (strstr(line, type) != NULL) {
 				//This file contains the correct room.
 				//Parse and return this room.
+				free(line);
 				return parseRoom(f, game);
 			}
 		//Reached end of file.
@@ -289,6 +290,7 @@ struct room* findType (struct game* game, char* type){
 		f = fopen(file_name, "r");
 	}
 	printf("NO %s ROOM FOUND. TERMINATING.\n", type);
+	free(line);
 	return NULL;
 }
 
