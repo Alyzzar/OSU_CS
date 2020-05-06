@@ -265,6 +265,10 @@ struct room* findType (struct game* game, char* type){
 	
 	DIR* dir = opendir(game->directory);
 	
+	do{
+        dir_info = readdir(dir);
+    } while (strstr(dir_info->d_name, "chanbe.rooms.") == NULL);
+	
 	// Read the first file (Copy the first file's name into char* file_name)
 	dir_info = readdir(dir);
 	strcpy(file_name, dir_info->d_name);
@@ -272,22 +276,24 @@ struct room* findType (struct game* game, char* type){
 	f = fopen(file_name, "r");
 	
 	while (running) {
-		//Search through file line by line until NULL
-		while (getline(&line, &buffer, f) != -1) {
-			//Look for line with substring matching type
-			if (strstr(line, type) != NULL) {
-				//This file contains the correct room.
-				//Parse and return this room.
-				free(line);
-				return parseRoom(f, game);
+		if (strstr(dir_info->d_name, "chanbe.rooms.") != NULL){
+			//Search through file line by line until NULL
+			while (getline(&line, &buffer, f) != -1) {
+				//Look for line with substring matching type
+				if (strstr(line, type) != NULL) {
+					//This file contains the correct room.
+					//Parse and return this room.
+					free(line);
+					return parseRoom(f, game);
+				}
+			//Reached end of file.
 			}
-		//Reached end of file.
 		}
 		fclose(f);
 		//Iterate to next file.
 		dir_info = readdir(dir);
 		strcpy(file_name, dir_info->d_name);
-		f = fopen(file_name, "r");
+		f = fopen(file_name, "r");		
 	}
 	printf("NO %s ROOM FOUND. TERMINATING.\n", type);
 	free(line);
@@ -339,8 +345,8 @@ int turn(struct game* game){
 	int i;
 	int running = 1;
 	size_t buffer = 0;
-	char* n_name = malloc(64 * sizeof(char));
-	char* selection = malloc(64 * sizeof(char));
+	char* n_name = (char*)malloc(64 * sizeof(char));
+	char* selection = (char*)malloc(64 * sizeof(char));
 	char* lineEntered = NULL;
 	
 	//Print initial information
@@ -385,7 +391,7 @@ int turn(struct game* game){
 }
 
 //Main Function
-void main(){
+int main(){
 	//Initialize variables and objects.
 	int running = 1;
 	struct game* game;
@@ -415,4 +421,5 @@ void main(){
 	}
 	//Terminates
 	freeGame(game);
+	return 0;
 }
