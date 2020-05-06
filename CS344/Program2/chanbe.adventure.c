@@ -224,7 +224,7 @@ struct room* parseRoom(FILE* f, struct game* game){
 	sscanf(lines[num_lines - 1], "%*s %*s %s", type);
 	setType(game->currRoom, name);
 	
-	setNumOut(game->curr,(num_lines - 2));
+	setNumOut(game->currRoom,(num_lines - 2));
 	//for loop to parse outbound connections from line 2 onwards
 	for(i = 0; i < n_room->numOutboundConnections; i++){
 		sscanf(lines[i + 1], "%*s %*s %s", connection);
@@ -245,6 +245,7 @@ struct room* findType (struct game* game, char* type){
 	int running = 1;
 	char dir[256];
 	char file_name[256];
+	char line[256];
 	struct stat st;
 	struct dirent* dir_info;
 	// Set directory
@@ -284,6 +285,7 @@ struct room* findName (struct game* game, char* name){
 	int running = 1;
 	char dir[256];
 	char file_name[256];
+	char line[256];
 	struct stat st;
 	struct dirent* dir_info;
 	// Set directory
@@ -351,10 +353,11 @@ int turn(struct game* game){
 		} else {
 			for (i=0; i < getNumOut(game->currRoom); i++){
 				// Loop through connecting rooms to find matching name
-				if (strcmp(lineEntered, getName(getOutbound(game->currRoom, i))){
+				if (strcmp(lineEntered, getName(getOutbound(game->currRoom, i)))){
 					//Found the correct room
 					//Assign the 'found' room as the currRoom
 					assignRoom(currRoom, findName(game, lineEntered));
+					//Break out of loop, since room has already been found.
 					break;
 				}
 			}
