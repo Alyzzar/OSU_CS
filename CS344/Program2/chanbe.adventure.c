@@ -101,7 +101,7 @@ int setDir(struct game* game){
 	char newestDirName[256];
 	memset(newestDirName, '\0', sizeof(newestDirName));
 
-	DIR* dirToCheck;
+	const char* dirToCheck;
 	struct dirent *fileInDir;
 	struct stat dirAttributes;
 
@@ -243,14 +243,14 @@ struct room* findType (struct game* game, char* type){
 	// Set variables
 	FILE *f;
 	int running = 1;
-	char dir[256];
+	//char directory[256];
 	char file_name[256];
 	char line[256];
 	struct stat st;
 	struct dirent* dir_info;
 	// Set directory
-	sprintf(dir, "%s/", game->directory);
-	DIR* dir = opendir(dir);
+	//sprintf(directory, "%s/", game->directory);
+	DIR* dir = opendir(game->directory);
 	// Read the first file (Copy the first file's name into char* file_name)
 	dir_info = readdir(dir);
 	strcpy(file_name, dir_info->d_name);
@@ -283,14 +283,14 @@ struct room* findName (struct game* game, char* name){
 	// Set variables
 	FILE *f;
 	int running = 1;
-	char dir[256];
+	//char directory[256];
 	char file_name[256];
 	char line[256];
 	struct stat st;
 	struct dirent* dir_info;
 	// Set directory
-	sprintf(dir, "%s/", game->directory);
-	DIR* dir = opendir(dir);
+	//sprintf(directory, "%s/", game->directory);
+	DIR* dir = opendir(game->directory);
 	// Read the first file (Copy the first file's name into char* file_name)
 	dir_info = readdir(dir);
 	strcpy(file_name, dir_info->d_name);
