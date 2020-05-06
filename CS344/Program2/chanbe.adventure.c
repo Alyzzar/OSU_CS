@@ -103,6 +103,11 @@ void addPath(struct game* game, struct room* room){
 	game->path[n_strlen] = '\0';
 }
 
+// Gets turn count
+int getTurn (struct game* game){
+	return game.turnCount;
+}
+
 // Initializes values in rooms array
 void initializeRoom(struct room* room){
 	room = (struct room*)malloc(sizeof(struct room));
@@ -119,6 +124,13 @@ void initializeGame(struct game* game){
 	game->path = (char*)malloc(sizeof(char) * 10);
 	printf(" - Game initialized, creating currRoom.\n");
 	initializeRoom(game->currRoom);
+}
+
+void freeGame(struct game* game){
+	free(game->start);
+	free(game->end);
+	free(game->path);
+	free(game->currRoom);
 }
 
 int assignRoom(struct room* x, struct room* y){
@@ -193,11 +205,13 @@ void main(){
 	
 	//Game runs until parseRoom find END_ROOM
 	while (running > 0){
-		printf("Game loop %d.\n", game->turnCount);
+		printf("Game loop %d.\n", getTurn(game));
 		running = turn(game);
 		game->turnCount++;
 	}
 	//Game over, prints turncount and path taken
 	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getCount(game), getPath(game));
+	
 	//Terminates
+	freeGame(game);
 }
