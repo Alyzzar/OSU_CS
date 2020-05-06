@@ -69,6 +69,13 @@ char* getOutbound(struct room* room, int n){
 	return room->outboundConnections[n];
 }
 
+// Adds the input string to the array of outbound nodes
+void addOutbound(struct room* room, char[] connection){
+	room->outboundConnections[getNumOut(room)] = (char*)malloc(sizeof(char) * (strlen(connection) + 1));
+	strcpy(room->outboundConnections[getNumOut(room)], connection);
+	room->outboundConnections[getNumOut(room)][strlen(connection)] = '\0';
+}
+
 // Sets the start room in game struct
 void setStart(struct game* game, char* start){
 	//Allocate new memory
@@ -157,9 +164,41 @@ int getTurn (struct game* game){
 
 // Returns the room of a specific type. For use with start/end rooms
 struct room* findType (struct game* game, char* type){
+	// Set variables
+	FILE *f;
+	int running = 1;
 	char dir[256];
-	sprintf(dir, "%s/", game->directory)
+	char name[256];
+	struct stat st;
+	struct dirent* dir_info;
+	// Set directory
+	sprintf(dir, "%s/", game->directory);
 	DIR* dir = opendir(dir);
+	// Read the first file (Copy the first file's name into char name[])
+	dir_info = readdir(dir);
+	strcpy(name, dir_info->d_name);
+	//open the first file
+	f = fopen(name, "r");
+	
+	while (running) {
+		//Search through file line by line until NULL
+		while (fgets(line, sizeof(line), f)) {
+			//Look for line with substring matching type
+			if (strstr(line, type) != NULL) {
+				//This file contains the correct room.
+				//Parse and return this room.
+				return parseRoom(f, game);
+			}
+		//Reached end of file.
+		}
+		fclose(f);
+		//Iterate to next file.
+		dir_info = readdir(dir);
+		strcpy(name, dir_info->d_name);
+		f = fopen(name, "r");
+	}
+	prinf("NO START ROOM FOUND. TERMINATING.\n");
+	return NULL;
 }
 
 // Initializes values in rooms array
@@ -196,24 +235,39 @@ int assignRoom(struct room* x, struct room* y){
 	setNumOut(x, getNumOut(y));
 }
 
-// Parses file of desired name into currRoom;
-void parseRoom(struct room* c_room, struct room* n_room, char* name){
+// Returns a parsed room from a file.
+struct room* parseRoom(FILE* f, struct game* game){
 	int i;
-
-	//assign room name;
-	//Determine correct capitalization from file.
-	
-	//check room type in file
-	if(1 == 1){	//if room type is END_ROOM
-		//Game is complete
-		return;
+	int running;
+	char name [64];
+	char type [64];
+	char connection [64];
+	size_t buffer = 0;
+	size_t line_size = 256;
+	char** lines = (char**)malloc(sizeof(char*) * 256);
+	//Initialize new room
+	struct room* n_room; 
+	initializeRoom(n_room);
+	//Store file as array
+	num_lines = 0;
+	while(getline(&lines[i], &line_size, file) > 0){
+		num_lines++;
 	}
-	//Look for greatest integer value: Save to numOutboundConnections.
 	
-	//Use for loop to parse remaining outbound connections.
-	//set current line to be 2, read until on last connection.
+	//assign room name;
+	sscanf(lines[0], "%*s %*s %s", name);
+	setName(game->currRoom, name);
+	
+	//assign room type;
+	sscanf(lines[num_lines - 1], "%*s %*s %s", type);
+	setType(game->currRoom, name);
+	
+	setNumOut(game->curr,(num_lines - 2));
+	//for loop to parse outbound connections from line 2 onwards
+	getline(&line, &buffer, f);
 	for(i = 0; i < n_room->numOutboundConnections; i++){
-		printf("test %d\n", i);
+		sscanf(lines[i + 1], "%*s %*s %s", connection);
+		addOutbound(game->currRoom, connection);
 	}
 }
 
@@ -221,7 +275,6 @@ void parseRoom(struct room* c_room, struct room* n_room, char* name){
 int turn(struct game* game){
 	int i;
 	int running = 1;
-	int numChars = -5;
 	size_t buffer = 0;
 	char* n_name = malloc(64 * sizeof(char));
 	char* selection = malloc(64 * sizeof(char));
@@ -244,7 +297,7 @@ int turn(struct game* game){
 	printf("\n\n");
 	//Loop until valid input
 	while (running > 0){
-		numChars = getline(&lineEntered, &buffer, stdin);
+		getline(&lineEntered, &buffer, stdin);
 		if (strcmp(lineEntered, "time")){
 			// Return the time
 			printf("Here's the time.\n");
