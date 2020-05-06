@@ -112,6 +112,7 @@ void initializeRoom(struct room* room){
 }
 
 void initializeGame(struct game* game){
+	game = (struct game*)malloc(sizeof(struct game));
 	game->turnCount = 0;
 	setStart(game, "");
 	setEnd(game, "");
