@@ -4,6 +4,8 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <string.h>
+#include <unistd.h>
+#include <dirent.h>
 
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
@@ -16,10 +18,11 @@ struct room {
 };
 
 struct game {
-	int turnCount;
+	unsigned int turnCount;
 	char* start;
 	char* end;
 	char* path;
+	char* directory;
 	struct room* currRoom;
 };
 
@@ -84,6 +87,50 @@ void setEnd(struct game* game, char* end){
 	game->end[strlen(end)] = '\0';
 }
 
+// Automatically finds and sets the file directory to the newest folder with the correct prefix
+int setDir(struct game* game){
+	int newestDirTime = -1;
+	char targetDirPrefix[32] = "chanbe.rooms.";
+	char newestDirName[256];
+	memset(newestDirName, '\0', sizeof(newestDirName));
+
+	DIR* dirToCheck;
+	struct dirent *fileInDir;
+	struct stat dirAttributes;
+
+	//Open current directory
+	dirToCheck = opendir(".");
+
+	//If successful
+	if (dirToCheck > 0){
+		//Loop through subdirectories (Searching for chanbe.rooms.*)
+		while ((fileInDir = readdir(dirToCheck)) != NULL){
+			// If directory has prefix (chanbe.rooms.*)
+			if (strstr(fileInDir->d_name, targetDirPrefix) != NULL){
+				stat(fileInDir->d_name, &dirAttributes);
+				if ((int)dirAttributes.st_mtime > newestDirTime){
+					newestDirTime = (int)dirAttributes.st_mtime;
+					memset(newestDirName, '\0', sizeof(newestDirName));
+					strcpy(newestDirName, fileInDir->d_name);
+				}
+			}
+		}
+	}
+	closedir(dirToCheck);
+	// Assign directory if it exists
+	if(newestDirName >= 0){
+		//Allocate new memory for game->directory
+		game->directory = (char*)malloc(sizeof(char) * (strlen(newestDirName) + 1));
+		strcpy(game->directory, newestDirName);
+		//Add null terminator
+		game->directory[strlen(newestDirName)] = '\0';
+		//Return 1 if directory was found.
+		return 1;
+	}
+	//Return 0 if directory could not be found.
+	return 0;
+}
+
 // Gets turn count
 int getCount(struct game* game){
 	return game->turnCount;
@@ -108,6 +155,13 @@ int getTurn (struct game* game){
 	return game->turnCount;
 }
 
+// Returns the room of a specific type. For use with start/end rooms
+struct room* findType (struct game* game, char* type){
+	char dir[256];
+	sprintf(dir, "%s/", game->directory)
+	DIR* dir = opendir(dir);
+}
+
 // Initializes values in rooms array
 void initializeRoom(struct room* room){
 	room = (struct room*)malloc(sizeof(struct room));
@@ -119,6 +173,7 @@ void initializeRoom(struct room* room){
 void initializeGame(struct game* game){
 	game = (struct game*)malloc(sizeof(struct game));
 	game->turnCount = 0;
+	printf("INITIALIZE: TURNCOUNT = %s\n"game->turnCount);
 	setStart(game, "");
 	setEnd(game, "");
 	game->path = (char*)malloc(sizeof(char) * 10);
@@ -162,7 +217,6 @@ void parseRoom(struct room* c_room, struct room* n_room, char* name){
 	}
 }
 
-
 //Does printouts, and asks for users input.
 int turn(struct game* game){
 	int i;
@@ -195,7 +249,6 @@ int turn(struct game* game){
 			// Return the time
 			printf("Here's the time.\n");
 			
-			
 			// Ask for another input
 		} else {
 			for (i=0; i < getNumOut(game->currRoom); i++){
@@ -225,25 +278,34 @@ void main(){
 	int running = 1;
 	struct game* game;
 	printf("Game object initialized.\n");
+
+	printf();
 	initializeGame(game);
-	printf("Game values initialized, game sequence starting.\n");
-	//Open most recent file with stat()
+	printf("Game values initialized.\n");
 	
-	printf("Opening files.\n");
-	
-	//Parse info to set start room.
-	
-	//Save the name of the end room.
-	
-	//Game runs until parseRoom find END_ROOM
-	while (running > 0){
-		printf("Game loop %d.\n", getTurn(game));
-		running = turn(game);
-		game->turnCount++;
+	if (setDir() == 0){
+		printf("NO COMPATIBLE ROOMS FOUND. GAME TERMINATING.\n");
+	} else {
+		//Directory successfully found. Game continuing.
+		
+		printf("Directory found and set. Game sequence starting.\n");
+		//Open most recent file with stat()
+		
+		printf("Opening files.\n");
+		
+		//Parse info to set start room, and save the name of the end room.
+		
+		
+		
+		//Game runs until parseRoom find END_ROOM
+		while (running > 0){
+			printf("Game loop %d.\n", getTurn(game));
+			running = turn(game);
+			game->turnCount++;
+		}
+		//Game over, prints turncount and path taken
+		printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getCount(game), getPath(game));
 	}
-	//Game over, prints turncount and path taken
-	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getCount(game), getPath(game));
-	
 	//Terminates
 	freeGame(game);
 }
