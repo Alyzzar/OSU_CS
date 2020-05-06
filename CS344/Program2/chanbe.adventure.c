@@ -162,45 +162,6 @@ int getTurn (struct game* game){
 	return game->turnCount;
 }
 
-// Returns the room of a specific type. For use with start/end rooms
-struct room* findType (struct game* game, char* type){
-	// Set variables
-	FILE *f;
-	int running = 1;
-	char dir[256];
-	char name[256];
-	struct stat st;
-	struct dirent* dir_info;
-	// Set directory
-	sprintf(dir, "%s/", game->directory);
-	DIR* dir = opendir(dir);
-	// Read the first file (Copy the first file's name into char name[])
-	dir_info = readdir(dir);
-	strcpy(name, dir_info->d_name);
-	//open the first file
-	f = fopen(name, "r");
-	
-	while (running) {
-		//Search through file line by line until NULL
-		while (fgets(line, sizeof(line), f)) {
-			//Look for line with substring matching type
-			if (strstr(line, type) != NULL) {
-				//This file contains the correct room.
-				//Parse and return this room.
-				return parseRoom(f, game);
-			}
-		//Reached end of file.
-		}
-		fclose(f);
-		//Iterate to next file.
-		dir_info = readdir(dir);
-		strcpy(name, dir_info->d_name);
-		f = fopen(name, "r");
-	}
-	prinf("NO START ROOM FOUND. TERMINATING.\n");
-	return NULL;
-}
-
 // Initializes values in rooms array
 void initializeRoom(struct room* room){
 	room = (struct room*)malloc(sizeof(struct room));
@@ -212,7 +173,7 @@ void initializeRoom(struct room* room){
 void initializeGame(struct game* game){
 	game = (struct game*)malloc(sizeof(struct game));
 	game->turnCount = 0;
-	printf("INITIALIZE: TURNCOUNT = %s\n"game->turnCount);
+	printf("INITIALIZE: TURNCOUNT = %s\n",game->turnCount);
 	setStart(game, "");
 	setEnd(game, "");
 	game->path = (char*)malloc(sizeof(char) * 10);
@@ -275,6 +236,45 @@ struct room* parseRoom(FILE* f, struct game* game){
 		free(lines[i]);
 	}
 	free(lines);
+}
+
+// Returns the room of a specific type. For use with start/end rooms
+struct room* findType (struct game* game, char* type){
+	// Set variables
+	FILE *f;
+	int running = 1;
+	char dir[256];
+	char name[256];
+	struct stat st;
+	struct dirent* dir_info;
+	// Set directory
+	sprintf(dir, "%s/", game->directory);
+	DIR* dir = opendir(dir);
+	// Read the first file (Copy the first file's name into char name[])
+	dir_info = readdir(dir);
+	strcpy(name, dir_info->d_name);
+	//open the first file
+	f = fopen(name, "r");
+	
+	while (running) {
+		//Search through file line by line until NULL
+		while (fgets(line, sizeof(line), f)) {
+			//Look for line with substring matching type
+			if (strstr(line, type) != NULL) {
+				//This file contains the correct room.
+				//Parse and return this room.
+				return parseRoom(f, game);
+			}
+		//Reached end of file.
+		}
+		fclose(f);
+		//Iterate to next file.
+		dir_info = readdir(dir);
+		strcpy(name, dir_info->d_name);
+		f = fopen(name, "r");
+	}
+	prinf("NO START ROOM FOUND. TERMINATING.\n");
+	return NULL;
 }
 
 //Does printouts, and asks for users input.
