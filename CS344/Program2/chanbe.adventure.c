@@ -137,11 +137,11 @@ int setDir(struct game* game){
 		strcpy(game->directory, newestDirName);
 		//Add null terminator
 		game->directory[strlen(newestDirName)] = '\0';
-		free(dirToCheck);
+		//free(dirToCheck);
 		//Return 1 if directory was found.
 		return 1;
 	}
-	free(dirToCheck);
+	//free(dirToCheck);
 	//Return 0 if directory could not be found.
 	return 0;
 }
@@ -386,19 +386,19 @@ void main(){
 	//Initialize variables and objects.
 	int running = 1;
 	struct game* game;
-	printf("Game object initialized.\n");
-
+	printf("Initialized game object.\n");
+	
+	printf("Initializing game values.\n");
 	initializeGame(&game);
-	printf("Game values initialized.\n");
 	
 	if (game->directory == NULL || game->directory == 0){
 		printf("NO COMPATIBLE ROOMS FOUND. GAME TERMINATING.\n");
 	} else {
 		//Directory successfully found. Game continuing.
-		
 		printf("Directory found and set. Game sequence starting.\n");
 
 		//Parse info to set start room
+		printf("Searching for start room.\n")
 		findType(game, "START_ROOM");
 		
 		//Game runs until currRoom has type END_ROOM
