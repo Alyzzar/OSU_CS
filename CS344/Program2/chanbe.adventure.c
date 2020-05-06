@@ -295,10 +295,11 @@ struct room* findType (struct game* game, const char* type){
 		//Iterate to next file.
 		dir_info = readdir(dir);
 		strcpy(file_name, dir_info->d_name);
-		f = fopen(file_name, "r");
-		i++;
+		if(i <= (TOT_ROOMS - 1)){
+			f = fopen(file_name, "r");
+			i++;
+		}
 	}
-	fclose(f);
 	printf("NO %s ROOM FOUND. TERMINATING.\n", type);
 	free(line);
 	return NULL;
@@ -347,10 +348,11 @@ struct room* findName (struct game* game, char* name){
 		//Iterate to next file.
 		dir_info = readdir(dir);
 		strcpy(file_name, dir_info->d_name);
-		f = fopen(file_name, "r");
-		i++;
+		if(i <= (TOT_ROOMS - 1)){
+			f = fopen(file_name, "r");
+			i++;
+		}
 	}
-	fclose(f);
 	printf("NO %s ROOM FOUND. TERMINATING.\n", name);
 	free(line);
 	return NULL;
