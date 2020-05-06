@@ -70,7 +70,7 @@ char* getOutbound(struct room* room, int n){
 }
 
 // Adds the input string to the array of outbound nodes
-void addOutbound(struct room* room, char[] connection){
+void addOutbound(struct room* room, char* connection){
 	room->outboundConnections[getNumOut(room)] = (char*)malloc(sizeof(char) * (strlen(connection) + 1));
 	strcpy(room->outboundConnections[getNumOut(room)], connection);
 	room->outboundConnections[getNumOut(room)][strlen(connection)] = '\0';
@@ -242,7 +242,7 @@ struct room* parseRoom(FILE* f, struct game* game){
 	int running;
 	char name [64];
 	char type [64];
-	char connection [64];
+	char* connection = malloc(64 * sizeof(char));
 	size_t buffer = 0;
 	size_t line_size = 256;
 	char** lines = (char**)malloc(sizeof(char*) * 256);
@@ -269,6 +269,12 @@ struct room* parseRoom(FILE* f, struct game* game){
 		sscanf(lines[i + 1], "%*s %*s %s", connection);
 		addOutbound(game->currRoom, connection);
 	}
+	
+	//Free array
+	for(i = 0; i < num_lines; i++){
+		free(lines[i]);
+	}
+	free(lines);
 }
 
 //Does printouts, and asks for users input.
