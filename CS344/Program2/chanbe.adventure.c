@@ -276,7 +276,7 @@ struct room* findType (struct game* game, char* type){
 	f = fopen(file_name, "r");
 	
 	while (running) {
-		if (strstr(dir_info->d_name, "chanbe.rooms.") != NULL){
+		//if (strstr(dir_info->d_name, "chanbe.rooms.") != NULL){
 			//Search through file line by line until NULL
 			while (getline(&line, &buffer, f) != -1) {
 				//Look for line with substring matching type
@@ -288,7 +288,7 @@ struct room* findType (struct game* game, char* type){
 				}
 			//Reached end of file.
 			}
-		}
+		//}
 		fclose(f);
 		//Iterate to next file.
 		dir_info = readdir(dir);
