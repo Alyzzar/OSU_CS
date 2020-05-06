@@ -216,7 +216,7 @@ struct room* parseRoom(FILE* f, struct game* game){
 	char** lines = (char**)malloc(sizeof(char*) * 256);
 	//Initialize new room
 	struct room* n_room; 
-	initializeRoom(n_room);
+	initializeRoom(&n_room);
 	
 	//Store file as array
 	while(getline(&lines[i], &line_size, f) > 0){
