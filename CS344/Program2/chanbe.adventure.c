@@ -285,7 +285,7 @@ struct room* findType (struct game* game, const char* type){
 			if (strstr(line, type) != NULL) {
 				//This file contains the correct room.
 				//Parse and return this room.
-				printf("%s ROOM FOUND. PARSING.\n", name);
+				printf("%s ROOM FOUND. PARSING.\n", type);
 				free(line);
 				return parseRoom(f, game);
 			}
