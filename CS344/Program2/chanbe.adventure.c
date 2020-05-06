@@ -284,7 +284,7 @@ struct room* findType (struct game* game, const char* type){
 		printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
 		while (getline(&line, &buffer, f) != -1) {
-			printf(" - - - LINE %d: %s"\n, (i + 1), line);
+			printf(" - - - LINE %d: %s\n", (i + 1), line);
 			//Look for line with substring matching type
 			if (strstr(line, type) != NULL) {
 				//This file contains the correct room.
