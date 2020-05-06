@@ -162,11 +162,16 @@ void parseRoom(struct room* c_room, struct room* n_room, char* name){
 	}
 }
 
+
+//Does printouts, and asks for users input.
 int turn(struct game* game){
 	int i;
 	int running = 1;
+	int numChars = -5;
+	size_t buffer = 0;
 	char* n_name = malloc(64 * sizeof(char));
 	char* selection = malloc(64 * sizeof(char));
+	char* lineEntered = NULL;
 	
 	//Print initial information
 	printf(" - Running turn().\n");
@@ -181,6 +186,27 @@ int turn(struct game* game){
 	}
 	printf(".\nWHERE TO? >");
 	//User input
+	
+	printf("\n\n");
+	//Loop until valid input
+	while (running > 0){
+		numChars = getLine(&lineEntered, &buffer, stdin);
+		if (strcmp(lineEntered, "time"){
+			// Return the time
+			
+			// Ask for another input
+		} else {
+			for (i=0; i < getNumOut(game->currRoom); i++){
+				// Loop through connecting rooms to find matching name
+				if (strcmp(lineEntered, getName(game->currRoom))){
+					//Found the correct room
+					break;
+				}
+			}
+			// Didn't match any room names or 'time' function.
+			printf("HUH? I DON'T UNDERSTAND THAT ROOM. TRY AGAIN.\n\n");
+		}
+	}
 	//Sets the current room
 	
 	struct room* n_room;
@@ -202,6 +228,10 @@ void main(){
 	//Open most recent file with stat()
 	
 	printf("Opening files.\n");
+	
+	//Parse info to set start room.
+	
+	//Save the name of the end room.
 	
 	//Game runs until parseRoom find END_ROOM
 	while (running > 0){
