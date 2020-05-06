@@ -18,7 +18,7 @@ struct room {
 };
 
 struct game {
-	unsigned int turnCount;
+	unsigned int* turnCount;
 	char* start;
 	char* end;
 	char* path;
@@ -126,18 +126,18 @@ int setDir(struct game* game){
 	closedir(dirToCheck);
 	// Assign directory if it exists
 	if(newestDirName >= 0){
-		//Allocate new memory for game->directory
+		//Allocate new memory for game->directory string
 		game->directory = (char*)malloc(sizeof(char) * (strlen(newestDirName) + 1));
 		strcpy(game->directory, newestDirName);
 		//Add null terminator
 		game->directory[strlen(newestDirName)] = '\0';
 		free(dirToCheck);
 		//Return 1 if directory was found.
-		return 1;
+		//return 1;
 	}
 	free(dirToCheck);
 	//Return 0 if directory could not be found.
-	return 0;
+	//return 0;
 }
 
 // Gets turn count
@@ -175,18 +175,26 @@ void initializeRoom(struct room* room){
 void initializeGame(struct game* game){
 	game = (struct game*)malloc(sizeof(struct game));
 	game->turnCount = 1;
-	printf("INITIALIZE: TURNCOUNT = %s\n",game->turnCount);
+	printf("INITIALIZE: TURNCOUNT = %s\n", game->turnCount);
 	setStart(game, "");
 	setEnd(game, "");
-	game->path = (char*)malloc(sizeof(char) * 10);
+	
+	//Initialize path with length of 1
+	game->path = (char*)malloc(sizeof(char));
 	printf(" - Game initialized, creating currRoom.\n");
 	initializeRoom(game->currRoom);
+	
+	//Initialize directory with length of 1
+	game->directory = (char*)malloc(sizeof(char));
+	setDir(game);
 }
 
 void freeGame(struct game* game){
+	free(game->turnCount);
 	free(game->start);
 	free(game->end);
 	free(game->path);
+	free(game->directory);
 	free(game->currRoom);
 }
 
@@ -380,7 +388,7 @@ void main(){
 	initializeGame(game);
 	printf("Game values initialized.\n");
 	
-	if (setDir(game) == 0){
+	if (game->directory != 0){
 		printf("NO COMPATIBLE ROOMS FOUND. GAME TERMINATING.\n");
 	} else {
 		//Directory successfully found. Game continuing.
