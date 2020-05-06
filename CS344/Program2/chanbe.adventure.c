@@ -181,7 +181,7 @@ void main(){
 	//Initialize variables and objects.
 	int running = 1;
 	struct game* game;
-	prinf("Game object initialized.\n");
+	printf("Game object initialized.\n");
 	initializeGame(game);
 	
 	printf("Game sequence starting.\n");
