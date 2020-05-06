@@ -133,11 +133,11 @@ int setDir(struct game* game){
 		game->directory[strlen(newestDirName)] = '\0';
 		free(dirToCheck);
 		//Return 1 if directory was found.
-		//return 1;
+		return 1;
 	}
 	free(dirToCheck);
 	//Return 0 if directory could not be found.
-	//return 0;
+	return 0;
 }
 
 // Gets game path
@@ -193,6 +193,7 @@ void freeGame(struct game* game){
 	free(game->path);
 	free(game->directory);
 	free(game->currRoom);
+	free(game);
 }
 
 int assignRoom(struct room* x, struct room* y){
