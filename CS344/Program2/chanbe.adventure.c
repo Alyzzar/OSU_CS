@@ -174,7 +174,7 @@ void initializeRoom(struct room* room){
 
 void initializeGame(struct game* game){
 	game = (struct game*)malloc(sizeof(struct game));
-	game->turnCount = 0;
+	game->turnCount = (int)0;
 	printf("INITIALIZE: TURNCOUNT = %s\n",game->turnCount);
 	setStart(game, "");
 	setEnd(game, "");
