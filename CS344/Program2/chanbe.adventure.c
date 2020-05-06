@@ -161,7 +161,7 @@ int getTurn (struct game* game){
 
 // Initializes values in rooms array
 void initializeRoom(struct room** room){
-	*room = (struct room*)malloc(sizeof(struct *room));
+	*room = (struct room*)malloc(sizeof(struct room));
 	setName(*room, "");
 	setType(*room, "");
 	setNumOut(*room, 0);
