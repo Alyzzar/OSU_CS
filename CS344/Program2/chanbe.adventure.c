@@ -174,7 +174,7 @@ void initializeRoom(struct room* room){
 
 void initializeGame(struct game* game){
 	game = (struct game*)malloc(sizeof(struct game));
-	game->turnCount = (int)0;
+	game->turnCount = 1;
 	printf("INITIALIZE: TURNCOUNT = %s\n",game->turnCount);
 	setStart(game, "");
 	setEnd(game, "");
@@ -397,7 +397,7 @@ void main(){
 		while (running > 0){
 			printf("Game loop %d.\n", getTurn(game));
 			running = turn(game);
-			game->turnCount++;
+			if (running != 0) game->turnCount++;
 		}
 		//Game over, prints turncount and path taken
 		printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getCount(game), getPath(game));
