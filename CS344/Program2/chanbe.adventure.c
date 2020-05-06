@@ -1,5 +1,3 @@
-#define _GNU_SOURCE
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -192,7 +190,7 @@ int turn(struct game* game){
 	printf("\n\n");
 	//Loop until valid input
 	while (running > 0){
-		numChars = getLine(&lineEntered, &buffer, stdin);
+		numChars = getline(&lineEntered, &buffer, stdin);
 		if (strcmp(lineEntered, "time")){
 			// Return the time
 			printf("Here's the time.\n");
