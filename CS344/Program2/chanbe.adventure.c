@@ -277,6 +277,7 @@ struct room* findType (struct game* game, const char* type){
 	f = fopen(file_name, "r");
 	printf("CHANBE.ROOMS: %s\n", file_name);
 	
+	i = 0;
 	while (running && (i < TOT_ROOMS)) {
 		//Search through file line by line until NULL
 		while (getline(&line, &buffer, f) != -1) {
@@ -327,7 +328,7 @@ struct room* findName (struct game* game, char* name){
 	//open the first file
 	f = fopen(file_name, "r");
 	printf(" - - CHANBE.ROOMS: %s\n", file_name);
-	i = 0
+	i = 0;
 	while (running && (i < TOT_ROOMS)) {
 		//Search through file line by line until NULL
 		while (getline(&line, &buffer, f) != -1) {
