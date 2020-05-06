@@ -18,7 +18,7 @@ struct room {
 };
 
 struct game {
-	unsigned int* turnCount;
+	unsigned int turnCount;
 	char* start;
 	char* end;
 	char* path;
@@ -138,11 +138,6 @@ int setDir(struct game* game){
 	free(dirToCheck);
 	//Return 0 if directory could not be found.
 	//return 0;
-}
-
-// Gets turn count
-int getCount(struct game* game){
-	return game->turnCount;
 }
 
 // Gets game path
@@ -408,7 +403,7 @@ void main(){
 			if (running != 0) game->turnCount++;
 		}
 		//Game over, prints turncount and path taken
-		printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getCount(game), getPath(game));
+		printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getTurn(game), getPath(game));
 	}
 	//Terminates
 	freeGame(game);
