@@ -101,7 +101,7 @@ int setDir(struct game* game){
 	char newestDirName[256];
 	memset(newestDirName, '\0', sizeof(newestDirName));
 
-	const char* dirToCheck;
+	DIR* dirToCheck;
 	struct dirent *fileInDir;
 	struct stat dirAttributes;
 
@@ -131,9 +131,11 @@ int setDir(struct game* game){
 		strcpy(game->directory, newestDirName);
 		//Add null terminator
 		game->directory[strlen(newestDirName)] = '\0';
+		free(dirToCheck);
 		//Return 1 if directory was found.
 		return 1;
 	}
+	free(dirToCheck);
 	//Return 0 if directory could not be found.
 	return 0;
 }
@@ -274,7 +276,7 @@ struct room* findType (struct game* game, char* type){
 		strcpy(file_name, dir_info->d_name);
 		f = fopen(file_name, "r");
 	}
-	prinf("NO %s ROOM FOUND. TERMINATING.\n", type);
+	printf("NO %s ROOM FOUND. TERMINATING.\n", type);
 	return NULL;
 }
 
@@ -314,7 +316,7 @@ struct room* findName (struct game* game, char* name){
 		strcpy(file_name, dir_info->d_name);
 		f = fopen(file_name, "r");
 	}
-	prinf("NO START ROOM FOUND. TERMINATING.\n");
+	printf("NO START ROOM FOUND. TERMINATING.\n");
 	return NULL;
 }
 
