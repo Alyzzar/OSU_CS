@@ -116,10 +116,11 @@ int setDir(struct game* game){
 			
 			// If directory has prefix (chanbe.rooms.*)
 			if (strstr(fileInDir->d_name, targetDirPrefix) != NULL){
-				printf(" - - - Matching prefix found. Setting dir().\n");
+				printf(" - - - Matching prefix found.\n");
 				
 				stat(fileInDir->d_name, &dirAttributes);
 				if ((int)dirAttributes.st_mtime > newestDirTime){
+					printf(" - - - - Marking as newest folder.\n");
 					newestDirTime = (int)dirAttributes.st_mtime;
 					memset(newestDirName, '\0', sizeof(newestDirName));
 					strcpy(newestDirName, fileInDir->d_name);
@@ -130,6 +131,7 @@ int setDir(struct game* game){
 	closedir(dirToCheck);
 	// Assign directory if it exists
 	if(newestDirName >= 0){
+		printf(" - - Assigning directory to %s.\n", newestDirName);
 		//Allocate new memory for game->directory string
 		game->directory = (char*)malloc(sizeof(char) * (strlen(newestDirName) + 1));
 		strcpy(game->directory, newestDirName);
@@ -395,10 +397,7 @@ void main(){
 		//Directory successfully found. Game continuing.
 		
 		printf("Directory found and set. Game sequence starting.\n");
-		//Open most recent file with stat()
-		
-		printf("Opening files.\n");
-		
+
 		//Parse info to set start room
 		findType(game, "START_ROOM");
 		
