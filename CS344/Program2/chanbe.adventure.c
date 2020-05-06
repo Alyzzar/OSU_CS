@@ -238,6 +238,7 @@ int assignRoom(struct room* x, struct room* y){
 // Returns a parsed room from a file.
 struct room* parseRoom(FILE* f, struct game* game){
 	int i;
+	int num_lines = 0;
 	int running;
 	char name [64];
 	char type [64];
@@ -248,9 +249,9 @@ struct room* parseRoom(FILE* f, struct game* game){
 	//Initialize new room
 	struct room* n_room; 
 	initializeRoom(n_room);
+	
 	//Store file as array
-	num_lines = 0;
-	while(getline(&lines[i], &line_size, file) > 0){
+	while(getline(&lines[i], &line_size, f) > 0){
 		num_lines++;
 	}
 	
@@ -264,7 +265,6 @@ struct room* parseRoom(FILE* f, struct game* game){
 	
 	setNumOut(game->curr,(num_lines - 2));
 	//for loop to parse outbound connections from line 2 onwards
-	getline(&line, &buffer, f);
 	for(i = 0; i < n_room->numOutboundConnections; i++){
 		sscanf(lines[i + 1], "%*s %*s %s", connection);
 		addOutbound(game->currRoom, connection);
@@ -332,11 +332,10 @@ void main(){
 	struct game* game;
 	printf("Game object initialized.\n");
 
-	printf();
 	initializeGame(game);
 	printf("Game values initialized.\n");
 	
-	if (setDir() == 0){
+	if (setDir(game) == 0){
 		printf("NO COMPATIBLE ROOMS FOUND. GAME TERMINATING.\n");
 	} else {
 		//Directory successfully found. Game continuing.
