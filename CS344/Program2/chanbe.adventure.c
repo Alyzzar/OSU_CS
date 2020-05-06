@@ -389,7 +389,7 @@ void main(){
 	initializeGame(&game);
 	printf("Game values initialized.\n");
 	
-	if (game->directory == NULL || game->directory = 0){
+	if (game->directory == NULL || game->directory == 0){
 		printf("NO COMPATIBLE ROOMS FOUND. GAME TERMINATING.\n");
 	} else {
 		//Directory successfully found. Game continuing.
