@@ -295,8 +295,10 @@ struct room* findType (struct game* game, const char* type){
 			}
 		//Reached end of file.
 		}
+		printf("Could not read line from file.\n");
 		fclose(f);
 		//Iterate to next file.
+		printf("Iterating files\n");
 		dir_info = readdir(dir);
 		strcpy(file_name, dir_info->d_name);
 		if(i <= (TOT_ROOMS - 1)){
