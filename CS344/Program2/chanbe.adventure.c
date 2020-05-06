@@ -113,8 +113,10 @@ void initializeRoom(struct room* room){
 
 void initializeGame(struct game* game){
 	game->turnCount = 0;
-	setStart(game, "[NO VALUE]");
-	setEnd(game, "[NO VALUE]");
+	setStart(game, "");
+	setEnd(game, "");
+	game->path = (char*)malloc(sizeof(char) * 10);
+	printf(" - Game initialized, creating currRoom.\n")
 	initializeRoom(game->currRoom);
 }
 
@@ -183,8 +185,7 @@ void main(){
 	struct game* game;
 	printf("Game object initialized.\n");
 	initializeGame(game);
-	
-	printf("Game sequence starting.\n");
+	printf("Game values initialized, game sequence starting.\n");
 	//Open most recent file with stat()
 	
 	printf("Opening files.\n");
