@@ -398,7 +398,7 @@ void main(){
 		printf("Directory found and set. Game sequence starting.\n");
 
 		//Parse info to set start room
-		printf("Searching for start room.\n")
+		printf("Searching for start room.\n");
 		findType(game, "START_ROOM");
 		
 		//Game runs until currRoom has type END_ROOM
