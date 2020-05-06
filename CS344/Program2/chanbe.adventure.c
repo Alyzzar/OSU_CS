@@ -105,7 +105,7 @@ void addPath(struct game* game, struct room* room){
 
 // Gets turn count
 int getTurn (struct game* game){
-	return game.turnCount;
+	return game->turnCount;
 }
 
 // Initializes values in rooms array
