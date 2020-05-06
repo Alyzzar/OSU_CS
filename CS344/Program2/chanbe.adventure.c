@@ -116,7 +116,7 @@ void initializeGame(struct game* game){
 	setStart(game, "");
 	setEnd(game, "");
 	game->path = (char*)malloc(sizeof(char) * 10);
-	printf(" - Game initialized, creating currRoom.\n")
+	printf(" - Game initialized, creating currRoom.\n");
 	initializeRoom(game->currRoom);
 }
 
