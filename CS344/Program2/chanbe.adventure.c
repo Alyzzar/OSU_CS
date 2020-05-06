@@ -167,16 +167,15 @@ void initializeRoom(struct room* room){
 	setNumOut(room, 0);
 }
 
-void initializeGame(struct game* game){
-	game = (struct game*)malloc(sizeof(struct game));
-	game->turnCount = 1;
-
+void initializeGame(struct game** game){
+	*game = (struct game*)malloc(sizeof(struct game));
+	setStart(game, "");
 	printf("INITIALIZE: START = %s\n", game->start);
 	setEnd(game, "");
 	printf("INITIALIZE: END = %s\n", game->end);
+	game->turnCount = 1;
 	printf("INITIALIZE: TURNCOUNT = %s\n", getTurn(game));
-	setStart(game, "");
-	
+
 	//Initialize path with length of 1
 	game->path = (char*)malloc(sizeof(char));
 	printf(" - Game path initialized, creating currRoom.\n");
@@ -383,7 +382,7 @@ void main(){
 	struct game* game;
 	printf("Game object initialized.\n");
 
-	initializeGame(game);
+	initializeGame(&game);
 	printf("Game values initialized.\n");
 	
 	if (game->directory != 0){
