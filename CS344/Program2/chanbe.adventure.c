@@ -280,7 +280,7 @@ int findType (struct game* game, const char* type){
 			printf(" - - - File found, opening: ");
 			f = fopen(file_name, "r");
 			printf("Successful.\n");
-			printf(" - - - Getting lines...")
+			printf(" - - - Getting lines...");
 			while (getline(&line, &buffer, f) != -1) {
 				printf(" - - - LINE %d: %s\n", (i + 1), line);
 				//Look for line with substring matching type
