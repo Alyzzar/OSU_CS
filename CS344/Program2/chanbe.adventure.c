@@ -224,8 +224,9 @@ void parseRoom(FILE* f, struct game* game){
 	struct room* n_room; 
 	initializeRoom(&n_room);
 	
-	//Store file as array
-	while(getline(&lines[i], &line_size, f) > 0){
+	//Reset file pointer, and loop to store file as array
+	fseek(f, 0, SEEK_SET);
+	while(getline(&lines[num_lines], &line_size, f) > 0){
 		num_lines++;
 	}
 	
