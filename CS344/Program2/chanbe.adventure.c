@@ -181,8 +181,6 @@ void initializeGame(struct game** game){
 
 void freeGame(struct game* game){
 	//free(game->turnCount);
-	free(game->start);
-	free(game->end);
 	free(game->path);
 	free(game->directory);
 	free(game->currRoom);
