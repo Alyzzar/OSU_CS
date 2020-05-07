@@ -369,12 +369,13 @@ int turn(struct game* game){
 			printf(", ");
 		}
 	}
-	printf(".\nWHERE TO? >");
-	//User input
-	
 
-	//Loop until valid input
 	while (running > 0){
+		printf(".\nWHERE TO? >");
+		//User input
+		
+
+		//Loop until valid input
 		getline(&lineEntered, &buffer, stdin);
 		//Remove '\n' character using '\0'
 		lineEntered[strlen(lineEntered)-1] = '\0';
