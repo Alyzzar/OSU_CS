@@ -335,7 +335,7 @@ int turn(struct game* game){
 	//Loop until valid input
 	while (running > 0){
 		getline(&lineEntered, &buffer, stdin);
-		if (strcmp(lineEntered, "time")){
+		if (strcmp(lineEntered, "time") == 0){
 			// Return the time
 			printf("Here's the time.\n");
 			
