@@ -167,7 +167,7 @@ void initializeRoom(struct room** room){
 
 void initializeGame(struct game** game){
 	*game = (struct game*)malloc(sizeof(struct game));
-	(*game)->turnCount = 1;
+	(*game)->turnCount = 0;
 	//Initialize path with length of 1
 	(*game)->path = (char*)malloc(sizeof(char));
 	initializeRoom(&(*game)->currRoom);
@@ -361,15 +361,11 @@ int turn(struct game* game){
 	printf(".\n");
 	while (running > 0){
 		printf("WHERE TO? >");
-		//User input
-		
-
-		//Loop until valid input
 		getline(&lineEntered, &buffer, stdin);
 		//Remove '\n' character using '\0'
 		lineEntered[strlen(lineEntered)-1] = '\0';
 		
-		printf("\n\n");
+		printf("\n");
 		if (strcmp(lineEntered, "time") == 0){
 			// Return the time
 			printf("Here's the time.\n");
