@@ -151,7 +151,7 @@ void addPath(struct game* game, struct room* room){
 	char old_path [256];
 	//Check if game->path is NULL
 	if(getPath(game) == NULL){
-		n_strlen = strlen(getName(room));
+			n_strlen = strlen(getName(room));
 			game->path = (char*)malloc(sizeof(char) * ( n_strlen + 1));
 			strcpy(game->path, getName(room));
 	} else {
@@ -214,7 +214,8 @@ void parseRoom(FILE* f, struct game* game){
 	char* connection = (char*)malloc(64 * sizeof(char));
 	size_t buffer = 0;
 	size_t line_size = 256;
-	char** lines = (char**)malloc(sizeof(char**) * 256);
+	char** lines = (char**)malloc(sizeof(char*) * 256);
+	lines = 0;
 	
 	// Reset file pointer, and loop to store file as array
 	fseek(f, 0, SEEK_SET);
