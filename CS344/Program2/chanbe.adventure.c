@@ -346,7 +346,7 @@ int turn(struct game* game){
 				if (strcmp(lineEntered, getOutbound(game->currRoom, i))){
 					//Found the correct room
 					//Assign the 'found' room as the currRoom
-					findName(game, lineEntered));
+					findName(game, lineEntered);
 					//Break out of loop, since room has already been found.
 					break;
 				}
