@@ -151,7 +151,6 @@ void addPath(struct game* game, struct room* room){
 	char old_path [256];
 	//Check if game->path is NULL
 	if(getPath(game) == NULL){
-			free(game->path);
 			game->path = (char*)malloc(sizeof(char) * (strlen(getName(room)) + 1));
 			strcpy(game->path, getName(room));
 	} else {
@@ -189,7 +188,7 @@ void initializeGame(struct game** game){
 	*game = (struct game*)malloc(sizeof(struct game));
 	(*game)->turnCount = 0;
 	//Initialize path with length of 1
-	(*game)->path = (char*)malloc(sizeof(char));
+	(*game)->path = NULL;
 	initializeRoom(&(*game)->currRoom);
 	//Initialize directory
 	setDir(*game);
