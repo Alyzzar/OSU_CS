@@ -277,13 +277,13 @@ int findType (struct game* game, const char* type){
 		printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
 		if(strstr(dir_info->d_name, "_ROOM") != NULL){
+			printf(" - - - File found, opening:\n");
 			f = fopen(file_name, "r");
 			while (getline(&line, &buffer, f) != -1) {
 				printf(" - - - LINE %d: %s\n", (i + 1), line);
 				//Look for line with substring matching type
 				if (strstr(line, type) != NULL) {
-					//This file contains the correct room.
-					//Parse and return this room.
+					//This file contains the correct room. Parse it.
 					printf("%s ROOM FOUND. PARSING.\n", type);
 					free(line);
 					parseRoom(f, game);
