@@ -147,17 +147,17 @@ char* getPath(struct game* game){
 
 // Adds room to path
 void addPath(struct game* game, struct room* room){
-	char* old_path = (char*)malloc(sizeof(char) * (strlen(getPath(game))));
+	int n_strlen;
+	char old_path [];
 	strcpy(old_path, getPath(game));
 	//Allocate new memory
 	free(game->path);
-	int n_strlen = strlen(old_path) + strlen(getName(room));
+	n_strlen = strlen(old_path)
+	n_strlen += strlen(getName(room));
 	game->path = (char*)malloc(sizeof(char) * (n_strlen + 3));
 	//Assign new value
 	sprintf(game->path, "%s\n%s", old_path, getName(room));
 	game->path[n_strlen + 1] = '\0';
-	//Free temporary value
-	free(old_path);
 }
 
 // Gets turn count
@@ -184,7 +184,7 @@ void initializeGame(struct game** game){
 	(*game)->turnCount = 0;
 	//Initialize path with length of 1
 	(*game)->path = (char*)malloc(sizeof(char));
-	strcpy((*game)->path,"");
+	strcpy((*game)->path, '\0');
 	initializeRoom(&(*game)->currRoom);
 	//Initialize directory
 	setDir(*game);
