@@ -301,7 +301,7 @@ int findType (struct game* game, const char* type){
 		//Iterate to next file.
 		printf("Iterating files\n");
 		dir_info = readdir(dir);
-		sprintf(file_name, dir-info->d_name);
+		sprintf(file_name, dir_info->d_name);
 	}
 	free(line);
 	return 0;
