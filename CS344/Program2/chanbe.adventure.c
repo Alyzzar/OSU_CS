@@ -344,6 +344,7 @@ int findName (struct game* game, char* name){
 		}
 		//Iterate to next file.
 		dir_info = readdir(dir);
+		strcpy(file_name, dir_info->d_name);
 		sprintf(file_name, dir_info->d_name);
 	}
 	return 0;
@@ -369,9 +370,9 @@ int turn(struct game* game){
 			printf(", ");
 		}
 	}
-
+	printf(".\n");
 	while (running > 0){
-		printf(".\nWHERE TO? >");
+		printf("WHERE TO? >");
 		//User input
 		
 
