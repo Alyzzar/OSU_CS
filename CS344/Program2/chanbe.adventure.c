@@ -258,7 +258,6 @@ int findType (struct game* game, const char* type){
 	// Set variables
 	FILE *f;
 	int i;
-	int running = 1;
 	//char directory[256];
 	char file_name[256];
 	size_t buffer = 64 * sizeof(char);
@@ -266,14 +265,11 @@ int findType (struct game* game, const char* type){
 	struct dirent* dir_info;
 	char* line = (char *) malloc(buffer);
 	
+	// Iterate to the first dir/file
 	DIR* dir = opendir(game->directory);
-	
-	// Read until the first file:
 	dir_info = readdir(dir);
-	
-    printf(" - - DIR: %s\n", dir_info->d_name);
-	
 	strcpy(file_name, dir_info->d_name);
+	
 	//open the first file
 	i = 0;
 	while (i < TOT_ROOMS) {
@@ -295,11 +291,12 @@ int findType (struct game* game, const char* type){
 				}
 			//Reached end of file.
 			}
-			i++;
+			printf("Could not read line from file.\n");
 			fclose(f);
+			i++;
 		}
 		//Iterate to next file.
-		printf("Iterating files\n");
+		printf(" - - - Iterating files\n");
 		dir_info = readdir(dir);
 		sprintf(file_name, dir_info->d_name);
 	}
