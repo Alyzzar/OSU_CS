@@ -72,7 +72,7 @@ char* getOutbound(struct room* room, int n){
 // Adds the input string to the array of outbound nodes
 void addOutbound(struct room* room, char* connection){
 	int index = getNumOut(room);
-	printf("addOutbound( %s, %s) at index %d\n", getName(room), connection, index);
+	//printf("addOutbound( %s, %s) at index %d\n", getName(room), connection, index);
 	room->outboundConnections[index] = (char*)malloc(sizeof(char) * (strlen(connection) + 1));
 	strcpy(room->outboundConnections[index], connection);
 	room->outboundConnections[index][strlen(connection)] = '\0';
@@ -124,15 +124,15 @@ int setDir(struct game* game){
 	if (dirToCheck > 0){
 		//Loop through subdirectories (Searching for chanbe.rooms.*)
 		while ((fileInDir = readdir(dirToCheck)) != NULL){
-			printf(" - - FILE: %s\n", fileInDir->d_name);
+			//printf(" - - FILE: %s\n", fileInDir->d_name);
 			
 			// If directory has prefix (chanbe.rooms.*)
 			if (strstr(fileInDir->d_name, targetDirPrefix) != NULL){
-				printf(" - - - Matching prefix found.\n");
+				//printf(" - - - Matching prefix found.\n");
 				
 				stat(fileInDir->d_name, &dirAttributes);
 				if ((int)dirAttributes.st_mtime > newestDirTime){
-					printf(" - - - - Marking as newest folder.\n");
+					//printf(" - - - - Marking as newest folder.\n");
 					newestDirTime = (int)dirAttributes.st_mtime;
 					memset(newestDirName, '\0', sizeof(newestDirName));
 					strcpy(newestDirName, fileInDir->d_name);
@@ -143,7 +143,7 @@ int setDir(struct game* game){
 	closedir(dirToCheck);
 	// Assign directory if it exists
 	if(newestDirName >= 0){
-		printf(" - - Assigning directory to %s.\n", newestDirName);
+		//printf(" - - Assigning directory to %s.\n", newestDirName);
 		//Allocate new memory for game->directory string
 		game->directory = (char*)malloc(sizeof(char) * (strlen(newestDirName) + 1));
 		strcpy(game->directory, newestDirName);
@@ -236,12 +236,12 @@ void parseRoom(FILE* f, struct game* game){
 	// Assign room name;
 	sscanf(lines[0], "%*s %*s %s", name);
 	setName(game->currRoom, name);
-	printf(" - - Room name set: %s\n", name);
+	//printf(" - - Room name set: %s\n", name);
 	
 	// Assign room type;
 	sscanf(lines[num_lines - 1], "%*s %*s %s", type);
 	setType(game->currRoom, type);
-	printf(" - - Room type set: %s\n", type);
+	//printf(" - - Room type set: %s\n", type);
 	
 	// Reset outbound connections
 	resetOutbound(game->currRoom);
@@ -249,7 +249,7 @@ void parseRoom(FILE* f, struct game* game){
 	//for loop to parse outbound connections from line 2 onwards
 	for(i = 0; i < (num_lines - 2); i++){
 		sscanf(lines[i + 1], "%*s %*s %s", connection);
-		printf(" - - Parsed outbound: %s\n", connection);
+		//printf(" - - Parsed outbound: %s\n", connection);
 		addOutbound(game->currRoom, connection);
 	}
 	
@@ -454,7 +454,7 @@ int main(){
 	
 	//Game runs until currRoom has type END_ROOM
 	while (running > 0){
-		printf("Game loop %d.\n", getTurn(game));
+		//printf("Game loop %d.\n", getTurn(game));
 		running = turn(game);
 		if (running != 0) game->turnCount++;
 	}
