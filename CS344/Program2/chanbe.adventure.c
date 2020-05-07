@@ -157,7 +157,7 @@ void addPath(struct game* game, struct room* room){
 	sprintf(game->path, "%s\n%s", old_path, getName(room));
 	game->path[n_strlen] = '\0';
 	//Free temporary value
-	free(old_path)
+	free(old_path);
 }
 
 // Gets turn count
