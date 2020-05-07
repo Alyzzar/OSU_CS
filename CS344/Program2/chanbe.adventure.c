@@ -79,6 +79,15 @@ void addOutbound(struct room* room, char* connection){
 	room->numOutboundConnections++;
 }
 
+// Frees and reset outboundConnections
+void resetOutbound(struct room* room){
+	int i = 0;
+	for (i = 0; i < getNumOut(room); i++){
+		free(room->outboundConnections[i]);
+	}
+	setNumOut(room, 0);
+}
+
 // Sets the start room in game struct
 void setStart(struct game* game, char* start){
 	//Allocate new memory
@@ -216,7 +225,7 @@ void parseRoom(FILE* f, struct game* game){
 	size_t line_size = 256;
 	char** lines = (char**)malloc(sizeof(char*) * 256);
 	
-	//Reset file pointer, and loop to store file as array
+	// Reset file pointer, and loop to store file as array
 	fseek(f, 0, SEEK_SET);
 	while(getline(&lines[num_lines], &line_size, f) > 0){
 		num_lines++;
@@ -224,15 +233,18 @@ void parseRoom(FILE* f, struct game* game){
 	
 	printf(" - PARSING ROOM\n");
 	
-	//assign room name;
+	// Assign room name;
 	sscanf(lines[0], "%*s %*s %s", name);
 	setName(game->currRoom, name);
 	printf(" - - Room name set: %s\n", name);
 	
-	//assign room type;
+	// Assign room type;
 	sscanf(lines[num_lines - 1], "%*s %*s %s", type);
 	setType(game->currRoom, type);
 	printf(" - - Room type set: %s\n", type);
+	
+	// Reset outbound connections
+	resetOutbound(game->room);
 	
 	//for loop to parse outbound connections from line 2 onwards
 	for(i = 0; i < (num_lines - 2); i++){
@@ -241,7 +253,7 @@ void parseRoom(FILE* f, struct game* game){
 		addOutbound(game->currRoom, connection);
 	}
 	
-	//Free array
+	// Free the lines[] array
 	for(i = 0; i < num_lines; i++){
 		free(lines[i]);
 	}
@@ -337,9 +349,8 @@ int findName (struct game* game, char* name){
 				printf(" - - - - TARGET FOUND. GENERATING FILE PATH:\n");
 				// File has matching name.
 				// Create file path
-				printf(" Values: Dir=%s, FName=%s\n", game->directory, file_name);
 				sprintf(file_path, "%s/%s_ROOM", game->directory, file_name);
-				printf(" %s",file_path);
+				printf(" %s\n",file_path);
 				f = fopen(file_path, "r");
 				parseRoom(f, game);
 				return 1;
