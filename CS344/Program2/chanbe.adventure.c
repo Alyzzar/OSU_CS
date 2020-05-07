@@ -208,13 +208,13 @@ void freeGame(struct game* game){
 void parseRoom(FILE* f, struct game* game){
 	int i;
 	int num_lines = 0;
-	int tot_out;
 	char name [64];
 	char type [64];
 	char* connection = (char*)malloc(64 * sizeof(char));
-	size_t buffer = 0;
 	size_t line_size = 256;
 	char** lines = (char**)malloc(sizeof(char*) * 256);
+	
+	lines = " ";
 	
 	// Reset file pointer, and loop to store file as array
 	fseek(f, 0, SEEK_SET);
