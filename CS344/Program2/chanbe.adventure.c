@@ -332,10 +332,11 @@ int findName (struct game* game, char* name){
 			file_name[strlen(file_name) - 5] = '\0';
 			printf(" - - - - FILE: %s, TARGET: %s.\n", file_name, name);
 			if(strcmp(file_name, name) == 0) {
-				printf(" - - - - TARGET FOUND. PARSING.\n");
+				printf(" - - - - TARGET FOUND. GENERATING FILE PATH:\n");
 				// File has matching name.
 				// Create file path
 				sprintf(file_path, "%s/%s", game->directory, file_name);
+				printf(" %s",file_path);
 				f = fopen(file_path, "r");
 				parseRoom(f, game);
 				return 1;
