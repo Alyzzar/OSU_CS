@@ -251,8 +251,10 @@ void parseRoom(FILE* f, struct game* game){
 	free(lines);
 }
 
-// Returns the room of a specific type. For setting the start/end room
-struct room* findType (struct game* game, const char* type){
+// Finds and parses room of a specific type. 
+// For setting the start/end room
+// Return 1 on success, 0 on fail.
+int findType (struct game* game, const char* type){
 	// Set variables
 	FILE *f;
 	int i;
@@ -288,7 +290,8 @@ struct room* findType (struct game* game, const char* type){
 					//Parse and return this room.
 					printf("%s ROOM FOUND. PARSING.\n", type);
 					free(line);
-					return parseRoom(f, game);
+					parseRoom(f, game);
+					return 1;
 				}
 			//Reached end of file.
 			}
@@ -299,7 +302,7 @@ struct room* findType (struct game* game, const char* type){
 		printf("Iterating files\n");
 	}
 	free(line);
-	return NULL;
+	return 0;
 }
 
 // Returns the room of a specific name. For use with traversing to outbound rooms
@@ -378,8 +381,8 @@ int main(){
 	//Parse info to set start room
 	printf("Searching for start room.\n");
 	
-	if (findType(game, "START_ROOM") == NULL){
-		printf("NO START ROOM FOUND. GAME TERMINATING.\n", type);
+	if (findType(game, "START_ROOM") == 0){
+		printf("NO START ROOM FOUND. GAME TERMINATING.\n");
 		return 0;
 	}
 	
