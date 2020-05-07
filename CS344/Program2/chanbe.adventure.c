@@ -388,12 +388,10 @@ void getTime(struct game* game){
 	//Saving the time to a file
 	//Creating the file using known directory, and preset file name.
 	sprintf(file_path, "%s/currentTime.txt", game->directory);
-	if (stat(file_path, &st) == -1){
-		mkdir(file_path, 0700);
-	}
-	//Open the file for write
+	//Create the file for write
 	file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
 	write(file_descriptor, MY_TIME, (strlen(MY_TIME)) * sizeof(char));
+	printf("FILE DESCRIPTOR: %d", file_descriptor);
 } 
 
 //Does printouts, and asks for users input.
