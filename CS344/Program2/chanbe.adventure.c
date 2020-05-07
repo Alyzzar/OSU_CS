@@ -155,7 +155,7 @@ void addPath(struct game* game, struct room* room){
 	game->path = (char*)malloc(sizeof(char) * (n_strlen + 3));
 	//Assign new value
 	sprintf(game->path, "%s\n%s", old_path, getName(room));
-	game->path[n_strlen] = '\0';
+	game->path[n_strlen + 1] = '\0';
 	//Free temporary value
 	free(old_path);
 }
@@ -177,7 +177,6 @@ void freeRoom(struct room* room){
 	free(room->name);
 	free(room->type);
 	resetOutbound(room);
-	free(room->outboundConnections);
 }
 
 void initializeGame(struct game** game){
@@ -440,7 +439,7 @@ int main(){
 		if (running != 0) game->turnCount++;
 	}
 	//Game over, prints turncount and path taken
-	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getTurn(game), getPath(game));
+	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n\n", getTurn(game), getPath(game));
 	//Terminates
 	freeGame(game);
 	return 0;
