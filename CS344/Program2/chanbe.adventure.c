@@ -231,7 +231,7 @@ void parseRoom(FILE* f, struct game* game){
 	//for loop to parse outbound connections from line 2 onwards
 	for(i = 0; i < game->currRoom->numOutboundConnections; i++){
 		sscanf(lines[i + 1], "%*s %*s %s", connection);
-		printf(" - - LINE: %s", lines[i + 1]);
+		printf(" - - Parsed outbound: %s", connection);
 		addOutbound(game->currRoom, connection);
 	}
 	
@@ -240,6 +240,7 @@ void parseRoom(FILE* f, struct game* game){
 		free(lines[i]);
 	}
 	free(lines);
+	free(connection);
 }
 
 // Finds and parses room of a specific type. 
