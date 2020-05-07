@@ -74,7 +74,6 @@ void addOutbound(struct room* room, char* connection){
 	room->outboundConnections[getNumOut(room)] = (char*)malloc(sizeof(char) * (strlen(connection) + 1));
 	strcpy(room->outboundConnections[getNumOut(room)], connection);
 	room->outboundConnections[getNumOut(room)][strlen(connection)] = '\0';
-	room->numOutboundConnections++;
 }
 
 // Sets the start room in game struct
@@ -220,15 +219,22 @@ void parseRoom(FILE* f, struct game* game){
 		num_lines++;
 	}
 	
+	printf(" - PARSING ROOM\n");
+	
 	//assign room name;
 	sscanf(lines[0], "%*s %*s %s", name);
 	setName(game->currRoom, name);
+	printf(" - -Room name set: %s\n", name);
 	
 	//assign room type;
 	sscanf(lines[num_lines - 1], "%*s %*s %s", type);
-	setType(game->currRoom, name);
+	setType(game->currRoom, type);
+	printf(" - - Room type set: %s\n", type);
 	
+	//assign numOutboundConnections
 	setNumOut(game->currRoom,(num_lines - 2));
+	printf(" - - Num Outbound set: %d\n", getNumOut(game->currRoom));
+	
 	//for loop to parse outbound connections from line 2 onwards
 	for(i = 0; i < game->currRoom->numOutboundConnections; i++){
 		sscanf(lines[i + 1], "%*s %*s %s", connection);
