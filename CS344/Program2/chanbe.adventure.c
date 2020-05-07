@@ -282,7 +282,7 @@ int findType (struct game* game, const char* type){
 			sprintf(file_path, "%s/%s", game->directory, file_name);
 			f = fopen(file_path, "r");
 			printf("Successful.\n");
-			printf(" - - - Getting lines...");
+			printf(" - - - Getting lines...\n");
 			j = 1;
 			while (getline(&line, &buffer, f) != -1) {
 				printf(" - - - LINE %d: %s\n", j, line);
