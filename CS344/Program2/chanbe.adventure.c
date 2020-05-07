@@ -284,8 +284,8 @@ int findType (struct game* game, const char* type){
 			printf("Successful.\n");
 			printf(" - - - Getting lines...\n");
 			j = 1;
-			numChars = getline(&line, &buffer, f);
-			while (numChars != -1) {
+			do{ numChars = getline(&line, &buffer, f);
+			} while (numChars != -1) {
 				line[numChars - 1] = '\0';
 				printf(" - - - - LINE %d: %s\n", j, line);
 				//Look for line with substring matching type
