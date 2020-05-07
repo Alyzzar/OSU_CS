@@ -449,7 +449,7 @@ int main(){
 		if (running != 0) game->turnCount++;
 	}
 	//Game over, prints turncount and path taken
-	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n\n", getTurn(game), getPath(game));
+	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: \n%s\n\n", getTurn(game), getPath(game));
 	//Terminates
 	freeGame(game);
 	return 0;
