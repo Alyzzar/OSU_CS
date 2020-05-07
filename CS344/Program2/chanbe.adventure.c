@@ -285,13 +285,13 @@ int findType (struct game* game, const char* type){
 	i = 0;
 	while (i < TOT_ROOMS) {
 		//Print the current room
-		printf(" - - FILE: %s\n", file_name);
+		//printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
 		if(strstr(dir_info->d_name, "_ROOM") != NULL){
-			printf(" - - - File found, opening: ");
+			//printf(" - - - File found, opening: ");
 			sprintf(file_path, "%s/%s", game->directory, file_name);
 			f = fopen(file_path, "r");
-			printf("Successful.\n");
+			//printf("Successful.\n");
 			//printf(" - - - Getting lines...\n");
 			j = 1;
 			while (getline(&line, &buffer, f) != -1 && (j < MAX_CONNECTIONS + 3)) {
@@ -300,7 +300,7 @@ int findType (struct game* game, const char* type){
 				//Look for line with substring matching type
 				if (strstr(line, type) != NULL) {
 					//This file contains the correct room. Parse it.
-					printf(" - - %s ROOM FOUND. PARSING.\n", type);
+					//printf(" - - %s ROOM FOUND. PARSING.\n", type);
 					free(line);
 					parseRoom(f, game);
 					return 1;
@@ -338,19 +338,19 @@ int findName (struct game* game, char* name){
 	
 	i = 0;
 	while (i < TOT_ROOMS) {
-		printf(" - - FILE: %s\n", file_name);
+		//printf(" - - FILE: %s\n", file_name);
 		if(strstr(dir_info->d_name, "_ROOM") != NULL){
 			// Copy file name into variable
-			printf(" - - - Comparing file name.\n");
+			//printf(" - - - Comparing file name.\n");
 			file_name[strlen(file_name) - 5] = '\0';
-			printf(" - - - - FILE: %s, TARGET: %s.\n", file_name, name);
+			//printf(" - - - - FILE: %s, TARGET: %s.\n", file_name, name);
 			// Compare file name
 			if(strcmp(file_name, name) == 0) {
-				printf(" - - - - TARGET FOUND. GENERATING FILE PATH:\n");
+				//printf(" - - - - TARGET FOUND. GENERATING FILE PATH:\n");
 				// File has matching name.
 				// Create file path
 				sprintf(file_path, "%s/%s_ROOM", game->directory, file_name);
-				printf(" %s\n",file_path);
+				//printf(" %s\n",file_path);
 				f = fopen(file_path, "r");
 				parseRoom(f, game);
 				return 1;
@@ -375,6 +375,11 @@ int turn(struct game* game){
 	
 	//Print initial information
 	printf(" - Running turn().\n");
+	
+	// Check if currRoom is the END
+	if(strcmp(getType(game->currRoom), "END_ROOM") == 0){
+		return 0;
+	}
 	
 	printf("CURRENT LOCATION: %s\nPOSSIBLE CONNECTIONS: ", getName(game->currRoom));
 	for (i = 0; i < getNumOut(game->currRoom); i++){
@@ -412,7 +417,6 @@ int turn(struct game* game){
 						return 0;
 					}
 					//Break out of loop, since room has already been found.
-					printf("Successfully found and parsed selected room.\n");
 					printf("\n");
 					return 1;
 				}
