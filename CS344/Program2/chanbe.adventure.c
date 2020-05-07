@@ -257,7 +257,7 @@ void parseRoom(FILE* f, struct game* game){
 int findType (struct game* game, const char* type){
 	// Set variables
 	FILE *f;
-	int i;
+	int i, j;
 	//char directory[256];
 	char file_name[256];
 	char file_path[256];
@@ -283,8 +283,9 @@ int findType (struct game* game, const char* type){
 			f = fopen(file_path, "r");
 			printf("Successful.\n");
 			printf(" - - - Getting lines...");
+			j = 1;
 			while (getline(&line, &buffer, f) != -1) {
-				printf(" - - - LINE %d: %s\n", (i + 1), line);
+				printf(" - - - LINE %d: %s\n", j, line);
 				//Look for line with substring matching type
 				if (strstr(line, type) != NULL) {
 					//This file contains the correct room. Parse it.
@@ -293,9 +294,9 @@ int findType (struct game* game, const char* type){
 					parseRoom(f, game);
 					return 1;
 				}
-			//Reached end of file.
+				//Reached end of file.
+				j++
 			}
-			printf("Could not read line from file.\n");
 			fclose(f);
 			i++;
 		}
