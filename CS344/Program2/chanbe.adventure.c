@@ -189,7 +189,7 @@ void freeGame(struct game* game){
 	free(game->path);
 	free(game->directory);
 	freeRoom(game->currRoom);
-	free(room);
+	free(game->currRoom);
 	free(game);
 }
 
@@ -233,7 +233,7 @@ void parseRoom(FILE* f, struct game* game){
 	}
 		
 	// Add room name to path taken
-	addPath(game, currRoom);
+	addPath(game, game->currRoom);
 	
 	// Free the lines[] array
 	for(i = 0; i < num_lines; i++){
