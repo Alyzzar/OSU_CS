@@ -295,7 +295,7 @@ int findType (struct game* game, const char* type){
 					return 1;
 				}
 				//Reached end of file.
-				j++
+				j++;
 			}
 			fclose(f);
 			i++;
