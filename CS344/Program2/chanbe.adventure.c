@@ -311,7 +311,7 @@ int findType (struct game* game, const char* type){
 }
 
 // Returns the room of a specific name. For use with traversing to outbound rooms
-struct room* findName (struct game* game, char* name){
+int findName (struct game* game, char* name){
 	// Set variables
 	FILE *f;
 	int i, j, numChars;
@@ -383,16 +383,20 @@ int turn(struct game* game){
 				if (strcmp(lineEntered, getOutbound(game->currRoom, i))){
 					//Found the correct room
 					//Assign the 'found' room as the currRoom
-					findName(game, lineEntered);
+					if (findName(game, lineEntered) != 1){
+						printf("NO MATCHING ROOM FOUND. GAME TERMINATING.\n\n");
+						return 0;
+					}
 					//Break out of loop, since room has already been found.
-					break;
+					printf("Successfully found and parsed selected room.\n");
+					printf("\n");
+					return 1;
 				}
 			}
 			// Didn't match any room names or 'time' function.
 			printf("HUH? I DON'T UNDERSTAND THAT ROOM. TRY AGAIN.\n\n");
 		}
 	}
-	printf("\n");
 }
 
 //Main Function
