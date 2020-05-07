@@ -369,18 +369,30 @@ int findName (struct game* game, char* name){
 //Also exports the time to a text file.
 //Format: 0:00pm, WEEKDAY, MONTH DAY, YEAR
 void getTime(){
+	//Time variables
 	time_t t;
 	struct tm *tmp;
 	char MY_TIME[50];
+	//File writing variables
+	int file_descriptor;
+	char file_path[256];
+	
+	//Getting the time
 	time( &t ); 
-      
-	// Save local time to 't'
     tmp = localtime( &t ); 
-      
     // use strftime to display 
     strftime(MY_TIME, sizeof(MY_TIME), "%I:%M%p, %A, %B %d, %Y", tmp); 
-      
-    printf(MY_TIME);
+    printf("%s\n", MY_TIME);
+	
+	//Saving the time to a file
+	//Creating the file using known directory, and preset file name.
+	sprintf(file_path, "%s/currentTime.txt", game->directory);
+	if (stat(file_path, &st) == -1){
+		mkdir(file_path, 0700);
+	}
+	//Open the file for write
+	file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
+	write(file_descriptor, MY_TIME, (strlen(MY_TIME)) * sizeof(char));
 } 
 
 //Does printouts, and asks for users input.
