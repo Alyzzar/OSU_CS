@@ -152,8 +152,10 @@ void addPath(struct game* game, struct room* room){
 	strcpy(old_path, getPath(game));
 	//Allocate new memory
 	free(game->path);
-	n_strlen = strlen(old_path);
-	n_strlen += strlen(getName(room));
+	if(old_path == NULL){
+			n_strlen = strlen(getName(room));
+	} else n_strlen = strlen(old_path) + strlen(getName(room));
+
 	game->path = (char*)malloc(sizeof(char) * (n_strlen + 3));
 	//Assign new value
 	sprintf(game->path, "%s\n%s", old_path, getName(room));
