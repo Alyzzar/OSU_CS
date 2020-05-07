@@ -34,10 +34,10 @@ char* getType(struct room* room){
 
 void setType(struct room* room, char* type){
 	//Allocate new memory
-	room->type = (char*)malloc(sizeof(char) * (strlen(type)));
+	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
 	strcpy(room->type, type);
 	//Add null terminator
-	///room->type[strlen(type)] = '\0';
+	room->type[strlen(type)] = '\0';
 }
 
 int getNumOut(struct room* room){
@@ -310,7 +310,7 @@ void exportRooms(){
 		}
 		
 		//Write footer to the file
-		sprintf(file_footer, "ROOM TYPE: %s", getType(rooms[i]));
+		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
 		write(file_descriptor, file_footer, (strlen(file_footer) + 1) * sizeof(char));
 	}
 	free (dir_name);
