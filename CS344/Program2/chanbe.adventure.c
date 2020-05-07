@@ -292,6 +292,7 @@ int findType (struct game* game, const char* type){
 					//printf(" - - %s ROOM FOUND. PARSING.\n", type);
 					free(line);
 					parseRoom(f, game);
+					closedir(dir);
 					return 1;
 				}
 				//Iterate to next line
@@ -306,6 +307,7 @@ int findType (struct game* game, const char* type){
 		sprintf(file_name, dir_info->d_name);
 	}
 	free(line);
+	closedir(dir);
 	return 0;
 }
 
