@@ -342,6 +342,8 @@ int findName (struct game* game, char* name){
 				//printf(" %s\n",file_path);
 				f = fopen(file_path, "r");
 				parseRoom(f, game);
+				
+				closedir(dir);
 				return 1;
 			}
 		}
@@ -350,6 +352,7 @@ int findName (struct game* game, char* name){
 		strcpy(file_name, dir_info->d_name);
 		sprintf(file_name, dir_info->d_name);
 	}
+	closedir(dir);
 	return 0;
 }
 
