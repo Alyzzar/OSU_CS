@@ -244,7 +244,7 @@ void parseRoom(FILE* f, struct game* game){
 	printf(" - - Room type set: %s\n", type);
 	
 	// Reset outbound connections
-	resetOutbound(game->room);
+	resetOutbound(game->currRoom);
 	
 	//for loop to parse outbound connections from line 2 onwards
 	for(i = 0; i < (num_lines - 2); i++){
