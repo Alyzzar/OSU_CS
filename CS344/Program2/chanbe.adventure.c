@@ -148,7 +148,7 @@ char* getPath(struct game* game){
 // Adds room to path
 void addPath(struct game* game, struct room* room){
 	char* old_path;
-	strcpy(old_path, getPath(game))
+	strcpy(old_path, getPath(game));
 	//Allocate new memory
 	free(game->path);
 	int n_strlen = strlen(old_path) + strlen(getName(room));
