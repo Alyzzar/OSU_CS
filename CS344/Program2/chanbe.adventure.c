@@ -269,42 +269,34 @@ struct room* findType (struct game* game, const char* type){
 	// Read until the first file:
 	dir_info = readdir(dir);
 	
-	do{
-        printf(" - - DIR: %s\n", dir_info->d_name);
-		dir_info = readdir(dir);
-	} while (strstr(dir_info->d_name, "_ROOM") == NULL);
+    printf(" - - DIR: %s\n", dir_info->d_name);
 	
 	strcpy(file_name, dir_info->d_name);
 	//open the first file
-	f = fopen(file_name, "r");
-	
 	i = 0;
-	while (running && (i < TOT_ROOMS)) {
+	while (i < TOT_ROOMS) {
 		//Print the current room
 		printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
-		while (getline(&line, &buffer, f) != -1) {
-			printf(" - - - LINE %d: %s\n", (i + 1), line);
-			//Look for line with substring matching type
-			if (strstr(line, type) != NULL) {
-				//This file contains the correct room.
-				//Parse and return this room.
-				printf("%s ROOM FOUND. PARSING.\n", type);
-				free(line);
-				return parseRoom(f, game);
+		if(strstr(dir_info->d_name, "_ROOM") == NULL){
+			f = fopen(file_name, "r");
+			while (getline(&line, &buffer, f) != -1) {
+				printf(" - - - LINE %d: %s\n", (i + 1), line);
+				//Look for line with substring matching type
+				if (strstr(line, type) != NULL) {
+					//This file contains the correct room.
+					//Parse and return this room.
+					printf("%s ROOM FOUND. PARSING.\n", type);
+					free(line);
+					return parseRoom(f, game);
+				}
+			//Reached end of file.
 			}
-		//Reached end of file.
+			i++;
+			fclose(f);
 		}
-		printf("Could not read line from file.\n");
-		fclose(f);
 		//Iterate to next file.
 		printf("Iterating files\n");
-		dir_info = readdir(dir);
-		strcpy(file_name, dir_info->d_name);
-		if(i <= (TOT_ROOMS - 1)){
-			f = fopen(file_name, "r");
-			i++;
-		}
 	}
 	printf("NO %s ROOM FOUND. TERMINATING.\n", type);
 	free(line);
