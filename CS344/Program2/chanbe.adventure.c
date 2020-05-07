@@ -260,6 +260,7 @@ int findType (struct game* game, const char* type){
 	int i;
 	//char directory[256];
 	char file_name[256];
+	char file_path[256];
 	size_t buffer = 64 * sizeof(char);
 	struct stat st;
 	struct dirent* dir_info;
@@ -278,7 +279,8 @@ int findType (struct game* game, const char* type){
 		//Search through file line by line until NULL
 		if(strstr(dir_info->d_name, "_ROOM") != NULL){
 			printf(" - - - File found, opening: ");
-			f = fopen(file_name, "r");
+			sprintf(file_dir, "%s/%s", game->directory, file_name);
+			f = fopen(file_dir, "r");
 			printf("Successful.\n");
 			printf(" - - - Getting lines...");
 			while (getline(&line, &buffer, f) != -1) {
