@@ -71,6 +71,7 @@ char* getOutbound(struct room* room, int n){
 
 // Adds the input string to the array of outbound nodes
 void addOutbound(struct room* room, char* connection){
+	printf("addOutbound( %s, %s)\n", getName(room), connection);
 	room->outboundConnections[getNumOut(room)] = (char*)malloc(sizeof(char) * (strlen(connection) + 1));
 	strcpy(room->outboundConnections[getNumOut(room)], connection);
 	room->outboundConnections[getNumOut(room)][strlen(connection)] = '\0';
