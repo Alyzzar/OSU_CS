@@ -378,7 +378,7 @@ void getTime(){
     tmp = localtime( &t ); 
       
     // use strftime to display 
-    strftime(MY_TIME, sizeof(MY_TIME), "%r, %A, %B %d, %Y", tmp); 
+    strftime(MY_TIME, sizeof(MY_TIME), "%I:%M%p, %A, %B %d, %Y", tmp); 
       
     printf(MY_TIME);
 } 
