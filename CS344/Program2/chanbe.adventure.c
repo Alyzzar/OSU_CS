@@ -371,7 +371,7 @@ int findName (struct game* game, char* name){
 void getTime(){
 	time_t t;
 	struct tm *tmp;
-	char MY_TIME[Size];
+	char MY_TIME[50];
 	time( &t ); 
       
 	// Save local time to 't'
