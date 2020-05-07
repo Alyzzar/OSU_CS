@@ -224,7 +224,7 @@ void parseRoom(FILE* f, struct game* game){
 	//assign room name;
 	sscanf(lines[0], "%*s %*s %s", name);
 	setName(game->currRoom, name);
-	printf(" - -Room name set: %s\n", name);
+	printf(" - - Room name set: %s\n", name);
 	
 	//assign room type;
 	sscanf(lines[num_lines - 1], "%*s %*s %s", type);
@@ -281,11 +281,11 @@ int findType (struct game* game, const char* type){
 			sprintf(file_path, "%s/%s", game->directory, file_name);
 			f = fopen(file_path, "r");
 			printf("Successful.\n");
-			printf(" - - - Getting lines...\n");
+			//printf(" - - - Getting lines...\n");
 			j = 1;
 			while (getline(&line, &buffer, f) != -1 && (j < MAX_CONNECTIONS + 3)) {
 				line[strlen(line) - 1] = '\0';
-				printf(" - - - - LINE %d: %s\n", j, line);
+				//printf(" - - - - LINE %d: %s\n", j, line);
 				//Look for line with substring matching type
 				if (strstr(line, type) != NULL) {
 					//This file contains the correct room. Parse it.
@@ -301,7 +301,7 @@ int findType (struct game* game, const char* type){
 			i++;
 		}
 		//Iterate to next file.
-		printf(" - - - Iterating files\n");
+		//printf(" - - - Iterating files\n");
 		dir_info = readdir(dir);
 		sprintf(file_name, dir_info->d_name);
 	}
@@ -311,8 +311,36 @@ int findType (struct game* game, const char* type){
 
 // Returns the room of a specific name. For use with traversing to outbound rooms
 struct room* findName (struct game* game, char* name){
-	//COPY IN findType() AND CHANGE VARIABLES
-	return NULL;
+	// Set variables
+	FILE *f;
+	int i, j, numChars;
+	//char directory[256];
+	char file_name[256];
+	char file_path[256];
+	struct stat st;
+	struct dirent* dir_info;
+	
+	// Iterate to the first dir/file
+	DIR* dir = opendir(game->directory);
+	dir_info = readdir(dir);
+	strcpy(file_name, dir_info->d_name);
+	
+	i = 0;
+	while (i < TOT_ROOMS) {
+		printf(" - - FILE: %s\n", file_name);
+		if(strstr(dir_info->d_name, "_ROOM") != NULL){
+			printf(" - - - File found, comparing name. ");
+			strstr(file_name, name) != NULL) {
+				// File has matching name.
+				parseRoom(f, game);
+				return 1;
+			}
+		}
+		//Iterate to next file.
+		dir_info = readdir(dir);
+		sprintf(file_name, dir_info->d_name);
+	}
+	return 0;
 }
 
 //Does printouts, and asks for users input.
