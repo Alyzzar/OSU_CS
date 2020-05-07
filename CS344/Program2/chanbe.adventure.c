@@ -186,7 +186,6 @@ void initializeGame(struct game** game){
 	(*game)->turnCount = 0;
 	//Initialize path with length of 1
 	(*game)->path = (char*)malloc(sizeof(char));
-	strcpy((*game)->path, '\0');
 	initializeRoom(&(*game)->currRoom);
 	//Initialize directory
 	setDir(*game);
