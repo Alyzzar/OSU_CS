@@ -34,10 +34,10 @@ char* getType(struct room* room){
 
 void setType(struct room* room, char* type){
 	//Allocate new memory
-	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
+	room->type = (char*)malloc(sizeof(char) * (strlen(type)));
 	strcpy(room->type, type);
 	//Add null terminator
-	room->type[strlen(type)] = '\0';
+	///room->type[strlen(type)] = '\0';
 }
 
 int getNumOut(struct room* room){
@@ -299,13 +299,13 @@ void exportRooms(){
 		}
 		
 		//Write header to the file
-		sprintf(file_header, "ROOM NAME: %s", getName(rooms[i]));
+		sprintf(file_header, "ROOM NAME: %s\n", getName(rooms[i]));
 		//file_header[strlen(header)] = '\0';
 		write(file_descriptor, file_header, (strlen(file_header) + 1) * sizeof(char));
 		
 		//Writing connections
 		for(j = 0; j < getNumOut(rooms[i]); j++){
-			sprintf(file_connection, "CONNECTION %d: %s", (j + 1), getName(getOutbound(rooms[i], j)));
+			sprintf(file_connection, "CONNECTION %d: %s\n", (j + 1), getName(getOutbound(rooms[i], j)));
 			write (file_descriptor, file_connection, (strlen(file_connection) + 1) * sizeof(char));
 		}
 		
