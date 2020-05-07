@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <time.h>
 
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
@@ -364,6 +365,24 @@ int findName (struct game* game, char* name){
 	return 0;
 }
 
+//This function gets and prints the time to the console.
+//Also exports the time to a text file.
+//Format: 0:00pm, WEEKDAY, MONTH DAY, YEAR
+void getTime(){
+	time_t t;
+	struct tm *tmp;
+	char MY_TIME[Size];
+	time( &t ); 
+      
+	// Save local time to 't'
+    tmp = localtime( &t ); 
+      
+    // use strftime to display 
+    strftime(MY_TIME, sizeof(MY_TIME), "%r, %A, %B %d, %Y", tmp); 
+      
+    printf(MY_TIME);
+} 
+
 //Does printouts, and asks for users input.
 int turn(struct game* game){
 	int i;
@@ -398,8 +417,8 @@ int turn(struct game* game){
 		printf("\n");
 		if (strcmp(lineEntered, "time") == 0){
 			// Return the time
-			printf("Here's the time.\n");
-			
+			getTime();
+			printf("\n");
 			// Ask for another input
 		} else {
 			for (i=0; i < getNumOut(game->currRoom); i++){
@@ -426,6 +445,7 @@ int turn(struct game* game){
 
 //Main Function
 int main(){
+	
 	//Initialize variables and objects.
 	int running = 1;
 	struct game* game;
