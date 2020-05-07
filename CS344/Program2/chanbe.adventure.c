@@ -221,6 +221,9 @@ void parseRoom(FILE* f, struct game* game){
 		//printf(" - - Parsed outbound: %s\n", connection);
 		addOutbound(game->currRoom, connection);
 	}
+		
+	// Add room name to path taken
+	addPath(game, currRoom);
 	
 	// Free the lines[] array
 	for(i = 0; i < num_lines; i++){
