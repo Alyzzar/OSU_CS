@@ -301,17 +301,17 @@ void exportRooms(){
 		//Write header to the file
 		sprintf(file_header, "ROOM NAME: %s\n", getName(rooms[i]));
 		//file_header[strlen(header)] = '\0';
-		write(file_descriptor, file_header, (strlen(file_header) + 1) * sizeof(char));
+		write(file_descriptor, file_header, (strlen(file_header)) * sizeof(char));
 		
 		//Writing connections
 		for(j = 0; j < getNumOut(rooms[i]); j++){
 			sprintf(file_connection, "CONNECTION %d: %s\n", (j + 1), getName(getOutbound(rooms[i], j)));
-			write (file_descriptor, file_connection, (strlen(file_connection) + 1) * sizeof(char));
+			write (file_descriptor, file_connection, (strlen(file_connection)) * sizeof(char));
 		}
 		
 		//Write footer to the file
 		sprintf(file_footer, "ROOM TYPE: %s\n", getType(rooms[i]));
-		write(file_descriptor, file_footer, (strlen(file_footer) + 1) * sizeof(char));
+		write(file_descriptor, file_footer, (strlen(file_footer)) * sizeof(char));
 	}
 	free (dir_name);
 	free (file_path);
