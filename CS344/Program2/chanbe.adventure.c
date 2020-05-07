@@ -209,8 +209,8 @@ int assignRoom(struct room* x, struct room* y){
 	setNumOut(x, getNumOut(y));
 }
 
-// Returns a parsed room from a file.
-struct room* parseRoom(FILE* f, struct game* game){
+// Parses a file into currRoom.
+void parseRoom(FILE* f, struct game* game){
 	int i;
 	int num_lines = 0;
 	int running;
@@ -278,7 +278,7 @@ struct room* findType (struct game* game, const char* type){
 		//Print the current room
 		printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
-		if(strstr(dir_info->d_name, "_ROOM") == NULL){
+		if(strstr(dir_info->d_name, "_ROOM") != NULL){
 			f = fopen(file_name, "r");
 			while (getline(&line, &buffer, f) != -1) {
 				printf(" - - - LINE %d: %s\n", (i + 1), line);
@@ -298,7 +298,6 @@ struct room* findType (struct game* game, const char* type){
 		//Iterate to next file.
 		printf("Iterating files\n");
 	}
-	printf("NO %s ROOM FOUND. TERMINATING.\n", type);
 	free(line);
 	return NULL;
 }
@@ -371,23 +370,28 @@ int main(){
 	
 	if (game->directory == NULL || game->directory == 0){
 		printf("NO COMPATIBLE ROOMS FOUND. GAME TERMINATING.\n");
-	} else {
-		//Directory successfully found. Game continuing.
-		printf("Directory found and set. Game sequence starting.\n");
-
-		//Parse info to set start room
-		printf("Searching for start room.\n");
-		findType(game, "START_ROOM");
-		
-		//Game runs until currRoom has type END_ROOM
-		while (running > 0){
-			printf("Game loop %d.\n", getTurn(game));
-			running = turn(game);
-			if (running != 0) game->turnCount++;
-		}
-		//Game over, prints turncount and path taken
-		printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getTurn(game), getPath(game));
+		return 0;
 	}
+	//Directory successfully found. Game continuing.
+	printf("Directory found and set. Game sequence starting.\n");
+
+	//Parse info to set start room
+	printf("Searching for start room.\n");
+	
+	if (findType(game, "START_ROOM") == NULL){
+		printf("NO START ROOM FOUND. GAME TERMINATING.\n", type);
+		return 0;
+	}
+	
+	//Game runs until currRoom has type END_ROOM
+	while (running > 0){
+		printf("Game loop %d.\n", getTurn(game));
+		running = turn(game);
+		if (running != 0) game->turnCount++;
+	}
+	//Game over, prints turncount and path taken
+	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getTurn(game), getPath(game));
+
 	//Terminates
 	freeGame(game);
 	return 0;
