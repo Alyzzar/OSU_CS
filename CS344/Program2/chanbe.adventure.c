@@ -150,7 +150,7 @@ void addPath(struct game* game, struct room* room){
 	char* old_path;
 	int n_strlen = strlen(getPath(game)) + strlen(getName(room));
 	game->path = (char*)malloc(sizeof(char) * (n_strlen + 3));
-	sprintf(game->path, "%s\n%s", old_path, room);
+	sprintf(game->path, "%s\n%s", old_path, getName(room));
 	game->path[n_strlen] = '\0';
 }
 
@@ -179,6 +179,7 @@ void initializeGame(struct game** game){
 	(*game)->turnCount = 0;
 	//Initialize path with length of 1
 	(*game)->path = (char*)malloc(sizeof(char));
+	strcpy((*game)->path,"");
 	initializeRoom(&(*game)->currRoom);
 	//Initialize directory
 	setDir(*game);
