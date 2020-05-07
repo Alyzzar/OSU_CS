@@ -19,8 +19,6 @@ struct room {
 
 struct game {
 	unsigned int turnCount;
-	char* start;
-	char* end;
 	char* path;
 	char* directory;
 	struct room* currRoom;
@@ -86,24 +84,6 @@ void resetOutbound(struct room* room){
 		free(room->outboundConnections[i]);
 	}
 	setNumOut(room, 0);
-}
-
-// Sets the start room in game struct
-void setStart(struct game* game, char* start){
-	//Allocate new memory
-	game->start = (char*)malloc(sizeof(char) * (strlen(start) + 1));
-	strcpy(game->start, start);
-	//Add null terminator
-	game->start[strlen(start)] = '\0';
-}
-
-// Set the end room in game struct
-void setEnd(struct game* game, char* end){
-	//Allocate new memory
-	game->end = (char*)malloc(sizeof(char) * (strlen(end) + 1));
-	strcpy(game->end, end);
-	//Add null terminator
-	game->end[strlen(end)] = '\0';
 }
 
 // Automatically finds and sets the file directory to the newest folder with the correct prefix
@@ -187,12 +167,8 @@ void initializeRoom(struct room** room){
 
 void initializeGame(struct game** game){
 	*game = (struct game*)malloc(sizeof(struct game));
-	setStart(*game, "");
-	printf("INITIALIZE: START = %s\n", (*game)->start);
-	setEnd(*game, "");
-	printf("INITIALIZE: END = %s\n", (*game)->end);
 	(*game)->turnCount = 1;
-	printf("INITIALIZE: TURNCOUNT = %d\n", getTurn(*game));
+	//printf("INITIALIZE: TURNCOUNT = %d\n", getTurn(*game));
 
 	//Initialize path with length of 1
 	(*game)->path = (char*)malloc(sizeof(char));
@@ -231,8 +207,7 @@ void parseRoom(FILE* f, struct game* game){
 		num_lines++;
 	}
 	
-	printf(" - PARSING ROOM\n");
-	
+	//printf(" - PARSING ROOM\n");
 	// Assign room name;
 	sscanf(lines[0], "%*s %*s %s", name);
 	setName(game->currRoom, name);
@@ -374,7 +349,7 @@ int turn(struct game* game){
 	char* lineEntered = NULL;
 	
 	//Print initial information
-	printf(" - Running turn().\n");
+	//printf(" - Running turn().\n");
 	
 	// Check if currRoom is the END
 	if(strcmp(getType(game->currRoom), "END_ROOM") == 0){
@@ -442,16 +417,11 @@ int main(){
 		return 0;
 	}
 	//Directory successfully found. Game continuing.
-	printf("Directory found and set. Game sequence starting.\n");
-
-	//Parse info to set start room
-	printf("Searching for start room.\n");
-	
+	//Parse info to set start room	
 	if (findType(game, "START_ROOM") == 0){
 		printf("NO START ROOM FOUND. GAME TERMINATING.\n");
 		return 0;
 	}
-	
 	//Game runs until currRoom has type END_ROOM
 	while (running > 0){
 		//printf("Game loop %d.\n", getTurn(game));
@@ -460,7 +430,6 @@ int main(){
 	}
 	//Game over, prints turncount and path taken
 	printf("YOU HAVE FOUND THE END ROOM. CONGRATULATIONS!\nYOU TOOK %d STEPS. YOUR PATH TO VICTORY WAS: %s\n", getTurn(game), getPath(game));
-
 	//Terminates
 	freeGame(game);
 	return 0;
