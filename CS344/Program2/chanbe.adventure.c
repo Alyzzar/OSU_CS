@@ -201,14 +201,6 @@ void freeGame(struct game* game){
 	free(game);
 }
 
-int assignRoom(struct room* x, struct room* y){
-	free (x);
-	x = (struct room*)malloc(sizeof(struct room));
-	setName(x, getName(y));
-	setType(x, getType(y));
-	setNumOut(x, getNumOut(y));
-}
-
 // Parses a file into currRoom.
 void parseRoom(FILE* f, struct game* game){
 	int i;
@@ -220,9 +212,6 @@ void parseRoom(FILE* f, struct game* game){
 	size_t buffer = 0;
 	size_t line_size = 256;
 	char** lines = (char**)malloc(sizeof(char*) * 256);
-	//Initialize new room
-	struct room* n_room; 
-	initializeRoom(&n_room);
 	
 	//Reset file pointer, and loop to store file as array
 	fseek(f, 0, SEEK_SET);
@@ -240,8 +229,9 @@ void parseRoom(FILE* f, struct game* game){
 	
 	setNumOut(game->currRoom,(num_lines - 2));
 	//for loop to parse outbound connections from line 2 onwards
-	for(i = 0; i < n_room->numOutboundConnections; i++){
+	for(i = 0; i < game->currRoom->numOutboundConnections; i++){
 		sscanf(lines[i + 1], "%*s %*s %s", connection);
+		printf(" - - LINE: %s", lines[i + 1]);
 		addOutbound(game->currRoom, connection);
 	}
 	
@@ -331,7 +321,7 @@ int turn(struct game* game){
 	
 	printf("CURRENT LOCATION: %s\nPOSSIBLE CONNECTIONS: ", getName(game->currRoom));
 	for (i = 0; i < getNumOut(game->currRoom); i++){
-		printf("%s", getName(game->currRoom));
+		printf("%s", getOutbound(game->currRoom, i));
 		//Print comma, unless in last spot
 		if(i < (getNumOut(game->currRoom) - 1)){
 			printf(", ");
@@ -340,10 +330,11 @@ int turn(struct game* game){
 	printf(".\nWHERE TO? >");
 	//User input
 	
-	printf("\n\n");
+
 	//Loop until valid input
 	while (running > 0){
 		getline(&lineEntered, &buffer, stdin);
+		printf("\n\n");
 		if (strcmp(lineEntered, "time") == 0){
 			// Return the time
 			printf("Here's the time.\n");
@@ -355,7 +346,7 @@ int turn(struct game* game){
 				if (strcmp(lineEntered, getOutbound(game->currRoom, i))){
 					//Found the correct room
 					//Assign the 'found' room as the currRoom
-					assignRoom(game->currRoom, findName(game, lineEntered));
+					findName(game, lineEntered));
 					//Break out of loop, since room has already been found.
 					break;
 				}
