@@ -374,23 +374,23 @@ void getTime(struct game* game){
 	struct tm *tmp;
 	char MY_TIME[50];
 	//File writing variables
-	FILE* f;
+	struct stat st = {0};
+	int file_descriptor;
 	char file_path[256];
 	
 	//Getting the time
 	time( &t ); 
     tmp = localtime( &t ); 
     // use strftime to display 
-    strftime(MY_TIME, sizeof(MY_TIME), "%I:%M%p, %A, %B %d, %Y", tmp); 
-    printf("%s\n", MY_TIME);
+    strftime(MY_TIME, sizeof(MY_TIME), "%I:%M%p, %A, %B %d, %Y\n", tmp); 
+	printf("%s", MY_TIME);
 	
 	//Saving the time to a file
 	//Creating the file using known directory, and preset file name.
 	sprintf(file_path, "%s/currentTime.txt", game->directory);
 	//Create the file for write
-	f = fopen(file_path, "r");
-	fprintf(f, "%s\n", MY_TIME);
-	fclose(f);
+	file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
+	write(file_descriptor, MY_TIME, (strlen(MY_TIME)) * sizeof(char));
 } 
 
 //Does printouts, and asks for users input.
