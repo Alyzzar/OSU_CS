@@ -372,7 +372,7 @@ int turn(struct game* game){
 	while (running > 0){
 		getline(&lineEntered, &buffer, stdin);
 		//Remove '\n' character using '\0'
-		lineEntered[strlen(file_name)-1] = '\0';
+		lineEntered[strlen(lineEntered)-1] = '\0';
 		
 		printf("\n\n");
 		if (strcmp(lineEntered, "time") == 0){
