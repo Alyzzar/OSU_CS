@@ -368,12 +368,13 @@ int findName (struct game* game, char* name){
 //This function gets and prints the time to the console.
 //Also exports the time to a text file.
 //Format: 0:00pm, WEEKDAY, MONTH DAY, YEAR
-void getTime(){
+void getTime(struct game* game){
 	//Time variables
 	time_t t;
 	struct tm *tmp;
 	char MY_TIME[50];
 	//File writing variables
+	struct stat st = {0};
 	int file_descriptor;
 	char file_path[256];
 	
@@ -429,7 +430,7 @@ int turn(struct game* game){
 		printf("\n");
 		if (strcmp(lineEntered, "time") == 0){
 			// Return the time
-			getTime();
+			getTime(game);
 			printf("\n");
 			// Ask for another input
 		} else {
