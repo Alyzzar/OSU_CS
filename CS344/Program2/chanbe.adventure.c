@@ -32,6 +32,7 @@ char* getName(struct room* room){
 // Sets the name of the room
 void setName(struct room* room, char* name){
 	//Allocate new memory
+	free(room->name);
 	room->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
 	strcpy(room->name, name);
 	//Add null terminator
@@ -46,6 +47,7 @@ char* getType(struct room* room){
 // Sets room type
 void setType(struct room* room, char* type){
 	//Allocate new memory
+	free(room->type);
 	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
 	strcpy(room->type, type);
 	//Add null terminator
@@ -165,6 +167,13 @@ void initializeRoom(struct room** room){
 	setNumOut(*room, 0);
 }
 
+void freeRoom(struct room* room){
+	free(room->name);
+	free(room->type);
+	resetOutbound(room);
+	free(room->outboundConnections);
+}
+
 void initializeGame(struct game** game){
 	*game = (struct game*)malloc(sizeof(struct game));
 	(*game)->turnCount = 0;
@@ -179,7 +188,8 @@ void freeGame(struct game* game){
 	//free(game->turnCount);
 	free(game->path);
 	free(game->directory);
-	free(game->currRoom);
+	freeRoom(game->currRoom);
+	free(room);
 	free(game);
 }
 
@@ -341,8 +351,6 @@ int turn(struct game* game){
 	int i;
 	int running = 1;
 	size_t buffer = 0;
-	char* n_name = (char*)malloc(64 * sizeof(char));
-	char* selection = (char*)malloc(64 * sizeof(char));
 	char* lineEntered = NULL;
 	
 	//Print initial information
@@ -350,6 +358,7 @@ int turn(struct game* game){
 	
 	// Check if currRoom is the END
 	if(strcmp(getType(game->currRoom), "END_ROOM") == 0){
+		free(lineEntered);
 		return 0;
 	}
 	
@@ -382,10 +391,12 @@ int turn(struct game* game){
 					//Assign the 'found' room as the currRoom
 					if (findName(game, lineEntered) != 1){
 						printf("NO MATCHING ROOM FOUND. GAME TERMINATING.\n\n");
+						free(lineEntered);
 						return 0;
 					}
 					//Break out of loop, since room has already been found.
 					printf("\n");
+					free(lineEntered);
 					return 1;
 				}
 			}
