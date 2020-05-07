@@ -214,9 +214,7 @@ void parseRoom(FILE* f, struct game* game){
 	size_t line_size = 32;
 	char** lines = (char**)malloc(sizeof(char*) * 32);
 	
-	for(i = 0; i < 10; i++){
-		lines[i] = {NULL};
-	}
+	lines[] = {NULL};
 	
 	// Reset file pointer, and loop to store file as array
 	fseek(f, 0, SEEK_SET);
