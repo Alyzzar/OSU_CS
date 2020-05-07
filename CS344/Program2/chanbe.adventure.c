@@ -388,7 +388,7 @@ int turn(struct game* game){
 		} else {
 			for (i=0; i < getNumOut(game->currRoom); i++){
 				// Loop through connecting rooms to find matching name
-				if (strcmp(lineEntered, getOutbound(game->currRoom, i))){
+				if (strcmp(lineEntered, getOutbound(game->currRoom, i)) == 0){
 					//Found the correct room
 					//Assign the 'found' room as the currRoom
 					if (findName(game, lineEntered) != 1){
