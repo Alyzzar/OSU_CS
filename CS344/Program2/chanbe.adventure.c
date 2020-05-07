@@ -284,7 +284,7 @@ int findType (struct game* game, const char* type){
 			printf("Successful.\n");
 			printf(" - - - Getting lines...\n");
 			j = 1;
-			while (getline(&line, &buffer, f) != 1 && (j < MAX_CONNECTIONS + 3)) {
+			while (getline(&line, &buffer, f) != -1 && (j < MAX_CONNECTIONS + 3)) {
 				line[strlen(line) - 1] = '\0';
 				printf(" - - - - LINE %d: %s\n", j, line);
 				//Look for line with substring matching type
@@ -295,7 +295,7 @@ int findType (struct game* game, const char* type){
 					parseRoom(f, game);
 					return 1;
 				}
-				//Reached end of file.
+				//Iterate to next line
 				j++;
 			}
 			fclose(f);
