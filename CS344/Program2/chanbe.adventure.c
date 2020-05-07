@@ -330,8 +330,8 @@ struct room* findName (struct game* game, char* name){
 	while (i < TOT_ROOMS) {
 		printf(" - - FILE: %s\n", file_name);
 		if(strstr(dir_info->d_name, "_ROOM") != NULL){
-			printf(" - - - File found, comparing name. ");
-			strstr(file_name, name) != NULL) {
+			printf(" - - - File found, comparing name.");
+			if(strstr(file_name, name) != NULL) {
 				// File has matching name.
 				parseRoom(f, game);
 				return 1;
