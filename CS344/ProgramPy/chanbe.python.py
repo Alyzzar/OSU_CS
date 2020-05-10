@@ -9,7 +9,7 @@ alph = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r',
 for i in range(0,3):
     #Loop for each of the 10 chars, and assign random chars
     for j in range(0, 10):
-        strings[i] = strings[i] + random.choice(chars)
+        strings[i] = strings[i] + random.choice(alph)
     strings[i] = strings[i] + "\n"
         
 #Create/Overwrite 3 files (any names)
