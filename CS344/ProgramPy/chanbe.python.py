@@ -9,8 +9,8 @@ for i in range(0, 3):
     #Loop for each of the 10 chars
 	for j in range(0,10):
         #Assign random from alph array
-        strings[i] += random.choice(chars)
-    strings[i] += "\n"
+        strings[i] = strings[i] + random.choice(chars)
+    strings[i] = strings[i] + "\n"
         
 #Create/Overwrite 3 files (any names)
 #Save the vars to the files
