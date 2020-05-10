@@ -28,7 +28,7 @@ f.write(strings[2])
 f.close()
 
 #Print the contents of the three variables
-print(strings[0] + strings[1] + strings[2])
+print(strings[0] + strings[1] + strings[2], end='')
 
 #Set vars of two random integers and their value
 num1 = random.randint(0, 42)
