@@ -36,4 +36,4 @@ num2 = random.randint(0, 42)
 num3 = num1 + num2
 
 #Print the values
-print("{num1}\n{num2}\n{num3}")
+print("%d\n%d\n%d" % (num1, num2, num3))
