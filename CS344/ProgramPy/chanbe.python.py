@@ -1,5 +1,5 @@
 import random
-
+from __future__ import print_function
 
 #Create lists for variable generation
 strings = [None, None, None]
