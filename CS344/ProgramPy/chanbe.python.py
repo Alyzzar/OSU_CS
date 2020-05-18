@@ -33,7 +33,7 @@ print(strings[0] + strings[1] + strings[2], end='')
 #Set vars of two random integers and their value
 num1 = random.randint(0, 42)
 num2 = random.randint(0, 42)
-num3 = num1 + num2
+num3 = num1 * num2
 
 #Print the values
 print("%d\n%d\n%d" % (num1, num2, num3))
