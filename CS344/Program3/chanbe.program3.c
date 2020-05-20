@@ -9,7 +9,7 @@
 #define InputLengthMax 2048
 
 //Global variables, function declarations
-int allBackground = 1;
+int allowBackground = 1;
 void getInput(char*[], int*, char[], char[], int);
 void execCmd(char*[], int*, struct sigaction, int*, char[], char[]);
 void catchSIGTSTP(int);
@@ -31,7 +31,7 @@ int main(){
 	char* input[512];
 	
 	//Make sure input array is NULL
-	for (i=0; i < 512; i++_ {
+	for (i=0; i < 512; i++) {
 		input[i] = NULL;
 	}
 	
