@@ -1,1 +1,2 @@
-gcc -o smallsh smallsh.c
+all:
+	gcc -o smallsh smallsh.c
