@@ -108,7 +108,7 @@ int main(){
  */
  void getInput(char* arr[], int* background, char inputName[], char outputName[], int pid) {
 	
-	char input[INPUTLENGTH];
+	char input[InputLengthMax];
 	int i, j;
 
 	// Get input
