@@ -114,11 +114,11 @@ int main(){
 	// Get input
 	printf(": ");
 	fflush(stdout);
-	fgets(input, INPUTLENGTH, stdin);
+	fgets(input, InputLengthMax, stdin);
 
 	// Skip newline characters
 	int found = 0;
-	for (i=0; !found && i<INPUTLENGTH; i++) {
+	for (i=0; !found && i<InputLengthMax; i++) {
 		if (input[i] == '\n') {
 			input[i] = '\0';
 			found = 1;
