@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
 	// checks if both files were opened properly
 	if (fdCipherText == -1 || fdKey == -1)
 	{
-		fprintf(stderr, "Failed to open files\n");
+		fprintf(stderr, "Failed to open file(s)\n");
 		exit(1);
 	}
 
