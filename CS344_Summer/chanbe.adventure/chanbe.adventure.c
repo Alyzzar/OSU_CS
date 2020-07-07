@@ -1,19 +1,27 @@
 /**
-Written by Ben Chan for both Spring 2020, and Summer 2020 CS 344 terms.
+
+Written by Ben Chan for CS 344
+
 **/
+
+#include <dirent.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <fcntl.h>
-#include <string.h>
 #include <unistd.h>
-#include <dirent.h>
-#include <time.h>
 
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
 
+/**
+	Struct for room type
+		Detail:	Struct used to construct the room. Contains information 
+				concerning room identity, and connections to other rooms.
+		Vars: 	char* name, char* type, int numOutboundConnections, char* outboundConnections[]
+**/
 struct room { 
 	char* name;
 	char* type;
@@ -21,6 +29,12 @@ struct room {
 	char* outboundConnections[MAX_CONNECTIONS];
 };
 
+/**
+	Struct for game type
+		Detail:	struct used to construct the game. Contains information
+				concerning game turns, file directory, and current room location.
+		Vars:	int turnCount, char* path, char* directory, struct currRoom
+**/
 struct game {
 	unsigned int turnCount;
 	char* path;
@@ -28,12 +42,23 @@ struct game {
 	struct room* currRoom;
 };
 
-// Gets the name of the room
+/**-------------------------------------------------------------------
+						GETTERS/SETTERS
+-------------------------------------------------------------------**/
+
+/**
+	Function getName()
+		Params:	struct room
+		Return:	char* name
+**/
 char* getName(struct room* room){
 	return room->name;
 }
 
-// Sets the name of the room
+/**
+	Function setName()
+		Params: struct room, char* name
+**/
 void setName(struct room* room, char* name){
 	//Allocate new memory
 	free(room->name);
@@ -43,12 +68,19 @@ void setName(struct room* room, char* name){
 	room->name[strlen(name)] = '\0';
 }
 
-// Gets room type
+/**
+	Function getType()
+		Params: struct room
+		Return: char* type (start, middle, or end room)
+**/
 char* getType(struct room* room){
 	return room->type;
 }
 
-// Sets room type
+/**
+	Function setType()
+		Params: struct room, char* type
+**/
 void setType(struct room* room, char* type){
 	//Allocate new memory
 	free(room->type);
@@ -58,22 +90,41 @@ void setType(struct room* room, char* type){
 	room->type[strlen(type)] = '\0';
 }
 
-// Gets the numOutboundConnections for a room
+/**
+	Function getNumOut()
+		Detail:	Returns the number of outbound connections to other rooms
+		Params:	struct room
+		Return:	int numOutboundConnections
+**/
 int getNumOut(struct room* room){
 	return room->numOutboundConnections;
 }
 
-// Sets the numOutboundConnections for a room
+/**
+	Function setNumOut()
+		Detail:	Sets the number of outbound rooms coming out of this room.
+		Params:	struct room, int num
+**/
 void setNumOut(struct room* room, int num){
 	room->numOutboundConnections = num;
 }
 
-// Gets a room (name only) coming out of the room
+/**
+	Function getOutbound()
+		Detail:	Returns the name of the 'n'th room on the outboundConnections[]
+				array of the given room.
+		Params: struct room, int n
+		Return: char* name of outboundConnections[n]
+**/
 char* getOutbound(struct room* room, int n){
 	return room->outboundConnections[n];
 }
 
-// Adds the input string to the array of outbound nodes
+/**
+	Function addOutbound()
+		Detail:	Adds the input char* to the array of outbound nodes connected to the given room
+		Params:	struct room, char* connecting room (name only)
+**/
 void addOutbound(struct room* room, char* connection){
 	int index = getNumOut(room);
 	//printf("addOutbound( %s, %s) at index %d\n", getName(room), connection, index);
@@ -83,7 +134,11 @@ void addOutbound(struct room* room, char* connection){
 	room->numOutboundConnections++;
 }
 
-// Frees and reset outboundConnections
+/**
+	Function resetOutbound()
+		Detail:	Frees all values in the outboundConnections array of the given room
+		Params:	struct room
+**/
 void resetOutbound(struct room* room){
 	int i = 0;
 	for (i = 0; i < getNumOut(room); i++){
@@ -92,7 +147,12 @@ void resetOutbound(struct room* room){
 	setNumOut(room, 0);
 }
 
-// Automatically finds and sets the file directory to the newest folder with the correct prefix
+/**
+	Function setDir()
+		Detail:	Automatically finds and sets the file directory to the newest folder with the correct prefix
+		Params:	struct game
+		Return:	boolean value (1 on success, 0 on fail)
+**/
 int setDir(struct game* game){
 	int newestDirTime = -1;
 	char targetDirPrefix[32] = "chanbe.rooms.";
@@ -110,15 +170,12 @@ int setDir(struct game* game){
 	if (dirToCheck > 0){
 		//Loop through subdirectories (Searching for chanbe.rooms.*)
 		while ((fileInDir = readdir(dirToCheck)) != NULL){
-			//printf(" - - FILE: %s\n", fileInDir->d_name);
-			
 			// If directory has prefix (chanbe.rooms.*)
 			if (strstr(fileInDir->d_name, targetDirPrefix) != NULL){
-				//printf(" - - - Matching prefix found.\n");
-				
+				//Matching prefix found
 				stat(fileInDir->d_name, &dirAttributes);
 				if ((int)dirAttributes.st_mtime > newestDirTime){
-					//printf(" - - - - Marking as newest folder.\n");
+					//Save as the newest folder
 					newestDirTime = (int)dirAttributes.st_mtime;
 					memset(newestDirName, '\0', sizeof(newestDirName));
 					strcpy(newestDirName, fileInDir->d_name);
@@ -129,7 +186,6 @@ int setDir(struct game* game){
 	closedir(dirToCheck);
 	// Assign directory if it exists
 	if(newestDirName >= 0){
-		//printf(" - - Assigning directory to %s.\n", newestDirName);
 		//Allocate new memory for game->directory string
 		game->directory = (char*)malloc(sizeof(char) * (strlen(newestDirName) + 1));
 		strcpy(game->directory, newestDirName);
@@ -139,30 +195,41 @@ int setDir(struct game* game){
 		//Return 1 if directory was found.
 		return 1;
 	}
-	//free(dirToCheck);
 	//Return 0 if directory could not be found.
 	return 0;
 }
 
-// Gets game path
+/**
+	Function getPath()
+		Params:	struct game
+		Return:	char* path taken (pre-formatted with '\n' in between rooms)
+**/
 char* getPath(struct game* game){
 	return game->path;
 }
 
-// Adds room to path
+/**
+	Function addPath()
+		Detail:	Adds the name of a room to the end of the list of rooms, tracked in game->path
+		Params:	struct game, struct room
+**/
 void addPath(struct game* game, struct room* room){
 	int n_strlen;
 	char old_path [256];
 	//Check if game->path is NULL
 	if(getPath(game) == NULL){
+			//Malloc space for the char*, then copy the name of the room into the newly malloc'd char*
 			n_strlen = strlen(getName(room));
 			game->path = (char*)malloc(sizeof(char) * ( n_strlen + 1));
 			strcpy(game->path, getName(room));
 	} else {
 		//If not NULL, copy it's contents.
 		strcpy(old_path, getPath(game));
+		//n_strlen is the string length of both the old path, and the new room
 		n_strlen = strlen(old_path) + strlen(getName(room));
+		//Free the old game->path
 		free(game->path);
+		//Malloc the new memory using the new string length, +2 chars for '\n' and '\0' characters
 		game->path = (char*)malloc(sizeof(char) * (n_strlen + 2));
 		//Assign new value
 		sprintf(game->path, "%s\n%s", old_path, getName(room));
@@ -170,12 +237,20 @@ void addPath(struct game* game, struct room* room){
 	game->path[n_strlen + 1] = '\0';
 }
 
-// Gets turn count
+/**
+	Function getTurn()
+		Params:	struct game
+		Return:	int turnCount
+**/
 int getTurn (struct game* game){
 	return game->turnCount;
 }
 
-// Initializes values in rooms array
+/**
+	Function initializeRoom()
+		Detail:	Initializer for struct room. Allocates memory for all variables
+		Params:	struct room pointer
+**/
 void initializeRoom(struct room** room){
 	*room = (struct room*)malloc(sizeof(struct room));
 	(*room)->name = (char*)malloc(sizeof(char));
@@ -183,12 +258,23 @@ void initializeRoom(struct room** room){
 	setNumOut(*room, 0);
 }
 
+/**
+	Function freeRoom()
+		Detail: Deallocates any memory used in the room
+		Params:	struct room
+**/
 void freeRoom(struct room* room){
 	free(room->name);
 	free(room->type);
 	resetOutbound(room);
 }
 
+/**
+	Function initializeGame()
+		Detail: Initializer for struct game. Allocates memory for game variables, 
+				and initializes the starting room.
+		Params:	struct game
+**/
 void initializeGame(struct game** game){
 	*game = (struct game*)malloc(sizeof(struct game));
 	(*game)->turnCount = 0;
@@ -199,6 +285,11 @@ void initializeGame(struct game** game){
 	setDir(*game);
 }
 
+/**
+	Function freeGame()
+		Detail:	Deallocates any memory used in the game
+		Params:	struct game
+**/
 void freeGame(struct game* game){
 	//free(game->turnCount);
 	free(game->path);
@@ -208,7 +299,12 @@ void freeGame(struct game* game){
 	free(game);
 }
 
-// Parses a file into currRoom.
+/**
+	Function parseRoom()
+		Detail:	Reads a given file f, parses information from it into the current room.
+				This is what moves the player from one room into the next.
+		Params:	struct game
+**/
 void parseRoom(FILE* f, struct game* game){
 	int i;
 	int num_lines = 0;
@@ -260,10 +356,14 @@ void parseRoom(FILE* f, struct game* game){
 	free(connection);
 }
 
-// Finds and parses room of a specific type. 
-// For setting the start/end room
-// Return 1 on success, 0 on fail.
-int findType (struct game* game, const char* type){
+/**
+	Function findChar()
+		Detail:	Iterates through all files and lines to locate a specific string (char*)
+				This is primarily used to locate the starting room, and confirm rooms of certain names exist.
+		Params:	struct game, char* c
+		Return:	boolean (1 on success, 0 of fail)
+**/
+int findChar (struct game* game, const char* c){
 	// Set variables
 	FILE *f;
 	int i, j, numChars;
@@ -283,102 +383,53 @@ int findType (struct game* game, const char* type){
 	//open the first file
 	i = 0;
 	while (i < TOT_ROOMS) {
-		//Print the current room
-		//printf(" - - FILE: %s\n", file_name);
 		//Search through file line by line until NULL
 		if(strstr(dir_info->d_name, "_ROOM") != NULL){
-			//printf(" - - - File found, opening: ");
+			//Found file
 			sprintf(file_path, "%s/%s", game->directory, file_name);
 			f = fopen(file_path, "r");
-			//printf("Successful.\n");
-			//printf(" - - - Getting lines...\n");
+			//Successfully opened the file
 			j = 1;
 			while (getline(&line, &buffer, f) != -1 && (j < MAX_CONNECTIONS + 3)) {
 				line[strlen(line) - 1] = '\0';
-				//printf(" - - - - LINE %d: %s\n", j, line);
-				//Look for line with substring matching type
-				if (strstr(line, type) != NULL) {
+				//Look for line with substring matching c
+				if (strstr(line, c) != NULL) {
 					//This file contains the correct room. Parse it.
-					//printf(" - - %s ROOM FOUND. PARSING.\n", type);
 					free(line);
 					parseRoom(f, game);
 					closedir(dir);
 					return 1;
 				}
-				//Iterate to next line
+				//If the string wasn't found, iterate to the next line
 				j++;
 			}
 			fclose(f);
+			//'i' keeps track of how many rooms have been checked
 			i++;
 		}
-		//Iterate to next file.
-		//printf(" - - - Iterating files\n");
+		//If the string wasn't found, iterate to the next file.
 		dir_info = readdir(dir);
 		sprintf(file_name, dir_info->d_name);
 	}
+	//Free variables and close directory. Return 0, since string wasn't found
 	free(line);
 	closedir(dir);
 	return 0;
 }
 
-// Returns the room of a specific name. For use with traversing to outbound rooms
-int findName (struct game* game, char* name){
-	// Set variables
-	FILE *f;
-	int i, j, numChars;
-	//char directory[256];
-	char file_name[256];
-	char file_path[256];
-	struct stat st;
-	struct dirent* dir_info;
-	
-	// Iterate to the first dir/file
-	DIR* dir = opendir(game->directory);
-	dir_info = readdir(dir);
-	strcpy(file_name, dir_info->d_name);
-	
-	i = 0;
-	while (i < TOT_ROOMS) {
-		//printf(" - - FILE: %s\n", file_name);
-		if(strstr(dir_info->d_name, "_ROOM") != NULL){
-			// Copy file name into variable
-			//printf(" - - - Comparing file name.\n");
-			file_name[strlen(file_name) - 5] = '\0';
-			//printf(" - - - - FILE: %s, TARGET: %s.\n", file_name, name);
-			// Compare file name
-			if(strcmp(file_name, name) == 0) {
-				//printf(" - - - - TARGET FOUND. GENERATING FILE PATH:\n");
-				// File has matching name.
-				// Create file path
-				sprintf(file_path, "%s/%s_ROOM", game->directory, file_name);
-				//printf(" %s\n",file_path);
-				f = fopen(file_path, "r");
-				parseRoom(f, game);
-				
-				closedir(dir);
-				return 1;
-			}
-		}
-		//Iterate to next file.
-		dir_info = readdir(dir);
-		strcpy(file_name, dir_info->d_name);
-		sprintf(file_name, dir_info->d_name);
-	}
-	closedir(dir);
-	return 0;
-}
-
-//Does printouts, and asks for users input.
+/**
+	Function turn()
+		Detail:	Primary game loop. Asks for user inputs, and calls functions in response.
+		Params:	struct game
+		Return:	boolean (1 on success, 0 of fail)
+**/
 int turn(struct game* game){
 	int i;
 	int running = 1;
 	size_t buffer = 0;
 	char* lineEntered = NULL;
-	
 	//Print initial information
-	//printf(" - Running turn().\n");
-	
-	// Check if currRoom is the END
+	//Check if currRoom is the END
 	if(strcmp(getType(game->currRoom), "END_ROOM") == 0){
 		free(lineEntered);
 		return 0;
@@ -405,7 +456,7 @@ int turn(struct game* game){
 			if (strcmp(lineEntered, getOutbound(game->currRoom, i)) == 0){
 				//Found the correct room
 				//Assign the 'found' room as the currRoom
-				if (findName(game, lineEntered) != 1){
+				if (findChar(game, lineEntered) != 1){
 					printf("NO MATCHING ROOM FOUND. GAME TERMINATING.\n\n");
 					free(lineEntered);
 					return 0;
@@ -421,8 +472,14 @@ int turn(struct game* game){
 	}
 }
 
-//Main Function
-int main(){
+/**
+	Function main()
+		Detail:	Initializes game and confirms that game files exists. If all files are present, runs game loop
+				and increments the number of turns taken.
+		Params: void
+		Return:	0 on exit
+**/
+int main(void){
 	
 	//Initialize variables and objects.
 	int running = 1;
@@ -438,14 +495,15 @@ int main(){
 	}
 	//Directory successfully found. Game continuing.
 	//Parse info to set start room	
-	if (findType(game, "START_ROOM") == 0){
+	if (findChar(game, "START_ROOM") == 0){
 		printf("NO START ROOM FOUND. GAME TERMINATING.\n");
 		return 0;
 	}
 	//Game runs until currRoom has type END_ROOM
 	while (running > 0){
-		//printf("Game loop %d.\n", getTurn(game));
+		//Game loop
 		running = turn(game);
+		//Increment turn count
 		if (running != 0) game->turnCount++;
 	}
 	//Game over, prints turncount and path taken
