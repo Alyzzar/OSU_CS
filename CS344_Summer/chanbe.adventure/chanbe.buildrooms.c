@@ -1,21 +1,24 @@
 /**
-Written by Ben Chan for Spring 2020, and Summer 2020 CS 344 terms.
+
+Written by Ben Chan for CS 344
+
 **/
+
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <fcntl.h>
-#include <string.h>
 
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
 
 /**
 	Struct for room type
-		Detail: Struct used to construct the room. Contains information 
+		Detail:	Struct used to construct the room. Contains information 
 				concerning room identity, and connections to other rooms.
-		Vars: 	char* name, char* type, numOutboundConnections, outboundConnections[]
+		Vars: 	char* name, char* type, int numOutboundConnections, struct outboundConnections[]
 **/
 struct room { 
 	char* name;
@@ -23,6 +26,10 @@ struct room {
 	int numOutboundConnections;
 	struct room* outboundConnections[MAX_CONNECTIONS];
 };
+
+/**-------------------------------------------------------------------
+						GETTERS/SETTERS
+-------------------------------------------------------------------**/
 
 /**
 	Function getName()
@@ -69,7 +76,7 @@ void setType(struct room* room, char* type){
 
 /**
 	Function getNumOut()
-		Detail: Returns the number of outbound connections to other rooms
+		Detail:	Returns the number of outbound connections to other rooms
 		Params:	struct room
 		Return:	int numOutboundConnections
 **/
@@ -79,7 +86,7 @@ int getNumOut(struct room* room){
 
 /**
 	Function setNumOut()
-		Detail: Sets the number of outbound rooms coming out of this room.
+		Detail:	Sets the number of outbound rooms coming out of this room.
 		Params:	struct room, int num
 **/
 void setNumOut(struct room* room, int num){
@@ -88,7 +95,7 @@ void setNumOut(struct room* room, int num){
 
 /**
 	Function getOutbound()
-		Detail: Returns the 'n'th room on the outboundConnections[] array of the given room.
+		Detail:	Returns the 'n'th room on the outboundConnections[] array of the given room.
 		Params: struct room, int n
 		Return: struct room
 **/
@@ -97,8 +104,23 @@ struct room* getOutbound(struct room* room, int n){
 }
 
 /**
+	Function getRandomRoom()
+		Detail:	Returns a random room from the graph. Does not validate connections.
+		Params: graph containing room structs
+		Return:	random room from graph
+**/
+struct room* GetRandomRoom(struct room** rooms){
+	int rand_num = rand() % TOT_ROOMS;
+	return rooms[rand_num];
+}
+
+/**-------------------------------------------------------------------
+						END OF GETTERS/SETTERS
+-------------------------------------------------------------------**/
+
+/**
 	Function isGraphFull()
-		Detail: Returns true if all rooms in graph have a minimum of 
+		Detail:	Returns true if all rooms in graph have a minimum of 
 				3 connections. False otherwise.
 		Params: graph containing room structs
 		Return: boolean value (1 or 0)
@@ -113,21 +135,9 @@ int IsGraphFull(struct room** rooms){
 	return 1;
 }
 
-
 /**
 	Function getRandomRoom()
-		Detail: Returns a random room from the graph. Does not validate connections.
-		Params: graph containing room structs
-		Return:	random room from graph
-**/
-struct room* GetRandomRoom(struct room** rooms){
-	int rand_num = rand() % TOT_ROOMS;
-	return rooms[rand_num];
-}
-
-/**
-	Function getRandomRoom()
-		Detail: Returns true if a connection can be added from Room x 
+		Detail:	Returns true if a connection can be added from Room x 
 				(< 6 outbound connections), false otherwise
 		Params: struct room
 		Return: boolean value (1 or 0)
@@ -273,11 +283,9 @@ void generateTypes(struct room** rooms){
 	
 	// Set MID_ROOM
 	for (i = 0; i < TOT_ROOMS; i++){
-		//printf(" - Loop to find unset room for MID_ROOM\n");
+		// Loop to find unset rooms for MID_ROOM
 		if((strcmp(getType(rooms[i]), "START_ROOM") != 0) && (strcmp(getType(rooms[i]), "END_ROOM") != 0 )){
-			//printf(" - - set room[%d] = MID_ROOM\n", rand_num);
 			setType(rooms[i], "MID_ROOM");
-			//printf(" - - break loop\n");
 		}
 	}
 }
@@ -339,7 +347,7 @@ void printOutbound(struct room* x){
 // Generates rooms/connections, and exports rooms to files
 /**
 	Function exportRooms()
-		Detail: Generates and exports a text file containing rooms and all relevant variables.
+		Detail:	Generates and exports a text file containing rooms and all relevant variables.
 				This function serves as the parent function of this code, and is executed by the main() function.
 **/
 void exportRooms(){
@@ -351,10 +359,10 @@ void exportRooms(){
 	int file_descriptor;
 	struct stat st = {0};
 	char *dir_name = (char*)malloc(buffer);
-	char *file_path = (char*)malloc(buffer);
 	char *file_connection = (char*)malloc(buffer);
-	char *file_header = (char*)malloc(buffer);
 	char *file_footer = (char*)malloc(buffer);
+	char *file_header = (char*)malloc(buffer);
+	char *file_path = (char*)malloc(buffer);
 	char *curr_file = (char*)malloc(buffer);
 	ssize_t nread, nwritten;
 	
@@ -392,7 +400,6 @@ void exportRooms(){
 		
 		//Write header to the file
 		sprintf(file_header, "ROOM NAME: %s\n", getName(rooms[i]));
-		//file_header[strlen(header)] = '\0';
 		write(file_descriptor, file_header, (strlen(file_header)) * sizeof(char));
 		
 		//Writing connections
@@ -406,10 +413,10 @@ void exportRooms(){
 		write(file_descriptor, file_footer, (strlen(file_footer)) * sizeof(char));
 	}
 	free (dir_name);
-	free (file_path);
 	free (file_connection);
-	free (file_header);
 	free (file_footer);
+	free (file_header);
+	free (file_path);
 	free (curr_file);
 	//deinitializeRooms(rooms);
 }
@@ -418,7 +425,7 @@ void exportRooms(){
 	Function main()
 		Detail: The main function. Creates a seed for rand() generation, then executes exportRooms().
 		Params:  void
-		Return:  0 on successful execution.
+		Return:  0 on exit
 **/
 int main (void) {
 	//Create seed for random variables
