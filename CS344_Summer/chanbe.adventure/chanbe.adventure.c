@@ -357,13 +357,13 @@ void parseRoom(FILE* f, struct game* game){
 }
 
 /**
-	Function findChar()
-		Detail:	Iterates through all files and lines to locate a specific string (char*)
-				This is primarily used to locate the starting room, and confirm rooms of certain names exist.
+	Function findType()
+		Detail:	Iterates through all files and lines to locate a specific string (char*).
+				This is primarily used to locate the starting room.
 		Params:	struct game, char* c
 		Return:	boolean (1 on success, 0 of fail)
 **/
-int findChar (struct game* game, const char* c){
+int findType (struct game* game, const char* c){
 	// Set variables
 	FILE *f;
 	int i, j, numChars;
@@ -418,6 +418,59 @@ int findChar (struct game* game, const char* c){
 }
 
 /**
+	Function findName()
+		Detail:	Iterates through all files (first line only) to locate a specific name (char*).
+				This is used to set the new currRoom.
+		Params:	struct game, char* c
+		Return:	boolean (1 on success, 0 of fail)
+**/
+int findName (struct game* game, char* c){
+	// Set variables
+	FILE *f;
+	int i, j, numChars;
+	//char directory[256];
+	char file_name[256];
+	char file_path[256];
+	struct stat st;
+	struct dirent* dir_info;
+	
+	// Iterate to the first dir/file
+	DIR* dir = opendir(game->directory);
+	dir_info = readdir(dir);
+	strcpy(file_name, dir_info->d_name);
+	
+	i = 0;
+	while (i < TOT_ROOMS) {
+		//printf(" - - FILE: %s\n", file_name);
+		if(strstr(dir_info->d_name, "_ROOM") != NULL){
+			// Copy file name into variable
+			//printf(" - - - Comparing file name.\n");
+			file_name[strlen(file_name) - 5] = '\0';
+			//printf(" - - - - FILE: %s, TARGET: %s.\n", file_name, name);
+			// Compare file name
+			if(strcmp(file_name, c) == 0) {
+				//printf(" - - - - TARGET FOUND. GENERATING FILE PATH:\n");
+				// File has matching string.
+				// Create file path
+				sprintf(file_path, "%s/%s_ROOM", game->directory, file_name);
+				//printf(" %s\n",file_path);
+				f = fopen(file_path, "r");
+				parseRoom(f, game);
+				//fclose(f)
+				closedir(dir);
+				return 1;
+			}
+		}
+		//Iterate to next file.
+		dir_info = readdir(dir);
+		strcpy(file_name, dir_info->d_name);
+		sprintf(file_name, dir_info->d_name);
+	}
+	closedir(dir);
+	return 0;
+}
+
+/**
 	Function turn()
 		Detail:	Primary game loop. Asks for user inputs, and calls functions in response.
 		Params:	struct game
@@ -456,7 +509,7 @@ int turn(struct game* game){
 			if (strcmp(lineEntered, getOutbound(game->currRoom, i)) == 0){
 				//Found the correct room
 				//Assign the 'found' room as the currRoom
-				if (findChar(game, lineEntered) != 1){
+				if (findName(game, lineEntered) != 1){
 					printf("NO MATCHING ROOM FOUND. GAME TERMINATING.\n\n");
 					free(lineEntered);
 					return 0;
@@ -495,7 +548,7 @@ int main(void){
 	}
 	//Directory successfully found. Game continuing.
 	//Parse info to set start room	
-	if (findChar(game, "START_ROOM") == 0){
+	if (findType(game, "START_ROOM") == 0){
 		printf("NO START ROOM FOUND. GAME TERMINATING.\n");
 		return 0;
 	}
