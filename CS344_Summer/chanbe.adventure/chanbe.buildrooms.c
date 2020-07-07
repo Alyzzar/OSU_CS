@@ -1,5 +1,5 @@
 /**
-Written by Ben Chan for both Spring 2020, and Summer 2020 CS 344 terms.
+Written by Ben Chan for Spring 2020, and Summer 2020 CS 344 terms.
 **/
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +11,12 @@ Written by Ben Chan for both Spring 2020, and Summer 2020 CS 344 terms.
 #define MAX_CONNECTIONS 6
 #define TOT_ROOMS 7
 
-// Create struct for rooms
+/**
+	Struct for room type
+		Detail: Struct used to construct the room. Contains information 
+				concerning room identity, and connections to other rooms.
+		Vars: 	char* name, char* type, numOutboundConnections, outboundConnections[]
+**/
 struct room { 
 	char* name;
 	char* type;
@@ -19,10 +24,20 @@ struct room {
 	struct room* outboundConnections[MAX_CONNECTIONS];
 };
 
+/**
+	Function getName()
+		Params:	struct room
+		Return:	char* name
+**/
 char* getName(struct room* room){
 	return room->name;
 }
 
+
+/**
+	Function setName()
+		Params: struct room, char* name
+**/
 void setName(struct room* room, char* name){
 	//Allocate new memory
 	room->name = (char*)malloc(sizeof(char) * (strlen(name) + 1));
@@ -31,10 +46,19 @@ void setName(struct room* room, char* name){
 	room->name[strlen(name)] = '\0';
 }
 
+/**
+	Function getType()
+		Params: struct room
+		Return: char* type (start, middle, or end room)
+**/
 char* getType(struct room* room){
 	return room->type;
 }
 
+/**
+	Function setType()
+		Params: struct room, char* type
+**/
 void setType(struct room* room, char* type){
 	//Allocate new memory
 	room->type = (char*)malloc(sizeof(char) * (strlen(type) + 1));
@@ -43,19 +67,42 @@ void setType(struct room* room, char* type){
 	room->type[strlen(type)] = '\0';
 }
 
+/**
+	Function getNumOut()
+		Detail: Returns the number of outbound connections to other rooms
+		Params:	struct room
+		Return:	int numOutboundConnections
+**/
 int getNumOut(struct room* room){
 	return room->numOutboundConnections;
 }
 
+/**
+	Function setNumOut()
+		Detail: Sets the number of outbound rooms coming out of this room.
+		Params:	struct room, int num
+**/
 void setNumOut(struct room* room, int num){
 	room->numOutboundConnections = num;
 }
 
+/**
+	Function getOutbound()
+		Detail: Returns the 'n'th room on the outboundConnections[] array of the given room.
+		Params: struct room, int n
+		Return: struct room
+**/
 struct room* getOutbound(struct room* room, int n){
 	return room->outboundConnections[n];
 }
 
-// Returns true if all rooms have 3 to 6 outbound connections, false otherwise
+/**
+	Function isGraphFull()
+		Detail: Returns true if all rooms in graph have a minimum of 
+				3 connections. False otherwise.
+		Params: graph containing room structs
+		Return: boolean value (1 or 0)
+**/
 int IsGraphFull(struct room** rooms){
 	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
@@ -66,13 +113,25 @@ int IsGraphFull(struct room** rooms){
 	return 1;
 }
 
-// Returns a random Room, does NOT validate if connection can be added
+
+/**
+	Function getRandomRoom()
+		Detail: Returns a random room from the graph. Does not validate connections.
+		Params: graph containing room structs
+		Return:	random room from graph
+**/
 struct room* GetRandomRoom(struct room** rooms){
 	int rand_num = rand() % TOT_ROOMS;
 	return rooms[rand_num];
 }
 
-// Returns true if a connection can be added from Room x (< 6 outbound connections), false otherwise
+/**
+	Function getRandomRoom()
+		Detail: Returns true if a connection can be added from Room x 
+				(< 6 outbound connections), false otherwise
+		Params: struct room
+		Return: boolean value (1 or 0)
+**/
 int CanAddConnectionFrom(struct room* x){
 	if (getNumOut(x) < MAX_CONNECTIONS){
 	  return 1;
@@ -80,7 +139,11 @@ int CanAddConnectionFrom(struct room* x){
 	return 0;
 }
 
-// Connects Rooms x and y together, does not check if this connection is valid
+/**
+	Function connectRoom()
+		Detail: Connects two rooms together
+		Params: struct room x, struct room y
+**/
 void ConnectRoom(struct room* x, struct room* y){
 	//printf("Connecting Rooms %s and %s\n", getName(x), getName(y));
 	int n_x, n_y;
@@ -100,27 +163,34 @@ void ConnectRoom(struct room* x, struct room* y){
 	//printf("%d\n", y->numOutboundConnections);
 }
 
-// Adds a random, valid outbound connection from a Room to another Room
+
+/**
+	Function AddRandomConnection()
+		Detail: Adds a random, valid outbound connection from a Room to another Room
+		Params: graph containing room structs
+**/
 void AddRandomConnection(struct room** rooms){
   struct room* x;	//Pointer to a connectable random room
   struct room* y;	//Pointer to a different, connectable random room
 
   while(1){
     x = GetRandomRoom(rooms);
-
     if (CanAddConnectionFrom(x) == 1)
-      break;
-  }
-
-  do{
-    y = GetRandomRoom(rooms);
-  }
-  while(CanAddConnectionFrom(y) == 0 || IsSameRoom(x, y) == 1 || ConnectionAlreadyExists(x, y) == 1);
-
-  ConnectRoom(x, y);
+		break;
+	}
+	do{
+		y = GetRandomRoom(rooms);
+	}
+	while(CanAddConnectionFrom(y) == 0 || IsSameRoom(x, y) == 1 || ConnectionAlreadyExists(x, y) == 1);
+	ConnectRoom(x, y);
 }
 
-// Returns true if a connection from Room x to Room y already exists, false otherwise
+/**
+	Function ConnectionAlreadyExists()
+		Detail: Returns true if a connection from Room x to Room y already exists, false otherwise
+		Params: struct room x, struct room y
+		Return: boolean value (1 or 0)
+**/
 int ConnectionAlreadyExists(struct room* x, struct room* y){	
 	int connections = 0;
 	// for loop to see if y exists in x's outbound rooms
@@ -134,13 +204,22 @@ int ConnectionAlreadyExists(struct room* x, struct room* y){
 	return 0;
 }
 
-// Returns true if Rooms x and y are the same Room, false otherwise
+/**
+	Function IsSameRoom()
+		Detail: Returns true if Rooms x and y are the same Room, false otherwise
+		Params: struct room x, struct room y
+		Return: boolean value (1 or 0)
+**/
 int IsSameRoom(struct room* x, struct room* y){
 	if (x == y) return 1;
 	return 0;
 }
 
-// Set room names
+/**
+	Function generateNames()
+		Detail: Randomly assigns room names from a list of 10 pre-generated names
+		Params: graph containing room structs
+**/
 void generateNames(struct room** rooms){
 	int i, rand_num;
 	// Create array of 10 potential room names
@@ -166,7 +245,11 @@ void generateNames(struct room** rooms){
 	}
 }
 
-// Set room types
+/**
+	Function generateTypes()
+		Detail: Randomly assigns start and end rooms. Assigns the rest as middle rooms.
+		Params: graph containing room structs
+**/
 void generateTypes(struct room** rooms){
 	int i, rand_num;
 	
@@ -199,7 +282,12 @@ void generateTypes(struct room** rooms){
 	}
 }
 
-//Initializes values in rooms array
+
+/**
+	Function initializeRooms()
+		Detail: Initializes values in the room struct. Allocates memory for arrays.
+		Params: graph containing room structs
+**/
 void initializeRooms(struct room** rooms){
 	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
@@ -210,6 +298,11 @@ void initializeRooms(struct room** rooms){
 	}
 }
 
+/**
+	Function IsSameRoom()
+		Detail: Deinitializes rooms in graph
+		Params: graph containing room structs
+**/
 void deinitializeRooms (struct room** rooms){
 	int i;
 	for (i = 0; i < TOT_ROOMS; i++){
@@ -217,7 +310,11 @@ void deinitializeRooms (struct room** rooms){
 	}
 }
 
-//Prints value of a room for testing purposes
+/**
+	Function printRoom()
+		Detail: Prints room and it's variables for debugging/testing
+		Params: struct room
+**/
 void printRoom(struct room* x){
 	printf(" - PRINT ROOM\n");
 	printf(" - - Name: %s\n", getName(x));
@@ -226,6 +323,11 @@ void printRoom(struct room* x){
 }
 
 //Prints outbound rooms for testing purposes
+/**
+	Function printOutbound()
+		Detail: Prints all outbounds rooms from a given room, for debugging/testing
+		Params: struct room
+**/
 void printOutbound(struct room* x){
 	int i;
 	printf(" - PRINT OUTBOUNDS\n");
@@ -235,6 +337,11 @@ void printOutbound(struct room* x){
 }
 
 // Generates rooms/connections, and exports rooms to files
+/**
+	Function exportRooms()
+		Detail: Generates and exports a text file containing rooms and all relevant variables.
+				This function serves as the parent function of this code, and is executed by the main() function.
+**/
 void exportRooms(){
 	//Variables
 	int i;
@@ -251,50 +358,32 @@ void exportRooms(){
 	char *curr_file = (char*)malloc(buffer);
 	ssize_t nread, nwritten;
 	
-	//printf("Variables defined, generating rooms\n");
 	// Allocate space for 7 room structs
 	struct room* rooms[TOT_ROOMS];
 	initializeRooms(rooms);
-	
 	// Create 7 rooms w/ generated (pre-listed) names
-	//printf("Gen. names\n");
 	generateNames(rooms);
-	//printf("Gen. types\n");
 	generateTypes(rooms);
-	
-	//printf("Generating room connections\n");
 	// Create all connections in graph
 	// Runs until graph is full (every room has 3 - 6 connections)
 	while (IsGraphFull(rooms) == 0)
 	{
 	  AddRandomConnection(rooms);
 	}
-	
-	//printf("Generating file directory\n");
 	// Generate file directory
 	sprintf(dir_name, "%s%d", "chanbe.rooms.", pid);
 	
 	if (stat(dir_name, &st) == -1){
 		mkdir(dir_name, 0700);
 	}
-	
-	//printf("Generating file for write\n");
 	// Open file to write
 	for(i = 0; i < TOT_ROOMS; i++){
 		// Set curr_file to be the generated file's name
 		sprintf(curr_file, "%s_ROOM", getName(rooms[i]));
-		//printf(" - Generated file name = %s\n", curr_file);
-		
 		// Set file_path to be the location of the file (../dir/file)
 		sprintf(file_path, "%s/%s", dir_name, curr_file);
-		//printf(" - Current directory = %s\n",dir_name);
-		//printf(" - Generated file path = %s\n", file_path);
-		
-		//printf(" - Creating file to read/write\n");
+		// Open the file
 		file_descriptor = open(file_path, O_RDWR | O_CREAT | O_TRUNC, 0700);
-		
-		//printf(" - Successfully created and opened file\n");
-		
 		if(file_descriptor == -1){
 			printf("Error, could not generate room files at \"%s\"\n", file_path);
 			perror("In main ()");
@@ -325,10 +414,16 @@ void exportRooms(){
 	//deinitializeRooms(rooms);
 }
 
+/**
+	Function main()
+		Detail: The main function. Creates a seed for rand() generation, then executes exportRooms().
+		Params:  void
+		Return:  0 on successful execution.
+**/
 int main (void) {
 	//Create seed for random variables
 	srand((unsigned) time(0));
 	//Run program
 	exportRooms();
-	//printf("File generation complete.");
+	return 0;
 }
