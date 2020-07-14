@@ -121,6 +121,19 @@ char* getOutbound(struct room* room, int n){
 }
 
 /**
+	Function getPath()
+		Params:	struct game
+		Return:	char* path taken (pre-formatted with '\n' in between rooms)
+**/
+char* getPath(struct game* game){
+	return game->path;
+}
+
+/**-------------------------------------------------------------------
+						END OF GETTERS/SETTERS
+-------------------------------------------------------------------**/
+
+/**
 	Function addOutbound()
 		Detail:	Adds the input char* to the array of outbound nodes connected to the given room
 		Params:	struct room, char* connecting room (name only)
@@ -149,7 +162,8 @@ void resetOutbound(struct room* room){
 
 /**
 	Function setDir()
-		Detail:	Automatically finds and sets the file directory to the newest folder with the correct prefix
+		Detail:	Automatically finds and sets the file directory to the newest folder with the correct prefix.
+				Part of the initialization process
 		Params:	struct game
 		Return:	boolean value (1 on success, 0 on fail)
 **/
@@ -197,15 +211,6 @@ int setDir(struct game* game){
 	}
 	//Return 0 if directory could not be found.
 	return 0;
-}
-
-/**
-	Function getPath()
-		Params:	struct game
-		Return:	char* path taken (pre-formatted with '\n' in between rooms)
-**/
-char* getPath(struct game* game){
-	return game->path;
 }
 
 /**
