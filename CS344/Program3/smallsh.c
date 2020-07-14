@@ -1,291 +1,273 @@
-#include <sys/types.h>
-#include <unistd.h>
+/**
+	Shell requirements
+		3 built in commands [exit, cd, status]
+		Ignore comments [Lines beginning with # characters]
+		CTRL-C = SIGINT
+		CTRL-Z = SIGTSTP
+**/
+
+#include <fcntl.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <signal.h>
-#include <fcntl.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-#define InputLengthMax 2048
+int bg_allowed = 1;		//Used to catch SIGTSTP
 
-//Global variables, function declarations
-int allowBackground = 1;
-void getInput(char*[], int*, char[], char[], int);
-void execCmd(char*[], int*, struct sigaction, int*, char[], char[]);
+void initializeSmallsh (struct shell);
+void runSmallsh();
+char* getInput(struct shell);
 void catchSIGTSTP(int);
-void printExitStatus(int);
+void execCMD(struct shell*, int, struct sigaction);
 
-/* Main
- * Receives and parses user input
- * Calls child functions
- */
-int main(){
-	//Variables
-	int i;
-	int cont = 1;
-	int exitStatus = 0;
-	int background = 0;
-	int pid = getpid();
-	char inputFile[256] = "";
-	char outputFile[256] = "";
-	char* input[512];
-	
-	//Make sure input array is NULL
-	for (i=0; i < 512; i++) {
-		input[i] = NULL;
-	}
-	
-	// CTRL + C --> sigint
-	struct sigaction sa_sigint = {0};
-	sa_sigint.sa_handler = SIG_IGN;
-	sigfillset(&sa_sigint.sa_mask);
-	sa_sigint.sa_flags = 0;
-	sigaction(SIGINT, &sa_sigint, NULL);
+struct shell{
+	int bg_status;
+	int exit_status;
+	int pid;
+	char f_in [256];
+	char f_out [256];
+	char* input [512];
+};
 
-	// CTRL + Z --> sigstop
-	struct sigaction sa_sigtstp = {0};
-	sa_sigtstp.sa_handler = catchSIGTSTP;
-	sigfillset(&sa_sigtstp.sa_mask);
-	sa_sigtstp.sa_flags = 0;
-	sigaction(SIGTSTP, &sa_sigtstp, NULL);
-	
-	do {
-		// Get input
-		getInput(input, &background, inputFile, outputFile, pid);
-
-		// Skip comments/spaces
-		if (input[0][0] == '#' ||
-					input[0][0] == '\0') {
-			continue;
-		}
-		
-		// Exit
-		else if (strcmp(input[0], "exit") == 0) {
-			cont = 0;
-		}
-	
-		// Change dir
-		else if (strcmp(input[0], "cd") == 0) {
-			// Explicit directory
-			if (input[1]) {
-				if (chdir(input[1]) == -1) {
-					printf("Directory not found.\n");
-					fflush(stdout);
-				}
-			} else {
-			// Home directory
-				chdir(getenv("HOME"));
-			}
-		}
-
-		// Return file/dir status
-		else if (strcmp(input[0], "status") == 0) {
-			printExitStatus(exitStatus);
-		}
-
-		// Other built in commands
-		else {
-			execCmd(input, &exitStatus, sa_sigint, &background, inputFile, outputFile);
-		}
-
-		// Reset vars
-		// Reset input array to NULL
-		for (i=0; input[i]; i++) {
-			input[i] = NULL;
-		}
-		background = 0;
-		inputFile[0] = '\0';
-		outputFile[0] = '\0';
-
-	} while (cont);
-	
-	return 0;
+void intializeSmallsh(struct shell* smallsh){
+	smallsh->bg_status = 0;
+	smallsh->exit_status = 0;
+	smallsh->pid = getPID();
+	smallsh->f_in = "";
+	smallsh->f_out = "";
+	smallsh->input = "";
 }
 
-/* getInput
- * parses input via stdin or from file
- * stores parsed input in variable 'input'
- */
- void getInput(char* arr[], int* background, char inputName[], char outputName[], int pid) {
-	
-	char input[InputLengthMax];
-	int i, j;
+void runSmallsh(struct shell* smallsh){
+	//Variables
+	int i;
+	int running = 1;
 
-	// Get input
+	//Get user input
+	
+	//CTRL+C
+	struct sigaction sigint = {0};
+	sigint.sa_handler = SIG_IGN;
+	sigfillset(&sigint.sa_mask);
+	sigint.sa_flags = 0;
+	sigaction(SIGINT, &sigint, NULL);
+
+	//CTRL+Z
+	struct sigaction sigtstp = {0};
+	sigtstp.sa_handler = catchSIGTSTP;
+	sigfillset(&sigtstp.sa_mask);
+	sigtstp.sa_flags = 0;
+	sigaction(SIGTSTP, &sigtstp, NULL);
+	
+	do{
+		//Set input array to null at beginning of each loop before receiving new input
+		for (i = 0, i < 512; i++){
+			smallsh->input[i] = NULL;
+		}
+		//Get user input
+		smallsh->input = getInput(smallsh);
+		
+		//Skip comments
+		if(smallsh->input[0] == "#"){
+			continue;
+		}
+		if(strcmp(smallsh->input[0], "cd") == 0){
+		//cd
+			if (smallsh->input[1]){
+				//cd to specified directory
+				if (chdir(smallsh->input[1]) == -1){
+					printf ("Directory \"%s\" could not be found. Directory has not been changed.\n", smallsh->input[1]);
+				}
+				// else, cd was successful
+			} else {
+				//cd to home directory
+				chdir(getenv("HOME"));
+			}
+		} else if (strcmp(smallsh->input[0], "status") == 0) {
+		//status
+			printExitStatus(exitStatus);
+		} else if (strcmp(smallsh->input[0], "exit") == 0) {
+		//exit
+			running = 0;
+		} else {
+		//other commands
+			execCMD(&smallsh, &exitStatus, sigint);
+		}
+		
+	} while (running);
+	
+}
+
+void execCMD (struct shell* smallsh, int* exitStatus, struct sigaction sa){
+	int input, output, result;
+	pid_t cmdPID = -5;
+	
+	//Fork the child process
+	cmdPID = fork();
+	
+	//Execute the command
+	if (cmdPID < 0){
+		//fork() returned a negative value, failed to create process
+		perror ("Failed to create child process.\n");
+		exit(1);
+	} else if (cmdPID == 0){
+		//fork() returned 0, returned to the newly created process
+		// Deal with CTRL+C
+		sa.handler = SIG_DFL;
+		sigaction(SIGINT, &sa, NULL);
+		// Input file
+		if (strcmp(smallsh->f_in, "") != 0) {
+			// Open file
+			input = open(smallsh->f_in, O_RDONLY);
+			if (input == -1) {
+				perror("Could not open input file\n");
+				exit(1);
+			}
+			/*// Assign file
+			result = dup2(input, 0);
+			if (result == -1) {
+				perror("Could not assign input file\n");
+				exit(2);
+			}*/
+			// Close input file on exec
+			fcntl(input, F_SETFD, FD_CLOEXEC);
+		}
+		// Output file
+		if (strcmp(smallsh->f_out, "") != 0) {
+			// Open file
+			output = open(smallsh->f_out, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+			if (output == -1) {
+				perror("Could not open output file\n");
+				exit(1);
+			}
+			/*// Assign file
+			result = dup2(output, 1);
+			if (result == -1) {
+				perror("Could not assign output file\n");
+				exit(2);
+			}*/
+			// Close output file on exec
+			fcntl(output, F_SETFD, FD_CLOEXEC);
+		}
+		
+		// Execute the command
+			if (execvp(smallsh->input[0], smallsh->input)) {
+				// If cmd couldn't be executed
+				printf("%s could not be found. Command not executed\n", arr[0]);
+				fflush(stdout);
+				exit(2);
+			}
+	} else {
+		//fork() returned a positive value. Returned to parent process. cmdPID = new child's PID
+		//Execute background process, if there is an available slot for bg process to run.
+		if (smallsh->bg_status && bg_allowed){
+			pid_t truePID = waitpid(cmdPID, exitStatus, WNOHANG);
+			printf("Background process's PID is %d\n", cmdPID);
+			fflush(stdout);
+		} else {
+			pid_t truePID = waitpid(cmdPID, exitStatus, 0);
+		}
+		
+		while ((cmdPID = waitpid(-1, exitStatus, WNOHANG)) > 0) {
+			printf("Child process with PID %d was terminated.\n", spawnPid);
+			printExitStatus(*exitStatus);
+			fflush(stdout);
+		}
+		
+	}
+	
+	
+}
+
+void getInput (struct shell* smallsh) {
+	int MaxLength = 2048;
+	char fullInput [MaxLength];
+	int i, j;
+	
+	//Fill fullInput with NULL characters
+	for(i = 0; i < MaxLength, i++){
+		fullInput[i] = NULL;
+	}
+	//As per assignment instructions, input lines are marked by ": "
 	printf(": ");
 	fflush(stdout);
-	fgets(input, InputLengthMax, stdin);
-
-	// Skip newline characters
-	int found = 0;
-	for (i=0; !found && i<InputLengthMax; i++) {
-		if (input[i] == '\n') {
-			input[i] = '\0';
-			found = 1;
-		}
-	}
-
-	// If input is empty, return nothing
-	if (!strcmp(input, "")) {
-		arr[0] = strdup("");
+	
+	//Gets the input
+	fgets(fullInput, 2048, stdin);
+	
+	//Check that input is not empty
+	if (fullInput[i] = NULL){
+		//Input empty, return from function
+		smallsh->input[0] = strdup("");
 		return;
 	}
-
-	// Break up input using strtok
+	//Since input is not empty, convert "\n" to "\0" to signify seperate commands
+	for (i = 0; (i < MaxLength && fullInput[i] != NULL), i++){
+		if (fullInput[i] == "\n") fullInput [i] = "\0";
+	}
+	//Use string token to further parse input
 	const char space[2] = " ";
 	char *token = strtok(input, space);
-
-	for (i=0; token; i++) {
-		// & == background process
-		if (!strcmp(token, "&")) {
-			*background = 1;
-		}
-		// < == input file
-		else if (!strcmp(token, "<")) {
+	
+	for (i = 0; token; i++) {
+		if (!strcmp(token, "<")) {
+			// < Input file
 			token = strtok(NULL, space);
 			strcpy(inputName, token);
-		}
-		// > == output file
-		else if (!strcmp(token, ">")) {
+		} else if (!strcmp(token, ">")) {
+			// > Output file
 			token = strtok(NULL, space);
 			strcpy(outputName, token);
-		}
-		// Other:
-		else {
-			arr[i] = strdup(token);
+		} else if (!strcmp(token, "&")) {
+			// & Background process
+			smallsh->background = 1;
+		} else {
+			smallsh->input[i] = strdup(token);
 			// Replace $$ with pid
-			// Only occurs at end of string in testscirpt
-			for (j=0; arr[i][j]; j++) {
-				if (arr[i][j] == '$' &&
-					 arr[i][j+1] == '$') {
-					arr[i][j] = '\0';
-					snprintf(arr[i], 256, "%s%d", arr[i], pid);
+			for (j=0; smallsh->input[i][j]; j++) {
+				if (smallsh->input[i][j] == '$'
+				 && smallsh->input[i][j+1] == '$') {
+					smallsh->input[i][j] = '\0';
+					snprintf(smallsh->input[i], 256, "%s%d", smallsh->input[i], smallsh->pid);
 				}
 			}
 		}
-		// Next!
+		//Set token to NULL in prepartion of next loop
 		token = strtok(NULL, space);
 	}
 }
 
-/* execCmd
- * Forks the process
- */
-void execCmd(char* arr[], int* childExitStatus, struct sigaction sa, int* background, char inputName[], char outputName[]) {
-	
-	int input, output, result;
-	pid_t spawnPid = -5;
-
-	spawnPid = fork();
-	switch (spawnPid) {
-		
-		case -1:	;
-			perror("Hull Breach!\n");
-			exit(1);
-			break;
-		
-		case 0:	;
-			// Take ^C as default
-			sa.sa_handler = SIG_DFL;
-			sigaction(SIGINT, &sa, NULL);
-
-			// Handle the input file
-			if (strcmp(inputName, "")) {
-				// Open file
-				input = open(inputName, O_RDONLY);
-				if (input == -1) {
-					perror("Unable to open input file\n");
-					exit(1);
-				}
-				// Assign file
-				result = dup2(input, 0);
-				if (result == -1) {
-					perror("Unable to assign input file\n");
-					exit(2);
-				}
-				// Set input file to close on execution
-				fcntl(input, F_SETFD, FD_CLOEXEC);
-			}
-			// Handle the ouput file
-			if (strcmp(outputName, "")) {
-				// Open file
-				output = open(outputName, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-				if (output == -1) {
-					perror("Unable to open output file\n");
-					exit(1);
-				}
-				// Assign file
-				result = dup2(output, 1);
-				if (result == -1) {
-					perror("Unable to assign output file\n");
-					exit(2);
-				}
-				// Set output file to close on execution
-				fcntl(output, F_SETFD, FD_CLOEXEC);
-			}
-			
-			// Execute the command
-			if (execvp(arr[0], (char* const*)arr)) {
-				printf("%s: no such file or directory\n", arr[0]);
-				fflush(stdout);
-				exit(2);
-			}
-			break;
-		
-		default:	;
-			// Execute background process if background process is currently available
-			if (*background && allowBackground) {
-				pid_t actualPid = waitpid(spawnPid, childExitStatus, WNOHANG);
-				printf("background pid is %d\n", spawnPid);
-				fflush(stdout);
-			}
-			// Else, execute as normal
-			else {
-				pid_t actualPid = waitpid(spawnPid, childExitStatus, 0);
-			}
-
-		// Check for terminated processes in background	
-		while ((spawnPid = waitpid(-1, childExitStatus, WNOHANG)) > 0) {
-			printf("child %d terminated\n", spawnPid);
-			printExitStatus(*childExitStatus);
-			fflush(stdout);
-		}
-	}
-}
-
-/* catchSIGTSTP
- * Toggles allowBackground between 1 and 0. Determines whether a background process can be run.
- */
-void catchSIGTSTP(int signo) {
-
-	// 1 --> 0, display matching message to terminal.
-	if (allowBackground == 1) {
-		char* message = "Entering foreground-only mode (& is now ignored)\n";
-		write(1, message, 49);
-		fflush(stdout);
-		allowBackground = 0;
-	}
-
-	// 0 --> 1, display matching message to terminal.
-	else {
-		char* message = "Exiting foreground-only mode\n";
+void catchSIGTSTP (int sig_o) {
+	char* message;
+	//Toggle bg_allowed between 0 and 1
+	bg_allowed = ((bg_allowed - 1) * -1);
+	if (bg_allowed == 1){
+		message = "Exiting foreground-only mode.\n";
 		write (1, message, 29);
 		fflush(stdout);
-		allowBackground = 1;
+	} else { //bg_allowed == 0
+		message = "Entering foreground-only mode. (& is now ignored)\n";
+		write(1, message, 49);
+		fflush(stdout);
 	}
 }
 
-/* printExitStatus
- * Input is the child process's exit method.
- * Prints the exit status. Called as the process is terminating.
- */
-void printExitStatus(int childExitMethod) {
-	
-	if (WIFEXITED(childExitMethod)) {
-		// Exit via status. Print the status.
-		printf("exit value %d\n", WEXITSTATUS(childExitMethod));
+void printExitStatus(int exit_method) {
+	//Prints exit method from child process.
+	if (WIFEXITED(exit_method)) {
+		printf("exit value %d.\n", WEXITSTATUS(exit_method));
 	} else {
-		// Exit via signal. Print the signal.
-		printf("terminated by signal %d\n", WTERMSIG(childExitMethod));
+		printf("terminated by signal %d.\n", WTERMSIG(exit_method));
 	}
+}
+
+int main(void){
+	struct shell smallsh;
+	initializeShell(smallsh);
+	
+	runShell(&smallsh);
+	
+	return 0;
 }
