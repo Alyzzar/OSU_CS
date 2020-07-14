@@ -14,15 +14,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int bg_allowed = 1;		//Used to catch SIGTSTP
-
-void initializeSmallsh (struct shell);
-void runSmallsh();
-char* getInput(struct shell);
-void catchSIGTSTP(int);
-void execCMD(struct shell*, int, struct sigaction);
-
-struct shell(){
+struct shell{
 	int bg_status;
 	int exit_status;
 	int pid;
@@ -30,6 +22,13 @@ struct shell(){
 	char f_out [256];
 	char* input [512];
 };
+
+int bg_allowed = 1;		//Used to catch SIGTSTP
+void initializeSmallsh (struct shell);
+void runSmallsh();
+char* getInput(struct shell);
+void catchSIGTSTP(int);
+void execCMD(struct shell*, int*, struct sigaction);
 
 void intializeSmallsh(struct shell* smallsh){
 	smallsh->bg_status = 0;
@@ -64,31 +63,31 @@ void runSmallsh(struct shell* smallsh){
 	do{
 		//Set input array to null at beginning of each loop before receiving new input
 		for (i = 0, i < 512; i++){
-			smallsh.input[i] = NULL;
+			smallsh->input[i] = NULL;
 		}
 		//Get user input
-		input = getInput(smallsh);
+		smallsh->input = getInput(smallsh);
 		
 		//Skip comments
-		if(smallsh.input[0] == "#"){
+		if(smallsh->input[0] == "#"){
 			continue;
 		}
-		if(strcmp(input[0], "cd") == 0){
+		if(strcmp(smallsh->input[0], "cd") == 0){
 		//cd
-			if (input[1]){
+			if (smallsh->input[1]){
 				//cd to specified directory
-				if (chdir(input[1]) == -1){
-					printf ("Directory \"%s\" could not be found. Directory has not been changed.\n", input[1]);
+				if (chdir(smallsh->input[1]) == -1){
+					printf ("Directory \"%s\" could not be found. Directory has not been changed.\n", smallsh->input[1]);
 				}
 				// else, cd was successful
 			} else {
 				//cd to home directory
 				chdir(getenv("HOME"));
 			}
-		} else if (strcmp(input[0], "status") == 0) {
+		} else if (strcmp(smallsh->input[0], "status") == 0) {
 		//status
 			printExitStatus(exitStatus);
-		} else if (strcmp(input[0], "exit") == 0) {
+		} else if (strcmp(smallsh->input[0], "exit") == 0) {
 		//exit
 			running = 0;
 		} else {
