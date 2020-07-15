@@ -26,14 +26,15 @@ struct shell{
 int bg_allowed = 1;		//Used to catch SIGTSTP
 void initializeSmallsh (struct shell);
 void runSmallsh();
-char* getInput(struct shell);
+char* getInput(struct shell*);
 void catchSIGTSTP(int);
 void execCMD(struct shell*, int*, struct sigaction);
+void printExitStatus(int);
 
 void intializeSmallsh(struct shell* smallsh){
 	smallsh->bg_status = 0;
 	smallsh->exit_status = 0;
-	smallsh->pid = getPID();
+	smallsh->pid = getPID();	//PID of the parent process
 	smallsh->f_in = "";
 	smallsh->f_out = "";
 	smallsh->input = "";
@@ -62,7 +63,7 @@ void runSmallsh(struct shell* smallsh){
 	
 	do{
 		//Set input array to null at beginning of each loop before receiving new input
-		for (i = 0, i < 512; i++){
+		for (i = 0; i < 512; i++){
 			smallsh->input[i] = NULL;
 		}
 		//Get user input
@@ -92,7 +93,7 @@ void runSmallsh(struct shell* smallsh){
 			running = 0;
 		} else {
 		//other commands
-			execCMD(&smallsh, &exitStatus, sigint);
+			execCMD(smallsh, &exitStatus, sigint);
 		}
 		
 	} while (running);
@@ -154,7 +155,7 @@ void execCMD (struct shell* smallsh, int* exitStatus, struct sigaction sa){
 		// Execute the command
 			if (execvp(smallsh->input[0], smallsh->input)) {
 				// If cmd couldn't be executed
-				printf("%s could not be found. Command not executed\n", arr[0]);
+				printf("%s could not be found. Command not executed\n", smallsh->input[0]);
 				fflush(stdout);
 				exit(2);
 			}
@@ -208,20 +209,20 @@ void getInput (struct shell* smallsh) {
 	}
 	//Use string token to further parse input
 	const char space[2] = " ";
-	char *token = strtok(input, space);
+	char *token = strtok(fullInput, space);
 	
 	for (i = 0; token; i++) {
 		if (!strcmp(token, "<")) {
 			// < Input file
 			token = strtok(NULL, space);
-			strcpy(inputName, token);
+			strcpy(smallsh->f_in, token);
 		} else if (!strcmp(token, ">")) {
 			// > Output file
 			token = strtok(NULL, space);
-			strcpy(outputName, token);
+			strcpy(smallsh->f_out, token);
 		} else if (!strcmp(token, "&")) {
 			// & Background process
-			smallsh->background = 1;
+			smallsh->bg_status = 1;
 		} else {
 			smallsh->input[i] = strdup(token);
 			// Replace $$ with pid
