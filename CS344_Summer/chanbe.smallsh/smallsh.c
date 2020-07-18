@@ -87,20 +87,20 @@ void runSmallsh(struct shell* smallsh){
 			}
 		} else if (strcmp(smallsh->input[0], "status") == 0) {
 		//status
-			printExitStatus(exitStatus);
+			printExitStatus(smallsh->exit_status);
 		} else if (strcmp(smallsh->input[0], "exit") == 0) {
 		//exit
 			running = 0;
 		} else {
 		//other commands
-			execCMD(smallsh, &exitStatus, sigint);
+			execCMD(smallsh, sigint);
 		}
 		
 	} while (running);
 	
 }
 
-void execCMD (struct shell* smallsh, int* exitStatus, struct sigaction sa){
+void execCMD (struct shell* smallsh, struct sigaction sa){
 	int input, output, result;
 	pid_t cmdPID = -5;
 	
@@ -163,16 +163,16 @@ void execCMD (struct shell* smallsh, int* exitStatus, struct sigaction sa){
 		//fork() returned a positive value. Returned to parent process. cmdPID = new child's PID
 		//Execute background process, if there is an available slot for bg process to run.
 		if (smallsh->bg_status && bg_allowed){
-			pid_t truePID = waitpid(cmdPID, exitStatus, WNOHANG);
+			pid_t truePID = waitpid(cmdPID, &smallsh->exit_status, WNOHANG);
 			printf("Background process's PID is %d\n", cmdPID);
 			fflush(stdout);
 		} else {
-			pid_t truePID = waitpid(cmdPID, exitStatus, 0);
+			pid_t truePID = waitpid(cmdPID, &smallsh->exit_status, 0);
 		}
 		
-		while ((cmdPID = waitpid(-1, exitStatus, WNOHANG)) > 0) {
+		while ((cmdPID = waitpid(-1, &smallsh->exit_status, WNOHANG)) > 0) {
 			printf("Child process with PID %d was terminated.\n", spawnPid);
-			printExitStatus(*exitStatus);
+			printExitStatus(smallsh->exit_status);
 			fflush(stdout);
 		}
 		
@@ -265,7 +265,7 @@ void printExitStatus(int exit_method) {
 
 int main(void){
 	struct shell smallsh;
-	initializeShell(smallsh);
+	initializeShell(&smallsh);
 	
 	runShell(&smallsh);
 	
