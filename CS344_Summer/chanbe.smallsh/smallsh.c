@@ -28,7 +28,7 @@ void initializeSmallsh (struct shell);
 void runSmallsh();
 char* getInput(struct shell*);
 void catchSIGTSTP(int);
-void execCMD(struct shell*, int*, struct sigaction);
+void execCMD(struct shell*, struct sigaction);
 void printExitStatus(int);
 
 void intializeSmallsh(struct shell* smallsh){
@@ -67,7 +67,7 @@ void runSmallsh(struct shell* smallsh){
 			smallsh->input[i] = NULL;
 		}
 		//Get user input
-		smallsh->input = getInput(smallsh);
+		getInput(smallsh);
 		
 		//Skip comments
 		if(smallsh->input[0] == "#"){
