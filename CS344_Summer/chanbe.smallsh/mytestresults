@@ -1,5 +1,5 @@
 PRE-SCRIPT INFO
-  Grading Script PID: 697
+  Grading Script PID: 79045
   Note: your smallsh will report a different PID when evaluating $$
 : BEGINNING TEST SCRIPT
 : 
@@ -64,36 +64,33 @@ smallsh.c
 : 
 : --------------------
 : sleep 100 background (10 points for returning process ID of sleeper)
-: Background process's PID is 749
+: Background process's PID is 79098
 : 
 : 
 : --------------------
 : pkill -signal SIGTERM sleep (10 points for pid of killed process, 10 points for signal)
 : (Ignore message about Operation Not Permitted)
-: pkill: killing pid 367 failed: Operation not permitted
-pkill: killing pid 596 failed: Operation not permitted
-pkill: killing pid 664 failed: Operation not permitted
-pkill: killing pid 688 failed: Operation not permitted
-pkill: killing pid 695 failed: Operation not permitted
+: pkill: killing pid 78327 failed: Operation not permitted
+pkill: killing pid 78341 failed: Operation not permitted
+pkill: killing pid 78625 failed: Operation not permitted
+pkill: killing pid 78646 failed: Operation not permitted
+pkill: killing pid 78766 failed: Operation not permitted
+pkill: killing pid 78818 failed: Operation not permitted
+pkill: killing pid 78826 failed: Operation not permitted
+pkill: killing pid 78993 failed: Operation not permitted
 pkill: killing pid 198375 failed: Operation not permitted
-pkill: killing pid 229667 failed: Operation not permitted
-pkill: killing pid 231357 failed: Operation not permitted
 pkill: killing pid 284402 failed: Operation not permitted
 pkill: killing pid 284413 failed: Operation not permitted
-pkill: killing pid 326874 failed: Operation not permitted
-pkill: killing pid 327034 failed: Operation not permitted
-pkill: killing pid 327096 failed: Operation not permitted
-pkill: killing pid 327162 failed: Operation not permitted
-Child process with PID 749 was terminated.
+Child process with PID 79098 was terminated.
 terminated by signal 15.
 : 
 : 
 : --------------------
 : sleep 1 background (10 pts for pid of bg ps when done, 10 for exit value)
-: Background process's PID is 764
-: Child process with PID 764 was terminated.
+: Background process's PID is 79109
+: : 
+Child process with PID 79109 was terminated.
 exit value 0.
-: 
 : 
 : --------------------
 : pwd
@@ -110,25 +107,25 @@ exit value 0.
 : 
 : 
 : --------------------
-: mkdir 698
+: mkdir 79046
 : : 
 : 
 : --------------------
-: cd 698
+: cd 79046
 : : 
 : 
 : --------------------
 : pwd (5 points for being in the newly created dir)
-: /nfs/stak/users/chanbe/698
+: /nfs/stak/users/chanbe/79046
 : --------------------
-: Background process's PID is 797
+: Background process's PID is 79153
 : 
 Entering foreground-only mode. (& is now ignored): Testing foreground-only mode (20 points for entry
-Sat Jul 18 19:38:02 PDT 2020
-Child process with PID 797 was terminated.
+Sat Jul 18 22:14:49 PDT 2020
+Child process with PID 79153 was terminated.
 exit value 0.
-Child process with PID 798 was terminated.
+Child process with PID 79154 was terminated.
 exit value 0.
-: : Sat Jul 18 19:38:07 PDT 2020
+: : Sat Jul 18 22:14:54 PDT 2020
 : 
 Exiting foreground-only mode.: 
