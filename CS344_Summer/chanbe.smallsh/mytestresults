@@ -1,5 +1,5 @@
 PRE-SCRIPT INFO
-  Grading Script PID: 325788
+  Grading Script PID: 697
   Note: your smallsh will report a different PID when evaluating $$
 : BEGINNING TEST SCRIPT
 : 
@@ -22,8 +22,7 @@ smallsh.c
 : 
 : --------------------
 : ls out junk
-: f_out == junk
-: 
+: : 
 : 
 : --------------------
 : cat junk (15 points for correctly returning contents of junk)
@@ -40,14 +39,11 @@ smallsh.c
 : --------------------
 : wc in junk (15 points for returning correct numbers from wc)
 :  8  8 72
-f_in == junk
 : 
 : 
 : --------------------
 : wc in junk out junk2; cat junk2 (10 points for returning correct numbers from wc)
-: f_in == junk
-f_out == junk2
-:  8  8 72
+: :  8  8 72
 : 
 : 
 : --------------------
@@ -59,8 +55,6 @@ f_out == junk2
 : wc in badfile (10 points for returning text error)
 : Could not open input file
 : No such file or directory
-f_in == badfile
-f_in == badfile
 : 
 : 
 : --------------------
@@ -70,35 +64,34 @@ f_in == badfile
 : 
 : --------------------
 : sleep 100 background (10 points for returning process ID of sleeper)
-: Background process's PID is 325840
+: Background process's PID is 749
 : 
 : 
 : --------------------
 : pkill -signal SIGTERM sleep (10 points for pid of killed process, 10 points for signal)
 : (Ignore message about Operation Not Permitted)
-: pkill: killing pid 198375 failed: Operation not permitted
+: pkill: killing pid 367 failed: Operation not permitted
+pkill: killing pid 596 failed: Operation not permitted
+pkill: killing pid 664 failed: Operation not permitted
+pkill: killing pid 688 failed: Operation not permitted
+pkill: killing pid 695 failed: Operation not permitted
+pkill: killing pid 198375 failed: Operation not permitted
 pkill: killing pid 229667 failed: Operation not permitted
 pkill: killing pid 231357 failed: Operation not permitted
 pkill: killing pid 284402 failed: Operation not permitted
 pkill: killing pid 284413 failed: Operation not permitted
-pkill: killing pid 324159 failed: Operation not permitted
-pkill: killing pid 324392 failed: Operation not permitted
-pkill: killing pid 324393 failed: Operation not permitted
-pkill: killing pid 324417 failed: Operation not permitted
-pkill: killing pid 325011 failed: Operation not permitted
-pkill: killing pid 325461 failed: Operation not permitted
-pkill: killing pid 325565 failed: Operation not permitted
-pkill: killing pid 325765 failed: Operation not permitted
-pkill: killing pid 325782 failed: Operation not permitted
-pkill: killing pid 325786 failed: Operation not permitted
-Child PID 325840 was terminated.
+pkill: killing pid 326874 failed: Operation not permitted
+pkill: killing pid 327034 failed: Operation not permitted
+pkill: killing pid 327096 failed: Operation not permitted
+pkill: killing pid 327162 failed: Operation not permitted
+Child process with PID 749 was terminated.
 terminated by signal 15.
 : 
 : 
 : --------------------
 : sleep 1 background (10 pts for pid of bg ps when done, 10 for exit value)
-: Background process's PID is 325851
-: Child PID 325851 was terminated.
+: Background process's PID is 764
+: Child process with PID 764 was terminated.
 exit value 0.
 : 
 : 
@@ -117,25 +110,25 @@ exit value 0.
 : 
 : 
 : --------------------
-: mkdir 325789
+: mkdir 698
 : : 
 : 
 : --------------------
-: cd 325789
+: cd 698
 : : 
 : 
 : --------------------
 : pwd (5 points for being in the newly created dir)
-: /nfs/stak/users/chanbe/325789
+: /nfs/stak/users/chanbe/698
 : --------------------
-: Background process's PID is 325884
+: Background process's PID is 797
 : 
 Entering foreground-only mode. (& is now ignored): Testing foreground-only mode (20 points for entry
-Sat Jul 18 19:32:03 PDT 2020
-Child PID 325884 was terminated.
+Sat Jul 18 19:38:02 PDT 2020
+Child process with PID 797 was terminated.
 exit value 0.
-Child PID 325885 was terminated.
+Child process with PID 798 was terminated.
 exit value 0.
-: : Sat Jul 18 19:32:08 PDT 2020
+: : Sat Jul 18 19:38:07 PDT 2020
 : 
 Exiting foreground-only mode.: 
