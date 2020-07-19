@@ -25,7 +25,7 @@ struct shell{
 
 int bg_allowed = 1;		//Used to catch SIGTSTP
 void initializeSmallsh (struct shell*);
-void runSmallsh();
+void runSmallsh(struct shell*, struct sigaction, struct sigaction);
 void getInput(struct shell*);
 void catchSIGTSTP(int);
 void execCMD(struct shell*, struct sigaction);
@@ -46,28 +46,13 @@ void initializeSmallsh(struct shell* smallsh){
 	}
 }
 
-void runSmallsh(struct shell* smallsh){
+void runSmallsh(struct shell* smallsh, struct sigaction sigint, struct sigaction sigtstp){
 	//Variables
 	int i;
 	int running = 1;
 
 	//Get user input
-	
-	//CTRL+C
-	struct sigaction sigint = {0};
-	sigint.sa_handler = SIG_IGN;
-	sigfillset(&sigint.sa_mask);
-	sigint.sa_flags = 0;
-	sigaction(SIGINT, &sigint, NULL);
-
-	//CTRL+Z
-	struct sigaction sigtstp = {0};
-	sigtstp.sa_handler = catchSIGTSTP;
-	sigfillset(&sigtstp.sa_mask);
-	sigtstp.sa_flags = 0;
-	sigaction(SIGTSTP, &sigtstp, NULL);
-	
-	do{
+	while (running){
 		//Set input array to null at beginning of each loop before receiving new input
 		for (i = 0; i < 512; i++){
 			smallsh->input[i] = NULL;
@@ -100,10 +85,8 @@ void runSmallsh(struct shell* smallsh){
 		} else {
 		//other commands
 			execCMD(smallsh, sigint);
-		}
-		
-	} while (running);
-	
+		}	
+	}
 }
 
 // SWITCH
@@ -162,7 +145,7 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 			}
 			
 			// Execute the command
-			if (execvp(smallsh->input[0], smallsh->input)) {
+			if (execvp(smallsh->input[0], (char* const*)smallsh->input)) {
 				// If cmd couldn't be executed
 				printf("%s could not be found. Command not executed\n", smallsh->input[0]);
 				fflush(stdout);
@@ -182,7 +165,7 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 			}
 			
 		while ((cmdPID = waitpid(-1, &smallsh->exit_status, WNOHANG)) > 0) {
-			printf("Child process with PID %d was terminated.\n", cmdPID);
+			printf("Child PID %d was terminated.\n", cmdPID);
 			printExitStatus(smallsh->exit_status);
 			fflush(stdout);
 		}	
@@ -229,10 +212,12 @@ void getInput (struct shell* smallsh) {
 			// < Input file
 			token = strtok(NULL, space);
 			strcpy(smallsh->f_in, token);
+			printf("f_in == %s\n", smallsh->f_in);	//Print f_in
 		} else if (!strcmp(token, ">")) {
 			// > Output file
 			token = strtok(NULL, space);
 			strcpy(smallsh->f_out, token);
+			printf("f_out == %s\n", smallsh->f_out);	//Print f_out
 		} else if (!strcmp(token, "&")) {
 			// & Background process
 			smallsh->bg_status = 1;
@@ -280,7 +265,21 @@ int main(void){
 	struct shell smallsh;
 	initializeSmallsh(&smallsh);
 	
-	runSmallsh(&smallsh);
+	//CTRL+C
+	struct sigaction sigint = {0};
+	sigint.sa_handler = SIG_IGN;
+	sigfillset(&sigint.sa_mask);
+	sigint.sa_flags = 0;
+	sigaction(SIGINT, &sigint, NULL);
+
+	//CTRL+Z
+	struct sigaction sigtstp = {0};
+	sigtstp.sa_handler = catchSIGTSTP;
+	sigfillset(&sigtstp.sa_mask);
+	sigtstp.sa_flags = 0;
+	sigaction(SIGTSTP, &sigtstp, NULL);
+	
+	runSmallsh(&smallsh, sigint, sigtstp);
 	
 	return 0;
 }
