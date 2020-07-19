@@ -191,7 +191,7 @@ void getInput (struct shell* smallsh) {
 	//Note, because smallsh is passed in as a pointer, no return values are needed.
 	int MaxLength = 2048;
 	char fullInput [MaxLength];
-	int i, j;
+	int i, j, empty;
 	
 	/**
 	//Fill fullInput with empty '\0' characters (Avoid garbage from previous runs)
@@ -204,16 +204,18 @@ void getInput (struct shell* smallsh) {
 	printf(": ");
 	fflush(stdout);
 	
-	//Gets the input
-	fgets(fullInput, 2048, stdin);
-	
-	//Check that input is not empty (If the first index of the array is not NULL, it is not empty)
-	if (strcmp(fullInput, "") == 0){
-		//strcmp returns 0 if equal --> means array is empty
-		//Input empty, return from function
-		smallsh->input[0] = strdup("");
-		printf("Input empty.\n");
-		return;
+	//Make sure input is not empty, to avoid a seg fault
+	empty = 1;
+	while (empty) {
+		//Gets the input
+		fgets(fullInput, 2048, stdin);
+		
+		//Check that input is not empty (If the first index of the array is not NULL, it is not empty)
+		if (strcmp(fullInput, "") == 0){
+			//strcmp returns 0 if equal --> means array is empty.
+			smallsh->input[0] = strdup("");
+			printf("Input empty. For help, type 'help'.\n");
+		} else empty = 0;
 	}
 	//Since input is not empty, convert "\n" to "\0" to signify seperate commands
 	for (i = 0; i < MaxLength; i++){
