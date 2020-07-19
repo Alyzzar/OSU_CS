@@ -213,7 +213,7 @@ void getInput (struct shell* smallsh) {
 	}
 	//Since input is not empty, convert "\n" to "\0" to signify seperate commands
 	for (i = 0; i < MaxLength; i++){
-		if (strcmp(fullInput[i], "\n") == 0) fullInput [i] = "\0";
+		if (fullInput[i] == "\n") fullInput [i] = "\0";
 	}
 	//Use string token to further parse input
 	const char space[2] = " ";
