@@ -1,9 +1,13 @@
 /**
-	Shell requirements
-		3 built in commands [exit, cd, status]
-		Ignore comments [Lines beginning with # characters]
-		CTRL-C = SIGINT
-		CTRL-Z = SIGTSTP
+	Assigned:	CS 344 Operating Systems, Summer 2020
+	Coded: 		Ben Chan
+	Shell requirements:
+				3 built in commands [exit, cd, status]
+				Run other commands via execvp() function
+				Use of parent/child processes
+				Ignore comments [Lines beginning with # characters]
+				CTRL-C = SIGINT
+				CTRL-Z = SIGTSTP
 **/
 
 #include <fcntl.h>
@@ -31,6 +35,12 @@ void catchSIGTSTP(int);
 void execCMD(struct shell*, struct sigaction);
 void printExitStatus(int);
 
+/**
+Function:	initializeSmallsh()
+Details:	Initializes values in the type 'struct shell'
+Params:		Pointer to shell struct
+Return:		N/A
+**/
 void initializeSmallsh(struct shell* smallsh){
 	int i;
 	smallsh->bg_status = 0;
@@ -46,6 +56,13 @@ void initializeSmallsh(struct shell* smallsh){
 	}
 }
 
+/**
+Function:	runSmallsh()
+Details:	Runs the shell. This is the highest level function in this code. Calls getInput()
+			runs built-in commands, and makes call to execCMD() for other functionalities.
+Params:		Pointer to shell struct, and both sigaction structs (though at the moment, only sigint is used).
+Return:		N/A
+**/
 void runSmallsh(struct shell* smallsh, struct sigaction sigint, struct sigaction sigtstp){
 	//Variables
 	int i;
@@ -93,14 +110,19 @@ void runSmallsh(struct shell* smallsh, struct sigaction sigint, struct sigaction
 	}
 }
 
-//IF ELSE
+/**
+Function:	execCMD()
+Details:	Executes non-built-in commands. First forks off process. If successful, will
+			check validity of input/output files, and run the commands via execvp(). If unsuccessful,
+			function will print appropriate errors to the terminal and/or manage background processes.
+Params:		Pointer to shell struct, sigaction struct
+Return:		N/A
+**/
 void execCMD (struct shell* smallsh, struct sigaction sa){
-	int input, output, result;
+	int in_status, out_status, assign_status;
 	pid_t cmdPID = -5;
-	
 	//Fork the child process
 	cmdPID = fork();
-	
 	//Execute the command
 	if (cmdPID < 0){
 		//fork() returned a negative value, failed to create process
@@ -114,46 +136,44 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 		// Input file
 		if (strcmp(smallsh->f_in, "") != 0) {
 			// Open file
-			input = open(smallsh->f_in, O_RDONLY);
-			if (input == -1) {
+			in_status = open(smallsh->f_in, O_RDONLY);
+			if (in_status == -1) {
 				perror("Could not open input file\n");
 				exit(1);
 			}
 			// Assign file
-			result = dup2(input, 0);
-			if (result == -1) {
+			assign_status = dup2(in_status, 0);
+			if (assign_status == -1) {
 				perror("Could not assign input file\n");
 				exit(2);
 			}
 			// Close input file on exec
-			fcntl(input, F_SETFD, FD_CLOEXEC);
+			fcntl(in_status, F_SETFD, FD_CLOEXEC);
 		}
 		// Output file
 		if (strcmp(smallsh->f_out, "") != 0) {
 			// Open file
-			output = open(smallsh->f_out, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-			if (output == -1) {
+			out_status = open(smallsh->f_out, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+			if (out_status == -1) {
 				perror("Could not open output file\n");
 				exit(1);
 			}
 			// Assign file
-			result = dup2(output, 1);
-			if (result == -1) {
+			assign_status = dup2(out_status, 1);
+			if (assign_status == -1) {
 				perror("Could not assign output file\n");
 				exit(2);
 			}
 			// Close output file on exec
-			fcntl(output, F_SETFD, FD_CLOEXEC);
+			fcntl(out_status, F_SETFD, FD_CLOEXEC);
 		}
-		
 		// Execute the command
 		if (execvp(smallsh->input[0], smallsh->input)) {
 			// If cmd couldn't be executed
 			printf("%s could not be found. Command not executed\n", smallsh->input[0]);
 			fflush(stdout);
 			exit(2);
-		}
-		
+		}	
 	} else {
 		//fork() returned a positive value. Returned to parent process. cmdPID = new child's PID
 		//Execute background process, if there is an available slot for bg process to run.
@@ -170,17 +190,24 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 			fflush(stdout);
 		}
 	}
-
 }
 
-
+/**
+Function:	getInput()
+Details:	Parses users input. This function parses the input to terminal, and passes it to runSmallsh().
+			Input parsing consists of removing '/n' characters, and replacing '$$' with the pre-generated PID.
+			This function also saves input/output file names to the shell struct (Marked by < or > characters)
+Params:		Pointer to struct
+Return:		N/A
+**/
 void getInput (struct shell* smallsh) {
 	//Note, because smallsh is passed in as a pointer, no return values are needed.
 	int MaxLength = 2048;
 	char fullInput [MaxLength];
 	int i, j, empty;
 	
-	/**
+	/** 
+	//Turns out this caused more issues than it solved. Left it here since it was good for debugging.
 	//Fill fullInput with empty '\0' characters (Avoid garbage from previous runs)
 	for(i = 0; i < MaxLength; i++){
 		fullInput[i] = '\0';
@@ -239,9 +266,17 @@ void getInput (struct shell* smallsh) {
 	}
 }
 
+/**
+Function:	catchSIGTSTP()
+Details:	Catches SIGTSTP signal, and toggles the bg_allowed variable.
+Params:		Pointer to struct
+Return:		N/A
+**/
 void catchSIGTSTP (int sig_o) {
 	char* message;
 	//Toggle bg_allowed between 0 and 1
+	//bg_allowed = (bg_allowed * -1) + 1;
+	//Toggles value in one line. Not using this, since if() statement is easier to read
 	if (bg_allowed == 0){
 		bg_allowed = 1;
 		message = "\nExiting foreground-only mode.\n";
@@ -253,28 +288,49 @@ void catchSIGTSTP (int sig_o) {
 		write(1, message, 50);
 		fflush(stdout);
 	}
+	/**
+	As an unrelated note, originally I planned on including bg_allowed inside of the shell struct, 
+	however I had difficulty passing a pointer to the shell struct in as a paramter, since this 
+	function is only called by the line 'sigtstp.sa_handler = catchSIGTSTP;' in main() below.
+	**/
 }
 
+/**
+Function:	printExitStatus()
+Details:	Prints a generic exit status to the console, using exit_status saved in the shell struct.
+Params:		int exit_method
+Return:		N/A
+**/
 void printExitStatus(int exit_method) {
 	//Prints exit method from child process.
 	if (WIFEXITED(exit_method)) {
+		//Used this one if child terminated normally
 		printf("exit value %d.\n", WEXITSTATUS(exit_method));
 	} else {
+		//Use this one if child was terminated by a signal or other cause
 		printf("terminated by signal %d.\n", WTERMSIG(exit_method));
 	}
 }
 
+/**
+Function:	main()
+Details:	Main function. Creates SIGINT and SIGTSTP trackers, intializes smallsh shell, and calls
+			runShell(). SIGINT and SIGTSTP were being tracked in runShell(), but were moved here.
+Params:		N/A
+Return:		0 (On succesful exit)
+**/
 int main(void){
+	//Create and initialize the shell struct
 	struct shell smallsh;
 	initializeSmallsh(&smallsh);
 	
+	//Mostly from class notes. This tracks CTRL+C and CTRL+Z sigint and sigtstp.
 	//CTRL+C
 	struct sigaction sigint = {0};
 	sigint.sa_handler = SIG_IGN;
 	sigfillset(&sigint.sa_mask);
 	sigint.sa_flags = 0;
 	sigaction(SIGINT, &sigint, NULL);
-
 	//CTRL+Z
 	struct sigaction sigtstp = {0};
 	sigtstp.sa_handler = catchSIGTSTP;
@@ -282,7 +338,9 @@ int main(void){
 	sigtstp.sa_flags = 0;
 	sigaction(SIGTSTP, &sigtstp, NULL);
 	
+	//Runs the shell
 	runSmallsh(&smallsh, sigint, sigtstp);
 	
+	//If all goes well, return 0.
 	return 0;
 }
