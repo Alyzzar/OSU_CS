@@ -177,7 +177,7 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 		}
 		
 		while ((cmdPID = waitpid(-1, &smallsh->exit_status, WNOHANG)) > 0) {
-			printf("Child process with PID %d was terminated.\n", spawnPid);
+			printf("Child process with PID %d was terminated.\n", cmdPID);
 			printExitStatus(smallsh->exit_status);
 			fflush(stdout);
 		}
@@ -205,14 +205,15 @@ void getInput (struct shell* smallsh) {
 	fgets(fullInput, 2048, stdin);
 	
 	//Check that input is not empty (If the first index of the array is not NULL, it is not empty)
-	if (fullInput[0] = NULL){
+	if (strcmp(input, "") == 0){
+		//strcmp returns 0 if equal --> means array is empty
 		//Input empty, return from function
 		smallsh->input[0] = strdup("");
 		return;
 	}
 	//Since input is not empty, convert "\n" to "\0" to signify seperate commands
-	for (i = 0; (i < MaxLength && fullInput[i] != NULL); i++){
-		if (fullInput[i] == "\n") fullInput [i] = "\0";
+	for (i = 0; i < MaxLength; i++){
+		if (strcmp(fullInput[i], "\n") == 0) fullInput [i] = "\0";
 	}
 	//Use string token to further parse input
 	const char space[2] = " ";
