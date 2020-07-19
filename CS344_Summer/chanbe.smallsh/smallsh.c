@@ -58,8 +58,8 @@ void runSmallsh(struct shell* smallsh, struct sigaction sigint, struct sigaction
 			smallsh->input[i] = NULL;
 		}
 		smallsh->bg_status = 0;
-		smallsh->f_in = '\0';
-		smallsh->f_out = '\0';
+		smallsh->f_in[0] = '\0';
+		smallsh->f_out[0] = '\0';
 		
 		//Get user input
 		getInput(smallsh);
