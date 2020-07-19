@@ -205,7 +205,7 @@ void getInput (struct shell* smallsh) {
 	fgets(fullInput, 2048, stdin);
 	
 	//Check that input is not empty (If the first index of the array is not NULL, it is not empty)
-	if (strcmp(input, "") == 0){
+	if (strcmp(fullInput, "") == 0){
 		//strcmp returns 0 if equal --> means array is empty
 		//Input empty, return from function
 		smallsh->input[0] = strdup("");
