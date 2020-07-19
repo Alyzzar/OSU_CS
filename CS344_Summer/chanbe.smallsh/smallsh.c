@@ -35,7 +35,7 @@ void intializeSmallsh(struct shell* smallsh){
 	int i;
 	smallsh->bg_status = 0;
 	smallsh->exit_status = 0;
-	smallsh->pid = getPID();	//PID of the parent process
+	smallsh->pid = getpid();	//PID of the parent process
 	//Fill strings with NULL characters to avoid memory issues
 	for (i = 0; i < 512; i++){
 		if (i < 256){
@@ -273,9 +273,9 @@ void printExitStatus(int exit_method) {
 
 int main(void){
 	struct shell smallsh;
-	initializeShell(&smallsh);
+	initializeSmallsh(&smallsh);
 	
-	runShell(&smallsh);
+	runSmallsh(&smallsh);
 	
 	return 0;
 }
