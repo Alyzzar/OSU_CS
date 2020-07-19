@@ -200,20 +200,17 @@ void getInput (struct shell* smallsh) {
 	}
 	**/
 	
-	//As per assignment instructions, input lines are marked by ": "
-	printf(": ");
-	fflush(stdout);
-	
 	//Make sure input is not empty, to avoid a seg fault
 	empty = 1;
 	while (empty) {
+		//As per assignment instructions, input lines are marked by ": "
+		printf(": ");
+		fflush(stdout);
 		//Gets the input
-		fgets(fullInput, 2048, stdin);
-		
+		fgets(fullInput, 2048, stdin);	
 		//Check that input is not empty (If the first index of the array is not NULL, it is not empty)
 		if (strcmp(fullInput, "") == 0){
 			//strcmp returns 0 if equal --> means array is empty.
-			smallsh->input[0] = strdup("");
 			printf("Input empty. For help, type 'help'.\n");
 		} else empty = 0;
 	}
