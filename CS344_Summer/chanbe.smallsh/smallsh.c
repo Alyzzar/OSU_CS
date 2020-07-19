@@ -106,81 +106,86 @@ void runSmallsh(struct shell* smallsh){
 	
 }
 
+// SWITCH
 void execCMD (struct shell* smallsh, struct sigaction sa){
 	int input, output, result;
 	pid_t cmdPID = -5;
 	
 	//Fork the child process
 	cmdPID = fork();
-	
-	//Execute the command
-	if (cmdPID < 0){
-		//fork() returned a negative value, failed to create process
-		perror ("Failed to create child process.\n");
-		exit(1);
-	} else if (cmdPID == 0){
-		//fork() returned 0, returned to the newly created process
-		// Deal with CTRL+C
-		sa.sa_handler = SIG_DFL;
-		sigaction(SIGINT, &sa, NULL);
-		// Input file
-		if (strcmp(smallsh->f_in, "") != 0) {
-			// Open file
-			input = open(smallsh->f_in, O_RDONLY);
-			if (input == -1) {
-				perror("Could not open input file\n");
-				exit(1);
+	switch(cmdPID){
+		//Execute the command
+		case -1:	;
+			//fork() returned a negative value, failed to create process
+			perror ("Failed to create child process.\n");
+			exit(1);
+			break;
+			
+		case 0:	;
+			//fork() returned 0, returned to the newly created process
+			// Deal with CTRL+C
+			sa.sa_handler = SIG_DFL;
+			sigaction(SIGINT, &sa, NULL);
+			// Input file
+			if (strcmp(smallsh->f_in, "") != 0) {
+				// Open file
+				input = open(smallsh->f_in, O_RDONLY);
+				if (input == -1) {
+					perror("Could not open input file\n");
+					exit(1);
+				}
+				// Assign file
+				result = dup2(input, 0);
+				if (result == -1) {
+					perror("Could not assign input file\n");
+					exit(2);
+				}
+				// Close input file on exec
+				fcntl(input, F_SETFD, FD_CLOEXEC);
 			}
-			// Assign file
-			result = dup2(input, 0);
-			if (result == -1) {
-				perror("Could not assign input file\n");
+			// Output file
+			if (strcmp(smallsh->f_out, "") != 0) {
+				// Open file
+				output = open(smallsh->f_out, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+				if (output == -1) {
+					perror("Could not open output file\n");
+					exit(1);
+				}
+				// Assign file
+				result = dup2(output, 1);
+				if (result == -1) {
+					perror("Could not assign output file\n");
+					exit(2);
+				}
+				// Close output file on exec
+				fcntl(output, F_SETFD, FD_CLOEXEC);
+			}
+			
+			// Execute the command
+			if (execvp(smallsh->input[0], smallsh->input)) {
+				// If cmd couldn't be executed
+				printf("%s could not be found. Command not executed\n", smallsh->input[0]);
+				fflush(stdout);
 				exit(2);
 			}
-			// Close input file on exec
-			fcntl(input, F_SETFD, FD_CLOEXEC);
-		}
-		// Output file
-		if (strcmp(smallsh->f_out, "") != 0) {
-			// Open file
-			output = open(smallsh->f_out, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-			if (output == -1) {
-				perror("Could not open output file\n");
-				exit(1);
+			break;
+			
+		default:	;
+			//fork() returned a positive value. Returned to parent process. cmdPID = new child's PID
+			//Execute background process, if there is an available slot for bg process to run.
+			if (smallsh->bg_status && bg_allowed){
+				pid_t truePID = waitpid(cmdPID, &smallsh->exit_status, WNOHANG);
+				printf("Background process's PID is %d\n", cmdPID);
+				fflush(stdout);
+			} else {
+				pid_t truePID = waitpid(cmdPID, &smallsh->exit_status, 0);
 			}
-			// Assign file
-			result = dup2(output, 1);
-			if (result == -1) {
-				perror("Could not assign output file\n");
-				exit(2);
-			}
-			// Close output file on exec
-			fcntl(output, F_SETFD, FD_CLOEXEC);
-		}
-		
-		// Execute the command
-		if (execvp(smallsh->input[0], smallsh->input)) {
-			// If cmd couldn't be executed
-			printf("%s could not be found. Command not executed\n", smallsh->input[0]);
+			
+		while ((cmdPID = waitpid(-1, &smallsh->exit_status, WNOHANG)) > 0) {
+			printf("Child process with PID %d was terminated.\n", cmdPID);
+			printExitStatus(smallsh->exit_status);
 			fflush(stdout);
-			exit(2);
-		}
-		
-	} else {
-		//fork() returned a positive value. Returned to parent process. cmdPID = new child's PID
-		//Execute background process, if there is an available slot for bg process to run.
-		if (smallsh->bg_status && bg_allowed){
-			pid_t truePID = waitpid(cmdPID, &smallsh->exit_status, WNOHANG);
-			printf("Background process's PID is %d\n", cmdPID);
-			fflush(stdout);
-		} else {
-			pid_t truePID = waitpid(cmdPID, &smallsh->exit_status, 0);
-		}
-	}
-	while ((cmdPID = waitpid(-1, &smallsh->exit_status, WNOHANG)) > 0) {
-		printf("Child process with PID %d was terminated.\n", cmdPID);
-		printExitStatus(smallsh->exit_status);
-		fflush(stdout);
+		}	
 	}
 }
 
