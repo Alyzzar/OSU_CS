@@ -193,10 +193,13 @@ void getInput (struct shell* smallsh) {
 	char fullInput [MaxLength];
 	int i, j;
 	
+	/**
 	//Fill fullInput with empty '\0' characters (Avoid garbage from previous runs)
 	for(i = 0; i < MaxLength; i++){
 		fullInput[i] = '\0';
 	}
+	**/
+	
 	//As per assignment instructions, input lines are marked by ": "
 	printf(": ");
 	fflush(stdout);
@@ -209,6 +212,7 @@ void getInput (struct shell* smallsh) {
 		//strcmp returns 0 if equal --> means array is empty
 		//Input empty, return from function
 		smallsh->input[0] = strdup("");
+		printf("Input empty.\n");
 		return;
 	}
 	//Since input is not empty, convert "\n" to "\0" to signify seperate commands
