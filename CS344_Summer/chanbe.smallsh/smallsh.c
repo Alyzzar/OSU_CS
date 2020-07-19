@@ -57,6 +57,10 @@ void runSmallsh(struct shell* smallsh, struct sigaction sigint, struct sigaction
 		for (i = 0; i < 512; i++){
 			smallsh->input[i] = NULL;
 		}
+		smallsh->bg_status = 0;
+		smallsh->f_in = '\0';
+		smallsh->f_out = '\0';
+		
 		//Get user input
 		getInput(smallsh);
 		
@@ -85,7 +89,7 @@ void runSmallsh(struct shell* smallsh, struct sigaction sigint, struct sigaction
 		} else {
 		//other commands
 			execCMD(smallsh, sigint);
-		}	
+		}
 	}
 }
 
@@ -145,8 +149,8 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 			}
 			
 			// Execute the command
-			if (execvp(smallsh->input[0], (char* const*)smallsh->input)) {
-				// If cmd couldn't be executed
+			if (execvp(smallsh->input[0], (char* const*)smallsh->input) < 0) {
+				// If cmd couldn't be executed, will return a negative value
 				printf("%s could not be found. Command not executed\n", smallsh->input[0]);
 				fflush(stdout);
 				exit(2);
@@ -240,12 +244,13 @@ void getInput (struct shell* smallsh) {
 void catchSIGTSTP (int sig_o) {
 	char* message;
 	//Toggle bg_allowed between 0 and 1
-	bg_allowed = ((bg_allowed - 1) * -1);
-	if (bg_allowed == 1){
+	if (bg_allowed == 0){
+		bg_allowed = 1;
 		message = "\nExiting foreground-only mode.\n";
 		write (1, message, 30);
 		fflush(stdout);
-	} else { //bg_allowed == 0
+	} else { //bg_allowed == 1
+		bg_allowed = 0;
 		message = "\nEntering foreground-only mode. (& is now ignored)\n";
 		write(1, message, 50);
 		fflush(stdout);
