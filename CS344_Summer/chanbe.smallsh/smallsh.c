@@ -24,14 +24,14 @@ struct shell{
 };
 
 int bg_allowed = 1;		//Used to catch SIGTSTP
-void initializeSmallsh (struct shell);
+void initializeSmallsh (struct shell*);
 void runSmallsh();
 void getInput(struct shell*);
 void catchSIGTSTP(int);
 void execCMD(struct shell*, struct sigaction);
 void printExitStatus(int);
 
-void intializeSmallsh(struct shell* smallsh){
+void initializeSmallsh(struct shell* smallsh){
 	int i;
 	smallsh->bg_status = 0;
 	smallsh->exit_status = 0;
@@ -213,7 +213,7 @@ void getInput (struct shell* smallsh) {
 	}
 	//Since input is not empty, convert "\n" to "\0" to signify seperate commands
 	for (i = 0; i < MaxLength; i++){
-		if (fullInput[i] == "\n") fullInput [i] = "\0";
+		if (fullInput[i] == '\n') fullInput[i] = '\0';
 	}
 	//Use string token to further parse input
 	const char space[2] = " ";
