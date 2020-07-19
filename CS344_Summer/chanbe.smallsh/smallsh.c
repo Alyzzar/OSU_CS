@@ -32,12 +32,18 @@ void execCMD(struct shell*, struct sigaction);
 void printExitStatus(int);
 
 void intializeSmallsh(struct shell* smallsh){
+	int i;
 	smallsh->bg_status = 0;
 	smallsh->exit_status = 0;
 	smallsh->pid = getPID();	//PID of the parent process
-	smallsh->f_in = "";
-	smallsh->f_out = "";
-	smallsh->input = "";
+	//Fill strings with NULL characters to avoid memory issues
+	for (i = 0; i < 512; i++){
+		if (i < 256){
+			smallsh->f_in[i] = NULL;
+			smallsh->f_out[i] = NULL;
+		}
+		smallsh->input[i] = NULL;	
+	}
 }
 
 void runSmallsh(struct shell* smallsh){
@@ -115,7 +121,7 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 	} else if (cmdPID == 0){
 		//fork() returned 0, returned to the newly created process
 		// Deal with CTRL+C
-		sa.handler = SIG_DFL;
+		sa.sa_handler = SIG_DFL;
 		sigaction(SIGINT, &sa, NULL);
 		// Input file
 		if (strcmp(smallsh->f_in, "") != 0) {
