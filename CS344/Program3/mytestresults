@@ -1,1 +1,1 @@
-bash: p2testscript: command not found
+bash: ./p3testscript: Permission denied
