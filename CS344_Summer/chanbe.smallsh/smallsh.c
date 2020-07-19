@@ -131,12 +131,12 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 				perror("Could not open input file\n");
 				exit(1);
 			}
-			/*// Assign file
+			// Assign file
 			result = dup2(input, 0);
 			if (result == -1) {
 				perror("Could not assign input file\n");
 				exit(2);
-			}*/
+			}
 			// Close input file on exec
 			fcntl(input, F_SETFD, FD_CLOEXEC);
 		}
@@ -148,23 +148,23 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 				perror("Could not open output file\n");
 				exit(1);
 			}
-			/*// Assign file
+			// Assign file
 			result = dup2(output, 1);
 			if (result == -1) {
 				perror("Could not assign output file\n");
 				exit(2);
-			}*/
+			}
 			// Close output file on exec
 			fcntl(output, F_SETFD, FD_CLOEXEC);
 		}
 		
 		// Execute the command
-			if (execvp(smallsh->input[0], smallsh->input)) {
-				// If cmd couldn't be executed
-				printf("%s could not be found. Command not executed\n", smallsh->input[0]);
-				fflush(stdout);
-				exit(2);
-			}
+		if (execvp(smallsh->input[0], smallsh->input)) {
+			// If cmd couldn't be executed
+			printf("%s could not be found. Command not executed\n", smallsh->input[0]);
+			fflush(stdout);
+			exit(2);
+		}
 	} else {
 		//fork() returned a positive value. Returned to parent process. cmdPID = new child's PID
 		//Execute background process, if there is an available slot for bg process to run.
@@ -252,11 +252,11 @@ void catchSIGTSTP (int sig_o) {
 	//Toggle bg_allowed between 0 and 1
 	bg_allowed = ((bg_allowed - 1) * -1);
 	if (bg_allowed == 1){
-		message = "Exiting foreground-only mode.\n";
+		message = "\nExiting foreground-only mode.\n";
 		write (1, message, 29);
 		fflush(stdout);
 	} else { //bg_allowed == 0
-		message = "Entering foreground-only mode. (& is now ignored)\n";
+		message = "\nEntering foreground-only mode. (& is now ignored)\n";
 		write(1, message, 49);
 		fflush(stdout);
 	}
