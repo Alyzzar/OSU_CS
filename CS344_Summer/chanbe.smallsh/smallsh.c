@@ -26,7 +26,7 @@ struct shell{
 int bg_allowed = 1;		//Used to catch SIGTSTP
 void initializeSmallsh (struct shell);
 void runSmallsh();
-char* getInput(struct shell*);
+void getInput(struct shell*);
 void catchSIGTSTP(int);
 void execCMD(struct shell*, struct sigaction);
 void printExitStatus(int);
@@ -188,12 +188,13 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 }
 
 void getInput (struct shell* smallsh) {
+	//Note, because smallsh is passed in as a pointer, no return values are needed.
 	int MaxLength = 2048;
 	char fullInput [MaxLength];
 	int i, j;
 	
 	//Fill fullInput with NULL characters
-	for(i = 0; i < MaxLength, i++){
+	for(i = 0; i < MaxLength; i++){
 		fullInput[i] = NULL;
 	}
 	//As per assignment instructions, input lines are marked by ": "
@@ -203,14 +204,14 @@ void getInput (struct shell* smallsh) {
 	//Gets the input
 	fgets(fullInput, 2048, stdin);
 	
-	//Check that input is not empty
-	if (fullInput[i] = NULL){
+	//Check that input is not empty (If the first index of the array is not NULL, it is not empty)
+	if (fullInput[0] = NULL){
 		//Input empty, return from function
 		smallsh->input[0] = strdup("");
 		return;
 	}
 	//Since input is not empty, convert "\n" to "\0" to signify seperate commands
-	for (i = 0; (i < MaxLength && fullInput[i] != NULL), i++){
+	for (i = 0; (i < MaxLength && fullInput[i] != NULL); i++){
 		if (fullInput[i] == "\n") fullInput [i] = "\0";
 	}
 	//Use string token to further parse input
