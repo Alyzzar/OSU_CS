@@ -165,6 +165,7 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 			fflush(stdout);
 			exit(2);
 		}
+		
 	} else {
 		//fork() returned a positive value. Returned to parent process. cmdPID = new child's PID
 		//Execute background process, if there is an available slot for bg process to run.
@@ -175,16 +176,12 @@ void execCMD (struct shell* smallsh, struct sigaction sa){
 		} else {
 			pid_t truePID = waitpid(cmdPID, &smallsh->exit_status, 0);
 		}
-		
-		while ((cmdPID = waitpid(-1, &smallsh->exit_status, WNOHANG)) > 0) {
-			printf("Child process with PID %d was terminated.\n", cmdPID);
-			printExitStatus(smallsh->exit_status);
-			fflush(stdout);
-		}
-		
 	}
-	
-	
+	while ((cmdPID = waitpid(-1, &smallsh->exit_status, WNOHANG)) > 0) {
+		printf("Child process with PID %d was terminated.\n", cmdPID);
+		printExitStatus(smallsh->exit_status);
+		fflush(stdout);
+	}
 }
 
 void getInput (struct shell* smallsh) {
@@ -256,11 +253,11 @@ void catchSIGTSTP (int sig_o) {
 	bg_allowed = ((bg_allowed - 1) * -1);
 	if (bg_allowed == 1){
 		message = "\nExiting foreground-only mode.\n";
-		write (1, message, 29);
+		write (1, message, 30);
 		fflush(stdout);
 	} else { //bg_allowed == 0
 		message = "\nEntering foreground-only mode. (& is now ignored)\n";
-		write(1, message, 49);
+		write(1, message, 50);
 		fflush(stdout);
 	}
 }
