@@ -1,5 +1,5 @@
 PRE-SCRIPT INFO
-  Grading Script PID: 259196
+  Grading Script PID: 325788
   Note: your smallsh will report a different PID when evaluating $$
 : BEGINNING TEST SCRIPT
 : 
@@ -10,16 +10,9 @@ PRE-SCRIPT INFO
 : 
 : --------------------
 : ls (10 points for returning dir contents)
-: makefile
-mytestresults
-p2testscript
-smallsh
-smallsh.c
-: 
-: 
-: --------------------
-: ls out junk
-: junk
+: 267578
+junk
+junk2
 makefile
 mytestresults
 p2testscript
@@ -28,320 +21,121 @@ smallsh.c
 : 
 : 
 : --------------------
+: ls out junk
+: f_out == junk
+: 
+: 
+: --------------------
 : cat junk (15 points for correctly returning contents of junk)
-: : 
+: 267578
+junk
+junk2
+makefile
+mytestresults
+p2testscript
+smallsh
+smallsh.c
+: 
 : 
 : --------------------
 : wc in junk (15 points for returning correct numbers from wc)
-:    0    0    0
+:  8  8 72
+f_in == junk
 : 
 : 
 : --------------------
 : wc in junk out junk2; cat junk2 (10 points for returning correct numbers from wc)
-:    0    0    0
-: : 
+: f_in == junk
+f_out == junk2
+:  8  8 72
+: 
 : 
 : --------------------
 : test -f badfile (10 points for returning error value of 1, note extraneous &)
 : : exit value 1.
-: Background process's PID is 259234
-: Background process's PID is 259235
-: Background process's PID is 259236
-: Background process's PID is 259237
-: Background process's PID is 259238
-: Background process's PID is 259239
+: 
+: 
+: --------------------
+: wc in badfile (10 points for returning text error)
 : Could not open input file
 : No such file or directory
-Could not open input file
-: No such file or directory
-Background process's PID is 259240
-: Could not open input file
-: No such file or directory
-Background process's PID is 259241
-Child process with PID 259238 was terminated.
-exit value 1.
-: Could not open input file
-: No such file or directory
-Background process's PID is 259242
-: Could not open input file
-: No such file or directory
-Background process's PID is 259243
-
-Child process with PID 259239 was terminated.
-exit value 1.
-
---------------------
-Could not open input file
-: No such file or directory
-Child process with PID 259240 was terminated.
-exit value 1.
-wc in badfile (10 points for returning text error)
-Child process with PID 259235 was terminated.
+f_in == badfile
+f_in == badfile
+: 
+: 
+: --------------------
+: badfile (10 points for returning text error)
+: badfile could not be found. Command not executed
+: 
+: 
+: --------------------
+: sleep 100 background (10 points for returning process ID of sleeper)
+: Background process's PID is 325840
+: 
+: 
+: --------------------
+: pkill -signal SIGTERM sleep (10 points for pid of killed process, 10 points for signal)
+: (Ignore message about Operation Not Permitted)
+: pkill: killing pid 198375 failed: Operation not permitted
+pkill: killing pid 229667 failed: Operation not permitted
+pkill: killing pid 231357 failed: Operation not permitted
+pkill: killing pid 284402 failed: Operation not permitted
+pkill: killing pid 284413 failed: Operation not permitted
+pkill: killing pid 324159 failed: Operation not permitted
+pkill: killing pid 324392 failed: Operation not permitted
+pkill: killing pid 324393 failed: Operation not permitted
+pkill: killing pid 324417 failed: Operation not permitted
+pkill: killing pid 325011 failed: Operation not permitted
+pkill: killing pid 325461 failed: Operation not permitted
+pkill: killing pid 325565 failed: Operation not permitted
+pkill: killing pid 325765 failed: Operation not permitted
+pkill: killing pid 325782 failed: Operation not permitted
+pkill: killing pid 325786 failed: Operation not permitted
+Child PID 325840 was terminated.
+terminated by signal 15.
+: 
+: 
+: --------------------
+: sleep 1 background (10 pts for pid of bg ps when done, 10 for exit value)
+: Background process's PID is 325851
+: Child PID 325851 was terminated.
 exit value 0.
-Child process with PID 259234 was terminated.
+: 
+: 
+: --------------------
+: pwd
+: /nfs/stak/users/chanbe/Windows.Documents/Documents/CS-GIT/CS344_Summer/chanbe.smallsh
+: 
+: 
+: --------------------
+: cd
+: : 
+: 
+: --------------------
+: pwd (10 points for being in the HOME dir)
+: /nfs/stak/users/chanbe
+: 
+: 
+: --------------------
+: mkdir 325789
+: : 
+: 
+: --------------------
+: cd 325789
+: : 
+: 
+: --------------------
+: pwd (5 points for being in the newly created dir)
+: /nfs/stak/users/chanbe/325789
+: --------------------
+: Background process's PID is 325884
+: 
+Entering foreground-only mode. (& is now ignored): Testing foreground-only mode (20 points for entry
+Sat Jul 18 19:32:03 PDT 2020
+Child PID 325884 was terminated.
 exit value 0.
-Child process with PID 259236 was terminated.
+Child PID 325885 was terminated.
 exit value 0.
-Child process with PID 259241 was terminated.
-exit value 1.
-Child process with PID 259242 was terminated.
-exit value 1.
-Child process with PID 259243 was terminated.
-exit value 1.
-: Background process's PID is 259244
-Child process with PID 259237 was terminated.
-exit value 0.
-: Background process's PID is 259245
-: Could not open input file
-: No such file or directory
-Could not open input file
-: No such file or directory
-Background process's PID is 259246
-: Could not open input file
-: No such file or directory
-Background process's PID is 259247
-Child process with PID 259244 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-Child process with PID 259245 was terminated.
-exit value 1.
-Child process with PID 259246 was terminated.
-exit value 1.
-: Background process's PID is 259248
-: Could not open input file
-: No such file or directory
-Background process's PID is 259249
-Child process with PID 259247 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259250
-Child process with PID 259248 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259251
-Child process with PID 259249 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259252
-Child process with PID 259250 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259253
-Child process with PID 259251 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259254
-Child process with PID 259252 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259255
-Child process with PID 259253 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259256
-Child process with PID 259254 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259257
-Child process with PID 259255 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259258
-Child process with PID 259256 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259259
-Child process with PID 259257 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259260
-Child process with PID 259258 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259261
-Child process with PID 259259 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259262
-Child process with PID 259260 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259263
-Child process with PID 259261 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259264
-Child process with PID 259262 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259265
-Child process with PID 259263 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259266
-Child process with PID 259264 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259267
-Child process with PID 259265 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259268
-Child process with PID 259266 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259269
-Child process with PID 259267 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: : Background process's PID is 259270
-Child process with PID 259268 was terminated.
-exit value 1.
-: Could not open input file
-: No such file or directory
-Background process's PID is 259271
-Child process with PID 259269 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259272
-Child process with PID 259270 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259273
-Child process with PID 259271 was terminated.
-exit value 1.
-: Could not open input file
-: No such file or directory
-Background process's PID is 259274
-: Could not open input file
-: No such file or directory
-Background process's PID is 259275
-Child process with PID 259272 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-Child process with PID 259273 was terminated.
-exit value 1.
-Child process with PID 259274 was terminated.
-exit value 1.
-: Background process's PID is 259276
-: Could not open input file
-: No such file or directory
-Background process's PID is 259277
-Child process with PID 259275 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259278
-Child process with PID 259276 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259279
-Child process with PID 259277 was terminated.
-exit value 1.
-: Could not open input file
-: No such file or directory
-Background process's PID is 259280
-: Could not open input file
-: No such file or directory
-Background process's PID is 259281
-Child process with PID 259278 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-Child process with PID 259279 was terminated.
-exit value 1.
-Child process with PID 259280 was terminated.
-exit value 1.
-: Background process's PID is 259282
-: Could not open input file
-: No such file or directory
-Background process's PID is 259283
-Child process with PID 259281 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Directory "259197" could not be found. Directory has not been changed.
-: Background process's PID is 259284
-Child process with PID 259282 was terminated.
-exit value 1.
-Child process with PID 259283 was terminated.
-exit value 1.
-: Could not open input file
-: No such file or directory
-Background process's PID is 259285
-: Could not open input file
-: No such file or directory
-Background process's PID is 259286
-Child process with PID 259284 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259287
-Child process with PID 259285 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259288
-Child process with PID 259286 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259289
-Child process with PID 259287 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259290
-Child process with PID 259288 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-: Background process's PID is 259291
-Child process with PID 259289 was terminated.
-exit value 1.
-: Could not open input file
-: No such file or directory
-Background process's PID is 259292
-: Could not open input file
-: No such file or directory
-Background process's PID is 259293
-Child process with PID 259290 was terminated.
-exit value 1.
-Could not open input file
-: No such file or directory
-Child process with PID 259291 was terminated.
-exit value 1.
-Child process with PID 259292 was terminated.
-exit value 1.
-: Background process's PID is 259294
-: Could not open input file
-: No such file or directory
-Background process's PID is 259295
-: Could not open input file
-: No such file or directory
+: : Sat Jul 18 19:32:08 PDT 2020
+: 
+Exiting foreground-only mode.: 
