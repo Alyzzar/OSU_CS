@@ -39,10 +39,10 @@ void intializeSmallsh(struct shell* smallsh){
 	//Fill strings with NULL characters to avoid memory issues
 	for (i = 0; i < 512; i++){
 		if (i < 256){
-			smallsh->f_in[i] = NULL;
-			smallsh->f_out[i] = NULL;
+			smallsh->f_in[i] = '';
+			smallsh->f_out[i] = '';
 		}
-		smallsh->input[i] = NULL;	
+		smallsh->input[i] = '';	
 	}
 }
 
@@ -193,9 +193,9 @@ void getInput (struct shell* smallsh) {
 	char fullInput [MaxLength];
 	int i, j;
 	
-	//Fill fullInput with NULL characters
+	//Fill fullInput with empty '' characters (Avoid garbage from previous runs)
 	for(i = 0; i < MaxLength; i++){
-		fullInput[i] = NULL;
+		fullInput[i] = '';
 	}
 	//As per assignment instructions, input lines are marked by ": "
 	printf(": ");
