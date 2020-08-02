@@ -137,9 +137,9 @@ int otp_d (char* port_str, char option) {
 	
 	char buffer[512];
 	char output[80000];
-	char f_output[256];
+	char* f_output[256];
 	char plaintext[80000];
-	char f_plaintext[256];
+	char* f_plaintext[256];
 	char key[80000];
 	char f_key[256];
 	
