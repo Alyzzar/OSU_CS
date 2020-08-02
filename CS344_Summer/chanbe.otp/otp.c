@@ -1,5 +1,10 @@
 #include "otp.h"
 
+void error(const char *report){
+	perror(report);
+	exit(1);
+}
+
 //type variable keeps track of whether input is plaintext or key for error reporting
 void validateText(char text[], int len){
 	int n, p;
