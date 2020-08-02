@@ -9,7 +9,7 @@
 
 #include "otp.h"
 //type variable keeps track of whether input is plaintext or key for error reporting
-void validateText(char[] text, int len, char[] inp_type){
+void validateText(char text[], int len, char inp_type[]){
 	int n;
 	for (n = 0; n < len; n++) {
 		for (p = 0; p < 28; p++) {
