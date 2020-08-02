@@ -115,7 +115,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	
 	FILE* f_recv = fopen(buffer, "r");
 	fgets(output, 80000, f_recv);
-	close(f_recv);
+	fclose(f_recv);
 	
 	remove(buffer);
 	
@@ -124,7 +124,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	return 0;
 }
 
-//OTP_c args
+//OTP_d args
 //argv[1]		'e'||'d'
 //port #		option
 int otp_d (char* port_str, char option) {
