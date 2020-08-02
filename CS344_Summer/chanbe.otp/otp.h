@@ -1,6 +1,17 @@
 #ifndef OTP_H
 #define OTP_H
 
+#include <netdb.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/wait.h>
+#include <time.h>
+#include <unistd.h>
+
 #define MAX_CONNECTIONS 5
 
 const char alph[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
