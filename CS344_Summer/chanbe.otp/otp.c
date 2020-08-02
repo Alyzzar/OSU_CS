@@ -1,13 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h> 
-
 #include "otp.h"
+
 //type variable keeps track of whether input is plaintext or key for error reporting
 void validateText(char text[], int len){
 	int n, p;
