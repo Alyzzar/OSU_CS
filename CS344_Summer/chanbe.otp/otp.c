@@ -94,7 +94,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 		error("ERROR: Could not connect socket to address.\n", 1);
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
-	sprintf(buffer, "%s\n%s\n%s", plaintext, key, (char*)option);
+	sprintf(buffer, "%s\n%s\n%", plaintext, key, option);
 	// Send the message
 	c_write = send(sock_fd, buffer, strlen(buffer), 0);
 	//No data was sent
