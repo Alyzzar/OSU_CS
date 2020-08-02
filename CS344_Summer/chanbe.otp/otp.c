@@ -1,8 +1,8 @@
 #include "otp.h"
 
-void error(const char *report){
+void error(const char *report, int value){
 	perror(report);
-	exit(1);
+	exit(value);
 }
 
 //type variable keeps track of whether input is plaintext or key for error reporting
@@ -152,9 +152,9 @@ int otp_d (char* port_str, char option) {
 	
 	// Set up the socket
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0); // Create the socket
-	if (sock_fd < 0) error("ERROR: Could not open socket.\n");
+	if (sock_fd < 0) error("ERROR: Could not open socket.\n", 1);
 	if (bind(sock_fd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0){
-		error ("ERROR: Could not bind socket.\n");
+		error ("ERROR: Could not bind socket.\n", 1);
 	}
 	//Turn on the socket with max connections = 5
 	listen(sock_fd, MAX_CONNECTIONS);
@@ -164,14 +164,14 @@ int otp_d (char* port_str, char option) {
 		clientSize = sizeof(clientAddress);
 		// Accept connection
 		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, &clientSize);
-		if (conn_fd < 0) error("ERROR: Could not accept connection.\n");
+		if (conn_fd < 0) error("ERROR: Could not accept connection.\n", 1);
 		
 		// Create child process
 		pid = fork();
 		switch (pid) {
 			case -1:	;
 				//Error. Terminate program
-				error ("ERROR: Could not create child process.\n");
+				error ("ERROR: Could not create child process.\n", 1);
 				exit(0);
 				break;
 			case 0:		;
@@ -179,7 +179,7 @@ int otp_d (char* port_str, char option) {
 				memset(buffer, '\0', sizeof(buffer));
 				c_read = recv(conn_fd, buffer, (sizeof(buffer) - 1), 0);
 				if (c_read < 0) {
-					error ("ERROR: Could not read from socket.\n");
+					error ("ERROR: Could not read from socket.\n", 1);
 				}
 				
 				// Array to find /0 and /n delimiters via strtok
@@ -224,7 +224,7 @@ int otp_d (char* port_str, char option) {
 				
 				//Send the file back to the client, close the connection
 				c_read = send(conn_fd, f_output, strlen(f_output), 0);
-				if (c_read < 0) error ("ERROR: Could not write to socket.\n");
+				if (c_read < 0) error ("ERROR: Could not write to socket.\n", 1);
 				close(conn_fd);
 				conn_fd = -1;
 				exit(0);
