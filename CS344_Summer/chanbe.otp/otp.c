@@ -10,7 +10,7 @@
 #include "otp.h"
 //type variable keeps track of whether input is plaintext or key for error reporting
 void validateText(char text[], int len, char inp_type[]){
-	int n;
+	int n, p;
 	for (n = 0; n < len; n++) {
 		for (p = 0; p < 28; p++) {
 			// If p == 27, no match was found. Error
@@ -28,7 +28,7 @@ void validateText(char text[], int len, char inp_type[]){
 }
 
 //return length if valid
-int validateLen(char[] plaintext, char[] key){
+int validateLen(char plaintext[], char key[]){
 	int plaintextLen;
 	int keyLen;
 	textLen = strlen (plaintext);
@@ -56,7 +56,11 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	//OTP for client side
 	int len, sock_fd, c_write, c_read;
 	int port = atoi(port_str);
+	
+	struct sockaddr_in serverAddress;
+	struct hostent* serverHostInfo;
 	char[] host = 'localhost';
+	
 	char buffer[512];
 	char output[80000];
 	char plaintext[80000];
@@ -127,7 +131,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //port #		option
 otp_d (char* port_str, char option) {
 	//OTP for server side
-	int len, sock_fd, conn_fd, c_read;
+	int len, sock_fd, conn_fd, c_read, clientSize;
 	int pid = getpid();
 	int port = atoi(port_str);
 	
