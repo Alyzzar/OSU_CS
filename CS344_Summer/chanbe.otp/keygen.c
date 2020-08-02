@@ -11,7 +11,7 @@ void genKey(int len){
 	
 	for (n = 0; n < len; n++){
 		//Rand int from 0 to 27
-		n = rand() % 27;
+		r = rand() % 27;
 		//Use rand into to pull from array in otp.h
 		key[n] = alph[r];
 	}
