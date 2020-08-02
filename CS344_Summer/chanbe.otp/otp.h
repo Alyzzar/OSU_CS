@@ -10,7 +10,7 @@ void strToInt (char[], int[], int);
 void enc (char[], char[], char[], int);
 void dec (char[], char[], char[], int);
 
-void validateText(char[], int, char[]);
+void validateText(char[], int);
 int validateLen(char[], char[]);
 void parseFile(char*, char*);
 
