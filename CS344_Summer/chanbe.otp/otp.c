@@ -33,7 +33,7 @@ int validateLen(char plaintext[], char key[]){
 	exit(1);
 }	
 
-void parseFile(char* f_in [], char* output []){
+void parseFile(char (*f_in) [], char (*output) []){
 	/*
 	FILE* fd_text = fopen(f_in, 'r');
 	fgets(*output, 80000, fd_text);
