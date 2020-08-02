@@ -1,7 +1,6 @@
 #ifndef OTP_H
 #define OTP_H
 
-#include <error.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <stdio.h>
@@ -22,6 +21,7 @@ void strToInt (char[], int[], int);
 void enc (char[], char[], char[], int);
 void dec (char[], char[], char[], int);
 
+void error(const char);
 void validateText(char[], int);
 int validateLen(char[], char[]);
 void parseFile(char (*) [], char (*) []);
