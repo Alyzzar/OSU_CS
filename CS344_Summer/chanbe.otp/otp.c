@@ -94,7 +94,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 		error("ERROR: Could not connect socket to address.\n", 1);
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
-	sprintf(buffer, "%s\n%s\n%%", plaintext, key, option);
+	sprintf(buffer, "%s\n%s\n%c", plaintext, key, option);
 	// Send the message
 	c_write = send(sock_fd, buffer, strlen(buffer), 0);
 	//No data was sent
@@ -129,10 +129,11 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //port #		option
 int otp_d (char* port_str, char option) {
 	//OTP for server side
-	int sock_fd, conn_fd, c_read, wrongFile, clientSize;
+	int sock_fd, conn_fd, c_read, wrongFile;
 	int pid = getpid();
 	int port = atoi(port_str);
 	
+	socklen_t *clientSize;
 	struct sockaddr_in serverAddress, clientAddress;
 	
 	char buffer[512];
@@ -167,9 +168,9 @@ int otp_d (char* port_str, char option) {
 	
 	while(1){
 		// Get address size for client
-		clientSize = sizeof(clientAddress);
+		*clientSize = sizeof(clientAddress);
 		// Accept connection
-		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, &clientSize);
+		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, clientSize);
 		if (conn_fd < 0){
 			free (f_output);
 			free (f_plaintext);
