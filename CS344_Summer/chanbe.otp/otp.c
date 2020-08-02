@@ -210,7 +210,7 @@ int otp_d (char* port_str, char option) {
 				wrongFile = 0;
 				token = strtok(NULL, newline);
 				if (strcmp(&option, token)) {
-					fprintf(stderr, "ERROR \"%s\" is not equal to \"%s\".\n", *token, option );
+					fprintf(stderr, "ERROR \"%c\" is not equal to \"%c\".\n", *token, option );
 					wrongFile = 1;
 				}
 				
@@ -231,10 +231,8 @@ int otp_d (char* port_str, char option) {
 					}
 					//Correct ouput. Print the en/decoded data into the file
 					fprintf(fd_output, "%s", output);
-				} else {
-					//Incorrect output. Save and close the empty file.
-					fprintf(fd_output, "");
 				}
+				//Else: incorrect output. Save and close the empty file.
 				fclose(fd_output);
 				
 				//Send the file back to the client, close the connection
