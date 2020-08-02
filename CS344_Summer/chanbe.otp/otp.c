@@ -206,7 +206,7 @@ otp_d (char* port_str, char option) {
 				FILE* fd_output = fopen(f_output, "w+");
 				
 				//Correct file
-				if (wrongfile == 0){
+				if (wrongFile == 0){
 					parseFile(f_plaintext, &plaintext);
 					parseFile(f_key, &key);
 					
