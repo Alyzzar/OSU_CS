@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall -pedantic-errors
+CFLAGS = -g -Wall
 
 all: keygen dec_client dec_server enc_client enc_server
 
