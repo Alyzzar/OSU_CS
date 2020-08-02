@@ -21,7 +21,7 @@ void strToInt (char[], int[], int);
 void enc (char[], char[], char[], int);
 void dec (char[], char[], char[], int);
 
-void error(const char);
+void error(const char, int);
 void validateText(char[], int);
 int validateLen(char[], char[]);
 void parseFile(char (*) [], char (*) []);
