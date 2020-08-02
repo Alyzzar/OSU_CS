@@ -3,17 +3,17 @@
 
 #include "otp.h"
 
-void intToStr (char input[], char output[], int len){
+void intToStr (int input[], char output[], int len){
 	int n;
-	for (n = 0; n < len, n++){
+	for (n = 0; n < len; n++){
 		output[n] = alph[input[n]];
 	}
 }
 
-void strToInt (char input[], char output[], int len){
+void strToInt (char input[], int output[], int len){
 	int n, p;
-	for (n = 0; n < len, n++){
-		for (p = 0; p < 27, p++){
+	for (n = 0; n < len; n++){
+		for (p = 0; p < 27; p++){
 			if (input[n] == alph[p]){
 				output[n] = p;
 				break;
