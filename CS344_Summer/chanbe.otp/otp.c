@@ -188,8 +188,8 @@ otp_d (char* port_str, char option) {
 				// Make sure the right program is connecting
 				wrongFile = 0;
 				token = strtok(NULL, newline);
-				if (strcmp(option, token)) {
-					fprintf(stderr, "ERROR %s cannot use %s_d.\n", token, option );
+				if (option == token) {
+					fprintf(stderr, "ERROR \"%s\" is not equal to \"%s_d\".\n", token, option );
 					wrongFile = 1;
 				}
 				
