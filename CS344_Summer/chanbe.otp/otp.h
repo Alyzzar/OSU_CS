@@ -1,6 +1,7 @@
 #ifndef OTP_H
 #define OTP_H
 
+#include <error.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <stdio.h>
