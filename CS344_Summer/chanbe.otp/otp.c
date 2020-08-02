@@ -29,7 +29,7 @@ void validateText(char text[], int len, char inp_type[]){
 
 //return length if valid
 int validateLen(char plaintext[], char key[]){
-	int plaintextLen;
+	int textLen;
 	int keyLen;
 	textLen = strlen (plaintext);
 	keyLen  = strlen (key);
@@ -37,7 +37,7 @@ int validateLen(char plaintext[], char key[]){
 	if (textLen < keyLen) return textLen;
 	
 	//Else, key is too short
-	fprintf(stderr, "ERROR: Key length [%d] less than plaintext length [%d].\n", keyLen, plaintextLen);
+	fprintf(stderr, "ERROR: Key length [%d] less than plaintext length [%d].\n", keyLen, textLen);
 	exit(1);
 }	
 
@@ -59,7 +59,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	
 	struct sockaddr_in serverAddress;
 	struct hostent* serverHostInfo;
-	char[] host = 'localhost';
+	char host[] = 'localhost';
 	
 	char buffer[512];
 	char output[80000];
