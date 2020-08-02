@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-
 #include "otp.h"
 
 void intToStr (int input[], char output[], int len){
