@@ -12,7 +12,7 @@ void dec (char[], char[], char[], int);
 
 void validateText(char[], int);
 int validateLen(char[], char[]);
-void parseFile(char*, char*);
+void parseFile(char* [], char* []);
 
 //OTP_c args
 //argv[1]	argv[2]		argv[3] 	'e'||'d'
