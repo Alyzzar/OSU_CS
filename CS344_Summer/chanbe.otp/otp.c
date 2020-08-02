@@ -129,7 +129,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //port #		option
 int otp_d (char* port_str, char option) {
 	//OTP for server side
-	int len, sock_fd, conn_fd, c_read, wrongFile, clientSize;
+	int sock_fd, conn_fd, c_read, wrongFile, clientSize;
 	int pid = getpid();
 	int port = atoi(port_str);
 	
@@ -208,7 +208,7 @@ int otp_d (char* port_str, char option) {
 				// Make sure the right program is connecting
 				wrongFile = 0;
 				token = strtok(NULL, newline);
-				if (strcmp(option, token)) {
+				if (strcmp(&option, token)) {
 					fprintf(stderr, "ERROR \"%s\" is not equal to \"%s\".\n", *token, option );
 					wrongFile = 1;
 				}
