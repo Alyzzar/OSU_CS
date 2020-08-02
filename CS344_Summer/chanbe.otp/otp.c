@@ -9,11 +9,11 @@
 
 #include "otp.h"
 //type variable keeps track of whether input is plaintext or key for error reporting
-validateText(char[] text, int len, char[] inp_type){
+void validateText(char[] text, int len, char[] inp_type){
 	int n;
 	for (n = 0; n < len; n++) {
 		for (p = 0; p < 28; p++) {
-			// If p == 27, no match was found. Error.
+			// If p == 27, no match was found. Error
 			if (p == 27) {
 				fprintf(stderr, "ERROR: Invalid characters found in %s.\n", inp_type);
 				exit(1);
@@ -23,6 +23,7 @@ validateText(char[] text, int len, char[] inp_type){
 				break;
 			}
 		}
+		//Else, no invalid characters found.
 	}
 }
 
@@ -34,6 +35,7 @@ int validateLen(char[] plaintext, char[] key){
 	keyLen  = strlen (key);
 	
 	if (textLen < keyLen) return textLen;
+	
 	//Else, key is too short
 	fprintf(stderr, "ERROR: Key length [%d] less than plaintext length [%d].\n", keyLen, plaintextLen);
 	exit(1);
