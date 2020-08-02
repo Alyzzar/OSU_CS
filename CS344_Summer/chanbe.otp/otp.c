@@ -59,7 +59,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	
 	struct sockaddr_in serverAddress;
 	struct hostent* serverHostInfo;
-	char host[] = 'localhost';
+	char host[10] = 'localhost';
 	
 	char buffer[512];
 	char output[80000];
@@ -131,7 +131,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //port #		option
 otp_d (char* port_str, char option) {
 	//OTP for server side
-	int len, sock_fd, conn_fd, c_read, clientSize;
+	int len, sock_fd, conn_fd, c_read, wrongFile, clientSize;
 	int pid = getpid();
 	int port = atoi(port_str);
 	
