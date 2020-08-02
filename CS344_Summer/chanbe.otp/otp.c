@@ -59,7 +59,6 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	
 	struct sockaddr_in serverAddress;
 	struct hostent* serverHostInfo;
-	char host[10] = 'localhost';
 	
 	char buffer[512];
 	char output[80000];
@@ -79,10 +78,10 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
 	//Host should be localhost
-	serverHostInfo = gethostbyname(host);
+	serverHostInfo = gethostbyname('localhost');
 	if (serverHostInfo = NULL) {
 		//Couldn't connect to localhost
-		fprintf(stderr, "ERROR: Could not connect to [%s]\n.", host);
+		fprintf(stderr, "ERROR: Could not connect to localhost\n.");
 		exit(0);
 	}
 	//If host connected, copy address
@@ -195,6 +194,7 @@ otp_d (char* port_str, char option) {
 				strcpy(f_key, token);
 
 				// Make sure the right program is connecting
+				wrongFile = 0;
 				token = strtok(NULL, newline);
 				if (strcmp(option, token)) {
 					fprintf(stderr, "ERROR %s cannot use %s_d.\n", token, option );
