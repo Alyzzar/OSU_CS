@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-
 #include "otp.h"
 
 void genKey(int len){
