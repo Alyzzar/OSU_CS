@@ -42,11 +42,11 @@ int validateLen(char plaintext[], char key[]){
 }	
 
 void parseFile(char* f_in [], char* output []){
-	FILE* fd_text = fopen(f_in, 'r');
-	fgets(output, 80000, fd_text);
+	FILE* fd_text = fopen(*f_in, 'r');
+	fgets(*output, 80000, fd_text);
 	fclose(fd_text);
 	//Reads file until it finds a newline character
-	output[strcspn(output, '\n')] = '\0';
+	*output[strcspn(*output, '\n')] = '\0';
 }
 
 //OTP_c args
