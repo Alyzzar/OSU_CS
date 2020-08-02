@@ -46,7 +46,7 @@ void parseFile(char (*f_in) [], char (*output) []){
 //OTP_c args
 //argv[1]	argv[2]		argv[3] 	'e'||'d'
 //text		key 		port #		option
-otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
+int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	//OTP for client side
 	int len, sock_fd, c_write, c_read;
 	int port = atoi(port_str);
@@ -73,7 +73,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	serverAddress.sin_port = htons(port);
 	//Host should be localhost
 	serverHostInfo = gethostbyname("localhost");
-	if (serverHostInfo = NULL) {
+	if (serverHostInfo == NULL) {
 		//Couldn't connect to localhost
 		fprintf(stderr, "ERROR: Could not connect to localhost\n.");
 		exit(0);
@@ -122,7 +122,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //OTP_c args
 //argv[1]		'e'||'d'
 //port #		option
-otp_d (char* port_str, char option) {
+int otp_d (char* port_str, char option) {
 	//OTP for server side
 	int len, sock_fd, conn_fd, c_read, wrongFile, clientSize;
 	int pid = getpid();
@@ -190,8 +190,8 @@ otp_d (char* port_str, char option) {
 				// Make sure the right program is connecting
 				wrongFile = 0;
 				token = strtok(NULL, newline);
-				if (option == token) {
-					fprintf(stderr, "ERROR \"%s\" is not equal to \"%s_d\".\n", token, option );
+				if (strcmp(option, token)) {
+					fprintf(stderr, "ERROR \"%s\" is not equal to \"%s\".\n", *token, option );
 					wrongFile = 1;
 				}
 				
