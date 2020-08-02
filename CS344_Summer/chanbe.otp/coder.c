@@ -23,6 +23,7 @@ void strToInt (char input[], char output[], int len){
 }
 
 void enc (char input[], char output[], char key[], int len){
+	int n;
 	int inp_int[len];
 	int key_int[len];
 	strToInt (input, inp_int, len);
@@ -37,6 +38,7 @@ void enc (char input[], char output[], char key[], int len){
 }
 
 void dec (char input[], char output[], char key[], int len){
+	int n;
 	int inp_int[len];
 	int key_int[len];
 	strToInt (input, inp_int, len);
