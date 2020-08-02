@@ -41,7 +41,7 @@ int validateLen(char plaintext[], char key[]){
 	exit(1);
 }	
 
-void parseFile(char* f_in, char* output){
+void parseFile(char* f_in [], char* output []){
 	FILE* fd_text = fopen(f_in, 'r');
 	fgets(output, 80000, fd_text);
 	fclose(fd_text);
@@ -78,7 +78,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
 	//Host should be localhost
-	serverHostInfo = gethostbyname('localhost');
+	serverHostInfo = gethostbyname("localhost");
 	if (serverHostInfo = NULL) {
 		//Couldn't connect to localhost
 		fprintf(stderr, "ERROR: Could not connect to localhost\n.");
@@ -95,7 +95,7 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 		error("ERROR: Could not connect socket to address.\n", 1);
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
-	sprintf(buffer, '%s\n%s\n%s', plaintext, key, option);
+	sprintf(buffer, "%s\n%s\n%s", plaintext, key, option);
 	// Send the message
 	c_write = send(sock_fd, buffer, strlen(buffer), 0);
 	//No data was sent
