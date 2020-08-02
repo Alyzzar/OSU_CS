@@ -34,7 +34,7 @@ int validateLen(char plaintext[], char key[]){
 }	
 
 void parseFile(char* f_in [], char* output []){
-	FILE* fd_text = fopen(*f_in, 'r');
+	FILE* fd_text = fopen(f_in, 'r');
 	fgets(*output, 80000, fd_text);
 	fclose(fd_text);
 	//Reads file until it finds a newline character
@@ -199,8 +199,8 @@ otp_d (char* port_str, char option) {
 				
 				//Correct file
 				if (wrongFile == 0){
-					parseFile(f_plaintext, &plaintext);
-					parseFile(f_key, &key);
+					parseFile(&f_plaintext, &plaintext);
+					parseFile(&f_key, &key);
 					
 					if (option == 'e'){
 						enc(plaintext, output, key, strlen(plaintext));
