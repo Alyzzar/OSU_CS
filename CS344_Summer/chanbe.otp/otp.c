@@ -9,13 +9,13 @@
 
 #include "otp.h"
 //type variable keeps track of whether input is plaintext or key for error reporting
-void validateText(char text[], int len, char inp_type[]){
+void validateText(char text[], int len){
 	int n, p;
 	for (n = 0; n < len; n++) {
 		for (p = 0; p < 28; p++) {
 			// If p == 27, no match was found. Error
 			if (p == 27) {
-				fprintf(stderr, "ERROR: Invalid characters found in %s.\n", inp_type);
+				fprintf(stderr, "ERROR: Invalid characters found in input.\n");
 				exit(1);
 			}
 			// If current char is found in alph array, go to next n.
@@ -70,8 +70,8 @@ otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	
 	//Validation stuff (Calls validation functions)
 	len = validateLen(plaintext, key);
-	validateText(plaintext, len, 'plaintext');
-	validateText(key, len, 'key');
+	validateText(plaintext, len);
+	validateText(key, len);
 	
 	//Create and allocate a server struct
 	memset((char*)&serverAddress, '\0', sizeof(serverAddress));
