@@ -137,9 +137,9 @@ int otp_d (char* port_str, char option) {
 	
 	char buffer[512];
 	char output[80000];
-	char* f_output[256];
+	char *f_output = malloc(256 * sizeof(char));
 	char plaintext[80000];
-	char* f_plaintext[256];
+	char *f_plaintext = malloc(256 * sizeof(char));
 	char key[80000];
 	char f_key[256];
 	
@@ -152,8 +152,14 @@ int otp_d (char* port_str, char option) {
 	
 	// Set up the socket
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0); // Create the socket
-	if (sock_fd < 0) error("ERROR: Could not open socket.\n", 1);
+	if (sock_fd < 0){
+		free (f_output);
+		free (f_plaintext);
+		error("ERROR: Could not open socket.\n", 1);
+	}
 	if (bind(sock_fd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0){
+		free (f_output);
+		free (f_plaintext);
 		error ("ERROR: Could not bind socket.\n", 1);
 	}
 	//Turn on the socket with max connections = 5
@@ -164,13 +170,18 @@ int otp_d (char* port_str, char option) {
 		clientSize = sizeof(clientAddress);
 		// Accept connection
 		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, &clientSize);
-		if (conn_fd < 0) error("ERROR: Could not accept connection.\n", 1);
-		
+		if (conn_fd < 0){
+			free (f_output);
+			free (f_plaintext);
+			error("ERROR: Could not accept connection.\n", 1);
+		}
 		// Create child process
 		pid = fork();
 		switch (pid) {
 			case -1:	;
 				//Error. Terminate program
+				free (f_output);
+				free (f_plaintext);
 				error ("ERROR: Could not create child process.\n", 1);
 				exit(0);
 				break;
@@ -179,6 +190,8 @@ int otp_d (char* port_str, char option) {
 				memset(buffer, '\0', sizeof(buffer));
 				c_read = recv(conn_fd, buffer, (sizeof(buffer) - 1), 0);
 				if (c_read < 0) {
+					free (f_output);
+					free (f_plaintext);
 					error ("ERROR: Could not read from socket.\n", 1);
 				}
 				
@@ -206,8 +219,9 @@ int otp_d (char* port_str, char option) {
 				
 				//Correct file
 				if (wrongFile == 0){
-					parseFile(&f_plaintext, &plaintext);
-					parseFile(&f_key, &key);
+					//Cast of char[] to char*
+					parseFile(f_plaintext, &plaintext);
+					parseFile(f_key, &key);
 					
 					if (option == 'e'){
 						enc(plaintext, output, key, strlen(plaintext));
@@ -224,7 +238,11 @@ int otp_d (char* port_str, char option) {
 				
 				//Send the file back to the client, close the connection
 				c_read = send(conn_fd, f_output, strlen(f_output), 0);
-				if (c_read < 0) error ("ERROR: Could not write to socket.\n", 1);
+				if (c_read < 0){
+					free (f_output);
+					free (f_plaintext);	
+					error ("ERROR: Could not write to socket.\n", 1);
+				}
 				close(conn_fd);
 				conn_fd = -1;
 				exit(0);
@@ -238,7 +256,9 @@ int otp_d (char* port_str, char option) {
 		wait(NULL);
 	}
 	
-	//Close connection to the server completely
+	//Free memory, close connection to the server completely
+	free (f_output);
+	free (f_plaintext);
 	close (sock_fd);
 	return 0;
 }
