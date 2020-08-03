@@ -1,4 +1,5 @@
 #include "otp.h"
+#define DEBUG 1
 
 void error(const char *report, int value){
 	perror(report);
@@ -72,11 +73,14 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	parseFile(f_key, &key);
 	
 	//Validation stuff (Calls validation functions)
+	if(DEBUG) printf("	--DEBUG: Validating text:	");
 	len = validateLen(plaintext, key);
 	validateText(plaintext, len);
 	validateText(key, len);
+	if(DEBUG) printf("	DONE\n");
 	
 	//Create and allocate a server struct
+	if(DEBUG) printf("	--DEBUG: Creating server:	");
 	memset((char*)&serverAddress, '\0', sizeof(serverAddress));
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
@@ -87,15 +91,22 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 		fprintf(stderr, "ERROR: Could not connect to localhost\n.");
 		exit(0);
 	}
+
 	//If host connected, copy address
 	memcpy((char*)&serverAddress.sin_addr.s_addr, (char*)serverHostInfo->h_addr, serverHostInfo->h_length);
+	if(DEBUG) printf("	DONE\n");
 	
 	// Set up the socket
+	if(DEBUG) printf("	--DEBUG: Creating and connecting to socket:");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock_fd < 0) error("ERROR: Could not establish socket.\n", 1);
 	// Connect
-	if (connect(sock_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0)
+	if (connect(sock_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
 		error("ERROR: Could not connect socket to address.\n", 1);
+	}
+	if(DEBUG) printf("	DONE\n");
+	
+	if(DEBUG) printf("	--DEBUG: Sending message to server:");
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
 	sprintf(buffer, "%s\n%s\n%c", plaintext, key, option);
@@ -109,20 +120,24 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	if (c_write < strlen(buffer)){
 		printf("ERROR: Not all data was sent to socket.\n");
 	}
-	
+	if(DEBUG) printf("	DONE\n");
+		
 	//Get message from server
+	if(DEBUG) printf("	--Debug: Receiving message from server:");
 	memset(buffer, '\0', sizeof(buffer));
 	c_read = recv(sock_fd, buffer, (sizeof(buffer) - 1), 0);
 	if (c_read < 0){
 		error("ERROR: Could ont read from socket.\n", 1);
 	}
-	
+		
 	FILE* f_recv = fopen(buffer, "r");
 	fgets(output, 80000, f_recv);
 	fclose(f_recv);
 	
 	remove(buffer);
+	if(DEBUG) printf("	DONE\n");
 	
+	//Printing final output
 	printf("%s\n", output);
 	close(sock_fd);
 	return 0;
