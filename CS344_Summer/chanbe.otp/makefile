@@ -9,11 +9,11 @@ coder.o: coder.c otp.h
 	
 otp.o: otp.c otp.h coder.o
 	echo "Compiling otp.o."
-	$(CC) $(CFLAGS) -c otp.c
+	$(CC) $(CFLAGS) -c otp.c coder.o
 
-keygen:	keygen.c otp.h otp.o 
+keygen:	keygen.c otp.h otp.o coder.o
 	echo "Compiling keygen."
-	$(CC) $(CFLAGS) -o keygen otp.o keygen.c
+	$(CC) $(CFLAGS) -o keygen keygen.c otp.o coder.o
 
 dec_client: dec_client.c coder.o otp.o
 	echo "Compiling dec_client."
