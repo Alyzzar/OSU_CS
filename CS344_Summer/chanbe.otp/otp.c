@@ -266,9 +266,9 @@ int otp_s (char* port_str, char* option) {
 					parseFile(f_plaintext, &plaintext);
 					parseFile(f_key, &key);
 					
-					if (option == 'e'){
+					if (strcmp(option, "e")){
 						enc(plaintext, output, key, strlen(plaintext));
-					} else if (option == 'd'){
+					} else if (strcmp(option, "d")){
 						dec(plaintext, output, key, strlen(plaintext));
 					}
 					//Correct ouput. Print the en/decoded data into the file
