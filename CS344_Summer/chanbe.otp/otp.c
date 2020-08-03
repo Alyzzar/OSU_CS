@@ -1,12 +1,19 @@
 #include "otp.h"
 #define DEBUG 1
-
+ 
+/*	Descrip:	Error reporting. Outputs the perror and exit value in the case of a detected crash.
+ *	Params:		char* report, int value
+ *  Return:		void
+ */ 
 void error(const char *report, int value){
 	perror(report);
 	exit(value);
 }
 
-//type variable keeps track of whether input is plaintext or key for error reporting
+/*	Descrip:	Validates that the text does not contain forbidden characters.
+ *	Params:		char text[], int len
+ *  Return:		void
+ */
 void validateText(char text[], int len){
 	int n, p;
 	for (n = 0; n < len; n++) {
@@ -27,7 +34,10 @@ void validateText(char text[], int len){
 	//Else, no invalid characters found.
 }
 
-//return length if valid
+/*	Descrip:	Validates that the key is longer than the plaintext.
+ *	Params:		char plaintext[], char key[]
+ *  Return:		length of plaintext (if valid)
+ */
 int validateLen(char plaintext[], char key[]){
 	int textLen;
 	int keyLen;
@@ -41,6 +51,10 @@ int validateLen(char plaintext[], char key[]){
 	exit(1);
 }	
 
+/*	Descrip:	Opens and reads files. Also marks the end of the file by locating '\n' chars.
+ *	Params:		char* input file, char (*output)[]
+ *  Return:		void
+ */
 void parseFile(char *f_in, char (*output) []){
 	int len;
 	FILE* fd_text = fopen(f_in, "r");
@@ -53,9 +67,12 @@ void parseFile(char *f_in, char (*output) []){
 	}
 }
 
-//OTP_c args
-//argv[1]	argv[2]		argv[3] 	'e'||'d'
-//text		key 		port #		option
+/*	Descrip:	Client-side function. Parses input files, and creates a connection to the server side.
+ *				Once server sends back data, this function also prints it to the console.
+ *	Params:		char* plaintext file, char* key file, char* port number, char* option (enc//dec)
+ *				argv[1]		argv[2]		argv[3] 	'e'||'d'
+ *  Return:		int 0 on success
+ */
 int otp_c (char* f_plaintext, char* f_key, char* port_str, char* option) {
 	//OTP for client side
 	int len, sock_fd, c_write, c_read;
@@ -145,9 +162,13 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char* option) {
 	return 0;
 }
 
-//OTP_d args
-//argv[1]		'e'||'d'
-//port #		option
+/*	Descrip:	Server-side function. Creates an open connection to matching client-side function.
+ *				Once data is received, parse and create child process to enc/dec based on values in data.
+ *				Send data back once it has been correctly enc/dec'd.
+ *	Params:		char* port number, char* option (enc//dec)
+ *				argv[1]		'e'||'d'
+ *  Return:		int 0 on success
+ */
 int otp_s (char* port_str, char* option) {
 	//OTP for server side
 	int sock_fd, conn_fd, c_read, wrongFile;
