@@ -73,14 +73,14 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	parseFile(f_key, &key);
 	
 	//Validation stuff (Calls validation functions)
-	if(DEBUG) printf("	--DEBUG: Validating text:		");
+	if(DEBUG) printf("	(CLIENT) - DEBUG: Validating text:		");
 	len = validateLen(plaintext, key);
 	validateText(plaintext, len);
 	validateText(key, len);
 	if(DEBUG) printf("DONE\n");
 	
 	//Create and allocate a server struct
-	if(DEBUG) printf("	--DEBUG: Creating server:		");
+	if(DEBUG) printf("	(CLIENT) - DEBUG: Creating server:		");
 	memset((char*)&serverAddress, '\0', sizeof(serverAddress));
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
@@ -96,19 +96,19 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	if(DEBUG) printf("DONE\n");
 	
 	// Set up the socket
-	if(DEBUG) printf("	--DEBUG: Establishing socket:		");
+	if(DEBUG) printf("	(CLIENT) - DEBUG: Establishing socket:		");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock_fd < 0) error("ERROR: Could not establish socket.\n", 1);
 	if(DEBUG) printf("DONE\n");
 	
 	// Connect to the socket
-	if(DEBUG) printf("	--DEBUG: Connecting to socket:		");
+	if(DEBUG) printf("	(CLIENT) - DEBUG: Connecting to socket:		");
 	if (connect(sock_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
 		error("ERROR: Could not connect socket to address.\n", 1);
 	}
 	if(DEBUG) printf("DONE\n");
 	
-	if(DEBUG) printf("	--DEBUG: Sending message to server:	");
+	if(DEBUG) printf("	(CLIENT) - DEBUG: Sending message to server:	");
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
 	sprintf(buffer, "%s\n%s\n%c", plaintext, key, option);
@@ -125,7 +125,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	if(DEBUG) printf("DONE\n");
 		
 	//Get message from server
-	if(DEBUG) printf("	--Debug: Receiving message from server:	");
+	if(DEBUG) printf("	(CLIENT) - Debug: Receiving message from server:	");
 	memset(buffer, '\0', sizeof(buffer));
 	c_read = recv(sock_fd, buffer, (sizeof(buffer) - 1), 0);
 	if (c_read < 0){
@@ -166,7 +166,7 @@ int otp_s (char* port_str, char option) {
 	char f_key[256];
 	
 	//Create and allocate a server struct (same as above)
-	if(DEBUG) printf("	--DEBUG: Creating server:		");
+	if(DEBUG) printf("	(SERVER) - DEBUG: Creating server:		");
 	memset((char*)&serverAddress, '\0', sizeof(serverAddress));
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
@@ -175,7 +175,7 @@ int otp_s (char* port_str, char option) {
 	if(DEBUG) printf("DONE\n");
 	
 	// Set up the socket
-	if(DEBUG) printf("	--DEBUG: Establishing socket:		");
+	if(DEBUG) printf("	(SERVER) - DEBUG: Establishing socket:		");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0); // Create the socket
 	if (sock_fd < 0){
 		free (f_output);
@@ -192,7 +192,7 @@ int otp_s (char* port_str, char option) {
 	if(DEBUG) printf("DONE\n");
 		
 	while(1){
-		if(DEBUG) printf("	--DEBUG: Connecting to socket:		");
+		if(DEBUG) printf("	(SERVER) - DEBUG: Connecting to socket:		");
 		// Get address size for client
 		clientSize = sizeof(clientAddress);
 		// Accept connection
@@ -206,7 +206,7 @@ int otp_s (char* port_str, char option) {
 		if(DEBUG) printf("DONE\n");
 		
 		// Create child process
-		if(DEBUG) printf("	--DEBUG: Create child process:		");
+		if(DEBUG) printf("	(SERVER) - DEBUG: Create child process:		");
 		pid = fork();
 		switch (pid) {
 			case -1:	;
@@ -228,7 +228,7 @@ int otp_s (char* port_str, char option) {
 					error ("ERROR: Could not read from socket.\n", 1);
 				}
 				
-				if(DEBUG) printf("	--DEBUG: Parsing message:		");
+				if(DEBUG) printf("	(SERVER) - DEBUG: Parsing message:		");
 				// Array to find /0 and /n delimiters via strtok
 				const char newline[2] = {'\n', '\0'};
 				
@@ -241,7 +241,7 @@ int otp_s (char* port_str, char option) {
 				if(DEBUG) printf("DONE\n");
 
 				// Make sure the right program is connecting
-				if(DEBUG) printf("	--DEBUG: Validating coder option:		");
+				if(DEBUG) printf("	(SERVER) - DEBUG: Validating coder option:	");
 				wrongFile = 0;
 				token = strtok(NULL, newline);
 				if (strcmp(&option, token)) {
@@ -249,15 +249,17 @@ int otp_s (char* port_str, char option) {
 					wrongFile = 1;
 				}
 				if(DEBUG) printf("DONE\n");
-								
+				if(DEBUG) printf("	(SERVER) - DEBUG: Generating output file:	");	
 				//Generate file, export contents of output
+				
 				sprintf(f_output, "%c_f.%d", option, pid);
 				FILE* fd_output = fopen(f_output, "w+");
+				if(DEBUG) printf("DONE\n");
 				
 				//Correct file
 				if (wrongFile == 0){
 					//Parsing files
-					if(DEBUG) printf("	--DEBUG: Parsing text files:		");
+					if(DEBUG) printf("	(SERVER) - DEBUG: Parsing text files:		");
 					parseFile(f_plaintext, &plaintext);
 					parseFile(f_key, &key);
 					
@@ -271,10 +273,9 @@ int otp_s (char* port_str, char option) {
 					fprintf(fd_output, "%s", output);
 				} else {
 					//Else: incorrect output. Save and close the empty file.
-					if(DEBUG) printf("	--DEBUG: Wrong option detected.\n");
+					if(DEBUG) printf("	(SERVER) - DEBUG: Wrong option detected.\n");
 				}
 				fclose(fd_output);
-				if(DEBUG) printf("DONE\n");
 				
 				//Send the file back to the client, close the connection
 				c_read = send(conn_fd, f_output, strlen(f_output), 0);
@@ -296,7 +297,7 @@ int otp_s (char* port_str, char option) {
 		conn_fd = -1;
 		wait(NULL);
 	}
-	if(DEBUG) printf("	--DEBUG: Actions complete. Terminating connection.\n");
+	if(DEBUG) printf("	(SERVER) - DEBUG: Actions complete. Terminating connection.\n");
 	//Free memory, close connection to the server completely
 	free (f_output);
 	free (f_plaintext);
