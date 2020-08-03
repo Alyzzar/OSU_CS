@@ -150,9 +150,9 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //port #		option
 int otp_s (char* port_str, char option) {
 	//OTP for server side
-	int sock_fd, conn_fd, c_read, wrongFile;
-	int pid = getpid();
+	int sock_fd, conn_fd, c_read, wrongFile, ch_pid;
 	int port = atoi(port_str);
+	pid_t pid;
 	
 	socklen_t clientSize;
 	struct sockaddr_in serverAddress, clientAddress;
@@ -198,7 +198,7 @@ int otp_s (char* port_str, char option) {
 		// Accept connection
 		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, &clientSize);
 		if (conn_fd < 0){
-			printf("conn_fd === %d\n", conn_fd);
+			//printf("conn_fd === %d\n", conn_fd);
 			free (f_output);
 			free (f_plaintext);
 			error("ERROR: Could not accept connection.\n", 1);
@@ -250,10 +250,11 @@ int otp_s (char* port_str, char option) {
 				}
 				if(DEBUG) printf("DONE\n");
 				if(DEBUG) printf("	(SERVER) - DEBUG: Generating output file:	");	
+				ch_pid = getpid();
 				//Generate file, export contents of output
-				printf(" - option: %c\n - PID: %d\n", option, pid);
-				sprintf(f_output, "%c_f.%d", option, pid);
-				printf(" - f_output: %s\n", f_output);
+				//printf(" - option: %c\n - PID: %d\n", option, pid);
+				sprintf(f_output, "%c_f.%d", option, ch_pid);
+				//printf(" - f_output: %s\n", f_output);
 				FILE* fd_output = fopen(f_output, "w+");
 				if(DEBUG) printf("DONE\n");
 				
