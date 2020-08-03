@@ -56,7 +56,7 @@ void parseFile(char *f_in, char (*output) []){
 //OTP_c args
 //argv[1]	argv[2]		argv[3] 	'e'||'d'
 //text		key 		port #		option
-int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
+int otp_c (char* f_plaintext, char* f_key, char* port_str, char* option) {
 	//OTP for client side
 	int len, sock_fd, c_write, c_read;
 	int port = atoi(port_str);
@@ -111,7 +111,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	if(DEBUG) printf("	(CLIENT) - DEBUG: Sending message to server:	");
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
-	sprintf(buffer, "%s\n%s\n%c", plaintext, key, option);
+	sprintf(buffer, "%s\n%s\n%s", plaintext, key, option);
 	// Send the message
 	c_write = send(sock_fd, buffer, strlen(buffer), 0);
 	//No data was sent
@@ -148,7 +148,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //OTP_d args
 //argv[1]		'e'||'d'
 //port #		option
-int otp_s (char* port_str, char option) {
+int otp_s (char* port_str, char* option) {
 	//OTP for server side
 	int sock_fd, conn_fd, c_read, wrongFile;
 	int port = atoi(port_str);
@@ -245,16 +245,16 @@ int otp_s (char* port_str, char option) {
 				if(DEBUG) printf("	(SERVER) - DEBUG: Validating coder option:	");
 				wrongFile = 0;
 				token = strtok(NULL, newline);
-				if (strcmp(&option, token)) {
-					fprintf(stderr, "ERROR \"%c\" is not equal to \"%c\".\n", *token, option );
+				if (strcmp(option, token)) {
+					fprintf(stderr, "ERROR \"%c\" is not equal to \"%s\".\n", *token, option );
 					wrongFile = 1;
 				}
 				if(DEBUG) printf("DONE\n");
 				if(DEBUG) printf("	(SERVER) - DEBUG: Generating output file:	");	
 				ch_pid = getpid();
 				//Generate file, export contents of output
-				//printf(" - option: %c\n - child PID: %d\n", option, ch_pid);
-				sprintf(f_output, "%c_f.%d", option, ch_pid);
+				//printf(" - option: %s\n - child PID: %d\n", option, ch_pid);
+				sprintf(f_output, "%s_f.%d", option, ch_pid);
 				//printf(" - f_output: %s\n", f_output);
 				FILE* fd_output = fopen(f_output, "w+");
 				if(DEBUG) printf("DONE\n");
