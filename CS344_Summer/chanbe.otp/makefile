@@ -30,8 +30,10 @@ enc_server: enc_server.c coder.o otp.o
 	$(CC) $(CFLAGS) -o enc_server enc_server.c coder.o otp.o
 
 clean:
-	#echo "Removing *.o and executable files."
+	#echo "Removing *.o, executables, and output text files."
 	rm -f *.o
+	rm -f e_f.*
+	rm -f d_f.*
 	rm -f dec_client dec_server enc_client enc_server keygen
 	
 reset: clean all
