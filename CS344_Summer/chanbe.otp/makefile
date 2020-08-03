@@ -13,7 +13,7 @@ otp.o: otp.c otp.h coder.o
 
 keygen:	keygen.c otp.h otp.o 
 	echo "Compiling keygen."
-	$(CC) $(CFLAGS) -o keygen keygen.c
+	$(CC) $(CFLAGS) -o keygen otp.o keygen.c
 
 dec_client: dec_client.c coder.o otp.o
 	echo "Compiling dec_client."
