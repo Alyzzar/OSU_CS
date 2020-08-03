@@ -133,7 +133,7 @@ int otp_d (char* port_str, char option) {
 	int pid = getpid();
 	int port = atoi(port_str);
 	
-	socklen_t *clientSize;
+	socklen_t clientSize;
 	struct sockaddr_in serverAddress, clientAddress;
 	
 	char buffer[512];
@@ -168,9 +168,9 @@ int otp_d (char* port_str, char option) {
 	
 	while(1){
 		// Get address size for client
-		*clientSize = sizeof(clientAddress);
+		clientSize = sizeof(clientAddress);
 		// Accept connection
-		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, clientSize);
+		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, &clientSize);
 		if (conn_fd < 0){
 			free (f_output);
 			free (f_plaintext);
