@@ -159,6 +159,7 @@ int otp_s (char* port_str, char option) {
 	
 	char buffer[512];
 	char output[80000];
+	//char *f_output = malloc(256 * sizeof(char));
 	char *f_output = malloc(256 * sizeof(char));
 	char plaintext[80000];
 	char *f_plaintext = malloc(256 * sizeof(char));
@@ -178,12 +179,12 @@ int otp_s (char* port_str, char option) {
 	if(DEBUG) printf("	(SERVER) - DEBUG: Establishing socket:		");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0); // Create the socket
 	if (sock_fd < 0){
-		free (f_output);
+		//free (f_output);
 		free (f_plaintext);
 		error("ERROR: Could not open socket.\n", 1);
 	}
 	if (bind(sock_fd, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) < 0){
-		free (f_output);
+		//free (f_output);
 		free (f_plaintext);
 		error ("ERROR: Could not bind socket.\n", 1);
 	}
@@ -199,19 +200,19 @@ int otp_s (char* port_str, char option) {
 		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, &clientSize);
 		if (conn_fd < 0){
 			//printf("conn_fd === %d\n", conn_fd);
-			free (f_output);
+			//free (f_output);
 			free (f_plaintext);
 			error("ERROR: Could not accept connection.\n", 1);
 		}
 		if(DEBUG) printf("DONE\n");
 		
 		// Create child process
-		if(DEBUG) printf("	(SERVER) - DEBUG: Creating child process:		");
+		if(DEBUG) printf("	(SERVER) - DEBUG: Creating child process:	");
 		pid = fork();
 		switch (pid) {
 			case -1:	;
 				//Error. Terminate program
-				free (f_output);
+				//free (f_output);
 				free (f_plaintext);
 				error ("ERROR: Could not create child process.\n", 1);
 				exit(0);
@@ -223,7 +224,7 @@ int otp_s (char* port_str, char option) {
 				memset(buffer, '\0', sizeof(buffer));
 				c_read = recv(conn_fd, buffer, (sizeof(buffer) - 1), 0);
 				if (c_read < 0) {
-					free (f_output);
+					//free (f_output);
 					free (f_plaintext);
 					error ("ERROR: Could not read from socket.\n", 1);
 				}
@@ -252,7 +253,7 @@ int otp_s (char* port_str, char option) {
 				if(DEBUG) printf("	(SERVER) - DEBUG: Generating output file:	");	
 				ch_pid = getpid();
 				//Generate file, export contents of output
-				//printf(" - option: %c\n - PID: %d\n", option, pid);
+				//printf(" - option: %c\n - child PID: %d\n", option, ch_pid);
 				sprintf(f_output, "%c_f.%d", option, ch_pid);
 				//printf(" - f_output: %s\n", f_output);
 				FILE* fd_output = fopen(f_output, "w+");
@@ -270,9 +271,10 @@ int otp_s (char* port_str, char option) {
 					} else if (option == 'd'){
 						dec(plaintext, output, key, strlen(plaintext));
 					}
-					if(DEBUG) printf("DONE\n");
 					//Correct ouput. Print the en/decoded data into the file
 					fprintf(fd_output, "%s", output);
+					if(DEBUG) printf("DONE\n");
+					
 				} else {
 					//Else: incorrect output. Save and close the empty file.
 					if(DEBUG) printf("	(SERVER) - DEBUG: Wrong option detected.\n");
@@ -282,7 +284,7 @@ int otp_s (char* port_str, char option) {
 				//Send the file back to the client, close the connection
 				c_read = send(conn_fd, f_output, strlen(f_output), 0);
 				if (c_read < 0){
-					free (f_output);
+					//free (f_output);
 					free (f_plaintext);	
 					error ("ERROR: Could not write to socket.\n", 1);
 				}
@@ -302,7 +304,7 @@ int otp_s (char* port_str, char option) {
 	}
 	if(DEBUG) printf("	(SERVER) - DEBUG: Actions complete. Terminating connection.\n");
 	//Free memory, close connection to the server completely
-	free (f_output);
+	//free (f_output);
 	free (f_plaintext);
 	close (sock_fd);
 	return 0;
