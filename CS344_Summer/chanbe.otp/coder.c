@@ -1,5 +1,7 @@
 #include "otp.h"
 
+const char alph[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+
 void intToStr (int input[], char output[], int len){
 	int n;
 	for (n = 0; n < len; n++){
