@@ -251,8 +251,9 @@ int otp_s (char* port_str, char option) {
 				if(DEBUG) printf("DONE\n");
 				if(DEBUG) printf("	(SERVER) - DEBUG: Generating output file:	");	
 				//Generate file, export contents of output
-				
+				printf(" - option: %c\n - PID: %d\n", option, pid);
 				sprintf(f_output, "%c_f.%d", option, pid);
+				printf(" - f_output: %s\n"f_output);
 				FILE* fd_output = fopen(f_output, "w+");
 				if(DEBUG) printf("DONE\n");
 				
