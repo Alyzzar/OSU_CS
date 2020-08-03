@@ -34,4 +34,4 @@ clean:
 	rm -f *.o
 	rm -f dec_client dec_server enc_client enc_server keygen
 	
-thorough: clean all
+reset: clean all
