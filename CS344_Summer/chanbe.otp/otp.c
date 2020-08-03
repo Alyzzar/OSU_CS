@@ -1,7 +1,5 @@
 #include "otp.h"
 
-const char alph[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-
 void error(const char *report, int value){
 	perror(report);
 	exit(value);
