@@ -206,7 +206,7 @@ int otp_s (char* port_str, char option) {
 		if(DEBUG) printf("DONE\n");
 		
 		// Create child process
-		if(DEBUG) printf("	(SERVER) - DEBUG: Create child process:		");
+		if(DEBUG) printf("	(SERVER) - DEBUG: Creating child process:		");
 		pid = fork();
 		switch (pid) {
 			case -1:	;
@@ -292,6 +292,7 @@ int otp_s (char* port_str, char option) {
 				
 				break;
 			default:		;
+				if(DEBUG) printf("NO PROCESS CREATED\n");
 			//Error 404: There's nothing in here!
 		}
 		//End specific connections, kill processes
