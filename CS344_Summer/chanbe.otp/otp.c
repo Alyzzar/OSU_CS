@@ -12,7 +12,7 @@ void validateText(char text[], int len){
 	for (n = 0; n < len; n++) {
 		for (p = 0; p < 28; p++) {
 			// If p == 27, no match was found. Error
-			printf("Character [%d]: %c == %c?\n", n, text[n], alph[p]);
+			// printf("Character [%d]: %c == %c?\n", n, text[n], alph[p]);
 			if (p == 27) {
 				fprintf(stderr, "ERROR: Invalid characters found in input.\n");
 				exit(1);
@@ -97,10 +97,13 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	if(DEBUG) printf("	DONE\n");
 	
 	// Set up the socket
-	if(DEBUG) printf("	--DEBUG: Creating and connecting to socket:");
+	if(DEBUG) printf("	--DEBUG: Establishing socket:");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock_fd < 0) error("ERROR: Could not establish socket.\n", 1);
-	// Connect
+	if(DEBUG) printf("	DONE\n");
+	
+	// Connect to the socket
+	if(DEBUG) printf("	--DEBUG: Connecting to socket:");
 	if (connect(sock_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
 		error("ERROR: Could not connect socket to address.\n", 1);
 	}
