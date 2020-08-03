@@ -47,8 +47,8 @@ void parseFile(char *f_in, char (*output) []){
 	fclose(fd_text);
 	//Replace '/n' at end of file with '/0'
 	len = strlen (*output);
-	if (text[len - 1] == '\n'){
-		text[len - 1] = '\0';
+	if ((*output)[len - 1] == '\n'){
+		(*output)[len - 1] = '\0';
 	}
 }
 
