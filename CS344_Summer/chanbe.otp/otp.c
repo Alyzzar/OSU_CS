@@ -43,7 +43,10 @@ void parseFile(char *f_in, char (*output) []){
 	fgets(*output, 80000, fd_text);
 	fclose(fd_text);
 	//Reads file until it finds a newline character
-	*output[strcspn(*output, "\n")] = '\0';
+	/*
+	BUG ON THIS LINE HERE, REMEMBER TO UNCOMMENT LATER
+	*/
+	//*output[strcspn(*output, "\n")] = '\0';
 }
 
 //OTP_c args
