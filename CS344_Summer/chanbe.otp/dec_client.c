@@ -7,7 +7,7 @@ int main (int argc, char *argv[]){
 		exit(0);
 	}
 	
-	otp_c(argv[1], argv[2], argv[3], 'd');
+	otp_c(argv[1], argv[2], argv[3], "d");
 	
 	return 0;
 }
