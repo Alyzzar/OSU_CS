@@ -11,7 +11,7 @@ otp.o: otp.c otp.h coder.o
 	echo "Compiling otp.o."
 	$(CC) $(CFLAGS) -c otp.c
 
-keygen:	keygen.c otp.h
+keygen:	keygen.c otp.o otp.h
 	echo "Compiling keygen."
 	$(CC) $(CFLAGS) -o keygen keygen.c
 
