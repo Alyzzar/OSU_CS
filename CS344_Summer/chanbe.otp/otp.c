@@ -160,7 +160,7 @@ int otp_s (char* port_str, char option) {
 	char buffer[512];
 	char output[80000];
 	//char *f_output = malloc(256 * sizeof(char));
-	char f_output[256]; 
+	char f_output[32]; 
 	char plaintext[80000];
 	char *f_plaintext = malloc(256 * sizeof(char));
 	char key[80000];
