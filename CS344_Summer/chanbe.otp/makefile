@@ -33,3 +33,5 @@ clean:
 	echo "Removing *.o and executable files."
 	rm -f *.o
 	rm -f dec_client dec_server enc_client enc_server keygen
+	
+thorough: clean all
