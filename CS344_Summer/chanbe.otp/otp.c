@@ -150,9 +150,9 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //port #		option
 int otp_s (char* port_str, char option) {
 	//OTP for server side
-	int sock_fd, conn_fd, c_read, wrongFile, ch_pid;
+	int sock_fd, conn_fd, c_read, wrongFile;
 	int port = atoi(port_str);
-	pid_t pid;
+	pid_t pid, ch_pid;
 	
 	socklen_t clientSize;
 	struct sockaddr_in serverAddress, clientAddress;
