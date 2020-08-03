@@ -35,6 +35,7 @@ void validateText(char text[], int len){
 }
 
 /*	Descrip:	Validates that the key is longer than the plaintext.
+ *				If the key is longer, trim the length down to match the plaintext.
  *	Params:		char plaintext[], char key[]
  *  Return:		length of plaintext (if valid)
  */
@@ -45,6 +46,7 @@ int validateLen(char plaintext[], char key[]){
 	keyLen  = strlen (key);
 	
 	if (textLen < keyLen){
+		//Trim it
 		key[textLen] = '\0';
 		return textLen;
 	}
