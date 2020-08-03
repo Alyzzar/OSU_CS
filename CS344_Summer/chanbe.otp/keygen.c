@@ -16,8 +16,13 @@ void genKey(int len){
 }
 
 int main (int argc, char* argv[]){
-	srand(time(0));
-	//Generate random key with the given length
-	genKey(atoi(argv[1]));
+	if (argc == 2){
+		srand(time(0));
+		//Generate random key with the given length
+		genKey(atoi(argv[1]));
+		return 0;
+	} else {
+		printf("Wrong number of arguments provided. Expected one integer value.\n");
+	}
 	return 0;
 }
