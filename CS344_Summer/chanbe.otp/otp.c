@@ -11,7 +11,7 @@ void validateText(char text[], int len){
 	for (n = 0; n < len; n++) {
 		for (p = 0; p < 28; p++) {
 			// If p == 27, no match was found. Error
-			printf("Character [%d]: %s == %s?\n", n, text[n], alph[p]);
+			printf("Character [%d]: %c == %c?\n", n, text[n], alph[p]);
 			if (p == 27) {
 				fprintf(stderr, "ERROR: Invalid characters found in input.\n");
 				exit(1);
