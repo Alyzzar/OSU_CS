@@ -128,7 +128,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 //OTP_d args
 //argv[1]		'e'||'d'
 //port #		option
-int otp_d (char* port_str, char option) {
+int otp_s (char* port_str, char option) {
 	//OTP for server side
 	int sock_fd, conn_fd, c_read, wrongFile;
 	int pid = getpid();
