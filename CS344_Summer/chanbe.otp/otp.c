@@ -166,7 +166,7 @@ int otp_s (char* port_str, char option) {
 	char f_key[256];
 	
 	//Create and allocate a server struct (same as above)
-	if(DEBUG) printf("	(SERVER) - DEBUG: Creating server:		");
+	if(DEBUG) printf("\n	(SERVER) - DEBUG: Creating server:		");
 	memset((char*)&serverAddress, '\0', sizeof(serverAddress));
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
