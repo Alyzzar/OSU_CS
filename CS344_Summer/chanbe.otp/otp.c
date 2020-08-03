@@ -44,8 +44,10 @@ int validateLen(char plaintext[], char key[]){
 	textLen = strlen (plaintext);
 	keyLen  = strlen (key);
 	
-	if (textLen < keyLen) return textLen;
-	
+	if (textLen < keyLen){
+		key[textLen] = '\0';
+		return textLen;
+	}
 	//Else, key is too short
 	fprintf(stderr, "ERROR: Key length [%d] less than plaintext length [%d].\n", keyLen, textLen);
 	exit(1);
