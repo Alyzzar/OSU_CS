@@ -6,11 +6,12 @@ all: keygen dec_client dec_server enc_client enc_server
 coder.o: coder.c otp.h
 	echo "Compiling coder.o."
 	$(CC) $(CFLAGS) -c coder.c
-otp.o: otp.c otp.h
+	
+otp.o: otp.c otp.h coder.o
 	echo "Compiling otp.o."
 	$(CC) $(CFLAGS) -c otp.c
 
-keygen:	keygen.c
+keygen:	keygen.c coder.o
 	echo "Compiling keygen."
 	$(CC) $(CFLAGS) -o keygen keygen.c
 
