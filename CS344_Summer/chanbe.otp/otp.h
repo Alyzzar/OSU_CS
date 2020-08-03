@@ -26,14 +26,7 @@ void validateText(char[], int);
 int validateLen(char[], char[]);
 void parseFile(char*, char (*) []);
 
-//OTP_c args
-//argv[1]	argv[2]		argv[3] 	"e"||"d"
-//text		key 		port #		option
 int otp_c (char*, char*, char*, char*);
-
-//OTP_s args
-//argv[1]		"e"||"d"
-//port #		option
 int otp_s(char*, char*);
 
 #endif
