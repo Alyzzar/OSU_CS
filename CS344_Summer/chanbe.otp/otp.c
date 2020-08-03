@@ -97,19 +97,19 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	if(DEBUG) printf("	DONE\n");
 	
 	// Set up the socket
-	if(DEBUG) printf("	--DEBUG: Establishing socket:");
+	if(DEBUG) printf("	--DEBUG: Establishing socket:	");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock_fd < 0) error("ERROR: Could not establish socket.\n", 1);
 	if(DEBUG) printf("	DONE\n");
 	
 	// Connect to the socket
-	if(DEBUG) printf("	--DEBUG: Connecting to socket:");
+	if(DEBUG) printf("	--DEBUG: Connecting to socket:	");
 	if (connect(sock_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
 		error("ERROR: Could not connect socket to address.\n", 1);
 	}
 	if(DEBUG) printf("	DONE\n");
 	
-	if(DEBUG) printf("	--DEBUG: Sending message to server:");
+	if(DEBUG) printf("	--DEBUG: Sending to server:");
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
 	sprintf(buffer, "%s\n%s\n%c", plaintext, key, option);
