@@ -14,10 +14,10 @@ Written by Ben Chan for OSU CS 344, Summer 2020
 >dec_client.c  
 >dec_server.c  
 >plaintext1  
->plaintext2	 
->plaintext3	 
->plaintext4	 
->plaintext5	 	
+>plaintext2  
+>plaintext3  
+>plaintext4  
+>plaintext5  
 
 #### COMPILER:
 >'make'			-	 Runs default 'make all', and compiles all non-existing files.  
