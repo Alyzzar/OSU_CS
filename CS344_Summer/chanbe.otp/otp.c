@@ -173,6 +173,7 @@ int otp_s (char* port_str, char option) {
 		// Accept connection
 		conn_fd = accept(sock_fd, (struct sockaddr *)&clientAddress, &clientSize);
 		if (conn_fd < 0){
+			printf("conn_fd === %d\n", conn_fd);
 			free (f_output);
 			free (f_plaintext);
 			error("ERROR: Could not accept connection.\n", 1);
