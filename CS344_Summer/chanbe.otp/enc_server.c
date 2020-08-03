@@ -7,7 +7,7 @@ int main (int argc, char *argv[]){
 		exit(0);
 	}
 	
-	otp_s(argv[1], 'e');
+	otp_s(argv[1], "e");
 	
 	return 0;
 }
