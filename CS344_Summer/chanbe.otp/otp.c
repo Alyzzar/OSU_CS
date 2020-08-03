@@ -251,17 +251,19 @@ int otp_s (char* port_str, char* option) {
 					error ("ERROR: Could not read from socket.\n", 1);
 				}
 				
-				if(DEBUG) printf("	(SERVER) - DEBUG: Parsing message:		");
+				if(DEBUG) printf("	(SERVER) - DEBUG: Parsing message.\n");
 				// Array to find /0 and /n delimiters via strtok
 				const char newline[2] = {'\n', '\0'};
 				
 				//Grab plaintext from top of buffer
 				char *token = strtok(buffer, newline);
 				strcpy(f_plaintext, token);
+				if(DEBUG) printf("	(SERVER) - DEBUG: f_plaintext:\n%s\n", f_plaintext);
+				
 				//Grab key from buffer (NULL --> pointer continues from previous call)
 				token = strtok(NULL, newline);
 				strcpy(f_key, token);
-				if(DEBUG) printf("DONE\n");
+				if(DEBUG) printf("	(SERVER) - DEBUG: f_key:\n%s\n", f_key);
 
 				// Make sure the right program is connecting
 				if(DEBUG) printf("	(SERVER) - DEBUG: Validating coder option:	");
@@ -316,7 +318,7 @@ int otp_s (char* port_str, char* option) {
 				
 				break;
 			default:		;
-				if(DEBUG) printf("NO PROCESS CREATED\n");
+				if(DEBUG) printf("DEFAULT\n");
 			//Error 404: There's nothing in here!
 		}
 		//End specific connections, kill processes
