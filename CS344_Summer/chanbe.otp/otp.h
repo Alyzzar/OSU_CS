@@ -14,7 +14,7 @@
 
 #define MAX_CONNECTIONS 5
 
-const char alph[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+extern const char alph[27];
 
 void intToStr (int[], char[], int);
 void strToInt (char[], int[], int);
