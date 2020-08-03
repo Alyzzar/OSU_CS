@@ -73,14 +73,14 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	parseFile(f_key, &key);
 	
 	//Validation stuff (Calls validation functions)
-	if(DEBUG) printf("	--DEBUG: Validating text:	");
+	if(DEBUG) printf("	--DEBUG: Validating text:		");
 	len = validateLen(plaintext, key);
 	validateText(plaintext, len);
 	validateText(key, len);
-	if(DEBUG) printf("	DONE\n");
+	if(DEBUG) printf("DONE\n");
 	
 	//Create and allocate a server struct
-	if(DEBUG) printf("	--DEBUG: Creating server:	");
+	if(DEBUG) printf("	--DEBUG: Creating server:		");
 	memset((char*)&serverAddress, '\0', sizeof(serverAddress));
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
@@ -91,25 +91,24 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 		fprintf(stderr, "ERROR: Could not connect to localhost\n.");
 		exit(0);
 	}
-
 	//If host connected, copy address
 	memcpy((char*)&serverAddress.sin_addr.s_addr, (char*)serverHostInfo->h_addr, serverHostInfo->h_length);
-	if(DEBUG) printf("	DONE\n");
+	if(DEBUG) printf("DONE\n");
 	
 	// Set up the socket
-	if(DEBUG) printf("	--DEBUG: Establishing socket:	");
+	if(DEBUG) printf("	--DEBUG: Establishing socket:		");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock_fd < 0) error("ERROR: Could not establish socket.\n", 1);
-	if(DEBUG) printf("	DONE\n");
+	if(DEBUG) printf("DONE\n");
 	
 	// Connect to the socket
-	if(DEBUG) printf("	--DEBUG: Connecting to socket:	");
+	if(DEBUG) printf("	--DEBUG: Connecting to socket:		");
 	if (connect(sock_fd, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
 		error("ERROR: Could not connect socket to address.\n", 1);
 	}
-	if(DEBUG) printf("	DONE\n");
+	if(DEBUG) printf("DONE\n");
 	
-	if(DEBUG) printf("	--DEBUG: Sending to server:");
+	if(DEBUG) printf("	--DEBUG: Sending message to server:	");
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
 	sprintf(buffer, "%s\n%s\n%c", plaintext, key, option);
@@ -117,16 +116,16 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	c_write = send(sock_fd, buffer, strlen(buffer), 0);
 	//No data was sent
 	if (c_write < 0){
-		error("Error: Could not write to socket.\n", 1);
+		error("ERROR: Could not write to socket.\n", 1);
 	}
 	//Not all data was sent
 	if (c_write < strlen(buffer)){
 		printf("ERROR: Not all data was sent to socket.\n");
 	}
-	if(DEBUG) printf("	DONE\n");
+	if(DEBUG) printf("DONE\n");
 		
 	//Get message from server
-	if(DEBUG) printf("	--Debug: Receiving message from server:");
+	if(DEBUG) printf("	--Debug: Receiving message from server:	");
 	memset(buffer, '\0', sizeof(buffer));
 	c_read = recv(sock_fd, buffer, (sizeof(buffer) - 1), 0);
 	if (c_read < 0){
@@ -138,7 +137,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	fclose(f_recv);
 	
 	remove(buffer);
-	if(DEBUG) printf("	DONE\n");
+	if(DEBUG) printf("DONE\n");
 	
 	//Printing final output
 	printf("%s\n", output);
