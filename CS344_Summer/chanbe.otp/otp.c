@@ -129,7 +129,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char option) {
 	memset(buffer, '\0', sizeof(buffer));
 	c_read = recv(sock_fd, buffer, (sizeof(buffer) - 1), 0);
 	if (c_read < 0){
-		error("ERROR: Could ont read from socket.\n", 1);
+		error("ERROR: Could not read from socket.\n", 1);
 	}
 		
 	FILE* f_recv = fopen(buffer, "r");
@@ -166,13 +166,16 @@ int otp_s (char* port_str, char option) {
 	char f_key[256];
 	
 	//Create and allocate a server struct (same as above)
+	if(DEBUG) printf("	--DEBUG: Creating server:		");
 	memset((char*)&serverAddress, '\0', sizeof(serverAddress));
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_port = htons(port);
 	//Host and address are set up differently (not localhost)
 	serverAddress.sin_addr.s_addr = INADDR_ANY;
+	if(DEBUG) printf("DONE\n");
 	
 	// Set up the socket
+	if(DEBUG) printf("	--DEBUG: Establishing socket:		");
 	sock_fd = socket(AF_INET, SOCK_STREAM, 0); // Create the socket
 	if (sock_fd < 0){
 		free (f_output);
@@ -186,8 +189,10 @@ int otp_s (char* port_str, char option) {
 	}
 	//Turn on the socket with max connections = 5
 	listen(sock_fd, MAX_CONNECTIONS);
-	
+	if(DEBUG) printf("DONE\n");
+		
 	while(1){
+		if(DEBUG) printf("	--DEBUG: Connecting to socket:		");
 		// Get address size for client
 		clientSize = sizeof(clientAddress);
 		// Accept connection
@@ -198,7 +203,10 @@ int otp_s (char* port_str, char option) {
 			free (f_plaintext);
 			error("ERROR: Could not accept connection.\n", 1);
 		}
+		if(DEBUG) printf("DONE\n");
+		
 		// Create child process
+		if(DEBUG) printf("	--DEBUG: Create child process:		");
 		pid = fork();
 		switch (pid) {
 			case -1:	;
@@ -210,6 +218,8 @@ int otp_s (char* port_str, char option) {
 				break;
 			case 0:		;
 				//Process created successfully
+				if(DEBUG) printf("DONE\n");
+				
 				memset(buffer, '\0', sizeof(buffer));
 				c_read = recv(conn_fd, buffer, (sizeof(buffer) - 1), 0);
 				if (c_read < 0) {
@@ -218,6 +228,7 @@ int otp_s (char* port_str, char option) {
 					error ("ERROR: Could not read from socket.\n", 1);
 				}
 				
+				if(DEBUG) printf("	--DEBUG: Parsing message:		");
 				// Array to find /0 and /n delimiters via strtok
 				const char newline[2] = {'\n', '\0'};
 				
@@ -227,22 +238,26 @@ int otp_s (char* port_str, char option) {
 				//Grab key from buffer (NULL --> pointer continues from previous call)
 				token = strtok(NULL, newline);
 				strcpy(f_key, token);
+				if(DEBUG) printf("DONE\n");
 
 				// Make sure the right program is connecting
+				if(DEBUG) printf("	--DEBUG: Validating coder option:		");
 				wrongFile = 0;
 				token = strtok(NULL, newline);
 				if (strcmp(&option, token)) {
 					fprintf(stderr, "ERROR \"%c\" is not equal to \"%c\".\n", *token, option );
 					wrongFile = 1;
 				}
-				
+				if(DEBUG) printf("DONE\n");
+								
 				//Generate file, export contents of output
 				sprintf(f_output, "%c_f.%d", option, pid);
 				FILE* fd_output = fopen(f_output, "w+");
 				
 				//Correct file
 				if (wrongFile == 0){
-					//Cast of char[] to char*
+					//Parsing files
+					if(DEBUG) printf("	--DEBUG: Parsing text files:		");
 					parseFile(f_plaintext, &plaintext);
 					parseFile(f_key, &key);
 					
@@ -251,11 +266,15 @@ int otp_s (char* port_str, char option) {
 					} else if (option == 'd'){
 						dec(plaintext, output, key, strlen(plaintext));
 					}
+					if(DEBUG) printf("DONE\n");
 					//Correct ouput. Print the en/decoded data into the file
 					fprintf(fd_output, "%s", output);
+				} else {
+					//Else: incorrect output. Save and close the empty file.
+					if(DEBUG) printf("	--DEBUG: Wrong option detected.\n");
 				}
-				//Else: incorrect output. Save and close the empty file.
 				fclose(fd_output);
+				if(DEBUG) printf("DONE\n");
 				
 				//Send the file back to the client, close the connection
 				c_read = send(conn_fd, f_output, strlen(f_output), 0);
@@ -270,13 +289,14 @@ int otp_s (char* port_str, char option) {
 				
 				break;
 			default:		;
+			//Error 404: There's nothing in here!
 		}
 		//End specific connections, kill processes
 		close(conn_fd);
 		conn_fd = -1;
 		wait(NULL);
 	}
-	
+	if(DEBUG) printf("	--DEBUG: Actions complete. Terminating connection.\n");
 	//Free memory, close connection to the server completely
 	free (f_output);
 	free (f_plaintext);
