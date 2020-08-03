@@ -215,7 +215,7 @@ int otp_d (char* port_str, char option) {
 				}
 				
 				//Generate file, export contents of output
-				sprintf(f_output, "%s_f.%d", option, pid);
+				sprintf(f_output, "%c_f.%d", option, pid);
 				FILE* fd_output = fopen(f_output, "w+");
 				
 				//Correct file
