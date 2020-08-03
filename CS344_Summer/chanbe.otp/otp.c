@@ -289,8 +289,9 @@ int otp_s (char* port_str, char* option) {
 				if (wrongFile == 0){
 					//Parsing files
 					if(DEBUG) printf("	(SERVER) - DEBUG: Parsing text files:		");
-					parseFile(f_plaintext, &plaintext);
+					
 					parseFile(f_key, &key);
+					parseFile(f_plaintext, &plaintext);
 					
 					if (strcmp(option, "e")){
 						enc(plaintext, output, key, strlen(plaintext));
