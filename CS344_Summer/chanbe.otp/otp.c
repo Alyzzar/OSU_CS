@@ -41,14 +41,15 @@ int validateLen(char plaintext[], char key[]){
 }	
 
 void parseFile(char *f_in, char (*output) []){
+	int len;
 	FILE* fd_text = fopen(f_in, "r");
 	fgets(*output, 80000, fd_text);
 	fclose(fd_text);
-	//Reads file until it finds a newline character
-	/*
-	BUG ON THIS LINE HERE, REMEMBER TO UNCOMMENT LATER
-	*/
-	//*output[strcspn(*output, "\n")] = '\0';
+	//Replace '/n' at end of file with '/0'
+	len = strlen (*output);
+	if (text[len - 1] == '\n'){
+		text[len - 1] = '\0';
+	}
 }
 
 //OTP_c args
