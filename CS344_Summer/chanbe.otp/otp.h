@@ -31,9 +31,9 @@ void parseFile(char*, char (*) []);
 //text		key 		port #		option
 int otp_c (char*, char*, char*, char);
 
-//OTP_c args
+//OTP_s args
 //argv[1]		'e'||'d'
 //port #		option
-int otp_d(char*, char);
+int otp_s(char*, char);
 
 #endif
