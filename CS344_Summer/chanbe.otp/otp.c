@@ -282,7 +282,7 @@ int otp_s (char* port_str, char* option) {
 				wrongFile = 0;
 				token = strtok(NULL, newline);
 				if (strcmp(option, token)) {
-					fprintf(stderr, "ERROR [%c] client [%s] server.\n", *token, option );
+					fprintf(stderr, "ERROR: %c_client cannot use the %s_server.\n", *token, option );
 					wrongFile = 1;
 				}
 				if(DEBUG) printf("DONE\n");
