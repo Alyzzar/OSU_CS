@@ -35,7 +35,7 @@ void validateText(char text[], int len){
 }
 
 /*	Descrip:	Validates that the key is longer than the plaintext.
- *				If the key is longer, trim the length down to match the plaintext.
+ *				(Optional: If the key is longer, trim the length down to match the plaintext.)
  *	Params:		char plaintext[], char key[]
  *  Return:		length of plaintext (if valid)
  */
@@ -46,8 +46,8 @@ int validateLen(char plaintext[], char key[]){
 	keyLen  = strlen (key);
 	
 	if (textLen < keyLen){
-		//Trim it
-		key[textLen] = '\0';
+		//Trim it with '/0'(Optional, used in a previous version before rewriting some functions)
+		//key[textLen] = '\0';
 		return textLen;
 	}
 	//Else, key is too short
@@ -132,8 +132,8 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char* option) {
 	if(DEBUG) printf("	(CLIENT) - DEBUG: Sending message to server:	");
 	// Compose the message
 	memset(buffer, '\0', sizeof(buffer));
-	sprintf(buffer, "%s\n%s\n%s", plaintext, key, option);
-	// Send the message
+	sprintf(buffer, "%s\n%s\n%s", f_plaintext, f_key, option);
+	// Send the message (file names)
 	c_write = send(sock_fd, buffer, strlen(buffer), 0);
 	//No data was sent
 	if (c_write < 0){
@@ -292,8 +292,11 @@ int otp_s (char* port_str, char* option) {
 					//Parsing files
 					if(DEBUG) printf("	(SERVER) - DEBUG: Parsing text files:		");
 					
-					parseFile(f_key, &key);
+					//********************************
+					//BOTH OF THESE LINES ARE CRASHING
 					parseFile(f_plaintext, &plaintext);
+					parseFile(f_key, &key);
+					//********************************
 					
 					if (strcmp(option, "e")){
 						enc(plaintext, output, key, strlen(plaintext));
