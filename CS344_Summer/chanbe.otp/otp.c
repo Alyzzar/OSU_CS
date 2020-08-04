@@ -1,5 +1,13 @@
+/**		Assignment 3: One-Time Pads  
+  *		Written by Ben Chan for OSU CS 344, Summer 2020  
+  *		
+  *		This is the central program for OTP. All four executables call this in their main function.
+  **/
+  
 #include "otp.h"
 #define DEBUG 0
+//To enable debugging messages, set DEBUG value to 1.
+//(Note that this causes issues for the grading script)
  
 /*	Descrip:	Error reporting. Outputs the perror and exit value in the case of a detected crash.
  *	Params:		char* report, int value
@@ -274,7 +282,7 @@ int otp_s (char* port_str, char* option) {
 				wrongFile = 0;
 				token = strtok(NULL, newline);
 				if (strcmp(option, token)) {
-					fprintf(stderr, "ERROR \"%c\" is not equal to \"%s\".\n", *token, option );
+					fprintf(stderr, "ERROR [%c] client [%s] server.\n", *token, option );
 					wrongFile = 1;
 				}
 				if(DEBUG) printf("DONE\n");
@@ -292,15 +300,12 @@ int otp_s (char* port_str, char* option) {
 					//Parsing files
 					if(DEBUG) printf("	(SERVER) - DEBUG: Parsing text files:		");
 					
-					//********************************
-					//BOTH OF THESE LINES ARE CRASHING
 					parseFile(f_plaintext, &plaintext);
 					parseFile(f_key, &key);
-					//********************************
 					
-					if (strcmp(option, "e")){
+					if (strcmp(option, "enc")){
 						enc(plaintext, output, key, strlen(plaintext));
-					} else if (strcmp(option, "d")){
+					} else if (strcmp(option, "dec")){
 						dec(plaintext, output, key, strlen(plaintext));
 					}
 					//Correct ouput. Print the en/decoded data into the file
