@@ -11,7 +11,7 @@
  
 /*	Descrip:	Error reporting. Outputs the perror and exit value in the case of a detected crash.
  *	Params:		char* report, int value
- *  Return:		void
+ *	Return:		void
  */ 
 void error(const char *report, int value){
 	perror(report);
@@ -20,7 +20,7 @@ void error(const char *report, int value){
 
 /*	Descrip:	Validates that the text does not contain forbidden characters.
  *	Params:		char text[], int len
- *  Return:		void
+ *	Return:		void
  */
 void validateText(char text[], int len){
 	int n, p;
@@ -45,7 +45,7 @@ void validateText(char text[], int len){
 /*	Descrip:	Validates that the key is longer than the plaintext.
  *				(Optional: If the key is longer, trim the length down to match the plaintext.)
  *	Params:		char plaintext[], char key[]
- *  Return:		length of plaintext (if valid)
+ *	Return:		length of plaintext (if valid)
  */
 int validateLen(char plaintext[], char key[]){
 	int textLen;
@@ -65,7 +65,7 @@ int validateLen(char plaintext[], char key[]){
 
 /*	Descrip:	Opens and reads files. Also marks the end of the file by locating '\n' chars.
  *	Params:		char* input file, char (*output)[]
- *  Return:		void
+ *	Return:		void
  */
 void parseFile(char *f_in, char (*output) []){
 	int len;
@@ -83,7 +83,7 @@ void parseFile(char *f_in, char (*output) []){
  *				Once server sends back data, this function also prints it to the console.
  *	Params:		char* plaintext file, char* key file, char* port number, char* option (enc//dec)
  *				argv[1]		argv[2]		argv[3] 	'e'||'d'
- *  Return:		int 0 on success
+ *	Return:		int 0 on success
  */
 int otp_c (char* f_plaintext, char* f_key, char* port_str, char* option) {
 	//OTP for client side
@@ -179,7 +179,7 @@ int otp_c (char* f_plaintext, char* f_key, char* port_str, char* option) {
  *				Send data back once it has been correctly enc/dec'd.
  *	Params:		char* port number, char* option (enc//dec)
  *				argv[1]		'e'||'d'
- *  Return:		int 0 on success
+ *	Return:		int 0 on success
  */
 int otp_s (char* port_str, char* option) {
 	//OTP for server side
