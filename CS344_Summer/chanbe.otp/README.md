@@ -20,7 +20,7 @@ Written by Ben Chan for OSU CS 344, Summer 2020
 >plaintext5  
 
 #### COMPILER:
->'compileall'	 -	 Calls 'make reset'. If this is not working, try entering 'dos2unix compileall', then try again.
+>'compileall'	 -	 Calls 'make reset'. If this is not working, try entering 'dos2unix compileall', then try again.  
 >'make'			 -	 Runs default 'make all', and compiles all non-existing files.  
 >'make reset'	 -	 Removes any compiled files, and re-compiles everything.  
 >'make clean'	 -	 Remove all object files and generated executables.  
