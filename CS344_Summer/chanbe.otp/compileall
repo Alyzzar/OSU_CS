@@ -1,8 +1,1 @@
-gcc -g -Wall -c coder.c
-gcc -g -Wall -c otp.c
-gcc -g -Wall -o keygen coder.o keygen.c
-
-gcc -g -Wall -o dec_client dec_client.c coder.o otp.o
-gcc -g -Wall -o dec_server dec_server.c coder.o otp.o
-gcc -g -Wall -o enc_client enc_client.c coder.o otp.o
-gcc -g -Wall -o enc_server enc_server.c coder.o otp.o
+make reset
