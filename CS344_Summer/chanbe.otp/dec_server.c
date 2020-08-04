@@ -8,6 +8,6 @@
 
 int main (int argc, char *argv[]){
 	if (argc < 2) exit(0);	//Not enough arguments
-	otp_s(argv[1], "d");
+	otp_s(argv[1], "dec");
 	return 0;
 }
