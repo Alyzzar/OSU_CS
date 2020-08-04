@@ -1,3 +1,9 @@
+/**		Assignment 3: One-Time Pads  
+  *		Written by Ben Chan for OSU CS 344, Summer 2020  
+  *		
+  *		This is the header for OTP. Function prototypes are listed here.
+  **/
+  
 #ifndef OTP_H
 #define OTP_H
 
