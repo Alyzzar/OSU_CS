@@ -8,7 +8,7 @@
 
 /*	Descrip:	Generates a randomized key based on the char alph[27] array in coder.c
  *	Params:		int len
- *  Return:		void
+ *	Return:		void
  */ 
 void genKey(int len){
 	int n, r;
@@ -27,7 +27,7 @@ void genKey(int len){
 
 /*	Descrip:	Keygen main function. This creates a random seed, verifies parameters, and calls keygen.
  *	Params:		int len (argv[1])
- *  Return:		int 0 on exit
+ *	Return:		int 0 on exit
  */ 
 int main (int argc, char* argv[]){
 	if (argc == 2){
