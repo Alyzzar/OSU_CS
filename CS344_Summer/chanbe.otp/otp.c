@@ -1,5 +1,5 @@
 #include "otp.h"
-#define DEBUG 1
+#define DEBUG 0
  
 /*	Descrip:	Error reporting. Outputs the perror and exit value in the case of a detected crash.
  *	Params:		char* report, int value
