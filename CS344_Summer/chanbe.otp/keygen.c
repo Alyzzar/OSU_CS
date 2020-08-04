@@ -1,5 +1,15 @@
+/**		Assignment 3: One-Time Pads  
+  *		Written by Ben Chan for OSU CS 344, Summer 2020  
+  *		
+  *		This is the keygen program for OTP.
+  **/
+
 #include "otp.h"
 
+/*	Descrip:	Generates a randomized key based on the char alph[27] array in coder.c
+ *	Params:		int len
+ *  Return:		void
+ */ 
 void genKey(int len){
 	int n, r;
 	char key[len + 1];
@@ -15,6 +25,10 @@ void genKey(int len){
 	printf("%s\n", key);
 }
 
+/*	Descrip:	Keygen main function. This creates a random seed, verifies parameters, and calls keygen.
+ *	Params:		int len (argv[1])
+ *  Return:		int 0 on exit
+ */ 
 int main (int argc, char* argv[]){
 	if (argc == 2){
 		srand(time(0));
