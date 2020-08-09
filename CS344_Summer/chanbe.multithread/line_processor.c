@@ -35,7 +35,7 @@ int inp_parse(){
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
-		while (count == SIZE){
+		while (count == SIZE && i != 0){
 			// Signal to the consumer that the buffer is no longer empty
 			pthread_cond_signal(&full);
 			// Unlock the mutex
@@ -94,11 +94,14 @@ void *input(void *args){
 	do {
 		if(DEBUG) printf("	(INPUT) - Starting input().\n");
 		//inputs text line-by-line from stdin
-		if(DEBUG) printf("	(INPUT) - Parsing.\n");
-		inp_parse();
-
-		if(DEBUG) printf("	(INPUT) - Parsed through to end case.\n");
-		return NULL;
+		if(DEBUG) printf("	(INPUT) - Parsing:		");
+		int inp_stts = inp_parse();
+		if (inp_stts == 0){
+			if(DEBUG) printf("EXIT CASE.\n");
+			return NULL
+		} else if (inp_stts == 1){
+			if(DEBUG) printf("NO EXIT CASE FOUND.\n");
+		}
 		//Run forever, exit case = break;
 	} while (1);
 }
@@ -125,6 +128,7 @@ void *output(void *args){
 		
 		// Signal to the consumer that the buffer has space
 		if(DEBUG) printf("\n	(OUTPUT) - Buffer is empty, awaiting input.\n");
+
 		pthread_cond_signal(&empty);
 		// Unlock the mutex
 		if(DEBUG) printf("	(OUTPUT) - Mutex unlocked.\n");
@@ -168,7 +172,7 @@ int sign_parse(){
 		}
 	}
 	//Finished running. Return 0 for completed loop.
-	return 0;
+	return 1;
 }
 
 //Plus sign thread
@@ -182,8 +186,11 @@ void *sign(void *args){
 			pthread_cond_wait(&full, &mutex);
 		//Run
 		if(DEBUG) printf("	(SIGN) - Parsing:		");
-		if (sign_parse() == 0){
+		int sign_stts = sign_parse();
+		if (sign_stts == 0){
 			if(DEBUG) printf("EXIT CASE\n");
+		} else if (sign_stts == 1){
+			if(DEBUG) printf("NO EXIT CASE FOUND\n");
 		}
 		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sign parsed
@@ -231,9 +238,11 @@ void *separator(void *args){
 			pthread_cond_wait(&sign_parsed, &mutex);
 		//Run
 		if(DEBUG) printf("	(SEPARATOR) - Parsing:		");
-		if (sep_parse() == 0){
-		if(DEBUG) printf("EXIT CASE\n");
-			//i = count + 10;
+		int sep_stts = sep_parse();
+		if (sep_stts == 0){
+			if(DEBUG) printf("EXIT CASE\n");
+		} else if (sep_stts == 1){
+			if(DEBUG) printf("NO EXIT CASE FOUND\n");
 		}
 		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sep parsed
@@ -257,8 +266,8 @@ void exec(){
 	//Create input thread
 	pthread_create(&inp_t, NULL, input, NULL);
 	//Create parsing threads
-	pthread_create(&sep_t, NULL, separator, NULL);
 	pthread_create(&sign_t, NULL, sign, NULL);
+	pthread_create(&sep_t, NULL, separator, NULL);
 	//Create output thread
 	pthread_create(&out_t, NULL, output, NULL);
 	
