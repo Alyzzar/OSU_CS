@@ -35,10 +35,10 @@ int inp_parse(){
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
-		//if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
+		if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
-		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
+		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
 		//Check recent values to see if \nDONE\n was entered
 		for (j = 0; j < 5; j++){ //Shift values over
 			recent[j] = recent[j + 1];
