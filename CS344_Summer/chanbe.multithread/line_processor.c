@@ -146,35 +146,31 @@ int sign_parse(){
 	//Check for pairs of '+'
 	//Vars used in for loop
 	int i, a, b;
-	//Determines how many values to shift by (scales with number of ++ replaced)
-	int shift = 0;
 	a = out_idx;
 	if (out_idx > inp_idx - 1){
 		b = inp_idx + SIZE - 1;
 	} else b = inp_idx - 1;
 	for (i = a; i < b; i++){
-		if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n",buffer[(i + shift) % SIZE], buffer[(i + shift + 1) % SIZE]);
+		if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n",buffer[i % SIZE], buffer[(i + 1) % SIZE]);
 		if (buffer[i % SIZE] == '\0'){
 			//Exit case; DONE found by input()
 			//Return 0 to tell parent to 'stop running'. DONE found.
 			return 0;
-		} else if (buffer[(i + shift) % SIZE] == '+'
-				&& buffer[(i + shift + 1) % SIZE] == '+'){
+		} else if (buffer[i % SIZE] == '+'
+				&& buffer[(i + 1) % SIZE] == '+'){
 			if(DEBUG) printf("	(SIGN_PARSE) - Matching '++' found.\n");
 			//Matching pair found
-			buffer[(i + shift) % SIZE] = '^';
+			buffer[(i % SIZE] = '^';
 			//Set this value to '*' for clarity purposes (Should be overwritten anyways)
-			buffer[(i + shift + 1) % SIZE] = '*';
-			//Perform an index shift
-			shift++;
-		} else if (shift){
-			//Shift occurs when:
-				//No ++ was found this loop
-			buffer[i % SIZE] = buffer[(i + shift) % SIZE];
-			inp_idx -= shift;
-			b -= shift; 
-			count -= shift;
-		}
+			buffer[(i + 1) % SIZE] = '*';
+			//Perform an index shift, from curr index to end of buffer
+			int j;
+			for(j = i; j < b; j++){
+				buffer[j % SIZE] = buffer[(j + 1) % SIZE];
+			}
+			inp_idx -= 1;
+			b -= 1; 
+			count -= 1;
 	}
 	//Finished running. Return 0 for completed loop.
 	return 1;
