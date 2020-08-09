@@ -165,6 +165,7 @@ int sign_parse(){
 //Plus sign thread
 void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
+	int i;
 	for(i = 0; i < count; i++){
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
