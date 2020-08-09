@@ -175,7 +175,7 @@ void *sign(void *args){
 		if(DEBUG) printf("	(SIGN) - Parsing:		");
 		if (sign_parse() == 0){
 			if(DEBUG) printf("EXIT CASE\n");
-			break;
+			i = count + 10;
 		}
 		if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sign parsed
@@ -201,7 +201,6 @@ int sep_parse(){
 			//Exit case; DONE found by input()
 			//Return 0 to tell parent to 'stop running'. DONE found.
 			return 0;
-			break;
 		} else if (buffer[i % SIZE] == '\n'){
 			//Newline found
 			buffer[i % SIZE] = ' ';
@@ -224,7 +223,7 @@ void *separator(void *args){
 		if(DEBUG) printf("	(SEPARATOR) - Parsing:		");
 		if (sep_parse() == 0){
 		if(DEBUG) printf("EXIT CASE\n");
-			break;
+			i = count + 10;
 		}
 		if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sep parsed
