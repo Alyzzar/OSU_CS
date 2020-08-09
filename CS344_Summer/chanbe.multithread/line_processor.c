@@ -81,7 +81,7 @@ void *input(void *args){
 		if(DEBUG) printf("	(INPUT) - Starting input().\n");
 		//Lock mutex
 		pthread_mutex_lock(&mutex);
-		while (count == size){
+		while (count == SIZE){
 			// Buffer is full. Wait for output
 			if(DEBUG) printf("	(INP_PARSE) - Buffer is full. Waiting for output() to print.\n");
 			pthread_cond_wait(&empty, &mutex);
