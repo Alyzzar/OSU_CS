@@ -165,21 +165,23 @@ int sign_parse(){
 //Plus sign thread
 void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
-	do{
+	for(i = 0; i < count; i++){
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
 			// Buffer is empty
 			pthread_cond_wait(&full, &mutex);
 		//Run
-		if(DEBUG) printf("	(SIGN) - Parsing.\n");
+		if(DEBUG) printf("	(SIGN) - Parsing:		");
 		if (sign_parse() == 0){
+			if(DEBUG) printf("EXIT CASE\n");
 			break;
 		}
+		if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sign parsed
 		pthread_cond_signal(&sign_parsed);
 		// Unlock the mutex
 		pthread_mutex_unlock(&mutex);
-	} while (1);
+	}
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -208,24 +210,27 @@ int sep_parse(){
 	return 1;
 }
 
-//Separator Thread thread
+//Separator thread
 void *separator(void *args){
-		if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
-		do{
+	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
+	int i;
+	for(i = 0; i < count; i++){
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
 			// Buffer is empty.
 			pthread_cond_wait(&full, &mutex);
 		//Run
-		if(DEBUG) printf("	(SEPARATOR) - Parsing.\n");
+		if(DEBUG) printf("	(SEPARATOR) - Parsing:		");
 		if (sep_parse() == 0){
+		if(DEBUG) printf("EXIT CASE\n");
 			break;
 		}
+		if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sep parsed
 		pthread_cond_signal(&sep_parsed);
 		// Unlock the mutex
 		pthread_mutex_unlock(&mutex);
-	} while (1);
+	}
 	return NULL;
 	//Run forever, exit case = break;
 }
