@@ -6,7 +6,7 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define SIZE 10
+#define SIZE 80
 
 int buffer [SIZE];
 int count = 0;
@@ -96,7 +96,7 @@ void *output(void *args){
 		pthread_cond_wait(&sign_parsed, &mutex);
 		pthread_cond_wait(&sep_parsed, &mutex);		
 		//output a char to stdout with putchar
-		putchar(buffer(out_idx));
+		putchar(buffer[out_idx]);
 		out_idx = (out_idx + 1) % SIZE;
 		count--;
 		
@@ -194,7 +194,7 @@ int sep_parse(){
 void *separator(void *args){
 		do{
 		pthread_mutex_lock(&mutex);
-		while (count < 2)
+		while (count < 5)
 		// Buffer is empty.
 		pthread_cond_wait(&full, &mutex);
 		//Run
@@ -213,9 +213,11 @@ void *separator(void *args){
 void exec(){
 	//Do the fork part here. Call relevant program.
 	//Create input thread
+	pthread_t inp_t, sep_t, sign_t, out_t;
+	
 	pthread_create(&inp_t, NULL, input, NULL);
 	//Create parsing threads
-	pthread_create(&sep_t, NULL, seperator, NULL);
+	pthread_create(&sep_t, NULL, separator, NULL);
 	pthread_create(&sign_t, NULL, sign, NULL);
 	//Create output thread
 	pthread_create(&out_t, NULL, output, NULL);
