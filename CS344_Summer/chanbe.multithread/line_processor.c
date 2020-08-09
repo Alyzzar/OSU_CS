@@ -27,7 +27,7 @@ pthread_cond_t sep_parsed = PTHREAD_COND_INITIALIZER;
 pthread_cond_t empty = PTHREAD_COND_INITIALIZER;
 
 int inp_parse(){
-	int i;
+	int i, j;
 	const char endcase [6] = {'\n', 'D', 'O', 'N', 'E', '\n'};
 	char recent [6];
 	for (i = 0; i < 6; i++){
@@ -64,7 +64,7 @@ int inp_parse(){
 		inp_idx = (inp_idx + 1) % SIZE;
 		count++;
 	}
-	if(DEBUG) printf("	(INP_PARSE) - Loop terminated after 1000 loops.\n", i);
+	if(DEBUG) printf("	(INP_PARSE) - Loop terminated after 1000 loops.\n");
 	return 0;
 }
 
