@@ -130,7 +130,7 @@ int sign_parse(){
 			//Matching pair found
 			buffer[(i + shift) % SIZE] = '^';
 			//Set this value to '*' for clarity purposes (Should be overwritten anyways)
-			buffer[(i + shift + 1) % SIZE] == '*';
+			buffer[(i + shift + 1) % SIZE] = '*';
 			//Perform an index shift
 			shift++;
 		}
@@ -181,9 +181,9 @@ int sep_parse(){
 			//Return 0 to tell parent to 'stop running'. DONE found.
 			return 0;
 			break;
-		} else if (buffer[(i) % SIZE] == '\n'){
+		} else if (buffer[i % SIZE] == '\n'){
 			//Newline found
-			buffer[(i + shift) % SIZE] = ' ';
+			buffer[i % SIZE] = ' ';
 		}
 	}
 	//Finished running. Return 1 to signify 'continue running'
