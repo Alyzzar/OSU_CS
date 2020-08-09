@@ -153,7 +153,7 @@ int sign_parse(){
 		b = inp_idx + SIZE - 1;
 	} else b = inp_idx - 1;
 	for (i = a; i < b; i++){
-		if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n",buffer[(i + 1) % SIZE], buffer[(i + shift + 1) % SIZE]);
+		if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n",buffer[(i + shift) % SIZE], buffer[(i + shift + 1) % SIZE]);
 		if (buffer[i % SIZE] == '\0'){
 			//Exit case; DONE found by input()
 			//Return 0 to tell parent to 'stop running'. DONE found.
@@ -226,7 +226,7 @@ int sep_parse(){
 			//Return 0 to tell parent to 'stop running'. DONE found.
 			return 0;
 		} else if (buffer[i % SIZE] == '\n'){
-			if(DEBUG) printf("	(SEP_PARSE) - '\n' found. Replacing with ' '.\n");
+			if(DEBUG) printf("	(SEP_PARSE) - '\\n' found. Replacing with ' '.\n");
 			//Newline found
 			buffer[i % SIZE] = ' ';
 		}
