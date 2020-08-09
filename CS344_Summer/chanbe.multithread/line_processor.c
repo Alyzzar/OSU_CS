@@ -43,6 +43,7 @@ int inp_parse(){
 		}
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
+		count++;
 		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Loop [%d], char [%c] saved to buffer.\n", i, buffer[inp_idx]);
 		
 		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
@@ -69,7 +70,6 @@ int inp_parse(){
 		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - No endcase found, continuing loop.\n");
 		//End this loop by updating values
 		inp_idx = (inp_idx + 1) % SIZE;
-		count++;
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Loop terminated after 1000 loops.\n");
 	return -1;
