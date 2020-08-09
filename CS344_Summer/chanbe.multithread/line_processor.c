@@ -114,10 +114,12 @@ void *output(void *args){
 			pthread_cond_wait(&full, &mutex);
 		}
 		
+		/*
 		if(DEBUG) printf("	(OUTPUT) - Awaiting sign_parse().\n");		
 		pthread_cond_wait(&sign_parsed, &mutex);
 		if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
 		pthread_cond_wait(&sep_parsed, &mutex);
+		*/
 		
 		if(DEBUG) printf("	(OUTPUT) - Outputting buffer to terminal.\n");
 		//output a char to stdout with putchar
