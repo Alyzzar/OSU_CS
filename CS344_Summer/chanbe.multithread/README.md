@@ -6,3 +6,7 @@ Written by Ben Chan for OSU CS 344, Summer 2020
 >README.md  
 >parser.c
 >main.rs
+
+#### COMPILER:
+>'make' - Compile line_processor.  
+>'make clean' - Clean up directory.  
