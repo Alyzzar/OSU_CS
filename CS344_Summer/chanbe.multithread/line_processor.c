@@ -36,9 +36,17 @@ int inp_parse(){
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
 		while (count == SIZE){
+			// Signal to the consumer that the buffer is no longer empty
+			pthread_cond_signal(&full);
+			// Unlock the mutex
+			if(DEBUG) printf("	(INP_PARSE) - Unlocking mutex.\n");
+			pthread_mutex_unlock(&mutex);
 			if(DEBUG) printf("	(INP_PARSE) - Buffer is full. Waiting for output() to print.\n");
 			// Buffer is full. Wait for the consumer to signal that the buffer has space
 			pthread_cond_wait(&empty, &mutex);
+			
+			//Relock mutex once it is empty again
+			pthread_mutex_lock(&mutex);
 		}
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
@@ -78,18 +86,11 @@ void *input(void *args){
 	if(DEBUG) printf("	(INPUT) - Starting input().\n");
 	//inputs text line-by-line from stdin
 	do{
-		pthread_mutex_lock(&mutex);
-
 		if(DEBUG) printf("	(INPUT) - Parsing.\n");
 		if (inp_parse() == 0){
 			break;
 		}
-		if(DEBUG) printf("	(INPUT) - Parsed. Sending [FULL] cond_signal.\n");
-		// Signal to the consumer that the buffer is no longer empty
-		pthread_cond_signal(&full);
-		// Unlock the mutex
-		if(DEBUG) printf("	(INPUT) - Unlocking mutex.\n");
-		pthread_mutex_unlock(&mutex);
+		if(DEBUG) printf("	(INPUT) - Parsed through to end case.\n");
 	} while (1);
 	return NULL;
 	//Run forever, exit case = break;
@@ -184,7 +185,7 @@ void *sign(void *args){
 		if(DEBUG) printf("	(SIGN) - cond_signal sent.\n");
 		pthread_cond_signal(&sign_parsed);
 		// Unlock the mutex
-		if(DEBUG) printf("	(SIGN) - cond_signal sent.\n");
+		if(DEBUG) printf("	(SIGN) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	}
 	return NULL;
