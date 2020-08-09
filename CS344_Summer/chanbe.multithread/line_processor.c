@@ -7,6 +7,7 @@ This program parses and modifies the input
 #include <unistd.h>
 
 #define SIZE 80
+#define DEBUG 1
 
 int buffer [SIZE];
 int count = 0;
@@ -64,13 +65,15 @@ int inp_parse(){
 
 //Input thread
 void *input(void *args){
+	if(DEBUG) printf("	(INPUT) - Starting input().\n");
 	//inputs text line-by-line from stdin
 	do{
 		pthread_mutex_lock(&mutex);
 		while (count == SIZE)
-		// Buffer is full. Wait for the consumer to signal that the buffer has space
-		pthread_cond_wait(&empty, &mutex);
-		
+			// Buffer is full. Wait for the consumer to signal that the buffer has space
+			pthread_cond_wait(&empty, &mutex);
+			
+		if(DEBUG) printf("	(INPUT) - Parsing.\n");
 		if (inp_parse() == 0){
 			break;
 		}
@@ -86,15 +89,17 @@ void *input(void *args){
 
 //Output thread
 void *output(void *args){
+	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout
 	do{
 		// Lock the mutex before checking where there is space in the buffer
 		pthread_mutex_lock(&mutex);
-		while (count < 5)
-		// Buffer is empty
-		pthread_cond_wait(&full, &mutex);
-		pthread_cond_wait(&sign_parsed, &mutex);
-		pthread_cond_wait(&sep_parsed, &mutex);		
+		while (count < 5){
+			// Buffer is empty
+			pthread_cond_wait(&full, &mutex);
+			pthread_cond_wait(&sign_parsed, &mutex);
+			pthread_cond_wait(&sep_parsed, &mutex);
+		}		
 		//output a char to stdout with putchar
 		putchar(buffer[out_idx]);
 		out_idx = (out_idx + 1) % SIZE;
@@ -148,12 +153,14 @@ int sign_parse(){
 
 //Plus sign thread
 void *sign(void *args){
+	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
 	do{
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
-		// Buffer is empty
-		pthread_cond_wait(&full, &mutex);
+			// Buffer is empty
+			pthread_cond_wait(&full, &mutex);
 		//Run
+		if(DEBUG) printf("	(SIGN) - Parsing.\n");
 		if (sign_parse() == 0){
 			break;
 		}
@@ -192,12 +199,14 @@ int sep_parse(){
 
 //Separator Thread thread
 void *separator(void *args){
+		if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
 		do{
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
-		// Buffer is empty.
-		pthread_cond_wait(&full, &mutex);
+			// Buffer is empty.
+			pthread_cond_wait(&full, &mutex);
 		//Run
+		if(DEBUG) printf("	(SEPARATOR) - Parsing.\n");
 		if (sep_parse() == 0){
 			break;
 		}
@@ -215,6 +224,8 @@ void exec(){
 	//Create input thread
 	pthread_t inp_t, sep_t, sign_t, out_t;
 	
+	
+	if(DEBUG) printf("	(EXEC) - Creating threads.\n");
 	pthread_create(&inp_t, NULL, input, NULL);
 	//Create parsing threads
 	pthread_create(&sep_t, NULL, separator, NULL);
@@ -222,6 +233,7 @@ void exec(){
 	//Create output thread
 	pthread_create(&out_t, NULL, output, NULL);
 	
+	if(DEBUG) printf("	(EXEC) - Waiting for threads to complete.\n");
 	//Wait for threads to complete
 	pthread_join(inp_t, NULL);
 	pthread_join(sep_t, NULL);
@@ -230,9 +242,9 @@ void exec(){
 }
 
 int main (int argc, char* argv[]){
-	//This part is slightly modified from the example code.
-	srand(time(0));
 	//Run exec to do all the thread stuff
+	if(DEBUG) printf("	(MAIN) - Program starting.\n");
 	exec();
+	if(DEBUG) printf("	(MAIN) - Program terminating.\n");
 	return 0;
 }
