@@ -10,6 +10,8 @@ This program parses and modifies the input
 #define DEBUG 1	// [0 = DEBUG OFF],[1 = DEBUG ON] 
 #define LOOPS 1000 // Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
 
+int sign_runs = 0;
+int sep_runs = 0;
 int buffer [SIZE];
 int count = 0;
 int inp_idx = 0;
@@ -102,6 +104,8 @@ void *input(void *args){
 		} else if (inp_stts == 1){
 			if(DEBUG) printf("NO EXIT CASE FOUND.\n");
 		}
+		sign_runs++;
+		sep_runs++;
 		//Run forever, exit case = break;
 	} while (1);
 }
@@ -200,7 +204,8 @@ void *sign(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("	(SIGN) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-	} while (1);
+		sign_runs--;
+	} while (sign_runs);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -253,7 +258,8 @@ void *separator(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("	(SEPARATOR) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-	} while (1);
+		sep_runs--;
+	} while (sep_runs);
 	return NULL;
 	//Run forever, exit case = break;
 }
