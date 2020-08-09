@@ -205,7 +205,7 @@ void *sign(void *args){
 		if(DEBUG) printf("	(SIGN) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 		sign_runs--;
-	} while (sign_runs);
+	} while (sign_runs > 0);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -259,7 +259,7 @@ void *separator(void *args){
 		if(DEBUG) printf("	(SEPARATOR) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 		sep_runs--;
-	} while (sep_runs);
+	} while (sep_runs > 0);
 	return NULL;
 	//Run forever, exit case = break;
 }
