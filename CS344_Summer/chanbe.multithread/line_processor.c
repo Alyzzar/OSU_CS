@@ -86,7 +86,7 @@ void *input(void *args){
 	if(DEBUG) printf("	(INPUT) - Starting input().\n");
 	//inputs text line-by-line from stdin
 	if(DEBUG) printf("	(INPUT) - Parsing.\n");
-	inp_parse()
+	inp_parse();
 
 	if(DEBUG) printf("	(INPUT) - Parsed through to end case.\n");
 	return NULL;
@@ -175,7 +175,7 @@ void *sign(void *args){
 		if(DEBUG) printf("	(SIGN) - Parsing:		");
 		if (sign_parse() == 0){
 			if(DEBUG) printf("EXIT CASE\n");
-			i = count + 10;
+			//i = count + 10;
 		}
 		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sign parsed
@@ -225,7 +225,7 @@ void *separator(void *args){
 		if(DEBUG) printf("	(SEPARATOR) - Parsing:		");
 		if (sep_parse() == 0){
 		if(DEBUG) printf("EXIT CASE\n");
-			i = count + 10;
+			//i = count + 10;
 		}
 		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sep parsed
