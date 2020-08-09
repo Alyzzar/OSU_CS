@@ -41,7 +41,7 @@ int inp_parse(){
 			recent[i] = recent[i + 1];
 		}
 		//Insert new values at last index
-		recent[5] = buffer[inp_idx]
+		recent[5] = buffer[inp_idx];
 		for (i = 0; i < 6; i++){ //Compare values to endcase array
 			if (recent[i] != endcase[i]) break;
 			else {
