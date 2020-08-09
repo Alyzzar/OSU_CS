@@ -36,7 +36,7 @@ int inp_parse(){
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
 		while (count == SIZE){
-			if(DEBUG) printf("	(INP_PARSE) - Buffer is full. Waiting for output() to print.\n", i);
+			if(DEBUG) printf("	(INP_PARSE) - Buffer is full. Waiting for output() to print.\n");
 			// Buffer is full. Wait for the consumer to signal that the buffer has space
 			pthread_cond_wait(&empty, &mutex);
 		}
