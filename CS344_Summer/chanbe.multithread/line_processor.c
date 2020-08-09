@@ -6,7 +6,7 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define SIZE 80
+#define SIZE 20
 #define DEBUG 1	// [0 = DEBUG OFF],[1 = DEBUG ON] 
 #define LOOPS 1 // Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
 
@@ -35,10 +35,9 @@ int inp_parse(){
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
-		if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
-		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
+		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Loop [%d], char [%c] received succesfully.\n", i, buffer[inp_idx]);
 		//Check recent values to see if \nDONE\n was entered
 		for (j = 0; j < 5; j++){ //Shift values over
 			recent[j] = recent[j + 1];
