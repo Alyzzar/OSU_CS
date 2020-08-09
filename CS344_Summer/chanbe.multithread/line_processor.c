@@ -161,7 +161,7 @@ int sign_parse(){
 			if(DEBUG) printf("	(SIGN_PARSE) - Matching '++' found.\n");
 			//Matching pair found. Set first to * for debugging purposes. This gets overwritten by the second value.
 			buffer[i % SIZE] = '*';
-			buffer[(i + 1) % SIZE] = '+';
+			buffer[(i + 1) % SIZE] = '^';
 			//Perform an index shift, from curr index to end of buffer
 			int j;
 			for(j = i; j < b; j++){
