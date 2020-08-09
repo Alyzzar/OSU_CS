@@ -58,7 +58,7 @@ int inp_parse(){
 					//Endcase found. Wipe 'DONE' from buffer, and return to parent
 					inp_idx = (inp_idx + SIZE - 5) % SIZE;
 					count -= 5;
-					buffer[inp_idx] = '\n';
+					buffer[inp_idx] = '\0';
 					if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buffer was [%c]\n", i, buffer[(inp_idx + SIZE - 1) % SIZE]);
 					return 0;
 				}
@@ -158,15 +158,15 @@ int sign_parse(){
 			count -= shift;
 		}
 	}
-	//Finished running. Return 1 to signify 'continue running'
-	return 1;
+	//Finished running. Return 0 for completed loop.
+	return 0;
 }
 
 //Plus sign thread
 void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
 	int i;
-	for(i = 0; i < count; i++){
+	for(i = 0; i < count + 10; i++){
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
 			// Buffer is empty
@@ -207,15 +207,15 @@ int sep_parse(){
 			buffer[i % SIZE] = ' ';
 		}
 	}
-	//Finished running. Return 1 to signify 'continue running'
-	return 1;
+	//Finished running. Return 0
+	return 0;
 }
 
 //Separator thread
 void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
 	int i;
-	for(i = 0; i < count; i++){
+	for(i = 0; i < count + 10; i++){
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
 			// Buffer is empty.
