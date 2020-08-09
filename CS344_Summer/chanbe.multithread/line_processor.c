@@ -168,7 +168,7 @@ void *sign(void *args){
 	int i;
 	for(i = 0; i < count + 10; i++){
 		pthread_mutex_lock(&mutex);
-		while (count < 5)
+		while (count == 0)
 			// Buffer is empty
 			pthread_cond_wait(&full, &mutex);
 		//Run
@@ -177,10 +177,12 @@ void *sign(void *args){
 			if(DEBUG) printf("EXIT CASE\n");
 			i = count + 10;
 		}
-		if(DEBUG) printf("DONE\n");
+		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sign parsed
+		if(DEBUG) printf("	(SIGN) - cond_signal sent.\n");
 		pthread_cond_signal(&sign_parsed);
 		// Unlock the mutex
+		if(DEBUG) printf("	(SIGN) - cond_signal sent.\n");
 		pthread_mutex_unlock(&mutex);
 	}
 	return NULL;
@@ -216,7 +218,7 @@ void *separator(void *args){
 	int i;
 	for(i = 0; i < count + 10; i++){
 		pthread_mutex_lock(&mutex);
-		while (count < 5)
+		while (count == 0)
 			// Buffer is empty.
 			pthread_cond_wait(&full, &mutex);
 		//Run
@@ -225,10 +227,12 @@ void *separator(void *args){
 		if(DEBUG) printf("EXIT CASE\n");
 			i = count + 10;
 		}
-		if(DEBUG) printf("DONE\n");
+		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sep parsed
+		if(DEBUG) printf("	(SEPARATOR) - cond_signal sent.\n");
 		pthread_cond_signal(&sep_parsed);
 		// Unlock the mutex
+		if(DEBUG) printf("	(SEPARATOR) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	}
 	return NULL;
