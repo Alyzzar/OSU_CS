@@ -25,6 +25,7 @@ pthread_cond_t sep_parsed = PTHREAD_COND_INITIALIZER;
 pthread_cond_t empty = PTHREAD_COND_INITIALIZER;
 
 int inp_parse(){
+	int i;
 	const char endcase [6] = {'\n', 'D', 'O', 'N', 'E', '\n'};
 	char recent [6];
 	for (i = 0; i < 6; i++){
@@ -62,7 +63,7 @@ int inp_parse(){
 }
 
 //Input thread
-void input(){
+void *input(void *args){
 	//inputs text line-by-line from stdin
 	do{
 		pthread_mutex_lock(&mutex);
@@ -84,7 +85,7 @@ void input(){
 }
 
 //Output thread
-void output(){
+void *output(void *args){
 	//outputs text to stdout
 	do{
 		// Lock the mutex before checking where there is space in the buffer
@@ -146,7 +147,7 @@ int sign_parse(){
 }
 
 //Plus sign thread
-void sign(){
+void *sign(void *args){
 	do{
 		pthread_mutex_lock(&mutex);
 		while (count < 5)
@@ -169,7 +170,7 @@ void sign(){
 int sep_parse(){
 	//Check for '\n' chars
 	//Vars used in for loop
-	int i, a, b;
+	int i, shift, a, b;
 	a = out_idx;
 	if (out_idx > inp_idx){
 		b = inp_idx + SIZE - 1;
@@ -190,7 +191,7 @@ int sep_parse(){
 }
 
 //Separator Thread thread
-void separator(){
+void *separator(void *args){
 		do{
 		pthread_mutex_lock(&mutex);
 		while (count < 2)
