@@ -8,7 +8,7 @@ This program parses and modifies the input
 
 #define SIZE 80
 #define DEBUG 1	// [0 = DEBUG OFF],[1 = DEBUG ON] 
-#define LOOPS 1 // Logs are printed once per N loops
+#define LOOPS 1 // Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
 
 int buffer [SIZE];
 int count = 0;
@@ -33,9 +33,9 @@ int inp_parse(){
 	for (i = 0; i < 6; i++){
 		recent[i] = 0;
 	}
-	
+	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
-	if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
+		if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
 		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
@@ -44,12 +44,14 @@ int inp_parse(){
 			recent[i] = recent[i + 1];
 		}
 		//Insert new values at last index
+		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 		recent[5] = buffer[inp_idx];
-		for (i = 0; i < 6; i++){ //Compare values to endcase array
-			if (recent[i] != endcase[i]) break;
+		for (j = 0; j < 6; j++){ //Compare values to endcase array
+			if (recent[j] != endcase[j]) break;
 			else {
-				if (i == 5){
+				if (j == 5){
 					//Endcase found. Wipe 'DONE' from buffer, and return to parent
+					if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]\n", i);
 					inp_idx = (inp_idx + SIZE - 5) % SIZE;
 					count -= 5;
 					buffer[inp_idx] = '\n';
@@ -57,11 +59,12 @@ int inp_parse(){
 				}
 			}
 		}
-		
+		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - No endcase found, continuing loop.\n");
 		//End this loop by updating values
 		inp_idx = (inp_idx + 1) % SIZE;
 		count++;
 	}
+	if(DEBUG) printf("	(INP_PARSE) - Loop terminated after 1000 loops.\n", i);
 	return 0;
 }
 
@@ -78,7 +81,7 @@ void *input(void *args){
 		if (inp_parse() == 0){
 			break;
 		}
-		if(DEBUG) printf("	(INPUT) - Parsed. Sending cond_signal.\n");
+		if(DEBUG) printf("	(INPUT) - Parsed. Sending [FULL] cond_signal.\n");
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&full);
 		// Unlock the mutex
