@@ -96,13 +96,13 @@ void *input(void *args){
 	do {
 		if(DEBUG) printf("	(INPUT) - Starting input().\n");
 		//inputs text line-by-line from stdin
-		if(DEBUG) printf("	(INPUT) - Parsing:		");
+		if(DEBUG) printf("	(INPUT) - Parsing.\n");
 		int inp_stts = inp_parse();
 		if (inp_stts == 0){
-			if(DEBUG) printf("EXIT CASE.\n");
+			if(DEBUG) printf("	(INPUT) - - EXIT CASE.\n");
 			return NULL;
 		} else if (inp_stts == 1){
-			if(DEBUG) printf("NO EXIT CASE FOUND.\n");
+			if(DEBUG) printf("	(INPUT) - - NO EXIT CASE FOUND.\n");
 		}
 		sign_runs++;
 		sep_runs++;
@@ -153,11 +153,11 @@ int sign_parse(){
 		b = inp_idx + SIZE - 1;
 	} else b = inp_idx - 1;
 	for (i = a; i < b - 1; i++){
+		if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n",buffer[(i + 1) % SIZE], buffer[(i + shift + 1) % SIZE]);
 		if (buffer[i % SIZE] == '\0'){
 			//Exit case; DONE found by input()
 			//Return 0 to tell parent to 'stop running'. DONE found.
 			return 0;
-			break;
 		} else if (buffer[(i + shift) % SIZE] == '+'
 				&& buffer[(i + shift + 1) % SIZE] == '+'){
 			if(DEBUG) printf("	(SIGN_PARSE) - Matching '++' found.\n");
@@ -167,9 +167,9 @@ int sign_parse(){
 			buffer[(i + shift + 1) % SIZE] = '*';
 			//Perform an index shift
 			shift++;
-		}
-		if (shift){
-			//Perform shift after checking for ++, otherwise a shift could create a duplicate +.
+		} else if (shift){
+			//Shift occurs when:
+				//No ++ was found this loop
 			buffer[i % SIZE] = buffer[(i + shift) % SIZE];
 			inp_idx -= shift;
 			b -= shift; 
@@ -226,6 +226,7 @@ int sep_parse(){
 			//Return 0 to tell parent to 'stop running'. DONE found.
 			return 0;
 		} else if (buffer[i % SIZE] == '\n'){
+			if(DEBUG) printf("	(SEP_PARSE) - '\n' found. Replacing with ' '.\n");
 			//Newline found
 			buffer[i % SIZE] = ' ';
 		}
@@ -244,12 +245,12 @@ void *separator(void *args){
 			// Buffer hasn't been sign parsed
 			pthread_cond_wait(&sign_parsed, &mutex);
 		//Run
-		//if(DEBUG) printf("	(SEPARATOR) - Parsing:		");
+		if(DEBUG) printf("	(SEPARATOR) - Parsing.\n");
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
-			if(DEBUG) printf("EXIT CASE\n");
+			if(DEBUG) printf("	(SEPARATOR) - - EXIT CASE\n");
 		} else if (sep_stts == 1){
-			if(DEBUG) printf("NO EXIT CASE FOUND\n");
+			if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
 		}
 		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sep parsed
