@@ -35,16 +35,16 @@ int inp_parse(){
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
-		if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
+		//if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
-		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
+		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
 		//Check recent values to see if \nDONE\n was entered
-		for (i = 0; i < 5; i++){ //Shift values over
-			recent[i] = recent[i + 1];
+		for (j = 0; j < 5; j++){ //Shift values over
+			recent[j] = recent[j + 1];
 		}
 		//Insert new values at last index
-		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
+		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 		recent[5] = buffer[inp_idx];
 		for (j = 0; j < 6; j++){ //Compare values to endcase array
 			if (recent[j] != endcase[j]) break;
@@ -59,7 +59,7 @@ int inp_parse(){
 				}
 			}
 		}
-		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - No endcase found, continuing loop.\n");
+		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - No endcase found, continuing loop.\n");
 		//End this loop by updating values
 		inp_idx = (inp_idx + 1) % SIZE;
 		count++;
