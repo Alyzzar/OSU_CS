@@ -68,6 +68,14 @@ int inp_parse(){
 					count -= 5;
 					buffer[inp_idx] = '\0';
 					if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buffer was [%c]\n", i, buffer[(inp_idx + SIZE - 1) % SIZE]);
+					
+					// Signal to the consumer that the buffer is no longer empty
+					if(DEBUG) printf("	(INP_PARSE) - cond_signal sent to output().\n");
+					pthread_cond_signal(&full);
+					// Unlock the mutex
+					if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
+					pthread_mutex_unlock(&mutex);
+	
 					return 0;
 				}
 			}
@@ -105,20 +113,23 @@ void *output(void *args){
 			if(DEBUG) printf("	(OUTPUT) - Buffer is empty. Awaiting inp_parse()\n");
 			pthread_cond_wait(&full, &mutex);
 		}
-		/*
+		
 		if(DEBUG) printf("	(OUTPUT) - Awaiting sign_parse().\n");		
 		pthread_cond_wait(&sign_parsed, &mutex);
 		if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
 		pthread_cond_wait(&sep_parsed, &mutex);
-		*/
+		
+		if(DEBUG) printf("	(OUTPUT) - Outputting buffer to terminal.\n");
 		//output a char to stdout with putchar
 		putchar(buffer[out_idx]);
 		out_idx = (out_idx + 1) % SIZE;
 		count--;
 		
 		// Signal to the consumer that the buffer has space
+		if(DEBUG) printf("\n	(OUTPUT) - Buffer is empty, awaiting input.\n");
 		pthread_cond_signal(&empty);
 		// Unlock the mutex
+		if(DEBUG) printf("	(OUTPUT) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (1);
 	return NULL;
