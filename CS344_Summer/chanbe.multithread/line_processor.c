@@ -6,7 +6,7 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define SIZE 20
+#define SIZE 20	// Assignment requirements has this value at 80
 #define DEBUG 1	// [0 = DEBUG OFF],[1 = DEBUG ON] 
 #define LOOPS 1000 // Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
 
@@ -132,7 +132,6 @@ void *output(void *args){
 		
 		// Signal to the consumer that the buffer has space
 		if(DEBUG) printf("\n	(OUTPUT) - Buffer is empty, awaiting input.\n");
-
 		pthread_cond_signal(&empty);
 		// Unlock the mutex
 		if(DEBUG) printf("	(OUTPUT) - Mutex unlocked.\n");
@@ -143,7 +142,7 @@ void *output(void *args){
 
 //Main functionality for sign
 int sign_parse(){
-	if(DEBUG) printf("	(SIGN_PARSE) - Running sign_parse():		");
+	if(DEBUG) printf("	(SIGN_PARSE) - Running sign_parse().\n");
 	//Check for pairs of '+'
 	//Vars used in for loop
 	int i, a, b;
@@ -161,6 +160,7 @@ int sign_parse(){
 			break;
 		} else if (buffer[(i + shift) % SIZE] == '+'
 				&& buffer[(i + shift + 1) % SIZE] == '+'){
+			if(DEBUG) printf("	(SIGN_PARSE) - Matching '++' found.\n");
 			//Matching pair found
 			buffer[(i + shift) % SIZE] = '^';
 			//Set this value to '*' for clarity purposes (Should be overwritten anyways)
@@ -193,9 +193,9 @@ void *sign(void *args){
 		//if(DEBUG) printf("	(SIGN) - Parsing:		");
 		int sign_stts = sign_parse();
 		if (sign_stts == 0){
-			if(DEBUG) printf("EXIT CASE\n");
+			if(DEBUG) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 		} else if (sign_stts == 1){
-			if(DEBUG) printf("NO EXIT CASE FOUND\n");
+			if(DEBUG) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
 		}
 		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sign parsed
