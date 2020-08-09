@@ -37,18 +37,9 @@ int inp_parse(){
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
-		while (count == SIZE && i != 0){
-			// Signal to the consumer that the buffer is no longer empty
-			pthread_cond_signal(&full);
-			// Unlock the mutex
-			if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
-			pthread_mutex_unlock(&mutex);
-			if(DEBUG) printf("	(INP_PARSE) - Buffer is full. Waiting for output() to print.\n");
-			// Buffer is full. Wait for the consumer to signal that the buffer has space
-			pthread_cond_wait(&empty, &mutex);
-			
-			//Relock mutex once it is empty again
-			pthread_mutex_lock(&mutex);
+		if (count == SIZE){
+			//This should prevent the program from reading characters past the buffer limit
+			return 1;
 		}
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
@@ -70,14 +61,7 @@ int inp_parse(){
 					count -= 5;
 					buffer[inp_idx] = '\0';
 					if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buffer was [%c]\n", i, buffer[(inp_idx + SIZE - 1) % SIZE]);
-					
-					// Signal to the consumer that the buffer is no longer empty
-					if(DEBUG) printf("	(INP_PARSE) - cond_signal sent to output().\n");
-					pthread_cond_signal(&full);
-					// Unlock the mutex
-					if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
-					pthread_mutex_unlock(&mutex);
-	
+					//Program terminating, don't need to trigger ouput, since no output is necessary at this stage.
 					return 0;
 				}
 			}
@@ -88,25 +72,37 @@ int inp_parse(){
 		count++;
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Loop terminated after 1000 loops.\n");
-	return 0;
+	return -1;
 }
 
 //Input thread
 void *input(void *args){
 	do {
 		if(DEBUG) printf("	(INPUT) - Starting input().\n");
+		//Lock mutex
+		pthread_mutex_lock(&mutex);
+		while (count == size){
+			// Buffer is full. Wait for output
+			if(DEBUG) printf("	(INP_PARSE) - Buffer is full. Waiting for output() to print.\n");
+			pthread_cond_wait(&empty, &mutex);
+		}
 		//inputs text line-by-line from stdin
 		if(DEBUG) printf("	(INPUT) - Parsing.\n");
 		int inp_stts = inp_parse();
 		if (inp_stts == 0){
-			if(DEBUG) printf("	(INPUT) - - EXIT CASE.\n");
+			if(DEBUG) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
 			return NULL;
 		} else if (inp_stts == 1){
-			if(DEBUG) printf("	(INPUT) - - NO EXIT CASE FOUND.\n");
+			if(DEBUG) printf("	(INPUT) - - NO EXIT CASE FOUND. Buffer was filled\n");
 		}
+		// Signal to the consumer that the buffer is no longer empty
+		pthread_cond_signal(&full);
+		// Unlock the mutex
+		if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
+		pthread_mutex_unlock(&mutex);
 		sign_runs++;
 		sep_runs++;
-		//Run forever, exit case = break;
+		//Run until exit case => DONE;
 	} while (1);
 }
 
