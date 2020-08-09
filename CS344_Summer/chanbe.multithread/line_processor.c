@@ -8,7 +8,7 @@ This program parses and modifies the input
 
 #define SIZE 20
 #define DEBUG 1	// [0 = DEBUG OFF],[1 = DEBUG ON] 
-#define LOOPS 1 // Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
+#define LOOPS 1000 // Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
 
 int buffer [SIZE];
 int count = 0;
@@ -35,25 +35,31 @@ int inp_parse(){
 	}
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	for (i = 0; i < 1000; i++){
+		while (count == SIZE){
+			if(DEBUG) printf("	(INP_PARSE) - Buffer is full. Waiting for output() to print.\n", i);
+			// Buffer is full. Wait for the consumer to signal that the buffer has space
+			pthread_cond_wait(&empty, &mutex);
+		}
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
-		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Loop [%d], char [%c] received succesfully.\n", i, buffer[inp_idx]);
+		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Loop [%d], char [%c] saved to buffer.\n", i, buffer[inp_idx]);
+		
+		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 		//Check recent values to see if \nDONE\n was entered
 		for (j = 0; j < 5; j++){ //Shift values over
 			recent[j] = recent[j + 1];
 		}
 		//Insert new values at last index
-		//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 		recent[5] = buffer[inp_idx];
 		for (j = 0; j < 6; j++){ //Compare values to endcase array
 			if (recent[j] != endcase[j]) break;
 			else {
 				if (j == 5){
 					//Endcase found. Wipe 'DONE' from buffer, and return to parent
-					if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]\n", i);
 					inp_idx = (inp_idx + SIZE - 5) % SIZE;
 					count -= 5;
 					buffer[inp_idx] = '\n';
+					if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buffer was [%c]\n", i, buffer[(inp_idx + SIZE - 1) % SIZE]);
 					return 0;
 				}
 			}
@@ -73,9 +79,7 @@ void *input(void *args){
 	//inputs text line-by-line from stdin
 	do{
 		pthread_mutex_lock(&mutex);
-		while (count == SIZE)
-			// Buffer is full. Wait for the consumer to signal that the buffer has space
-			pthread_cond_wait(&empty, &mutex);
+
 		if(DEBUG) printf("	(INPUT) - Parsing.\n");
 		if (inp_parse() == 0){
 			break;
