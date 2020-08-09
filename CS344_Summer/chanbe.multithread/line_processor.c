@@ -91,21 +91,23 @@ int inp_parse(){
 
 //Input thread
 void *input(void *args){
-	if(DEBUG) printf("	(INPUT) - Starting input().\n");
-	//inputs text line-by-line from stdin
-	if(DEBUG) printf("	(INPUT) - Parsing.\n");
-	inp_parse();
+	do {
+		if(DEBUG) printf("	(INPUT) - Starting input().\n");
+		//inputs text line-by-line from stdin
+		if(DEBUG) printf("	(INPUT) - Parsing.\n");
+		inp_parse();
 
-	if(DEBUG) printf("	(INPUT) - Parsed through to end case.\n");
-	return NULL;
-	//Run forever, exit case = break;
+		if(DEBUG) printf("	(INPUT) - Parsed through to end case.\n");
+		return NULL;
+		//Run forever, exit case = break;
+	} while (1);
 }
 
 //Output thread
 void *output(void *args){
 	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout
-	do{
+	do {
 		// Lock the mutex before checking where there is space in the buffer
 		pthread_mutex_lock(&mutex);
 		while (count == 0){
@@ -173,7 +175,7 @@ int sign_parse(){
 void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
 	//int i;
-	//for(i = 0; i < count + 10; i++){
+	do {
 		pthread_mutex_lock(&mutex);
 		while (count == 0)
 			// Buffer is empty
@@ -182,7 +184,6 @@ void *sign(void *args){
 		if(DEBUG) printf("	(SIGN) - Parsing:		");
 		if (sign_parse() == 0){
 			if(DEBUG) printf("EXIT CASE\n");
-			//i = count + 10;
 		}
 		//if(DEBUG) printf("DONE\n");
 		// Signal to the consumer that the buffer has been sign parsed
@@ -191,7 +192,7 @@ void *sign(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("	(SIGN) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-	//}
+	} while (1);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -223,7 +224,7 @@ int sep_parse(){
 void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
 	//int i;
-	//for(i = 0; i < count + 10; i++){
+	do {
 		pthread_mutex_lock(&mutex);
 		while (count == 0)
 			// Buffer hasn't been sign parsed
@@ -241,7 +242,7 @@ void *separator(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("	(SEPARATOR) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-	//}
+	} while (1);
 	return NULL;
 	//Run forever, exit case = break;
 }
