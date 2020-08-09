@@ -115,10 +115,11 @@ void *output(void *args){
 		}
 		
 		if(DEBUG) printf("	(OUTPUT) - Outputting buffer to terminal.\n");
-		//output a char to stdout with putchar
-		putchar(buffer[out_idx]);
-		out_idx = (out_idx + 1) % SIZE;
-		count--;
+		while (count > 0){
+			putchar(buffer[out_idx]);
+			out_idx = (out_idx + 1) % SIZE;
+			count--;
+		}
 		
 		// Signal to the consumer that the buffer has space
 		if(DEBUG) printf("\n	(OUTPUT) - Buffer is empty, awaiting input.\n");
