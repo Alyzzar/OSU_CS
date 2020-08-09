@@ -231,10 +231,6 @@ void exec(){
 
 int main (int argc, char* argv[]){
 	//This part is slightly modified from the example code.
-	if (argc != 2){
-		printf("Usage: ./main num_iterations\n\tProvide number of iterations for the program as an integer greater than 0\n");
-		exit(1);
-	}
 	srand(time(0));
 	//Run exec to do all the thread stuff
 	exec();
