@@ -139,6 +139,7 @@ void *output(void *args){
 
 //Main functionality for sign
 int sign_parse(){
+	if(DEBUG) printf("	(SIGN_PARSE) - Running sign_parse():		");
 	//Check for pairs of '+'
 	//Vars used in for loop
 	int i, a, b;
@@ -185,7 +186,7 @@ void *sign(void *args){
 			// Buffer is empty
 			pthread_cond_wait(&full, &mutex);
 		//Run
-		if(DEBUG) printf("	(SIGN) - Parsing:		");
+		//if(DEBUG) printf("	(SIGN) - Parsing:		");
 		int sign_stts = sign_parse();
 		if (sign_stts == 0){
 			if(DEBUG) printf("EXIT CASE\n");
@@ -206,6 +207,7 @@ void *sign(void *args){
 
 //Main functionality for separator
 int sep_parse(){
+	if(DEBUG) printf("	(SEP_PARSE) - Running sep_parse():		");
 	//Check for '\n' chars
 	//Vars used in for loop
 	int i, a, b;
@@ -224,7 +226,7 @@ int sep_parse(){
 		}
 	}
 	//Finished running. Return 0
-	return 0;
+	return 1;
 }
 
 //Separator thread
@@ -237,7 +239,7 @@ void *separator(void *args){
 			// Buffer hasn't been sign parsed
 			pthread_cond_wait(&sign_parsed, &mutex);
 		//Run
-		if(DEBUG) printf("	(SEPARATOR) - Parsing:		");
+		//if(DEBUG) printf("	(SEPARATOR) - Parsing:		");
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
 			if(DEBUG) printf("EXIT CASE\n");
