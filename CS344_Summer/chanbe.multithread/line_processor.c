@@ -171,6 +171,7 @@ int sign_parse(){
 			inp_idx -= 1;
 			b -= 1; 
 			count -= 1;
+		}
 	}
 	//Finished running. Return 0 for completed loop.
 	return 1;
