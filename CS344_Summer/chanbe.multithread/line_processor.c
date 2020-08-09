@@ -7,7 +7,8 @@ This program parses and modifies the input
 #include <unistd.h>
 
 #define SIZE 80
-#define DEBUG 1
+#define DEBUG 1	// [0 = DEBUG OFF],[1 = DEBUG ON] 
+#define LOOPS 1 // Logs are printed once per N loops
 
 int buffer [SIZE];
 int count = 0;
@@ -34,10 +35,10 @@ int inp_parse(){
 	}
 	
 	for (i = 0; i < 1000; i++){
-	if(DEBUG && i%20 = 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
+	if(DEBUG && (i % LOOPS) == 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
-		if(DEBUG && ((i%1) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
+		if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
 		//Check recent values to see if \nDONE\n was entered
 		for (i = 0; i < 5; i++){ //Shift values over
 			recent[i] = recent[i + 1];
