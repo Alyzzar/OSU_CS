@@ -34,9 +34,10 @@ int inp_parse(){
 	}
 	
 	for (i = 0; i < 1000; i++){
+	if(DEBUG && i%20 = 0) printf("	(INP_PARSE) - Starting [%d] loop.\n", i);
 		//Scan a char straight into the buffer
 		buffer[inp_idx] = getchar();
-		
+		if(DEBUG && ((i%1) = 0)) printf("	(INP_PARSE) - Char [%c] received succesfully.\n", buffer[inp_idx]);
 		//Check recent values to see if \nDONE\n was entered
 		for (i = 0; i < 5; i++){ //Shift values over
 			recent[i] = recent[i + 1];
@@ -72,15 +73,15 @@ void *input(void *args){
 		while (count == SIZE)
 			// Buffer is full. Wait for the consumer to signal that the buffer has space
 			pthread_cond_wait(&empty, &mutex);
-			
 		if(DEBUG) printf("	(INPUT) - Parsing.\n");
 		if (inp_parse() == 0){
 			break;
 		}
-		
+		if(DEBUG) printf("	(INPUT) - Parsed. Sending cond_signal.\n");
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&full);
 		// Unlock the mutex
+		if(DEBUG) printf("	(INPUT) - Unlocking mutex.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (1);
 	return NULL;
