@@ -170,7 +170,7 @@ void *sign(void *args){
 int sep_parse(){
 	//Check for '\n' chars
 	//Vars used in for loop
-	int i, shift, a, b;
+	int i, a, b;
 	a = out_idx;
 	if (out_idx > inp_idx){
 		b = inp_idx + SIZE - 1;
