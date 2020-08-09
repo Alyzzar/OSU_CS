@@ -86,9 +86,8 @@ void *input(void *args){
 	if(DEBUG) printf("	(INPUT) - Starting input().\n");
 	//inputs text line-by-line from stdin
 	if(DEBUG) printf("	(INPUT) - Parsing.\n");
-	if (inp_parse() == 0){
-		break;
-	}
+	inp_parse()
+
 	if(DEBUG) printf("	(INPUT) - Parsed through to end case.\n");
 	return NULL;
 	//Run forever, exit case = break;
@@ -166,7 +165,7 @@ int sign_parse(){
 //Plus sign thread
 void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
-	int i;
+	//int i;
 	//for(i = 0; i < count + 10; i++){
 		pthread_mutex_lock(&mutex);
 		while (count == 0)
@@ -216,8 +215,8 @@ int sep_parse(){
 //Separator thread
 void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
-	int i;
-	for(i = 0; i < count + 10; i++){
+	//int i;
+	//for(i = 0; i < count + 10; i++){
 		pthread_mutex_lock(&mutex);
 		while (count == 0)
 			// Buffer is empty.
@@ -235,7 +234,7 @@ void *separator(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("	(SEPARATOR) - Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-	}
+	//}
 	return NULL;
 	//Run forever, exit case = break;
 }
