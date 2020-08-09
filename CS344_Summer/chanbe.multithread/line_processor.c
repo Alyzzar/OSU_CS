@@ -98,7 +98,7 @@ void *input(void *args){
 		int inp_stts = inp_parse();
 		if (inp_stts == 0){
 			if(DEBUG) printf("EXIT CASE.\n");
-			return NULL
+			return NULL;
 		} else if (inp_stts == 1){
 			if(DEBUG) printf("NO EXIT CASE FOUND.\n");
 		}
