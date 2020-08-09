@@ -104,10 +104,13 @@ void *output(void *args){
 		pthread_mutex_lock(&mutex);
 		while (count < 5){
 			// Buffer is empty
+			if(DEBUG) printf("	(OUTPUT) - Buffer is empty. Awaiting inp_parse()\n");
 			pthread_cond_wait(&full, &mutex);
-			pthread_cond_wait(&sign_parsed, &mutex);
-			pthread_cond_wait(&sep_parsed, &mutex);
-		}		
+		}
+		if(DEBUG) printf("	(OUTPUT) - Awaiting sign_parse().\n");		
+		pthread_cond_wait(&sign_parsed, &mutex);
+		if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
+		pthread_cond_wait(&sep_parsed, &mutex);
 		//output a char to stdout with putchar
 		putchar(buffer[out_idx]);
 		out_idx = (out_idx + 1) % SIZE;
