@@ -114,7 +114,7 @@ void *output(void *args){
 	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
-		while (count_3 < OUT_LEN 0){
+		while (count_3 < OUT_LEN){
 			// Buffer is empty
 			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
 			pthread_cond_wait(&out_cond, &mutex);
