@@ -110,6 +110,7 @@ void *input(void *args){
 
 //Output thread
 void *output(void *args){
+	int i = 0;
 	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
