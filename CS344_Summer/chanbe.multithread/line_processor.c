@@ -45,7 +45,7 @@ int inp_parse(){
 	}
 	//Scan a char straight into the buffer
 	buf_1[inp_idx] = getchar();
-	if(DEBUG) printf("	(INP_PARSE) - char [%c] saved to buf_1.\n", inp_idx, buf_1[inp_idx]);
+	if(DEBUG) printf("	(INP_PARSE) - Indx [%d] char [%c] saved to buf_1.\n", inp_idx, buf_1[inp_idx]);
 
 	//if(DEBUG) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 	for (i = 0; i < 5; i++){ //Shift values over
