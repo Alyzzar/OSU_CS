@@ -120,7 +120,7 @@ void *output(void *args){
 			pthread_cond_wait(&out_cond, &mutex);
 		}
 		
-		if(DEBUG) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
+		//if(DEBUG) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
 		while (count_3 > OUT_LEN){		//Final requirement has this at 80. Using 20 for testing.
 			for (i = 0; i < OUT_LEN; i++){
 				putchar(buf_3[out_idx]);
@@ -130,7 +130,6 @@ void *output(void *args){
 		}
 		
 		// Signal to the consumer that the buffer has space
-		if(DEBUG) printf("\n	(OUTPUT) - Buf_4 is empty, awaiting input.\n");
 		pthread_cond_signal(&sep_cond);
 		// Unlock the mutex
 	} while (running > 0);
