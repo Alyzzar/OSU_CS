@@ -49,7 +49,7 @@ int inp_parse(){
 
 	//if(DEBUG) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 	for (i = 0; i < 5; i++){ //Shift values over
-		recent[j] = recent[j + 1];
+		recent[i] = recent[i + 1];
 	}
 
 	//Insert new values at last index
@@ -77,6 +77,7 @@ int inp_parse(){
 
 //Input thread
 void *input(void *args){
+	int i;
 	for (i = 0; i < 6; i++){
 		recent[i] = 0;
 	}
@@ -102,8 +103,6 @@ void *input(void *args){
 		pthread_cond_signal(&sign_cond);	//Buf_2
 		// Unlock the mutex
 		if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
-		sign_runs++;
-		sep_runs++;
 		//Run until exit case => DONE;
 	} while (running > 0);
 	return NULL;
@@ -188,7 +187,6 @@ void *sign(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-		sign_runs--;
 	} while (running > 0);
 	return NULL;
 	//Run forever, exit case = break;
@@ -241,7 +239,6 @@ void *separator(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-		sep_runs--;
 	} while (running > 0);
 	return NULL;
 	//Run forever, exit case = break;
