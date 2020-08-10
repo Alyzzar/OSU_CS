@@ -6,10 +6,10 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define SIZE 100	// Assignment recommends size = 10000
-#define OUT_LEN 20	// Assignment requires this to be 80
-#define DEBUG 1		// [0 = DEBUG OFF],[1 = DEBUG ON] 
-#define LOOPS 1000 	// Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
+#define DEBUG 0		// [0 = DEBUG OFF],[1 = DEBUG ON] 
+
+#define SIZE 1000	// Assignment recommends size = 10000
+#define OUT_LEN 80	// Assignment requires this to be 80
 
 int running = 1;
 char recent [6];	
@@ -127,6 +127,7 @@ void *output(void *args){
 				out_idx = (out_idx + 1) % SIZE;
 				count_3--;
 			}
+			printf("\n");
 		}
 		
 		// Signal to the consumer that the buffer has space
