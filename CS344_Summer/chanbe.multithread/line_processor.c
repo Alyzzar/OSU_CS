@@ -11,8 +11,7 @@ This program parses and modifies the input
 #define DEBUG 1		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 #define LOOPS 1000 	// Logs are printed once per N loops. To disable, set LOOPS to a value >= 1000
 
-int sign_runs = 0;
-int sep_runs = 0;
+int running = 1;
 char recent [6];	
 int c = 0;			//Count for skipped chars between buf_1 and buf_2
 int d = 0;			//Count for skipped chars between buf_2 and buf_3
@@ -37,36 +36,38 @@ pthread_cond_t sep_cond = PTHREAD_COND_INITIALIZER;
 pthread_cond_t out_cond = PTHREAD_COND_INITIALIZER;
 
 int inp_parse(){
+	int i;
+	// Initialize the recent array. Keeps track of DONE
+	const char endcase [6] = {'\n', 'D', 'O', 'N', 'E', '\n'};
 	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	if (count_1 == SIZE){
 		//Buf_1 is full. End this iteration.
 	}
 	//Scan a char straight into the buffer
 	buf_1[inp_idx] = getchar();
-	if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - Loop [%d], char [%c] saved to buf_1.\n", i, buf_1[inp_idx]);
+	if(DEBUG) printf("	(INP_PARSE) - Loop [%d], char [%c] saved to buf_1.\n", i, buf_1[inp_idx]);
 
 	//if(DEBUG) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
-	for (j = 0; j < 5; j++){ //Shift values over
+	for (i = 0; i < 5; i++){ //Shift values over
 		recent[j] = recent[j + 1];
 	}
 
 	//Insert new values at last index
 	recent[5] = buf_1[inp_idx];
-	for (j = 0; j < 6; j++){ //Compare values to endcase array
-		if (recent[j] != endcase[j]) break;
+	for (i = 0; i < 6; i++){ //Compare values to endcase array
+		if (recent[i] != endcase[i]) break;
 		else {
-			if (j == 5){
+			if (i == 5){
 				//Endcase found. Wipe 'DONE' from buffer, and return to parent
 				inp_idx = (inp_idx + SIZE - 5) % SIZE;
 				count_1 -= 5;
 				buf_1[inp_idx] = '\0';
 				if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buf_1 was [%c]\n", i, buf_1[(inp_idx + SIZE - 1) % SIZE]);
-				//Program terminating, don't need to trigger ouput, since no output is necessary at this stage.
+				//Program terminating.
 				return 0;
 			}
 		}
 	}
-	//if(DEBUG && ((i % LOOPS) == 0)) printf("	(INP_PARSE) - No endcase found, continuing loop.\n");
 	//End this loop by updating values
 	inp_idx = (inp_idx + 1) % SIZE;
 	count_1++;
@@ -76,16 +77,13 @@ int inp_parse(){
 
 //Input thread
 void *input(void *args){
-		int i, j;
-		// Initialize the recent array. Keeps track of DONE
-		const char endcase [6] = {'\n', 'D', 'O', 'N', 'E', '\n'};
-		for (i = 0; i < 6; i++){
-			recent[i] = 0;
-		}
+	for (i = 0; i < 6; i++){
+		recent[i] = 0;
+	}
 	do{
 		if(DEBUG) printf("	(INPUT) - Starting input().\n");
 
-		while (count == SIZE){
+		while (count_1 == SIZE){
 			// Buffer is full. Wait for output
 			if(DEBUG) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sign_parse() to consume.\n");
 			pthread_cond_wait(&inp_cond, &mutex);
@@ -98,6 +96,7 @@ void *input(void *args){
 			if(DEBUG) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
 		} else if (inp_stts == 1){
 			if(DEBUG) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
+			running = 0;
 		}
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sign_cond);	//Buf_2
@@ -106,7 +105,7 @@ void *input(void *args){
 		sign_runs++;
 		sep_runs++;
 		//Run until exit case => DONE;
-	} while (1);
+	} while (running > 0);
 	return NULL;
 }
 
@@ -134,7 +133,7 @@ void *output(void *args){
 		if(DEBUG) printf("\n	(OUTPUT) - Buf_4 is empty, awaiting input.\n");
 		pthread_cond_signal(&sep_cond);
 		// Unlock the mutex
-	} while (1);
+	} while (running > 0);
 	return NULL;
 }
 
@@ -190,7 +189,7 @@ void *sign(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 		sign_runs--;
-	} while (sign_runs > 0);
+	} while (running > 0);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -243,7 +242,7 @@ void *separator(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 		sep_runs--;
-	} while (sep_runs > 0);
+	} while (running > 0);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -252,7 +251,6 @@ void exec(){
 	//Do the fork part here. Call relevant program.
 	//Create input thread
 	pthread_t inp_t, sep_t, sign_t, out_t;
-	
 	
 	if(DEBUG) printf("	(EXEC) - Creating threads.\n");
 	//Create input thread
