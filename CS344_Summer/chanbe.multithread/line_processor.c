@@ -95,9 +95,9 @@ void *input(void *args){
 
 		if (inp_stts == 0){
 			if(DEBUG) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
+			running = 0;
 		} else if (inp_stts == 1){
 			if(DEBUG) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
-			running = 0;
 		}
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sign_cond);	//Buf_2
@@ -114,14 +114,14 @@ void *output(void *args){
 	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
-		while (count_3 == 0){
+		while (count_3 < OUT_LEN 0){
 			// Buffer is empty
 			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
 			pthread_cond_wait(&out_cond, &mutex);
 		}
 		
-		//if(DEBUG) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
-		while (count_3 > OUT_LEN){		//Final requirement has this at 80. Using 20 for testing.
+		if(DEBUG) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
+		while (count_3 >= OUT_LEN){		//Final requirement has this at 80. Using 20 for testing.
 			for (i = 0; i < OUT_LEN; i++){
 				putchar(buf_3[out_idx]);
 				out_idx = (out_idx + 1) % SIZE;
