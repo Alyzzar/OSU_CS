@@ -122,13 +122,13 @@ void *output(void *args){
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
 		if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
-		
+		/**
 		while ((count_3 < OUT_LEN) && (outputting != 0)){
 			// Buffer is empty
 			if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Awaiting sign_parse() for input. outputting = [%d]\n", outputting);
 			pthread_cond_wait(&out_cond, &mutex);
 		}
-		
+		**/
 		if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
 		
 		//Only output if there are more than 80 chars in the buffer
@@ -225,7 +225,7 @@ int sign_parse(){
 		c++;
 		count_2--;
 	} else {
-		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - Values copied normally.\n");
+		//if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - Values copied normally.\n");
 		//Else, copy value from Buf_1 directly to Buf_2
 		buf_3[sign_idx] = buf_2 [(sign_idx + c) % SIZE];
 	}
@@ -248,6 +248,7 @@ void *sign(void *args){
 		if (sign_stts == 0){
 			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 			sign_running = 0;
+			outputting = 0;
 		}
 		sign_idx = (sign_idx + 1) % SIZE;
 		count_3++;
