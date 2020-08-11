@@ -114,10 +114,14 @@ fn main() {
 
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
-
-    intermediate_sums.push(map_data(&xs[0]));
-    intermediate_sums.push(map_data(&xs[1]));
-
+	thread::spawn(|| {
+		intermediate_sums.push(map_data(&xs[0]));
+	});
+	
+	thread::spawn(|| {
+		intermediate_sums.push(map_data(&xs[1]));
+	});
+	
     // CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 
     // Print the vector with the intermediate sums
@@ -129,13 +133,25 @@ fn main() {
 
     // CHANGE CODE: Add code that does the following:
     // 1. Calls partition_data to partition the data into equal partitions
+	let v_partitioned: Vec<Vec<usize>> = partition_data(&v);
     // 2. Calls print_partiion_info to print info on the partitions that have been created
+	print_partiion_info(&v_partitioned);
     // 3. Creates one thread per partition and uses each thread to process one partition
-    // 4. Collects the intermediate sums from all the threads
+	let v_sums: Vec<usize> = Vec::new()
+	for i in 0..v_partitioned.len(){
+		//Create the thread
+		thread::spawn(|| {
+		    // 4. Collects the intermediate sums from all the threads
+			v_sums.push(map_data(&v_partitioned[i]))
+		});
+	} 	
     // 5. Prints information about the intermediate sums
-    // 5. Calls reddata to process the intermediate sums
+	println!("Intermediate sums:");
+	println!("{:?}", v_sums);
+	// 5. Calls reduce_data to process the intermediate sums
+	let v_total_sum = reduce_data(&v_sums);
     // 6. Prints the final sum computed by reduce_data
-
+	println!("Reduced data from intermediate sums: {}", v_total_sum);
 }
 
 /*
@@ -156,6 +172,6 @@ fn main() {
 */
 fn partition_data(num_partitions: usize, v: &Vec<usize>) -> Vec<Vec<usize>>{
     // Remove the following line which has been added to remove a compiler error
-    let v_chunked: Vec<Vec<usize>> = v.chunks(num_partitions).map(|x| x.to_vec()).collect();
-    return v_chunked;
+    let v_chunks: Vec<Vec<usize>> = v.chunks(num_partitions).map(|x| x.to_vec()).collect();
+    return v_chunks;
 }
