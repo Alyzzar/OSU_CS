@@ -9,10 +9,10 @@ This program parses and modifies the input
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
-#define DEBUG_INP 1
+#define DEBUG_INP 0
+#define DEBUG_SEP 0
+#define DEBUG_SIGN 0
 #define DEBUG_OUT 1
-#define DEBUG_SIGN 1
-#define DEBUG_SEP 1
 
 int DEBUG = 0;		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
@@ -118,13 +118,17 @@ void *input(void *args){
 //Output thread
 void *output(void *args){
 	int i = 0;
+	int cont_loops = 0;	//Continuous loops. Used to force quit the function if it enters an infinite loop (race condition)
 	outputting = 1;
 	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
-		if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
-		if((DEBUG && DEBUG_OUT) && count_3 >= OUT_LEN) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
-		else printf("	(OUTPUT) - count_3 < [%d]. No output.\n", OUT_LEN);
+		//if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
+		if(DEBUG && DEBUG_OUT){
+			if(count_3 >= OUT_LEN) printf("	(OUTPUT) - Outputting buf_3 to terminal. Outputting = [%d]\n", outputting);
+			else printf("	(OUTPUT) - count_3 < [%d]. No output. Outputting = [%d]\n", OUT_LEN, outputting);
+		}
+		cont_loops++;
 		
 		//Only output if there are more than 80 chars in the buffer
 		while (count_3 >= OUT_LEN){
@@ -136,7 +140,10 @@ void *output(void *args){
 			}
 			//Print a new line
 			printf("\n");
+			cont_loops = 0;
 		}
+		
+		if (outputting == 0 || cont_loops > 50) break;
 		
 		//This goes after the while loop, in case separator() terminated while there was more than OUT_LEN chars in the buffer.
 		pthread_cond_signal(&sign_cond);
