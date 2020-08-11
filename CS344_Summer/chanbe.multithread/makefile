@@ -10,4 +10,4 @@ main: main.rs
 	rustc main.rs
 
 clean:
-	rm -f line_processor
+	rm -f line_processor main
