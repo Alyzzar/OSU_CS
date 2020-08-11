@@ -66,7 +66,7 @@ int inp_parse(){
 				if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. count_1: [%d], value in buf_1 is [%c]\n", i, count_1, buf_1[inp_idx]);
 				//Endcase found. Wipe 'DONE' from buffer, and return to parent
 				inp_idx = (inp_idx + SIZE - 5) % SIZE;
-				count_1 = (count_1 - 5);
+				//count_1 = (count_1 - 5);
 				buf_1[inp_idx] = '\0';
 				if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - count_1 changed: [%d]. Last value in buf_1 is [%c]\n", count_1, buf_1[(inp_idx + SIZE - 1) % SIZE]);
 				//Program terminating.
