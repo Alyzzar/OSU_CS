@@ -212,6 +212,7 @@ void *sign(void *args){
 
 //Main functionality for separator
 int sep_parse(){
+	if(DEBUG) printf("	(SEP_PARSE) - Checking buf_2[%d] with value [%c].\n", ((sep_idx + d) % SIZE), buf_2[(sep_idx + d) % SIZE]);
 	if (buf_2[(sep_idx + d) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
@@ -244,7 +245,7 @@ void *separator(void *args){
 			pthread_cond_wait(&sep_cond, &mutex);
 		
 		//Run
-		if(DEBUG) printf("	(SEPARATOR) - Parsing.\n");
+		//if(DEBUG) printf("	(SEPARATOR) - Parsing.\n");
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
 			if(DEBUG) printf("	(SEPARATOR) - - EXIT CASE\n");
@@ -254,10 +255,12 @@ void *separator(void *args){
 			//pthread_kill(out_t, SIGUSR1);
 		} else if (sep_stts == 1){
 			//if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
-			sep_idx = (sep_idx + 1) % SIZE;
-			count_2--;
 		}
-		if (sep_running == 5) count_3++;
+		if (sep_running == 5) {
+			count_3++;
+			count_2--;
+			sep_idx = (sep_idx + 1) % SIZE;
+		}
 	
 		// Signal to the consumer that the buffer has been sep parsed
 		if(DEBUG) printf("	(SEPARATOR) - cond_signal sent - ");
