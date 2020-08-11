@@ -128,7 +128,7 @@ fn main() {
 		// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 
 		// Print the vector with the intermediate sums
-		println!("Intermediate sums = {}, {}", res1, res2);
+		println!("Intermediate sums = {:?}, {:?}", res1, res2);
 	}
     // REDUCE STEP: Process the intermediate result to produce the final result
     let sum = reduce_data(&intermediate_sums);
