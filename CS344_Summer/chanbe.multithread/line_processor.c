@@ -144,9 +144,7 @@ void *output(void *args){
 		}
 		
 		//This goes after the while loop, in case separator() terminated while there was more than OUT_LEN chars in the buffer.
-		if (outputting == 0){
-			break;
-		} else pthread_cond_signal(&sign_cond);
+		pthread_cond_signal(&sign_cond);
 	} while (outputting > 0);
 	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
 	return NULL;
