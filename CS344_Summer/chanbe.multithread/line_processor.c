@@ -214,19 +214,21 @@ int sign_parse(){
 	//Check for pairs of '+'
 	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - count_3: [%d], Index: [%d], Testing chars [%c] & [%c].\n", count_3, sign_idx, buf_2[(sign_idx + c) % SIZE], buf_2[(sign_idx + c + 1) % SIZE]);
 	if (buf_2[(sign_idx + c) % SIZE] == '\0'){
-		//Exit case; DONE found by input()
+		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - '\\0' found. Exiting.\n");
+		//Exit case; DONE found by input(). Assign null terminator in buffer 3
 		//Return 0 to tell parent to 'stop running'. DONE found.
 		buf_3[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
 		return 0;
 	} else if (((sign_idx + c + 1) <= inp_idx)		//Check if next cell is within bounds
 			&& (buf_2[(sign_idx + c) % SIZE] == '+')
 			&& (buf_2[(sign_idx + c + 1) % SIZE] == '+')){
-		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Matching '++' found.\n");
+		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - - Matching '++' found.\n");
 		//Matching pair found in Buf_2. Set value in Buf_3
 		buf_3[sign_idx] = '^';
 		c++;
 		count_2--;
 	} else {
+		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - Values copied normally.\n");
 		//Else, copy value from Buf_1 directly to Buf_2
 		buf_3[sign_idx] = buf_2 [(sign_idx + c) % SIZE];
 	}
