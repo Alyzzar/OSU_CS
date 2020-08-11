@@ -1,4 +1,6 @@
 use std::env; // to get arugments passed to the program
+use std::thread;
+use math::round;
 
 /*
 * Print the number of partitions and the size of each partition
@@ -132,7 +134,7 @@ fn main() {
     // 3. Creates one thread per partition and uses each thread to process one partition
     // 4. Collects the intermediate sums from all the threads
     // 5. Prints information about the intermediate sums
-    // 5. Calls reduce_data to process the intermediate sums
+    // 5. Calls reddata to process the intermediate sums
     // 6. Prints the final sum computed by reduce_data
 
 }
@@ -146,6 +148,7 @@ fn main() {
 *   - all partitions (except possibly the the last one) have equal number 
 *      of elements. The last partition may have either the same number of
 *      elements or fewer elements than the other partitions.
+* UPDATE AUGUST 10: Please see Piazza post @209 about another choice of how to partition the data
 *
 * @param num_partitions The number of partitions to create
 * @param v The data to be partitioned
@@ -154,5 +157,6 @@ fn main() {
 */
 fn partition_data(num_partitions: usize, v: &Vec<usize>) -> Vec<Vec<usize>>{
     // Remove the following line which has been added to remove a compiler error
-    partition_data_in_two(v)
+    let v_chunked: Vec<Vec<usize>> = v.chunks(num_partitions).map(|x| x.to_vec()).collect();
+    return v_chunked;
 }
