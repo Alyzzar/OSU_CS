@@ -120,7 +120,7 @@ void *output(void *args){
 		if(DEBUG) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
 		while (count_3 < OUT_LEN){
 			// Buffer is empty
-			if(outputting = 0){
+			if(outputting == 0){
 				if(DEBUG) printf("	(OUTPUT) - Break: outputting = 0.\n");
 				break;
 			}
@@ -138,7 +138,7 @@ void *output(void *args){
 			printf("\n");
 		}
 		
-		if (outputting = 0){
+		if (outputting == 0){
 			break;
 		}
 		// Signal to the consumer that the buffer has space
