@@ -118,11 +118,18 @@ void *input(void *args){
 //Output thread
 void *output(void *args){
 	int i = 0;
-	int cont_loops = 0;	//Continuous loops. Used to force quit the function if it enters an infinite loop (race condition)
+	//int cont_loops = 0;	//Continuous loops. Used to force quit the function if it enters an infinite loop (race condition)
 	outputting = 1;
 	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
+		while (cont_3 < Out_LEN){
+			if(outputting == 0){
+				//Exit case
+				break;
+			}
+			pthread_cond_wait(&out_cond, &mutex);
+		}
 		//if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
 		if(DEBUG && DEBUG_OUT){
 			if(count_3 >= OUT_LEN) printf("	(OUTPUT) - Outputting buf_3 to terminal. Outputting = [%d]\n", outputting);
@@ -140,10 +147,9 @@ void *output(void *args){
 			}
 			//Print a new line
 			printf("\n");
-			cont_loops = 0;
 		}
 		
-		if (outputting == 0 || cont_loops > 50) break;
+		if (outputting == 0) break;
 		
 		//This goes after the while loop, in case separator() terminated while there was more than OUT_LEN chars in the buffer.
 		pthread_cond_signal(&sign_cond);
