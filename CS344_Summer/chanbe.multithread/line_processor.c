@@ -242,9 +242,10 @@ void *sign(void *args){
 	do {
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
-		while (count_2 == 0)	// Buffer is empty
+		while (count_2 == 0){	// Buffer is empty
+			if(DEBUG && DEBUG_SEP) printf("	(SIGN) - count_3: [%d], buf_2 empty, waiting for input().\n", count_3);
 			pthread_cond_wait(&sign_cond, &mutex);
-		
+		}
 		//Run
 		int sign_stts = sign_parse();
 		if (sign_stts == 0){
