@@ -9,7 +9,7 @@ This program parses and modifies the input
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
-int DEBUG 0		// [0 = DEBUG OFF],[1 = DEBUG ON] 
+int DEBUG = 0		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
 char recent [6];	
 int c = 0;			//Count for skipped chars between buf_1 and buf_2
