@@ -87,11 +87,11 @@ void *input(void *args){
 	for (i = 0; i < 6; i++){
 		recent[i] = 0;
 	}
-	if(DEBUG && DEBUG_OUT) printf("	(INPUT) - Starting input().\n");	
+	if(DEBUG) printf("	(INPUT) - Starting input().\n");	
 	do{
 		while (count_1 == SIZE){
 			// Buffer is full. Wait for output
-			if(DEBUG && DEBUG_OUT) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sign_parse() to consume.\n");
+			if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sign_parse() to consume.\n");
 			pthread_cond_wait(&inp_cond, &mutex);
 		}
 		//inputs text line-by-line from stdin
@@ -99,10 +99,10 @@ void *input(void *args){
 		int inp_stts = inp_parse();
 
 		if (inp_stts == 0){
-			if(DEBUG && DEBUG_OUT) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
+			if(DEBUG && DEBUG_INP) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
 			inp_running = 0;
 		} else if (inp_stts == 1){
-			if(DEBUG && DEBUG_OUT) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
+			if(DEBUG && DEBUG_INP) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
 		}
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sign_cond);	//Buf_2
@@ -118,17 +118,13 @@ void *input(void *args){
 void *output(void *args){
 	int i = 0;
 	outputting = 1;
-	if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Starting output().\n");
+	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
 		if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
 		
-		while (count_3 < OUT_LEN){
+		while ((count_3 < OUT_LEN) && (outputting != 0)){
 			// Buffer is empty
-			if(outputting == 0){
-				if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Break: outputting = [0].\n");
-				break;
-			}
 			if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Awaiting sep_parse(). outputting = [%d]\n", outputting);
 			pthread_cond_wait(&out_cond, &mutex);
 		}
@@ -147,12 +143,9 @@ void *output(void *args){
 		//This goes after the while loop, in case separator() terminated while there was more than OUT_LEN chars in the buffer.
 		if (outputting == 0){
 			break;
-		}
-		// Signal to the consumer that the buffer has space
-		pthread_cond_signal(&sep_cond);
+		} else pthread_cond_signal(&sep_cond);
 	} while (outputting > 0);
 	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
-	outputting = -1;
 	return NULL;
 }
 
@@ -181,7 +174,7 @@ int sign_parse(){
 
 //Plus sign thread (Buf_2)
 void *sign(void *args){
-	if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - Starting sign().\n");
+	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
 	int sign_running = 1;
 	do {
 		//Lock mutex since this will affect buf_1 and buf_2
@@ -194,9 +187,6 @@ void *sign(void *args){
 		if (sign_stts == 0){
 			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 			sign_running = 0;
-		} else if (sign_stts == 1){
-			//if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
-			sign_idx = (sign_idx + 1) % SIZE;
 		}
 		count_2++;
 		count_1--;
@@ -235,20 +225,12 @@ int sep_parse(){
 
 //Separator thread (Buf_3)
 void *separator(void *args){
-	if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Starting separator().\n");
-	int sep_running = 5;
+	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
+	int sep_running = 1;
 	do {
-		if(outputting < 0){
-			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Output() has terminated. Forcing early termination.\n");
-			sep_running = 0;
-			break;
-		} else if (outputting == 0){
-			pthread_cond_signal(&out_cond);	//Output
-		}
-		
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
-		while ((count_2 == 0) && (outputting != 0))	// Buffer hasn't been sign parsed || Buffer is empty
+		while (count_2 == 0)	// Buffer hasn't been sign parsed || Buffer is empty
 			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Buffer empty, waiting for sign().\n");
 			pthread_cond_wait(&sep_cond, &mutex);
 		
@@ -257,19 +239,13 @@ void *separator(void *args){
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
 			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - - EXIT CASE\n");
-			//Let it run a few extra times to let output() terminate on it's own.
-			sep_running--;
 			outputting = 0;
-			//pthread_kill(out_t, SIGUSR1);
-		} else if (sep_stts == 1){
-			//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
+			sep_running = 0;	//Terminates this thread
 		}
-		if (sep_running == 5) {
-			count_3++;
-			count_2--;
-			sep_idx = (sep_idx + 1) % SIZE;
-		}
-	
+		sep_idx = (sep_idx + 1) % SIZE;
+		count_3++;
+		count_2--;
+
 		// Signal to the consumer that the buffer has been sep parsed
 		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
 		pthread_cond_signal(&sign_cond);//Buf_2
