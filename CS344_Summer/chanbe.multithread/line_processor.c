@@ -9,6 +9,11 @@ This program parses and modifies the input
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
+#define DEBUG_INP 1
+#define DEBUG_OUT 1
+#define DEBUG_SIGN 1
+#define DEBUG_SEP 1
+
 int DEBUG = 0;		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
 char recent [6];	
@@ -39,15 +44,15 @@ int inp_parse(){
 	int i;
 	// Initialize the recent array. Keeps track of DONE
 	const char endcase [6] = {'\n', 'D', 'O', 'N', 'E', '\n'};
-	if(DEBUG) printf("	(INP_PARSE) - Starting inp_parse().\n");
+	//if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Starting inp_parse().\n");
 	if (count_1 == SIZE){
 		//Buf_1 is full. End this iteration.
 	}
 	//Scan a char straight into the buffer
 	buf_1[inp_idx] = getchar();
-	if(DEBUG) printf("	(INP_PARSE) - Indx [%d] char [%c] saved to buf_1.\n", inp_idx, buf_1[inp_idx]);
+	if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Indx [%d] char [%c] saved to buf_1.\n", inp_idx, buf_1[inp_idx]);
 
-	//if(DEBUG) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
+	//if(DEBUG && DEBUG_SIGN) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 	for (i = 0; i < 5; i++){ //Shift values over
 		recent[i] = recent[i + 1];
 	}
@@ -62,7 +67,7 @@ int inp_parse(){
 				inp_idx = (inp_idx + SIZE - 5) % SIZE;
 				count_1 -= 4;
 				buf_1[inp_idx] = '\0';
-				if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buf_1 was [%c]\n", i, buf_1[(inp_idx + SIZE - 1) % SIZE]);
+				if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buf_1 was [%c]\n", i, buf_1[(inp_idx + SIZE - 1) % SIZE]);
 				//Program terminating.
 				return 0;
 			}
@@ -82,30 +87,30 @@ void *input(void *args){
 	for (i = 0; i < 6; i++){
 		recent[i] = 0;
 	}
-	if(DEBUG) printf("	(INPUT) - Starting input().\n");	
+	if(DEBUG && DEBUG_OUT) printf("	(INPUT) - Starting input().\n");	
 	do{
 		while (count_1 == SIZE){
 			// Buffer is full. Wait for output
-			if(DEBUG) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sign_parse() to consume.\n");
+			if(DEBUG && DEBUG_OUT) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sign_parse() to consume.\n");
 			pthread_cond_wait(&inp_cond, &mutex);
 		}
 		//inputs text line-by-line from stdin
-		//if(DEBUG) printf("	(INPUT) - Parsing.\n");
+		//if(DEBUG && DEBUG_OUT) printf("	(INPUT) - Parsing.\n");
 		int inp_stts = inp_parse();
 
 		if (inp_stts == 0){
-			if(DEBUG) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
+			if(DEBUG && DEBUG_OUT) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
 			inp_running = 0;
 		} else if (inp_stts == 1){
-			if(DEBUG) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
+			if(DEBUG && DEBUG_OUT) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
 		}
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sign_cond);	//Buf_2
 		// Unlock the mutex
-		//if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
+		//if(DEBUG && DEBUG_OUT) printf("	(INP_PARSE) - Mutex unlocked.\n");
 		//Run until exit case => DONE;
 	} while (inp_running > 0);
-	if(DEBUG) printf("	(INPUT) - Input() has terminated.\n");
+	if(DEBUG && DEBUG_OUT) printf("	(INPUT) - Input() has terminated.\n");
 	return NULL;
 }
 
@@ -113,22 +118,22 @@ void *input(void *args){
 void *output(void *args){
 	int i = 0;
 	outputting = 1;
-	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
+	if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
-		if(DEBUG) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
+		if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
 		
 		while (count_3 < OUT_LEN){
 			// Buffer is empty
 			if(outputting == 0){
-				if(DEBUG) printf("	(OUTPUT) - Break: outputting = [0].\n");
+				if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Break: outputting = [0].\n");
 				break;
 			}
-			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse(). outputting = [%d]\n", outputting);
+			if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Awaiting sep_parse(). outputting = [%d]\n", outputting);
 			pthread_cond_wait(&out_cond, &mutex);
 		}
 		
-		if(DEBUG) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
+		if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
 		
 		while (count_3 >= OUT_LEN){
 			for (i = 0; i < OUT_LEN; i++){
@@ -146,7 +151,7 @@ void *output(void *args){
 		// Signal to the consumer that the buffer has space
 		pthread_cond_signal(&sep_cond);
 	} while (outputting > 0);
-	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
+	if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Output() has terminated.\n");
 	outputting = -1;
 	return NULL;
 }
@@ -154,7 +159,7 @@ void *output(void *args){
 //Main functionality for sign
 int sign_parse(){
 	//Check for pairs of '+'
-	if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n", buf_1[sign_idx], buf_1[(sign_idx + 1) % SIZE]);
+	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n", buf_1[sign_idx], buf_1[(sign_idx + 1) % SIZE]);
 	if (buf_1[(sign_idx + c) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
@@ -163,7 +168,7 @@ int sign_parse(){
 	} else if (((sign_idx + c + 1) <= inp_idx)		//Check if next cell is within bounds
 			&& buf_1[(sign_idx + c) % SIZE] == '+'
 			&& buf_1[(sign_idx + c + 1) % SIZE] == '+'){
-		if(DEBUG) printf("	(SIGN_PARSE) - Matching '++' found.\n");
+		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Matching '++' found.\n");
 		//Matching pair found in Buf_1. Set value in Buf_2
 		buf_2[sign_idx] = '^';
 		c++;
@@ -176,7 +181,7 @@ int sign_parse(){
 
 //Plus sign thread (Buf_2)
 void *sign(void *args){
-	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
+	if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - Starting sign().\n");
 	int sign_running = 1;
 	do {
 		//Lock mutex since this will affect buf_1 and buf_2
@@ -187,38 +192,38 @@ void *sign(void *args){
 		//Run
 		int sign_stts = sign_parse();
 		if (sign_stts == 0){
-			if(DEBUG) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
+			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 			sign_running = 0;
 		} else if (sign_stts == 1){
-			//if(DEBUG) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
+			//if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
 			sign_idx = (sign_idx + 1) % SIZE;
 		}
 		count_2++;
 		count_1--;
 		
 		// Signal to the consumer that the buffer has been sign parsed
-		//if(DEBUG) printf("	(SIGN) - cond_signal sent - ");
+		//if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - cond_signal sent - ");
 		pthread_cond_signal(&inp_cond);	//Buf_1
 		pthread_cond_signal(&sep_cond);	//Buf_3
 		// Unlock the mutex
-		//if(DEBUG) printf("Mutex unlocked.\n");
+		//if(DEBUG && DEBUG_SIGN) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
-	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
+	if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
 	return NULL;
 	//Run forever, exit case = break;
 }
 
 //Main functionality for separator
 int sep_parse(){
-	if(DEBUG) printf("	(SEP_PARSE) - Checking buf_2[%d] with value [%c].\n", ((sep_idx + d) % SIZE), buf_2[(sep_idx + d) % SIZE]);
+	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - Checking buf_2[%d] with value [%c].\n", ((sep_idx + d) % SIZE), buf_2[(sep_idx + d) % SIZE]);
 	if (buf_2[(sep_idx + d) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
 		buf_3[sep_idx] = buf_2 [(sep_idx + d) % SIZE];
 		return 0;
 	} else if (buf_2[(sep_idx + d) % SIZE] == '\n'){
-		if(DEBUG) printf("	(SEP_PARSE) - '\\n' found. Replacing with ' '.\n");
+		if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - '\\n' found. Replacing with ' '.\n");
 		//Newline found
 		buf_3[sep_idx] = ' ';
 	} else {
@@ -230,11 +235,11 @@ int sep_parse(){
 
 //Separator thread (Buf_3)
 void *separator(void *args){
-	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
+	if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Starting separator().\n");
 	int sep_running = 5;
 	do {
 		if(outputting < 0){
-			if(DEBUG) printf("	(SEPARATOR) - Output() has terminated. Forcing early termination.\n");
+			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Output() has terminated. Forcing early termination.\n");
 			sep_running = 0;
 			break;
 		} else if (outputting == 0){
@@ -247,16 +252,16 @@ void *separator(void *args){
 			pthread_cond_wait(&sep_cond, &mutex);
 		
 		//Run
-		//if(DEBUG) printf("	(SEPARATOR) - Parsing.\n");
+		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Parsing.\n");
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
-			if(DEBUG) printf("	(SEPARATOR) - - EXIT CASE\n");
+			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - - EXIT CASE\n");
 			//Let it run a few extra times to let output() terminate on it's own.
 			sep_running--;
 			outputting = 0;
 			//pthread_kill(out_t, SIGUSR1);
 		} else if (sep_stts == 1){
-			//if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
+			//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
 		}
 		if (sep_running == 5) {
 			count_3++;
@@ -265,14 +270,14 @@ void *separator(void *args){
 		}
 	
 		// Signal to the consumer that the buffer has been sep parsed
-		//if(DEBUG) printf("	(SEPARATOR) - cond_signal sent - ");
+		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
 		pthread_cond_signal(&sign_cond);//Buf_2
 		pthread_cond_signal(&out_cond);	//Output
 		// Unlock the mutex
-		//if(DEBUG) printf("Mutex unlocked.\n");
+		//if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
-	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
+	if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
 	outputting = 0;
 	return NULL;
 	//Run forever, exit case = break;
