@@ -133,16 +133,16 @@ fn main() {
 
     // CHANGE CODE: Add code that does the following:
     // 1. Calls partition_data to partition the data into equal partitions
-	let v_partitioned: Vec<Vec<usize>> = partition_data(&v);
+	let v_partitioned: Vec<Vec<usize>> = partition_data(num_partitions, &v);
     // 2. Calls print_partiion_info to print info on the partitions that have been created
-	print_partiion_info(&v_partitioned);
+	print_partition_info(&v_partitioned);
     // 3. Creates one thread per partition and uses each thread to process one partition
-	let v_sums: Vec<usize> = Vec::new()
+	let v_sums: Vec<usize> = Vec::new();
 	for i in 0..v_partitioned.len(){
 		//Create the thread
 		thread::spawn(|| {
 		    // 4. Collects the intermediate sums from all the threads
-			v_sums.push(map_data(&v_partitioned[i]))
+			v_sums.push(map_data(&v_partitioned[i]));
 		});
 	} 	
     // 5. Prints information about the intermediate sums
