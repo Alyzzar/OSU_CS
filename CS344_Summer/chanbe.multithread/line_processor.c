@@ -65,7 +65,7 @@ int inp_parse(){
 			if (i == 5){
 				//Endcase found. Wipe 'DONE' from buffer, and return to parent
 				inp_idx = (inp_idx + SIZE - 5) % SIZE;
-				count_1 -= 4;
+				count_1 -= 5;
 				buf_1[inp_idx] = '\0';
 				if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buf_1 was [%c]\n", i, buf_1[(inp_idx + SIZE - 1) % SIZE]);
 				//Program terminating.
@@ -152,7 +152,7 @@ void *output(void *args){
 //Main functionality for sign
 int sign_parse(){
 	//Check for pairs of '+'
-	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Count: [%d], Testing chars [%c] & [%c].\n", count_1, buf_1[sign_idx], buf_1[(sign_idx + 1) % SIZE]);
+	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Count: [%d], Index: [%d], Testing chars [%c] & [%c].\n", count_1, sign_idx, buf_1[(sign_idx + c) % SIZE], buf_1[(sign_idx + c + 1) % SIZE]);
 	if (buf_1[(sign_idx + c) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
