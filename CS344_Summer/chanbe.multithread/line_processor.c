@@ -6,10 +6,10 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define DEBUG 0		// [0 = DEBUG OFF],[1 = DEBUG ON] 
-
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
+
+int DEBUG 0		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
 char recent [6];	
 int c = 0;			//Count for skipped chars between buf_1 and buf_2
@@ -291,6 +291,7 @@ void exec(){
 
 int main (int argc, char* argv[]){
 	//Run exec to do all the thread stuff
+	if (argc = 2) DEBUG = atoi(argv[1]);
 	if(DEBUG) printf("	(MAIN) - Program starting.\n");
 	exec();
 	if(DEBUG) printf("	(MAIN) - Program terminating.\n");
