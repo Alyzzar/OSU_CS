@@ -1,6 +1,5 @@
 use std::env; // to get arugments passed to the program
 use std::thread;
-use math::round;
 
 /*
 * Print the number of partitions and the size of each partition
