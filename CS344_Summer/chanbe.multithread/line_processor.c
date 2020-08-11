@@ -98,11 +98,11 @@ void *input(void *args){
 		if (inp_stts == 0){
 			if(DEBUG && DEBUG_INP) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
 			inp_running = 0;
-		} else {	//else, if inp_stts == 1
-			//End this loop by updating values
-			inp_idx = (inp_idx + 1) % SIZE;
-			count_1++;
 		}
+		//End this loop by updating values
+		inp_idx = (inp_idx + 1) % SIZE;
+		count_1++;
+		
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sep_cond);	//Buf_2
 		// Unlock the mutex
