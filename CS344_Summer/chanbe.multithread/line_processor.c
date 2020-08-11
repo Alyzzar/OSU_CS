@@ -188,7 +188,7 @@ void *sign(void *args){
 			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 			sign_running = 0;
 		}
-		sign_idx = (sign_idx + 1) % SIZE
+		sign_idx = (sign_idx + 1) % SIZE;
 		count_2++;
 		count_1--;
 		
