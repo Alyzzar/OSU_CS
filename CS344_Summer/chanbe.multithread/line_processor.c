@@ -6,9 +6,9 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define DEBUG 0		// [0 = DEBUG OFF],[1 = DEBUG ON] 
+#define DEBUG 1		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
-#define SIZE 1000	// Assignment recommends size = 10000
+#define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
 int running = 1;
@@ -102,7 +102,7 @@ void *input(void *args){
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sign_cond);	//Buf_2
 		// Unlock the mutex
-		if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
+		//if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
 		//Run until exit case => DONE;
 	} while (running > 0);
 	return NULL;
