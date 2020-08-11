@@ -63,11 +63,12 @@ int inp_parse(){
 		if (recent[i] != endcase[i]) break;
 		else {
 			if (i == 5){
+				if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. count_1: [%d], value in buf_1 is [%c]\n", i, count_1, buf_1[inp_idx]);
 				//Endcase found. Wipe 'DONE' from buffer, and return to parent
 				inp_idx = (inp_idx + SIZE - 5) % SIZE;
-				count_1 -= 5;
+				count_1 = (count_1 - 5);
 				buf_1[inp_idx] = '\0';
-				if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buf_1 was [%c]\n", i, buf_1[(inp_idx + SIZE - 1) % SIZE]);
+				if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - count_1 changed: [%d]. Last value in buf_1 is [%c]\n", count_1, buf_1[(inp_idx + SIZE - 1) % SIZE]);
 				//Program terminating.
 				return 0;
 			}
@@ -122,14 +123,8 @@ void *output(void *args){
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
 		if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
-		/**
-		while ((count_3 < OUT_LEN) && (outputting != 0)){
-			// Buffer is empty
-			if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Awaiting sign_parse() for input. outputting = [%d]\n", outputting);
-			pthread_cond_wait(&out_cond, &mutex);
-		}
-		**/
-		if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
+		if((DEBUG && DEBUG_OUT) && count_3 >= OUT_LEN) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
+		else printf("	(OUTPUT) - count_3 < [%d]. No output.\n", OUT_LEN);
 		
 		//Only output if there are more than 80 chars in the buffer
 		while (count_3 >= OUT_LEN){
