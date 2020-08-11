@@ -110,7 +110,7 @@ void *input(void *args){
 		//if(DEBUG && DEBUG_OUT) printf("	(INP_PARSE) - Mutex unlocked.\n");
 		//Run until exit case => DONE;
 	} while (inp_running > 0);
-	if(DEBUG && DEBUG_OUT) printf("	(INPUT) - Input() has terminated.\n");
+	if(DEBUG) printf("	(INPUT) - Input() has terminated.\n");
 	return NULL;
 }
 
@@ -151,7 +151,7 @@ void *output(void *args){
 		// Signal to the consumer that the buffer has space
 		pthread_cond_signal(&sep_cond);
 	} while (outputting > 0);
-	if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Output() has terminated.\n");
+	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
 	outputting = -1;
 	return NULL;
 }
@@ -209,7 +209,7 @@ void *sign(void *args){
 		//if(DEBUG && DEBUG_SIGN) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
-	if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
+	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -248,7 +248,8 @@ void *separator(void *args){
 		
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
-		while (count_2 == 0)	// Buffer hasn't been sign parsed || Buffer is empty
+		while ((count_2 == 0) && (outputting != 0))	// Buffer hasn't been sign parsed || Buffer is empty
+			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Buffer empty, waiting for sign().\n");
 			pthread_cond_wait(&sep_cond, &mutex);
 		
 		//Run
@@ -277,7 +278,7 @@ void *separator(void *args){
 		//if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
-	if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
+	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
 	outputting = 0;
 	return NULL;
 	//Run forever, exit case = break;
