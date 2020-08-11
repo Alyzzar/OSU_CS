@@ -19,12 +19,12 @@ int buf_2 [SIZE];
 int buf_3 [SIZE];
 int count_1 = 0;			//Original c count
 int count_2 = 0;		//c count after swapping '++'
-int count_3 = 0;		//c count after swapping '\n', outputting
+int count_3 = 0;		//c count after swapping '\n', output()
 int inp_idx = 0;
 int sign_idx = 0;
 int sep_idx = 0;
 int out_idx = 0;
-int outputting = 1;		//Global, since separator() has to interact with this
+int outputting = 0;		//Global, since separator() has to interact with this
 
 // Initialize the mutex
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -106,15 +106,18 @@ void *input(void *args){
 		//if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
 		//Run until exit case => DONE;
 	} while (inp_running > 0);
+	if(DEBUG) printf("	(INPUT) - Input() has terminated.\n");
 	return NULL;
 }
 
 //Output thread
 void *output(void *args){
 	int i = 0;
+	outputting = 1;
 	if(DEBUG) printf("	(OUTPUT) - Starting output().\n");
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
+		if(DEBUG) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
 		while (count_3 < OUT_LEN){
 			// Buffer is empty
 			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
@@ -131,10 +134,14 @@ void *output(void *args){
 			printf("\n");
 		}
 		
+		if (outputting = 0){
+			break;
+		}
 		// Signal to the consumer that the buffer has space
 		pthread_cond_signal(&sep_cond);
 		// Unlock the mutex
 	} while (outputting > 0);
+	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
 	return NULL;
 }
 
@@ -191,6 +198,7 @@ void *sign(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
+	if(DEBUG) printf("	(SIGN) - Sign() has terminated.\n");
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -246,6 +254,7 @@ void *separator(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
+	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated.\n");
 	return NULL;
 	//Run forever, exit case = break;
 }
