@@ -177,7 +177,7 @@ void *sign(void *args){
 			if(DEBUG) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 			sign_running = 0;
 		} else if (sign_stts == 1){
-			if(DEBUG) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
+			//if(DEBUG) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
 		}
 		sign_idx = (sign_idx + 1) % SIZE;
 		count_2++;
@@ -229,9 +229,10 @@ void *separator(void *args){
 		if (sep_stts == 0){
 			if(DEBUG) printf("	(SEPARATOR) - - EXIT CASE\n");
 			sep_running = 0;
+			outputting = 0;
 			//pthread_kill(out_t, SIGUSR1);
 		} else if (sep_stts == 1){
-			if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
+			//if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
 		}
 		sep_idx = (sep_idx + 1) % SIZE;
 		count_3++;
