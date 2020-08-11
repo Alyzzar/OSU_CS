@@ -124,7 +124,7 @@ void *output(void *args){
 				if(DEBUG) printf("	(OUTPUT) - Break: outputting = 0.\n");
 				break;
 			}
-			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
+			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse(). outputting = %d\n", outputting);
 			pthread_cond_wait(&out_cond, &mutex);
 		}
 		
@@ -259,6 +259,7 @@ void *separator(void *args){
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
 	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated.\n");
+	outputting = 0;
 	return NULL;
 	//Run forever, exit case = break;
 }
