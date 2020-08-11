@@ -50,7 +50,7 @@ int inp_parse(){
 	}
 	//Scan a char straight into the buffer
 	buf_1[inp_idx] = getchar();
-	if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Indx [%d] char [%c] saved to buf_1.\n", inp_idx, buf_1[inp_idx]);
+	if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Index [%d] char [%c] saved to buf_1.\n", inp_idx, buf_1[inp_idx]);
 
 	//if(DEBUG && DEBUG_SIGN) printf("	(INP_PARSE) - Checking for endcase, text = \"DONE\"?\n");
 	for (i = 0; i < 5; i++){ //Shift values over
@@ -165,6 +165,7 @@ int sign_parse(){
 		//Matching pair found in Buf_1. Set value in Buf_2
 		buf_2[sign_idx] = '^';
 		c++;
+		count_1--;
 	} else {
 		//Else, copy value from Buf_1 directly to Buf_2
 		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
