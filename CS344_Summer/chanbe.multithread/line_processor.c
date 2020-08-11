@@ -12,7 +12,7 @@ This program parses and modifies the input
 #define DEBUG_INP 0
 #define DEBUG_OUT 1
 #define DEBUG_SIGN 0
-#define DEBUG_SEP 0
+#define DEBUG_SEP 1
 
 int DEBUG = 0;		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
