@@ -114,14 +114,15 @@ fn main() {
 
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
-	thread::spawn(|| {
-		intermediate_sums.push(map_data(&xs[0]));
-	});
-	
-	thread::spawn(|| {
-		intermediate_sums.push(map_data(&xs[1]));
-	});
-	
+	{
+		thread::spawn(|| {
+			intermediate_sums.push(map_data(&xs[0]));
+		});
+		
+		thread::spawn(|| {
+			intermediate_sums.push(map_data(&xs[1]));
+		});
+	}
     // CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 
     // Print the vector with the intermediate sums
