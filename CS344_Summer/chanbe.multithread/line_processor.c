@@ -188,7 +188,6 @@ void *separator(void *args){
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
 			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - - EXIT CASE\n");
-			outputting = 0;
 			sep_running = 0;	//Terminates this thread
 		}
 		sep_idx = (sep_idx + 1) % SIZE;
@@ -249,6 +248,7 @@ void *sign(void *args){
 		if (sign_stts == 0){
 			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 			sign_running = 0;
+			outputting = 0;
 		}
 		sign_idx = (sign_idx + 1) % SIZE;
 		count_3++;
