@@ -148,6 +148,7 @@ void *output(void *args){
 		pthread_cond_signal(&sep_cond);
 	} while (outputting > 0);
 	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
+	outputting = -1;
 	return NULL;
 }
 
@@ -234,6 +235,11 @@ void *separator(void *args){
 	do {
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
+		if(outputting < 0){
+			if(DEBUG) printf("	(SEPARATOR) - Output() has terminated. Forcing early termination.\n");
+			sep_running = 0;
+			break;
+		}
 		while (count_2 == 0)	// Buffer hasn't been sign parsed || Buffer is empty
 			pthread_cond_wait(&sep_cond, &mutex);
 		
