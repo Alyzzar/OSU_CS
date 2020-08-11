@@ -159,7 +159,7 @@ void *output(void *args){
 //Main functionality for sign
 int sign_parse(){
 	//Check for pairs of '+'
-	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n", buf_1[sign_idx], buf_1[(sign_idx + 1) % SIZE]);
+	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Count: [%d], Testing chars [%c] & [%c].\n", count_1, buf_1[sign_idx], buf_1[(sign_idx + 1) % SIZE]);
 	if (buf_1[(sign_idx + c) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
@@ -216,7 +216,7 @@ void *sign(void *args){
 
 //Main functionality for separator
 int sep_parse(){
-	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - Checking buf_2[%d] with value [%c].\n", ((sep_idx + d) % SIZE), buf_2[(sep_idx + d) % SIZE]);
+	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - Count: [%d], Checking buf_2[%d] with value [%c].\n", count_2, ((sep_idx + d) % SIZE), buf_2[(sep_idx + d) % SIZE]);
 	if (buf_2[(sep_idx + d) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
