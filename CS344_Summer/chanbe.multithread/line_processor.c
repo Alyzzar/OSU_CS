@@ -6,7 +6,7 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define DEBUG 0		// [0 = DEBUG OFF],[1 = DEBUG ON] 
+#define DEBUG 1		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
