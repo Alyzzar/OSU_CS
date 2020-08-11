@@ -1,5 +1,3 @@
-extern crate rayon;
-use rayon::prelude::*;
 use std::env; // to get arugments passed to the program
 use std::thread;
 
@@ -116,9 +114,12 @@ fn main() {
 
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
-	let handles = [0usize, 1];
-	for_each( |i| {
+	thread::spawn(|| {
 		intermediate_sums.push(map_data(&xs[0]));
+	});
+	
+	thread::spawn(|| {
+		intermediate_sums.push(map_data(&xs[1]));
 	});
 	
     // CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
@@ -139,7 +140,7 @@ fn main() {
 	let mut v_sums: Vec<usize> = Vec::new();
 	for i in 0..v_partitioned.len(){
 		//Create the thread
-		for_each( |i| {
+		thread::spawn(|| {
 		    // 4. Collects the intermediate sums from all the threads
 			v_sums.push(map_data(&v_partitioned[i]));
 		});
