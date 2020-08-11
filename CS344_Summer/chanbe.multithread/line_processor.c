@@ -231,9 +231,10 @@ void *separator(void *args){
 	do {
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
-		while (count_2 == 0)	// Buffer hasn't been sign parsed || Buffer is empty
+		while (count_2 == 0){	// Buffer hasn't been sign parsed || Buffer is empty
 			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - count_2: [%d], buf_2 empty, waiting for sign().\n", count_2);
 			pthread_cond_wait(&sep_cond, &mutex);
+		}
 		
 		//Run
 		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Parsing.\n");
