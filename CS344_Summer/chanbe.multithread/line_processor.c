@@ -118,6 +118,7 @@ void *output(void *args){
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
 		if(DEBUG) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
+		
 		while (count_3 < OUT_LEN){
 			// Buffer is empty
 			if(outputting == 0){
@@ -129,7 +130,8 @@ void *output(void *args){
 		}
 		
 		if(DEBUG) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
-		while (count_3 >= OUT_LEN){		//Final requirement has this at 80. Using 20 for testing.
+		
+		while (count_3 >= OUT_LEN){
 			for (i = 0; i < OUT_LEN; i++){
 				putchar(buf_3[out_idx]);
 				out_idx = (out_idx + 1) % SIZE;
@@ -138,12 +140,12 @@ void *output(void *args){
 			printf("\n");
 		}
 		
+		//This goes after the while loop, in case separator() terminated while there was more than OUT_LEN chars in the buffer.
 		if (outputting == 0){
 			break;
 		}
 		// Signal to the consumer that the buffer has space
 		pthread_cond_signal(&sep_cond);
-		// Unlock the mutex
 	} while (outputting > 0);
 	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
 	return NULL;
@@ -202,7 +204,7 @@ void *sign(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
-	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[sign_idx]);
+	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -228,7 +230,7 @@ int sep_parse(){
 //Separator thread (Buf_3)
 void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
-	int sep_running = 1;
+	int sep_running = 5;
 	do {
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
@@ -240,15 +242,16 @@ void *separator(void *args){
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
 			if(DEBUG) printf("	(SEPARATOR) - - EXIT CASE\n");
-			sep_running = 0;
+			//Let it run a few extra times to let output() terminate on it's own.
+			sep_running--;
 			outputting = 0;
 			//pthread_kill(out_t, SIGUSR1);
 		} else if (sep_stts == 1){
 			//if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
 			sep_idx = (sep_idx + 1) % SIZE;
+			count_2--;
 		}
-		count_3++;
-		count_2--;
+		if (sep_running == 5) count_3++;
 	
 		// Signal to the consumer that the buffer has been sep parsed
 		if(DEBUG) printf("	(SEPARATOR) - cond_signal sent - ");
@@ -258,7 +261,7 @@ void *separator(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
-	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[sep_idx]);
+	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
 	outputting = 0;
 	return NULL;
 	//Run forever, exit case = break;
