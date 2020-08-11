@@ -120,6 +120,10 @@ void *output(void *args){
 		if(DEBUG) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
 		while (count_3 < OUT_LEN){
 			// Buffer is empty
+			if(outputting = 0){
+				if(DEBUG) printf("	(OUTPUT) - Break: outputting = 0.\n");
+				break;
+			}
 			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse().\n");
 			pthread_cond_wait(&out_cond, &mutex);
 		}
