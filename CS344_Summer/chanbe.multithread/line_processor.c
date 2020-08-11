@@ -82,16 +82,15 @@ void *input(void *args){
 	for (i = 0; i < 6; i++){
 		recent[i] = 0;
 	}
+	if(DEBUG) printf("	(INPUT) - Starting input().\n");	
 	do{
-		if(DEBUG) printf("	(INPUT) - Starting input().\n");
-
 		while (count_1 == SIZE){
 			// Buffer is full. Wait for output
 			if(DEBUG) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sign_parse() to consume.\n");
 			pthread_cond_wait(&inp_cond, &mutex);
 		}
 		//inputs text line-by-line from stdin
-		if(DEBUG) printf("	(INPUT) - Parsing.\n");
+		//if(DEBUG) printf("	(INPUT) - Parsing.\n");
 		int inp_stts = inp_parse();
 
 		if (inp_stts == 0){
@@ -198,11 +197,11 @@ void *sign(void *args){
 		count_1--;
 		
 		// Signal to the consumer that the buffer has been sign parsed
-		if(DEBUG) printf("	(SIGN) - cond_signal sent - ");
+		//if(DEBUG) printf("	(SIGN) - cond_signal sent - ");
 		pthread_cond_signal(&inp_cond);	//Buf_1
 		pthread_cond_signal(&sep_cond);	//Buf_3
 		// Unlock the mutex
-		if(DEBUG) printf("Mutex unlocked.\n");
+		//if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
 	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
@@ -234,13 +233,16 @@ void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
 	int sep_running = 5;
 	do {
-		//Lock mutex since this will affect buf_2 and buf_3
-		pthread_mutex_lock(&mutex);
 		if(outputting < 0){
 			if(DEBUG) printf("	(SEPARATOR) - Output() has terminated. Forcing early termination.\n");
 			sep_running = 0;
 			break;
+		} else if (outputting == 0){
+			pthread_cond_signal(&out_cond);	//Output
 		}
+		
+		//Lock mutex since this will affect buf_2 and buf_3
+		pthread_mutex_lock(&mutex);
 		while (count_2 == 0)	// Buffer hasn't been sign parsed || Buffer is empty
 			pthread_cond_wait(&sep_cond, &mutex);
 		
@@ -263,11 +265,11 @@ void *separator(void *args){
 		}
 	
 		// Signal to the consumer that the buffer has been sep parsed
-		if(DEBUG) printf("	(SEPARATOR) - cond_signal sent - ");
+		//if(DEBUG) printf("	(SEPARATOR) - cond_signal sent - ");
 		pthread_cond_signal(&sign_cond);//Buf_2
 		pthread_cond_signal(&out_cond);	//Output
 		// Unlock the mutex
-		if(DEBUG) printf("Mutex unlocked.\n");
+		//if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
 	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
