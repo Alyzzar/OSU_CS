@@ -88,7 +88,7 @@ void *input(void *args){
 	do{
 		while (count_1 == SIZE){
 			// Buffer is full. Wait for output
-			if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sign_parse() to consume.\n");
+			if(DEBUG && DEBUG_INP) printf("	(INP_PARSE) - Buf_1 is full. Waiting for sep_parse() to consume.\n");
 			pthread_cond_wait(&inp_cond, &mutex);
 		}
 		//inputs text line-by-line from stdin
@@ -98,18 +98,19 @@ void *input(void *args){
 		if (inp_stts == 0){
 			if(DEBUG && DEBUG_INP) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
 			inp_running = 0;
+		} else {	//else, if inp_stts == 1
+			//End this loop by updating values
+			inp_idx = (inp_idx + 1) % SIZE;
+			count_1++;
 		}
-		//End this loop by updating values
-		inp_idx = (inp_idx + 1) % SIZE;
-		count_1++;
-	
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sep_cond);	//Buf_2
 		// Unlock the mutex
 		//if(DEBUG && DEBUG_OUT) printf("	(INP_PARSE) - Mutex unlocked.\n");
 		//Run until exit case => DONE;
 	} while (inp_running > 0);
-	if(DEBUG) printf("	(INPUT) - Input() has terminated.\n");
+	//This should output last value before '\0'.
+	if(DEBUG) printf("	(INPUT) - Input() has terminated. Last value in buf_1 was [%c].\n", buf_1[(inp_idx + SIZE - 1) % SIZE]);
 	return NULL;
 }
 
@@ -124,7 +125,7 @@ void *output(void *args){
 		
 		while ((count_3 < OUT_LEN) && (outputting != 0)){
 			// Buffer is empty
-			if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Awaiting sep_parse(). outputting = [%d]\n", outputting);
+			if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Awaiting sign_parse() for input. outputting = [%d]\n", outputting);
 			pthread_cond_wait(&out_cond, &mutex);
 		}
 		
@@ -153,19 +154,19 @@ void *output(void *args){
 
 //Main functionality for separator
 int sep_parse(){
-	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - Count: [%d], Checking buf_2[%d] with value [%c].\n", count_2, ((sep_idx + d) % SIZE), buf_2[(sep_idx + d) % SIZE]);
-	if (buf_2[(sep_idx + d) % SIZE] == '\0'){
+	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - Count: [%d], Checking buf_1[%d] with value [%c].\n", count_1, ((sep_idx + d) % SIZE), buf_1[(sep_idx + d) % SIZE]);
+	if (buf_1[(sep_idx + d) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
-		buf_3[sep_idx] = buf_2 [(sep_idx + d) % SIZE];
+		buf_2[sep_idx] = buf_1 [(sep_idx + d) % SIZE];
 		return 0;
-	} else if (buf_2[(sep_idx + d) % SIZE] == '\n'){
+	} else if (buf_1[(sep_idx + d) % SIZE] == '\n'){
 		if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - '\\n' found. Replacing with ' '.\n");
 		//Newline found
-		buf_3[sep_idx] = ' ';
+		buf_2[sep_idx] = ' ';
 	} else {
-		//Else, copy value from Buf_2 directly to Buf_3
-		buf_3[sep_idx] = buf_2 [(sep_idx + d) % SIZE];
+		//Else, copy value from Buf_1 directly to Buf_2
+		buf_2[sep_idx] = buf_1 [(sep_idx + d) % SIZE];
 	}
 	return 1;
 }
@@ -175,10 +176,10 @@ void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
 	int sep_running = 1;
 	do {
-		//Lock mutex since this will affect buf_2 and buf_3
+		//Lock mutex since this will affect buf_1 and buf_2
 		pthread_mutex_lock(&mutex);
-		while (count_2 == 0){	// Buffer hasn't been sign parsed || Buffer is empty
-			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - count_2: [%d], buf_2 empty, waiting for sign().\n", count_2);
+		while (count_1 == 0){	// Buffer hasn't been sign parsed || Buffer is empty
+			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - count_2: [%d], buf_1 empty, waiting for input().\n", count_2);
 			pthread_cond_wait(&sep_cond, &mutex);
 		}
 		
@@ -191,8 +192,8 @@ void *separator(void *args){
 			sep_running = 0;	//Terminates this thread
 		}
 		sep_idx = (sep_idx + 1) % SIZE;
-		count_3++;
-		count_2--;
+		count_2++;
+		count_1--;
 
 		// Signal to the consumer that the buffer has been sep parsed
 		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
@@ -202,7 +203,8 @@ void *separator(void *args){
 		//if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
-	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
+	//This should output last value before '\0'.
+	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sep_idx + SIZE - 1) % SIZE]);
 	outputting = 0;
 	return NULL;
 	//Run forever, exit case = break;
@@ -211,23 +213,23 @@ void *separator(void *args){
 //Main functionality for sign
 int sign_parse(){
 	//Check for pairs of '+'
-	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Count: [%d], Index: [%d], Testing chars [%c] & [%c].\n", count_1, sign_idx, buf_1[(sign_idx + c) % SIZE], buf_1[(sign_idx + c + 1) % SIZE]);
-	if (buf_1[(sign_idx + c) % SIZE] == '\0'){
+	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - count_3: [%d], Index: [%d], Testing chars [%c] & [%c].\n", count_3, sign_idx, buf_2[(sign_idx + c) % SIZE], buf_2[(sign_idx + c + 1) % SIZE]);
+	if (buf_2[(sign_idx + c) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
-		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
+		buf_3[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
 		return 0;
 	} else if (((sign_idx + c + 1) <= inp_idx)		//Check if next cell is within bounds
-			&& (buf_1[(sign_idx + c) % SIZE] == '+')
-			&& (buf_1[(sign_idx + c + 1) % SIZE] == '+')){
+			&& (buf_2[(sign_idx + c) % SIZE] == '+')
+			&& (buf_2[(sign_idx + c + 1) % SIZE] == '+')){
 		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Matching '++' found.\n");
-		//Matching pair found in Buf_1. Set value in Buf_2
-		buf_2[sign_idx] = '^';
+		//Matching pair found in Buf_2. Set value in Buf_3
+		buf_3[sign_idx] = '^';
 		c++;
-		count_1--;
+		count_2--;
 	} else {
 		//Else, copy value from Buf_1 directly to Buf_2
-		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
+		buf_3[sign_idx] = buf_2 [(sign_idx + c) % SIZE];
 	}
 	return 1;
 }
@@ -237,9 +239,9 @@ void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
 	int sign_running = 1;
 	do {
-		//Lock mutex since this will affect buf_1 and buf_2
+		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
-		while (count_1 == 0)	// Buffer is empty
+		while (count_2 == 0)	// Buffer is empty
 			pthread_cond_wait(&sign_cond, &mutex);
 		
 		//Run
@@ -249,8 +251,8 @@ void *sign(void *args){
 			sign_running = 0;
 		}
 		sign_idx = (sign_idx + 1) % SIZE;
-		count_2++;
-		count_1--;
+		count_3++;
+		count_2--;
 		
 		// Signal to the consumer that the buffer has been sign parsed
 		//if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - cond_signal sent - ");
@@ -260,7 +262,8 @@ void *sign(void *args){
 		//if(DEBUG && DEBUG_SIGN) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
-	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
+	//This should output last value before '\0'.
+	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_3 was [%c].\n", buf_3[(sign_idx + SIZE - 1) % SIZE]);
 	return NULL;
 	//Run forever, exit case = break;
 }
