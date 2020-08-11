@@ -232,7 +232,7 @@ void *separator(void *args){
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
 		while (count_2 == 0)	// Buffer hasn't been sign parsed || Buffer is empty
-			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Buffer empty, waiting for sign().\n");
+			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - count_2: [%d], buf_2 empty, waiting for sign().\n", count_2);
 			pthread_cond_wait(&sep_cond, &mutex);
 		
 		//Run
@@ -248,11 +248,11 @@ void *separator(void *args){
 		count_2--;
 
 		// Signal to the consumer that the buffer has been sep parsed
-		if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
+		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
 		pthread_cond_signal(&sign_cond);//Buf_2
 		pthread_cond_signal(&out_cond);	//Output
 		// Unlock the mutex
-		if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
+		//if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
 	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
