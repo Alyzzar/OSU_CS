@@ -1,28 +1,17 @@
 	(MAIN) - Program starting.
 	(EXEC) - Creating threads.
 	(INPUT) - Starting input().
+	(SIGN) - Starting sign().
 	(INP_PARSE) - Indx [0] char [R] saved to buf_1.
 	(INP_PARSE) - Indx [1] char [u] saved to buf_1.
 	(INP_PARSE) - Indx [2] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [3] char [t] saved to buf_1.
 	(INP_PARSE) - Indx [4] char [ ] saved to buf_1.
-	(EXEC) - Waiting for threads to complete.
 	(INP_PARSE) - Indx [5] char [i] saved to buf_1.
-	(SIGN) - Starting sign().
-	(SIGN_PARSE) - Count: [6], Index: [0], Testing chars [R] & [u].
-	(SIGN_PARSE) - Count: [5], Index: [1], Testing chars [u] & [s].
-	(SIGN_PARSE) - Count: [4], Index: [2], Testing chars [s] & [t].
 	(INP_PARSE) - Indx [6] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [7] char [ ] saved to buf_1.
-	(SIGN_PARSE) - Count: [4], Index: [3], Testing chars [t] & [ ].
-	(SIGN_PARSE) - Count: [4], Index: [4], Testing chars [ ] & [i].
-	(SIGN_PARSE) - Count: [3], Index: [5], Testing chars [i] & [s].
-	(SIGN_PARSE) - Count: [2], Index: [6], Testing chars [s] & [ ].
-	(SIGN_PARSE) - Count: [1], Index: [7], Testing chars [ ] & [a].
 	(INP_PARSE) - Indx [8] char [a] saved to buf_1.
-	(SEPARATOR) - Starting separator().
 	(INP_PARSE) - Indx [9] char [n] saved to buf_1.
-	(SEP_PARSE) - Count: [8], Checking buf_2[0] with value [R].
 	(INP_PARSE) - Indx [10] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [11] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [12] char [r] saved to buf_1.
@@ -30,30 +19,27 @@
 	(INP_PARSE) - Indx [14] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [15] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [16] char [o] saved to buf_1.
+	(SIGN_PARSE) - Count: [16], Index: [0], Testing chars [R] & [u].
+	(SEPARATOR) - Starting separator().
+	(SIGN_PARSE) - Count: [16], Index: [1], Testing chars [u] & [s].
+	(SIGN_PARSE) - Count: [15], Index: [2], Testing chars [s] & [t].
 	(INP_PARSE) - Indx [17] char [x] saved to buf_1.
+	(SEP_PARSE) - Count: [3], Checking buf_2[0] with value [R].
+	(EXEC) - Waiting for threads to complete.
+	(SEP_PARSE) - Count: [2], Checking buf_2[1] with value [u].
 	(INP_PARSE) - Indx [18] char [i] saved to buf_1.
+	(SEP_PARSE) - Count: [1], Checking buf_2[2] with value [s].
 	(INP_PARSE) - Indx [19] char [d] saved to buf_1.
-	(OUTPUT) - Starting output().
+	(SEPARATOR) - count_2: [0], buf_2 empty, waiting for sign().
 	(INP_PARSE) - Indx [20] char [e] saved to buf_1.
+	(INP_PARSE) - Indx [21] char [,] saved to buf_1.
+	(SIGN_PARSE) - Count: [18], Index: [3], Testing chars [t] & [ ].
+	(INP_PARSE) - Indx [22] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Count: [19], Index: [4], Testing chars [ ] & [i].
+	(OUTPUT) - Starting output().
 	(OUTPUT) - Beginning of loop. outputting = [1].
 	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SIGN_PARSE) - Count: [13], Index: [8], Testing chars [a] & [n].
-	(SIGN_PARSE) - Count: [12], Index: [9], Testing chars [n] & [ ].
-	(SIGN_PARSE) - Count: [11], Index: [10], Testing chars [ ] & [i].
-	(SIGN_PARSE) - Count: [10], Index: [11], Testing chars [i] & [r].
-	(SIGN_PARSE) - Count: [9], Index: [12], Testing chars [r] & [o].
-	(SIGN_PARSE) - Count: [8], Index: [13], Testing chars [o] & [n].
-	(SIGN_PARSE) - Count: [7], Index: [14], Testing chars [n] & [ ].
-	(SIGN_PARSE) - Count: [6], Index: [15], Testing chars [ ] & [o].
-	(SEP_PARSE) - Count: [7], Checking buf_2[1] with value [u].
-	(SIGN_PARSE) - Count: [5], Index: [16], Testing chars [o] & [x].
-	(SIGN_PARSE) - Count: [4], Index: [17], Testing chars [x] & [i].
-	(SIGN_PARSE) - Count: [3], Index: [18], Testing chars [i] & [d].
-	(SIGN_PARSE) - Count: [2], Index: [19], Testing chars [d] & [e].
-	(SIGN_PARSE) - Count: [1], Index: [20], Testing chars [e] & [,].
-	(SEP_PARSE) - Count: [18], Checking buf_2[2] with value [s].
-	(INP_PARSE) - Indx [21] char [,] saved to buf_1.
-	(INP_PARSE) - Indx [22] char [ ] saved to buf_1.
+	(SEP_PARSE) - Count: [2], Checking buf_2[3] with value [t].
 	(INP_PARSE) - Indx [23] char [a] saved to buf_1.
 	(INP_PARSE) - Indx [24] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [25] char [u] saved to buf_1.
@@ -67,9 +53,14 @@
 	(INP_PARSE) - Indx [33] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [34] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [35] char [d] saved to buf_1.
+	(SEP_PARSE) - Count: [1], Checking buf_2[4] with value [ ].
+	(SEPARATOR) - count_2: [0], buf_2 empty, waiting for sign().
 	(INP_PARSE) - Indx [36] char [d] saved to buf_1.
 	(INP_PARSE) - Indx [37] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [38] char [s] saved to buf_1.
+	(SIGN_PARSE) - Count: [18], Index: [5], Testing chars [i] & [s].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [33], Index: [6], Testing chars [s] & [ ].
 	(INP_PARSE) - Indx [39] char [h] saved to buf_1.
 	(INP_PARSE) - Indx [40] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [41] char [b] saved to buf_1.
@@ -79,25 +70,74 @@
 	(INP_PARSE) - Indx [45] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [46] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [47] char [o] saved to buf_1.
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [48] char [x] saved to buf_1.
 	(INP_PARSE) - Indx [49] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [50] char [d] saved to buf_1.
+	(SIGN_PARSE) - Count: [32], Index: [7], Testing chars [ ] & [a].
 	(INP_PARSE) - Indx [51] char [e] saved to buf_1.
+	(SIGN_PARSE) - Count: [43], Index: [8], Testing chars [a] & [n].
 	(INP_PARSE) - Indx [52] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Count: [43], Index: [9], Testing chars [n] & [ ].
+	(SIGN_PARSE) - Count: [43], Index: [10], Testing chars [ ] & [i].
 	(INP_PARSE) - Indx [53] char [f] saved to buf_1.
+	(SIGN_PARSE) - Count: [42], Index: [11], Testing chars [i] & [r].
+	(SIGN_PARSE) - Count: [42], Index: [12], Testing chars [r] & [o].
 	(INP_PARSE) - Indx [54] char [o] saved to buf_1.
+	(SIGN_PARSE) - Count: [41], Index: [13], Testing chars [o] & [n].
+	(SIGN_PARSE) - Count: [41], Index: [14], Testing chars [n] & [ ].
+	(SIGN_PARSE) - Count: [40], Index: [15], Testing chars [ ] & [o].
+	(SIGN_PARSE) - Count: [39], Index: [16], Testing chars [o] & [x].
+	(SIGN_PARSE) - Count: [38], Index: [17], Testing chars [x] & [i].
+	(SIGN_PARSE) - Count: [37], Index: [18], Testing chars [i] & [d].
 	(INP_PARSE) - Indx [55] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [56] char [m] saved to buf_1.
 	(INP_PARSE) - Indx [57] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [58] char [d] saved to buf_1.
+	(SIGN_PARSE) - Count: [39], Index: [19], Testing chars [d] & [e].
+	(SIGN_PARSE) - Count: [39], Index: [20], Testing chars [e] & [,].
+	(SIGN_PARSE) - Count: [38], Index: [21], Testing chars [,] & [ ].
+	(SIGN_PARSE) - Count: [37], Index: [22], Testing chars [ ] & [a].
 	(INP_PARSE) - Indx [59] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Count: [36], Index: [23], Testing chars [a] & [ ].
+	(SIGN_PARSE) - Count: [36], Index: [24], Testing chars [ ] & [u].
+	(SIGN_PARSE) - Count: [35], Index: [25], Testing chars [u] & [s].
+	(SIGN_PARSE) - Count: [34], Index: [26], Testing chars [s] & [u].
+	(SIGN_PARSE) - Count: [33], Index: [27], Testing chars [u] & [a].
 	(INP_PARSE) - Indx [60] char [b] saved to buf_1.
+	(SIGN_PARSE) - Count: [32], Index: [28], Testing chars [a] & [l].
+	(SIGN_PARSE) - Count: [32], Index: [29], Testing chars [l] & [l].
+	(SIGN_PARSE) - Count: [31], Index: [30], Testing chars [l] & [y].
 	(INP_PARSE) - Indx [61] char [y] saved to buf_1.
+	(SIGN_PARSE) - Count: [30], Index: [31], Testing chars [y] & [ ].
+	(SIGN_PARSE) - Count: [29], Index: [32], Testing chars [ ] & [r].
+	(SIGN_PARSE) - Count: [29], Index: [33], Testing chars [r] & [e].
+	(SIGN_PARSE) - Count: [28], Index: [34], Testing chars [e] & [d].
+	(SIGN_PARSE) - Count: [27], Index: [35], Testing chars [d] & [d].
+	(SIGN_PARSE) - Count: [26], Index: [36], Testing chars [d] & [i].
 	(INP_PARSE) - Indx [62] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Count: [25], Index: [37], Testing chars [i] & [s].
+	(SIGN_PARSE) - Count: [25], Index: [38], Testing chars [s] & [h].
+	(SIGN_PARSE) - Count: [24], Index: [39], Testing chars [h] & [ ].
+	(SIGN_PARSE) - Count: [23], Index: [40], Testing chars [ ] & [b].
+	(SIGN_PARSE) - Count: [22], Index: [41], Testing chars [b] & [r].
+	(SIGN_PARSE) - Count: [21], Index: [42], Testing chars [r] & [o].
 	(INP_PARSE) - Indx [63] char [t] saved to buf_1.
+	(SIGN_PARSE) - Count: [20], Index: [43], Testing chars [o] & [w].
+	(SIGN_PARSE) - Count: [20], Index: [44], Testing chars [w] & [n].
+	(SIGN_PARSE) - Count: [19], Index: [45], Testing chars [n] & [ ].
+	(SIGN_PARSE) - Count: [18], Index: [46], Testing chars [ ] & [o].
+	(SIGN_PARSE) - Count: [17], Index: [47], Testing chars [o] & [x].
+	(SIGN_PARSE) - Count: [16], Index: [48], Testing chars [x] & [i].
 	(INP_PARSE) - Indx [64] char [h] saved to buf_1.
+	(SIGN_PARSE) - Count: [15], Index: [49], Testing chars [i] & [d].
+	(SIGN_PARSE) - Count: [15], Index: [50], Testing chars [d] & [e].
+	(SIGN_PARSE) - Count: [14], Index: [51], Testing chars [e] & [ ].
+	(SIGN_PARSE) - Count: [13], Index: [52], Testing chars [ ] & [f].
+	(SIGN_PARSE) - Count: [12], Index: [53], Testing chars [f] & [o].
+	(SIGN_PARSE) - Count: [11], Index: [54], Testing chars [o] & [r].
+	(SIGN_PARSE) - Count: [10], Index: [55], Testing chars [r] & [m].
 	(INP_PARSE) - Indx [65] char [e] saved to buf_1.
+	(SEP_PARSE) - Count: [51], Checking buf_2[5] with value [i].
 	(INP_PARSE) - Indx [66] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [67] char [+] saved to buf_1.
 	(INP_PARSE) - Indx [68] char [+] saved to buf_1.
@@ -113,6 +153,7 @@
 	(INP_PARSE) - Indx [78] char [+] saved to buf_1.
 	(INP_PARSE) - Indx [79] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [80] char [o] saved to buf_1.
+	(SEP_PARSE) - Count: [50], Checking buf_2[6] with value [s].
 	(INP_PARSE) - Indx [81] char [f] saved to buf_1.
 	(INP_PARSE) - Indx [82] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [83] char [i] saved to buf_1.
@@ -120,7 +161,11 @@
 	(INP_PARSE) - Indx [85] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [86] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [87] char [ ] saved to buf_1.
+	(SEP_PARSE) - Count: [49], Checking buf_2[7] with value [ ].
+	(SEP_PARSE) - Count: [48], Checking buf_2[8] with value [a].
+	(SEP_PARSE) - Count: [47], Checking buf_2[9] with value [n].
 	(INP_PARSE) - Indx [88] char [+] saved to buf_1.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [89] char [+] saved to buf_1.
 	(INP_PARSE) - Indx [90] char [+] saved to buf_1.
 	(INP_PARSE) - Indx [91] char [+] saved to buf_1.
@@ -132,6 +177,8 @@
 	(INP_PARSE) - Indx [97] char [x] saved to buf_1.
 	(INP_PARSE) - Indx [98] char [y] saved to buf_1.
 	(INP_PARSE) - Indx [99] char [g] saved to buf_1.
+	(SIGN_PARSE) - Count: [44], Index: [56], Testing chars [m] & [e].
+	(SEP_PARSE) - Count: [47], Checking buf_2[10] with value [ ].
 	(INP_PARSE) - Indx [100] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [101] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [102] char [ ] saved to buf_1.
@@ -147,19 +194,20 @@
 	(INP_PARSE) - Indx [112] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [113] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [114] char [e] saved to buf_1.
+	(SEP_PARSE) - Count: [46], Checking buf_2[11] with value [i].
 	(INP_PARSE) - Indx [115] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [116] char [c] saved to buf_1.
 	(INP_PARSE) - Indx [117] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [118] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [119] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [120] char [f] saved to buf_1.
-	(SEP_PARSE) - Count: [18], Checking buf_2[3] with value [t].
+	(SEP_PARSE) - Count: [45], Checking buf_2[12] with value [r].
 	(INP_PARSE) - Indx [121] char [ ] saved to buf_1.
-	(SEP_PARSE) - Count: [17], Checking buf_2[4] with value [ ].
 	(INP_PARSE) - Indx [122] char [w] saved to buf_1.
 	(INP_PARSE) - Indx [123] char [a] saved to buf_1.
 	(INP_PARSE) - Indx [124] char [t] saved to buf_1.
 	(INP_PARSE) - Indx [125] char [e] saved to buf_1.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [126] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [127] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [128] char [o] saved to buf_1.
@@ -167,93 +215,62 @@
 	(INP_PARSE) - Indx [130] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [131] char [a] saved to buf_1.
 	(INP_PARSE) - Indx [132] char [i] saved to buf_1.
+	(SIGN_PARSE) - Count: [75], Index: [57], Testing chars [e] & [d].
 	(INP_PARSE) - Indx [133] char [r] saved to buf_1.
-	(SEP_PARSE) - Count: [16], Checking buf_2[5] with value [i].
+	(SIGN_PARSE) - Count: [75], Index: [58], Testing chars [d] & [ ].
 	(INP_PARSE) - Indx [134] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Count: [75], Index: [59], Testing chars [ ] & [b].
 	(INP_PARSE) - Indx [135] char [m] saved to buf_1.
 	(INP_PARSE) - Indx [136] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [137] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [138] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [139] char [t] saved to buf_1.
 	(INP_PARSE) - Indx [140] char [u] saved to buf_1.
-	(SEP_PARSE) - Count: [15], Checking buf_2[6] with value [s].
 	(INP_PARSE) - Indx [141] char [r] saved to buf_1.
-	(SEP_PARSE) - Count: [14], Checking buf_2[7] with value [ ].
-	(SEP_PARSE) - Count: [13], Checking buf_2[8] with value [a].
 	(INP_PARSE) - Indx [142] char [e] saved to buf_1.
-	(SEP_PARSE) - Count: [12], Checking buf_2[9] with value [n].
 	(INP_PARSE) - Indx [143] char [.] saved to buf_1.
 	(INP_PARSE) - Indx [144] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [145] char [S] saved to buf_1.
+	(SIGN_PARSE) - Count: [75], Index: [60], Testing chars [b] & [y].
 	(INP_PARSE) - Indx [146] char [e] saved to buf_1.
+	(SIGN_PARSE) - Count: [85], Index: [61], Testing chars [y] & [ ].
 	(INP_PARSE) - Indx [147] char [v] saved to buf_1.
 	(INP_PARSE) - Indx [148] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [149] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [150] char [a] saved to buf_1.
-	(SEP_PARSE) - Count: [11], Checking buf_2[10] with value [ ].
+	(SEP_PARSE) - Count: [49], Checking buf_2[13] with value [o].
 	(INP_PARSE) - Indx [151] char [l] saved to buf_1.
-	(SEP_PARSE) - Count: [10], Checking buf_2[11] with value [i].
-	(SEP_PARSE) - Count: [9], Checking buf_2[12] with value [r].
 	(INP_PARSE) - Indx [152] char [ ] saved to buf_1.
-	(SEP_PARSE) - Count: [8], Checking buf_2[13] with value [o].
-	(SEP_PARSE) - Count: [7], Checking buf_2[14] with value [n].
 	(INP_PARSE) - Indx [153] char [f] saved to buf_1.
-	(SEP_PARSE) - Count: [6], Checking buf_2[15] with value [ ].
 	(INP_PARSE) - Indx [154] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [155] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [156] char [m] saved to buf_1.
 	(INP_PARSE) - Indx [157] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [158] char [ ] saved to buf_1.
-	(SEP_PARSE) - Count: [5], Checking buf_2[16] with value [o].
 	(INP_PARSE) - Indx [159] char [o] saved to buf_1.
-	(SEP_PARSE) - Count: [4], Checking buf_2[17] with value [x].
-	(SEP_PARSE) - Count: [3], Checking buf_2[18] with value [i].
 	(INP_PARSE) - Indx [160] char [f] saved to buf_1.
-	(SEP_PARSE) - Count: [2], Checking buf_2[19] with value [d].
 	(INP_PARSE) - Indx [161] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [162] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [163] char [u] saved to buf_1.
 	(INP_PARSE) - Indx [164] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [165] char [t] saved to buf_1.
+	(SEP_PARSE) - Count: [48], Checking buf_2[14] with value [n].
 	(INP_PARSE) - Indx [166] char [ ] saved to buf_1.
-	(SEP_PARSE) - Count: [1], Checking buf_2[20] with value [e].
+	(SEP_PARSE) - Count: [47], Checking buf_2[15] with value [ ].
 	(INP_PARSE) - Indx [167] char [a] saved to buf_1.
-	(SEPARATOR) - count_2: [0], buf_2 empty, waiting for sign().
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [168] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [169] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [170] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [171] char [d] saved to buf_1.
-	(SIGN_PARSE) - Count: [150], Index: [21], Testing chars [,] & [ ].
 	(INP_PARSE) - Indx [172] char [i] saved to buf_1.
-	(SIGN_PARSE) - Count: [150], Index: [22], Testing chars [ ] & [a].
-	(SIGN_PARSE) - Count: [150], Index: [23], Testing chars [a] & [ ].
-	(SIGN_PARSE) - Count: [149], Index: [24], Testing chars [ ] & [u].
-	(SIGN_PARSE) - Count: [148], Index: [25], Testing chars [u] & [s].
-	(SIGN_PARSE) - Count: [147], Index: [26], Testing chars [s] & [u].
-	(SIGN_PARSE) - Count: [146], Index: [27], Testing chars [u] & [a].
 	(INP_PARSE) - Indx [173] char [s] saved to buf_1.
-	(SIGN_PARSE) - Count: [145], Index: [28], Testing chars [a] & [l].
-	(SIGN_PARSE) - Count: [145], Index: [29], Testing chars [l] & [l].
-	(SIGN_PARSE) - Count: [144], Index: [30], Testing chars [l] & [y].
-	(SIGN_PARSE) - Count: [143], Index: [31], Testing chars [y] & [ ].
-	(SIGN_PARSE) - Count: [142], Index: [32], Testing chars [ ] & [r].
 	(INP_PARSE) - Indx [174] char [t] saved to buf_1.
-	(SIGN_PARSE) - Count: [141], Index: [33], Testing chars [r] & [e].
-	(SIGN_PARSE) - Count: [141], Index: [34], Testing chars [e] & [d].
-	(SIGN_PARSE) - Count: [140], Index: [35], Testing chars [d] & [d].
-	(SIGN_PARSE) - Count: [139], Index: [36], Testing chars [d] & [i].
-	(SIGN_PARSE) - Count: [138], Index: [37], Testing chars [i] & [s].
-	(SIGN_PARSE) - Count: [137], Index: [38], Testing chars [s] & [h].
 	(INP_PARSE) - Indx [175] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [176] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [177] char [g] saved to buf_1.
 	(INP_PARSE) - Indx [178] char [u] saved to buf_1.
 	(INP_PARSE) - Indx [179] char [i] saved to buf_1.
-	(SIGN_PARSE) - Count: [140], Index: [39], Testing chars [h] & [ ].
-	(SIGN_PARSE) - Count: [140], Index: [40], Testing chars [ ] & [b].
-	(SIGN_PARSE) - Count: [139], Index: [41], Testing chars [b] & [r].
-	(SIGN_PARSE) - Count: [138], Index: [42], Testing chars [r] & [o].
-	(SIGN_PARSE) - Count: [137], Index: [43], Testing chars [o] & [w].
 	(INP_PARSE) - Indx [180] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [181] char [h] saved to buf_1.
 	(INP_PARSE) - Indx [182] char [a] saved to buf_1.
@@ -263,15 +280,10 @@
 	(INP_PARSE) - Indx [186] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [187] char [b] saved to buf_1.
 	(INP_PARSE) - Indx [188] char [o] saved to buf_1.
+	(SEP_PARSE) - Count: [46], Checking buf_2[16] with value [o].
 	(INP_PARSE) - Indx [189] char [t] saved to buf_1.
 	(INP_PARSE) - Indx [190] char [h] saved to buf_1.
 	(INP_PARSE) - Indx [191] char [ ] saved to buf_1.
-	(SIGN_PARSE) - Count: [136], Index: [44], Testing chars [w] & [n].
-	(SIGN_PARSE) - Count: [147], Index: [45], Testing chars [n] & [ ].
-	(SIGN_PARSE) - Count: [146], Index: [46], Testing chars [ ] & [o].
-	(SIGN_PARSE) - Count: [145], Index: [47], Testing chars [o] & [x].
-	(SIGN_PARSE) - Count: [144], Index: [48], Testing chars [x] & [i].
-	(SIGN_PARSE) - Count: [143], Index: [49], Testing chars [i] & [d].
 	(INP_PARSE) - Indx [192] char [v] saved to buf_1.
 	(INP_PARSE) - Indx [193] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [194] char [s] saved to buf_1.
@@ -283,86 +295,56 @@
 	(INP_PARSE) - Indx [200] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [201] char [a] saved to buf_1.
 	(INP_PARSE) - Indx [202] char [n] saved to buf_1.
-	(SIGN_PARSE) - Count: [142], Index: [50], Testing chars [d] & [e].
-	(SIGN_PARSE) - Count: [152], Index: [51], Testing chars [e] & [ ].
-	(SIGN_PARSE) - Count: [151], Index: [52], Testing chars [ ] & [f].
-	(SIGN_PARSE) - Count: [150], Index: [53], Testing chars [f] & [o].
-	(SIGN_PARSE) - Count: [149], Index: [54], Testing chars [o] & [r].
-	(SIGN_PARSE) - Count: [148], Index: [55], Testing chars [r] & [m].
 	(INP_PARSE) - Indx [203] char [d] saved to buf_1.
-	(SIGN_PARSE) - Count: [147], Index: [56], Testing chars [m] & [e].
-	(SIGN_PARSE) - Count: [147], Index: [57], Testing chars [e] & [d].
-	(SIGN_PARSE) - Count: [146], Index: [58], Testing chars [d] & [ ].
-	(SIGN_PARSE) - Count: [145], Index: [59], Testing chars [ ] & [b].
-	(SIGN_PARSE) - Count: [144], Index: [60], Testing chars [b] & [y].
-	(SIGN_PARSE) - Count: [143], Index: [61], Testing chars [y] & [ ].
-	(SIGN_PARSE) - Count: [142], Index: [62], Testing chars [ ] & [t].
+	(SEP_PARSE) - Count: [45], Checking buf_2[17] with value [x].
 	(INP_PARSE) - Indx [204] char [ ] saved to buf_1.
-	(SIGN_PARSE) - Count: [141], Index: [63], Testing chars [t] & [h].
-	(SIGN_PARSE) - Count: [141], Index: [64], Testing chars [h] & [e].
 	(INP_PARSE) - Indx [205] char [b] saved to buf_1.
-	(SIGN_PARSE) - Count: [140], Index: [65], Testing chars [e] & [ ].
-	(SIGN_PARSE) - Count: [140], Index: [66], Testing chars [ ] & [+].
-	(SIGN_PARSE) - Count: [139], Index: [67], Testing chars [+] & [+].
-	(SIGN_PARSE) - Matching '++' found.
-	(SIGN_PARSE) - Count: [138], Index: [68], Testing chars [r] & [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [206] char [y] saved to buf_1.
+	(SIGN_PARSE) - Count: [144], Index: [62], Testing chars [ ] & [t].
+	(SIGN_PARSE) - Count: [144], Index: [63], Testing chars [t] & [h].
+	(SIGN_PARSE) - Count: [143], Index: [64], Testing chars [h] & [e].
+	(SIGN_PARSE) - Count: [142], Index: [65], Testing chars [e] & [ ].
+	(SIGN_PARSE) - Count: [141], Index: [66], Testing chars [ ] & [+].
 	(INP_PARSE) - Indx [207] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Count: [140], Index: [67], Testing chars [+] & [+].
+	(SIGN_PARSE) - Matching '++' found.
 	(INP_PARSE) - Indx [208] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [209] char [p] saved to buf_1.
-	(SEP_PARSE) - Count: [48], Checking buf_2[21] with value [,].
 	(INP_PARSE) - Indx [210] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [211] char [c] saved to buf_1.
-	(SEP_PARSE) - Count: [47], Checking buf_2[22] with value [ ].
 	(INP_PARSE) - Indx [212] char [t] saved to buf_1.
-	(SEP_PARSE) - Count: [46], Checking buf_2[23] with value [a].
-	(SEP_PARSE) - Count: [45], Checking buf_2[24] with value [ ].
 	(INP_PARSE) - Indx [213] char [r] saved to buf_1.
-	(SEP_PARSE) - Count: [44], Checking buf_2[25] with value [u].
-	(SEP_PARSE) - Count: [43], Checking buf_2[26] with value [s].
 	(INP_PARSE) - Indx [214] char [o] saved to buf_1.
-	(SEP_PARSE) - Count: [42], Checking buf_2[27] with value [u].
-	(SEP_PARSE) - Count: [41], Checking buf_2[28] with value [a].
+	(SIGN_PARSE) - Count: [147], Index: [68], Testing chars [r] & [e].
+	(SIGN_PARSE) - Count: [146], Index: [69], Testing chars [e] & [a].
+	(SIGN_PARSE) - Count: [145], Index: [70], Testing chars [a] & [c].
+	(SIGN_PARSE) - Count: [144], Index: [71], Testing chars [c] & [t].
 	(INP_PARSE) - Indx [215] char [s] saved to buf_1.
+	(SIGN_PARSE) - Count: [144], Index: [72], Testing chars [t] & [i].
+	(SIGN_PARSE) - Count: [143], Index: [73], Testing chars [i] & [o].
+	(SIGN_PARSE) - Count: [142], Index: [74], Testing chars [o] & [n].
+	(SIGN_PARSE) - Count: [141], Index: [75], Testing chars [n] & [+].
+	(SIGN_PARSE) - Count: [140], Index: [76], Testing chars [+] & [+].
 	(INP_PARSE) - Indx [216] char [c] saved to buf_1.
+	(SIGN_PARSE) - Matching '++' found.
 	(INP_PARSE) - Indx [217] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [218] char [p] saved to buf_1.
-	(SIGN_PARSE) - Count: [149], Index: [69], Testing chars [e] & [a].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [219] char [y] saved to buf_1.
-	(SIGN_PARSE) - Count: [149], Index: [70], Testing chars [a] & [c].
-	(SIGN_PARSE) - Count: [149], Index: [71], Testing chars [c] & [t].
-	(SIGN_PARSE) - Count: [148], Index: [72], Testing chars [t] & [i].
-	(SIGN_PARSE) - Count: [147], Index: [73], Testing chars [i] & [o].
-	(SIGN_PARSE) - Count: [146], Index: [74], Testing chars [o] & [n].
-	(SIGN_PARSE) - Count: [145], Index: [75], Testing chars [n] & [+].
-	(SIGN_PARSE) - Count: [144], Index: [76], Testing chars [+] & [+].
-	(SIGN_PARSE) - Matching '++' found.
-	(SIGN_PARSE) - Count: [143], Index: [77], Testing chars [ ] & [o].
 	(INP_PARSE) - Indx [220] char [,] saved to buf_1.
-	(SIGN_PARSE) - Count: [142], Index: [78], Testing chars [o] & [f].
-	(SIGN_PARSE) - Count: [142], Index: [79], Testing chars [f] & [ ].
-	(SIGN_PARSE) - Count: [141], Index: [80], Testing chars [ ] & [i].
-	(SIGN_PARSE) - Count: [140], Index: [81], Testing chars [i] & [r].
-	(SIGN_PARSE) - Count: [139], Index: [82], Testing chars [r] & [o].
-	(SIGN_PARSE) - Count: [138], Index: [83], Testing chars [o] & [n].
-	(SIGN_PARSE) - Count: [137], Index: [84], Testing chars [n] & [ ].
 	(INP_PARSE) - Indx [221] char [ ] saved to buf_1.
-	(SIGN_PARSE) - Count: [136], Index: [85], Testing chars [ ] & [+].
 	(INP_PARSE) - Indx [222] char [a] saved to buf_1.
+	(SIGN_PARSE) - Count: [146], Index: [77], Testing chars [ ] & [o].
+	(SIGN_PARSE) - Count: [145], Index: [78], Testing chars [o] & [f].
+	(SIGN_PARSE) - Count: [144], Index: [79], Testing chars [f] & [ ].
+	(SIGN_PARSE) - Count: [143], Index: [80], Testing chars [ ] & [i].
+	(SIGN_PARSE) - Count: [142], Index: [81], Testing chars [i] & [r].
 	(INP_PARSE) - Indx [223] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [224] char [d] saved to buf_1.
+	(SEP_PARSE) - Count: [64], Checking buf_2[18] with value [i].
 	(INP_PARSE) - Indx [225] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [226] char [f] saved to buf_1.
-	(SIGN_PARSE) - Count: [140], Index: [86], Testing chars [+] & [+].
-	(SIGN_PARSE) - Matching '++' found.
-	(SIGN_PARSE) - Count: [140], Index: [87], Testing chars [+] & [+].
-	(SIGN_PARSE) - Matching '++' found.
-	(SIGN_PARSE) - Count: [139], Index: [88], Testing chars [a] & [n].
-	(SIGN_PARSE) - Count: [138], Index: [89], Testing chars [n] & [d].
-	(SIGN_PARSE) - Count: [137], Index: [90], Testing chars [d] & [ ].
 	(INP_PARSE) - Indx [227] char [o] saved to buf_1.
-	(SIGN_PARSE) - Count: [136], Index: [91], Testing chars [ ] & [o].
 	(INP_PARSE) - Indx [228] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [229] char [m] saved to buf_1.
 	(INP_PARSE) - Indx [230] char [ ] saved to buf_1.
@@ -371,39 +353,22 @@
 	(INP_PARSE) - Indx [233] char [d] saved to buf_1.
 	(INP_PARSE) - Indx [234] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [235] char [r] saved to buf_1.
-	(SIGN_PARSE) - Count: [144], Index: [92], Testing chars [o] & [x].
-	(SIGN_PARSE) - Count: [143], Index: [93], Testing chars [x] & [y].
-	(SIGN_PARSE) - Count: [142], Index: [94], Testing chars [y] & [g].
-	(SIGN_PARSE) - Count: [141], Index: [95], Testing chars [g] & [e].
-	(SIGN_PARSE) - Count: [140], Index: [96], Testing chars [e] & [n].
-	(SIGN_PARSE) - Count: [139], Index: [97], Testing chars [n] & [ ].
 	(INP_PARSE) - Indx [236] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [237] char [d] saved to buf_1.
 	(INP_PARSE) - Indx [238] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [239] char [f] saved to buf_1.
+	(SEP_PARSE) - Count: [63], Checking buf_2[19] with value [d].
 	(INP_PARSE) - Indx [240] char [f] saved to buf_1.
 	(INP_PARSE) - Indx [241] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [242] char [r] saved to buf_1.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [243] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [244] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [245] char [t] saved to buf_1.
 	(INP_PARSE) - Indx [246] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [247] char [c] saved to buf_1.
-	(SIGN_PARSE) - Count: [138], Index: [98], Testing chars [ ] & [i].
-	(SIGN_PARSE) - Count: [149], Index: [99], Testing chars [i] & [n].
-	(SIGN_PARSE) - Count: [148], Index: [100], Testing chars [n] & [ ].
-	(SIGN_PARSE) - Count: [147], Index: [101], Testing chars [ ] & [t].
-	(SIGN_PARSE) - Count: [146], Index: [102], Testing chars [t] & [h].
-	(SIGN_PARSE) - Count: [145], Index: [103], Testing chars [h] & [e].
 	(INP_PARSE) - Indx [248] char [i] saved to buf_1.
-	(SIGN_PARSE) - Count: [144], Index: [104], Testing chars [e] & [ ].
-	(SIGN_PARSE) - Count: [144], Index: [105], Testing chars [ ] & [p].
-	(SIGN_PARSE) - Count: [143], Index: [106], Testing chars [p] & [r].
-	(SIGN_PARSE) - Count: [142], Index: [107], Testing chars [r] & [e].
-	(SIGN_PARSE) - Count: [141], Index: [108], Testing chars [e] & [s].
-	(SIGN_PARSE) - Count: [140], Index: [109], Testing chars [s] & [e].
 	(INP_PARSE) - Indx [249] char [r] saved to buf_1.
-	(SEP_PARSE) - Count: [81], Checking buf_2[29] with value [l].
 	(INP_PARSE) - Indx [250] char [c] saved to buf_1.
 	(INP_PARSE) - Indx [251] char [u] saved to buf_1.
 	(INP_PARSE) - Indx [252] char [m] saved to buf_1.
@@ -414,49 +379,34 @@
 	(INP_PARSE) - Indx [257] char [c] saved to buf_1.
 	(INP_PARSE) - Indx [258] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [259] char [s] saved to buf_1.
+	(SIGN_PARSE) - Count: [177], Index: [82], Testing chars [r] & [o].
+	(SIGN_PARSE) - Count: [177], Index: [83], Testing chars [o] & [n].
 	(INP_PARSE) - Indx [260] char [.] saved to buf_1.
+	(SIGN_PARSE) - Count: [176], Index: [84], Testing chars [n] & [ ].
 	(INP_PARSE) - Indx [261] char [
 ] saved to buf_1.
-	(SEP_PARSE) - Count: [80], Checking buf_2[30] with value [l].
+	(SIGN_PARSE) - Count: [176], Index: [85], Testing chars [ ] & [+].
+	(SIGN_PARSE) - Count: [176], Index: [86], Testing chars [+] & [+].
+	(SIGN_PARSE) - Matching '++' found.
+	(SIGN_PARSE) - Count: [175], Index: [87], Testing chars [+] & [+].
+	(SIGN_PARSE) - Matching '++' found.
+	(SIGN_PARSE) - Count: [174], Index: [88], Testing chars [a] & [n].
+	(SIGN_PARSE) - Count: [173], Index: [89], Testing chars [n] & [d].
 	(INP_PARSE) - Indx [262] char [G] saved to buf_1.
 	(INP_PARSE) - Indx [263] char [i] saved to buf_1.
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [264] char [v] saved to buf_1.
-	(SIGN_PARSE) - Count: [154], Index: [110], Testing chars [e] & [n].
-	(SIGN_PARSE) - Count: [154], Index: [111], Testing chars [n] & [c].
-	(SIGN_PARSE) - Count: [153], Index: [112], Testing chars [c] & [e].
 	(INP_PARSE) - Indx [265] char [e] saved to buf_1.
-	(SIGN_PARSE) - Count: [152], Index: [113], Testing chars [e] & [ ].
-	(SIGN_PARSE) - Count: [152], Index: [114], Testing chars [ ] & [o].
-	(SIGN_PARSE) - Count: [151], Index: [115], Testing chars [o] & [f].
-	(SIGN_PARSE) - Count: [150], Index: [116], Testing chars [f] & [ ].
-	(SIGN_PARSE) - Count: [149], Index: [117], Testing chars [ ] & [w].
-	(SIGN_PARSE) - Count: [148], Index: [118], Testing chars [w] & [a].
 	(INP_PARSE) - Indx [266] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [267] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [268] char [s] saved to buf_1.
 	(INP_PARSE) - Indx [269] char [u] saved to buf_1.
+	(SIGN_PARSE) - Count: [179], Index: [90], Testing chars [d] & [ ].
+	(SIGN_PARSE) - Count: [179], Index: [91], Testing chars [ ] & [o].
+	(SEP_PARSE) - Count: [72], Checking buf_2[20] with value [e].
 	(INP_PARSE) - Indx [270] char [f] saved to buf_1.
 	(INP_PARSE) - Indx [271] char [f] saved to buf_1.
-	(SIGN_PARSE) - Count: [152], Index: [119], Testing chars [a] & [t].
-	(SIGN_PARSE) - Count: [152], Index: [120], Testing chars [t] & [e].
-	(SIGN_PARSE) - Count: [151], Index: [121], Testing chars [e] & [r].
 	(INP_PARSE) - Indx [272] char [i] saved to buf_1.
-	(SIGN_PARSE) - Count: [150], Index: [122], Testing chars [r] & [ ].
-	(SIGN_PARSE) - Count: [150], Index: [123], Testing chars [ ] & [o].
-	(SIGN_PARSE) - Count: [149], Index: [124], Testing chars [o] & [r].
-	(SIGN_PARSE) - Count: [148], Index: [125], Testing chars [r] & [ ].
-	(SIGN_PARSE) - Count: [147], Index: [126], Testing chars [ ] & [a].
-	(SIGN_PARSE) - Count: [146], Index: [127], Testing chars [a] & [i].
-	(SIGN_PARSE) - Count: [145], Index: [128], Testing chars [i] & [r].
-	(SIGN_PARSE) - Count: [144], Index: [129], Testing chars [r] & [ ].
-	(SIGN_PARSE) - Count: [143], Index: [130], Testing chars [ ] & [m].
-	(SIGN_PARSE) - Count: [142], Index: [131], Testing chars [m] & [o].
-	(SIGN_PARSE) - Count: [141], Index: [132], Testing chars [o] & [i].
-	(SIGN_PARSE) - Count: [140], Index: [133], Testing chars [i] & [s].
-	(SIGN_PARSE) - Count: [139], Index: [134], Testing chars [s] & [t].
 	(INP_PARSE) - Indx [273] char [c] saved to buf_1.
-	(SEP_PARSE) - Count: [104], Checking buf_2[31] with value [y].
 	(INP_PARSE) - Indx [274] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [275] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [276] char [n] saved to buf_1.
@@ -468,17 +418,18 @@
 	(INP_PARSE) - Indx [282] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [283] char [,] saved to buf_1.
 	(INP_PARSE) - Indx [284] char [ ] saved to buf_1.
+	(SEP_PARSE) - Count: [71], Checking buf_2[21] with value [,].
 	(INP_PARSE) - Indx [285] char [a] saved to buf_1.
+	(SEP_PARSE) - Count: [70], Checking buf_2[22] with value [ ].
 	(INP_PARSE) - Indx [286] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [287] char [y] saved to buf_1.
 	(INP_PARSE) - Indx [288] char [ ] saved to buf_1.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [289] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [290] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [291] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [292] char [n] saved to buf_1.
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [293] char [ ] saved to buf_1.
-	(SEP_PARSE) - Count: [103], Checking buf_2[32] with value [ ].
 	(INP_PARSE) - Indx [294] char [m] saved to buf_1.
 	(INP_PARSE) - Indx [295] char [a] saved to buf_1.
 	(INP_PARSE) - Indx [296] char [s] saved to buf_1.
@@ -489,6 +440,7 @@
 	(INP_PARSE) - Indx [301] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [302] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [303] char [t] saved to buf_1.
+	(SEP_PARSE) - Count: [69], Checking buf_2[23] with value [a].
 	(INP_PARSE) - Indx [304] char [h] saved to buf_1.
 	(INP_PARSE) - Indx [305] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [306] char [ ] saved to buf_1.
@@ -496,9 +448,7 @@
 	(INP_PARSE) - Indx [308] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [309] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [310] char [s] saved to buf_1.
-	(SEP_PARSE) - Count: [102], Checking buf_2[33] with value [r].
 	(INP_PARSE) - Indx [311] char [e] saved to buf_1.
-	(SEP_PARSE) - Count: [101], Checking buf_2[34] with value [e].
 	(INP_PARSE) - Indx [312] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [313] char [c] saved to buf_1.
 	(INP_PARSE) - Indx [314] char [e] saved to buf_1.
@@ -508,120 +458,83 @@
 	(INP_PARSE) - Indx [318] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [319] char [w] saved to buf_1.
 	(INP_PARSE) - Indx [320] char [a] saved to buf_1.
-	(SEP_PARSE) - Count: [100], Checking buf_2[35] with value [d].
 	(INP_PARSE) - Indx [321] char [t] saved to buf_1.
 	(INP_PARSE) - Indx [322] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [323] char [r] saved to buf_1.
-	(SEP_PARSE) - Count: [99], Checking buf_2[36] with value [d].
 	(INP_PARSE) - Indx [324] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [325] char [a] saved to buf_1.
+	(SEP_PARSE) - Count: [68], Checking buf_2[24] with value [ ].
 	(INP_PARSE) - Indx [326] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [327] char [d] saved to buf_1.
-	(SEP_PARSE) - Count: [98], Checking buf_2[37] with value [i].
-	(SEP_PARSE) - Count: [97], Checking buf_2[38] with value [s].
-	(SEP_PARSE) - Count: [96], Checking buf_2[39] with value [h].
-	(SEP_PARSE) - Count: [95], Checking buf_2[40] with value [ ].
-	(SEP_PARSE) - Count: [94], Checking buf_2[41] with value [b].
-	(SEP_PARSE) - Count: [93], Checking buf_2[42] with value [r].
-	(SEP_PARSE) - Count: [92], Checking buf_2[43] with value [o].
-	(SEP_PARSE) - Count: [91], Checking buf_2[44] with value [w].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [90], Checking buf_2[45] with value [n].
+	(SEP_PARSE) - Count: [67], Checking buf_2[25] with value [u].
+	(SEP_PARSE) - Count: [66], Checking buf_2[26] with value [s].
+	(SEP_PARSE) - Count: [65], Checking buf_2[27] with value [u].
 	(INP_PARSE) - Indx [328] char [ ] saved to buf_1.
+	(SEP_PARSE) - Count: [64], Checking buf_2[28] with value [a].
 	(INP_PARSE) - Indx [329] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [330] char [x] saved to buf_1.
-	(SIGN_PARSE) - Count: [196], Index: [135], Testing chars [t] & [u].
-	(SIGN_PARSE) - Count: [195], Index: [136], Testing chars [u] & [r].
-	(SIGN_PARSE) - Count: [194], Index: [137], Testing chars [r] & [e].
-	(SIGN_PARSE) - Count: [193], Index: [138], Testing chars [e] & [.].
-	(SIGN_PARSE) - Count: [192], Index: [139], Testing chars [.] & [ ].
-	(SIGN_PARSE) - Count: [191], Index: [140], Testing chars [ ] & [S].
 	(INP_PARSE) - Indx [331] char [y] saved to buf_1.
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [332] char [g] saved to buf_1.
-	(SIGN_PARSE) - Count: [191], Index: [141], Testing chars [S] & [e].
-	(SIGN_PARSE) - Count: [191], Index: [142], Testing chars [e] & [v].
-	(SIGN_PARSE) - Count: [190], Index: [143], Testing chars [v] & [e].
-	(SIGN_PARSE) - Count: [189], Index: [144], Testing chars [e] & [r].
-	(SIGN_PARSE) - Count: [188], Index: [145], Testing chars [r] & [a].
-	(SIGN_PARSE) - Count: [187], Index: [146], Testing chars [a] & [l].
 	(INP_PARSE) - Indx [333] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [334] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [335] char [,] saved to buf_1.
 	(INP_PARSE) - Indx [336] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [337] char [c] saved to buf_1.
-	(SIGN_PARSE) - Count: [190], Index: [147], Testing chars [l] & [ ].
-	(SIGN_PARSE) - Count: [190], Index: [148], Testing chars [ ] & [f].
-	(SIGN_PARSE) - Count: [189], Index: [149], Testing chars [f] & [o].
-	(SIGN_PARSE) - Count: [188], Index: [150], Testing chars [o] & [r].
-	(SIGN_PARSE) - Count: [187], Index: [151], Testing chars [r] & [m].
-	(SIGN_PARSE) - Count: [186], Index: [152], Testing chars [m] & [s].
+	(SEP_PARSE) - Count: [63], Checking buf_2[29] with value [l].
 	(INP_PARSE) - Indx [338] char [o] saved to buf_1.
-	(SIGN_PARSE) - Count: [185], Index: [153], Testing chars [s] & [ ].
-	(SIGN_PARSE) - Count: [185], Index: [154], Testing chars [ ] & [o].
-	(SIGN_PARSE) - Count: [184], Index: [155], Testing chars [o] & [f].
-	(SIGN_PARSE) - Count: [183], Index: [156], Testing chars [f] & [ ].
-	(SIGN_PARSE) - Count: [182], Index: [157], Testing chars [ ] & [r].
-	(SIGN_PARSE) - Count: [181], Index: [158], Testing chars [r] & [u].
 	(INP_PARSE) - Indx [339] char [u] saved to buf_1.
 	(INP_PARSE) - Indx [340] char [l] saved to buf_1.
+	(SEP_PARSE) - Count: [62], Checking buf_2[30] with value [l].
 	(INP_PARSE) - Indx [341] char [d] saved to buf_1.
 	(INP_PARSE) - Indx [342] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [343] char [+] saved to buf_1.
 	(INP_PARSE) - Indx [344] char [+] saved to buf_1.
 	(INP_PARSE) - Indx [345] char [^] saved to buf_1.
 	(INP_PARSE) - Indx [346] char [e] saved to buf_1.
+	(SEP_PARSE) - Count: [61], Checking buf_2[31] with value [y].
 	(INP_PARSE) - Indx [347] char [v] saved to buf_1.
+	(SEP_PARSE) - Count: [60], Checking buf_2[32] with value [ ].
+	(SEP_PARSE) - Count: [59], Checking buf_2[33] with value [r].
 	(INP_PARSE) - Indx [348] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [349] char [n] saved to buf_1.
 	(INP_PARSE) - Indx [350] char [t] saved to buf_1.
-	(SIGN_PARSE) - Count: [180], Index: [159], Testing chars [u] & [s].
-	(SIGN_PARSE) - Count: [191], Index: [160], Testing chars [s] & [t].
-	(SIGN_PARSE) - Count: [190], Index: [161], Testing chars [t] & [ ].
-	(SIGN_PARSE) - Count: [189], Index: [162], Testing chars [ ] & [a].
-	(SIGN_PARSE) - Count: [188], Index: [163], Testing chars [a] & [r].
-	(SIGN_PARSE) - Count: [187], Index: [164], Testing chars [r] & [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(INP_PARSE) - Indx [351] char [u] saved to buf_1.
 	(INP_PARSE) - Indx [352] char [a] saved to buf_1.
 	(INP_PARSE) - Indx [353] char [l] saved to buf_1.
+	(SIGN_PARSE) - Count: [261], Index: [92], Testing chars [o] & [x].
+	(SEP_PARSE) - Count: [59], Checking buf_2[34] with value [e].
 	(INP_PARSE) - Indx [354] char [l] saved to buf_1.
 	(INP_PARSE) - Indx [355] char [y] saved to buf_1.
 	(INP_PARSE) - Indx [356] char [ ] saved to buf_1.
 	(INP_PARSE) - Indx [357] char [c] saved to buf_1.
 	(INP_PARSE) - Indx [358] char [o] saved to buf_1.
 	(INP_PARSE) - Indx [359] char [n] saved to buf_1.
+	(SEP_PARSE) - Count: [58], Checking buf_2[35] with value [d].
 	(INP_PARSE) - Indx [360] char [v] saved to buf_1.
 	(INP_PARSE) - Indx [361] char [e] saved to buf_1.
 	(INP_PARSE) - Indx [362] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [363] char [t] saved to buf_1.
-	(SIGN_PARSE) - Count: [186], Index: [165], Testing chars [e] & [ ].
-	(SIGN_PARSE) - Count: [198], Index: [166], Testing chars [ ] & [d].
-	(SIGN_PARSE) - Count: [197], Index: [167], Testing chars [d] & [i].
-	(SIGN_PARSE) - Count: [196], Index: [168], Testing chars [i] & [s].
 	(INP_PARSE) - Indx [364] char [ ] saved to buf_1.
-	(SIGN_PARSE) - Count: [195], Index: [169], Testing chars [s] & [t].
-	(SIGN_PARSE) - Count: [195], Index: [170], Testing chars [t] & [i].
-	(SIGN_PARSE) - Count: [194], Index: [171], Testing chars [i] & [n].
-	(SIGN_PARSE) - Count: [193], Index: [172], Testing chars [n] & [g].
-	(SIGN_PARSE) - Count: [192], Index: [173], Testing chars [g] & [u].
+	(SIGN_PARSE) - Count: [271], Index: [93], Testing chars [x] & [y].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [271], Index: [94], Testing chars [y] & [g].
+	(SIGN_PARSE) - Count: [270], Index: [95], Testing chars [g] & [e].
+	(SIGN_PARSE) - Count: [269], Index: [96], Testing chars [e] & [n].
+	(SIGN_PARSE) - Count: [268], Index: [97], Testing chars [n] & [ ].
+	(SIGN_PARSE) - Count: [267], Index: [98], Testing chars [ ] & [i].
+	(SIGN_PARSE) - Count: [266], Index: [99], Testing chars [i] & [n].
+	(SIGN_PARSE) - Count: [265], Index: [100], Testing chars [n] & [ ].
 	(INP_PARSE) - Indx [365] char [e] saved to buf_1.
-	(SIGN_PARSE) - Count: [191], Index: [174], Testing chars [u] & [i].
-	(SIGN_PARSE) - Count: [191], Index: [175], Testing chars [i] & [s].
-	(SIGN_PARSE) - Count: [190], Index: [176], Testing chars [s] & [h].
-	(SIGN_PARSE) - Count: [189], Index: [177], Testing chars [h] & [a].
-	(SIGN_PARSE) - Count: [188], Index: [178], Testing chars [a] & [b].
-	(SIGN_PARSE) - Count: [187], Index: [179], Testing chars [b] & [l].
-	(SIGN_PARSE) - Count: [186], Index: [180], Testing chars [l] & [e].
+	(SIGN_PARSE) - Count: [264], Index: [101], Testing chars [ ] & [t].
+	(SIGN_PARSE) - Count: [264], Index: [102], Testing chars [t] & [h].
+	(SIGN_PARSE) - Count: [263], Index: [103], Testing chars [h] & [e].
+	(SIGN_PARSE) - Count: [262], Index: [104], Testing chars [e] & [ ].
+	(SIGN_PARSE) - Count: [261], Index: [105], Testing chars [ ] & [p].
+	(SIGN_PARSE) - Count: [260], Index: [106], Testing chars [p] & [r].
+	(SIGN_PARSE) - Count: [259], Index: [107], Testing chars [r] & [e].
 	(INP_PARSE) - Indx [366] char [n] saved to buf_1.
-	(SIGN_PARSE) - Count: [185], Index: [181], Testing chars [e] & [ ].
-	(SIGN_PARSE) - Count: [185], Index: [182], Testing chars [ ] & [b].
-	(SIGN_PARSE) - Count: [184], Index: [183], Testing chars [b] & [o].
-	(SIGN_PARSE) - Count: [183], Index: [184], Testing chars [o] & [t].
-	(SIGN_PARSE) - Count: [182], Index: [185], Testing chars [t] & [h].
-	(SIGN_PARSE) - Count: [181], Index: [186], Testing chars [h] & [ ].
-	(SIGN_PARSE) - Count: [180], Index: [187], Testing chars [ ] & [v].
 	(INP_PARSE) - Indx [367] char [t] saved to buf_1.
-	(SEP_PARSE) - Count: [142], Checking buf_2[46] with value [ ].
 	(INP_PARSE) - Indx [368] char [i] saved to buf_1.
 	(INP_PARSE) - Indx [369] char [r] saved to buf_1.
 	(INP_PARSE) - Indx [370] char [e] saved to buf_1.
@@ -639,29 +552,194 @@
 	(INP_PARSE) - Indx [382] char [
 ] saved to buf_1.
 	(INP_PARSE) - Indx [383] char [D] saved to buf_1.
-	(SEP_PARSE) - Count: [141], Checking buf_2[47] with value [o].
 	(INP_PARSE) - Indx [384] char [O] saved to buf_1.
 	(INP_PARSE) - Indx [385] char [N] saved to buf_1.
 	(INP_PARSE) - Indx [386] char [E] saved to buf_1.
 	(INP_PARSE) - Indx [387] char [
 ] saved to buf_1.
 	(INP_PARSE) - Endcase was found on loop # [5]. Last value in buf_1 was [.]
+	(SIGN_PARSE) - Count: [274], Index: [108], Testing chars [e] & [s].
+	(SIGN_PARSE) - Count: [273], Index: [109], Testing chars [s] & [e].
+	(SIGN_PARSE) - Count: [272], Index: [110], Testing chars [e] & [n].
+	(SIGN_PARSE) - Count: [271], Index: [111], Testing chars [n] & [c].
+	(SIGN_PARSE) - Count: [270], Index: [112], Testing chars [c] & [e].
+	(INPUT) - - EXIT CASE [0].
+	(INPUT) - Input() has terminated.
+	(SIGN_PARSE) - Count: [269], Index: [113], Testing chars [e] & [ ].
+	(SIGN_PARSE) - Count: [268], Index: [114], Testing chars [ ] & [o].
+	(SIGN_PARSE) - Count: [267], Index: [115], Testing chars [o] & [f].
+	(SIGN_PARSE) - Count: [266], Index: [116], Testing chars [f] & [ ].
+	(SIGN_PARSE) - Count: [265], Index: [117], Testing chars [ ] & [w].
+	(SEP_PARSE) - Count: [82], Checking buf_2[36] with value [d].
+	(SEP_PARSE) - Count: [81], Checking buf_2[37] with value [i].
+	(SEP_PARSE) - Count: [80], Checking buf_2[38] with value [s].
+	(SEP_PARSE) - Count: [79], Checking buf_2[39] with value [h].
+	(SEP_PARSE) - Count: [78], Checking buf_2[40] with value [ ].
+	(SEP_PARSE) - Count: [77], Checking buf_2[41] with value [b].
+	(SEP_PARSE) - Count: [76], Checking buf_2[42] with value [r].
+	(SIGN_PARSE) - Count: [264], Index: [118], Testing chars [w] & [a].
+	(SIGN_PARSE) - Count: [263], Index: [119], Testing chars [a] & [t].
+	(SIGN_PARSE) - Count: [262], Index: [120], Testing chars [t] & [e].
+	(SIGN_PARSE) - Count: [261], Index: [121], Testing chars [e] & [r].
+	(SIGN_PARSE) - Count: [260], Index: [122], Testing chars [r] & [ ].
+	(SIGN_PARSE) - Count: [259], Index: [123], Testing chars [ ] & [o].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEP_PARSE) - Count: [81], Checking buf_2[43] with value [o].
+	(SIGN_PARSE) - Count: [258], Index: [124], Testing chars [o] & [r].
+	(SIGN_PARSE) - Count: [257], Index: [125], Testing chars [r] & [ ].
+	(SIGN_PARSE) - Count: [256], Index: [126], Testing chars [ ] & [a].
+	(SEP_PARSE) - Count: [83], Checking buf_2[44] with value [w].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEP_PARSE) - Count: [82], Checking buf_2[45] with value [n].
+	(SIGN_PARSE) - Count: [255], Index: [127], Testing chars [a] & [i].
+	(SEP_PARSE) - Count: [82], Checking buf_2[46] with value [ ].
+	(SEP_PARSE) - Count: [81], Checking buf_2[47] with value [o].
+	(SEP_PARSE) - Count: [80], Checking buf_2[48] with value [x].
+	(SIGN_PARSE) - Count: [254], Index: [128], Testing chars [i] & [r].
+	(SIGN_PARSE) - Count: [253], Index: [129], Testing chars [r] & [ ].
+	(SIGN_PARSE) - Count: [252], Index: [130], Testing chars [ ] & [m].
+	(SIGN_PARSE) - Count: [251], Index: [131], Testing chars [m] & [o].
+	(SIGN_PARSE) - Count: [250], Index: [132], Testing chars [o] & [i].
+	(SIGN_PARSE) - Count: [249], Index: [133], Testing chars [i] & [s].
+	(SIGN_PARSE) - Count: [248], Index: [134], Testing chars [s] & [t].
+	(SIGN_PARSE) - Count: [247], Index: [135], Testing chars [t] & [u].
+	(SIGN_PARSE) - Count: [246], Index: [136], Testing chars [u] & [r].
+	(SEP_PARSE) - Count: [88], Checking buf_2[49] with value [i].
+	(SIGN_PARSE) - Count: [245], Index: [137], Testing chars [r] & [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [244], Index: [138], Testing chars [e] & [.].
+	(SIGN_PARSE) - Count: [243], Index: [139], Testing chars [.] & [ ].
+	(SIGN_PARSE) - Count: [242], Index: [140], Testing chars [ ] & [S].
+	(SIGN_PARSE) - Count: [241], Index: [141], Testing chars [S] & [e].
+	(SIGN_PARSE) - Count: [240], Index: [142], Testing chars [e] & [v].
+	(SIGN_PARSE) - Count: [239], Index: [143], Testing chars [v] & [e].
+	(SIGN_PARSE) - Count: [238], Index: [144], Testing chars [e] & [r].
+	(SEP_PARSE) - Count: [95], Checking buf_2[50] with value [d].
+	(SEP_PARSE) - Count: [94], Checking buf_2[51] with value [e].
+	(SEP_PARSE) - Count: [93], Checking buf_2[52] with value [ ].
+	(SEP_PARSE) - Count: [92], Checking buf_2[53] with value [f].
+	(SIGN_PARSE) - Count: [237], Index: [145], Testing chars [r] & [a].
+	(SIGN_PARSE) - Count: [236], Index: [146], Testing chars [a] & [l].
+	(SEP_PARSE) - Count: [93], Checking buf_2[54] with value [o].
+	(SIGN_PARSE) - Count: [235], Index: [147], Testing chars [l] & [ ].
+	(SEP_PARSE) - Count: [93], Checking buf_2[55] with value [r].
+	(SEP_PARSE) - Count: [92], Checking buf_2[56] with value [m].
+	(SIGN_PARSE) - Count: [234], Index: [148], Testing chars [ ] & [f].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [233], Index: [149], Testing chars [f] & [o].
+	(SIGN_PARSE) - Count: [232], Index: [150], Testing chars [o] & [r].
+	(SIGN_PARSE) - Count: [231], Index: [151], Testing chars [r] & [m].
+	(SIGN_PARSE) - Count: [230], Index: [152], Testing chars [m] & [s].
+	(SIGN_PARSE) - Count: [229], Index: [153], Testing chars [s] & [ ].
+	(SIGN_PARSE) - Count: [228], Index: [154], Testing chars [ ] & [o].
+	(SEP_PARSE) - Count: [98], Checking buf_2[57] with value [e].
+	(SEP_PARSE) - Count: [97], Checking buf_2[58] with value [d].
+	(SEP_PARSE) - Count: [96], Checking buf_2[59] with value [ ].
+	(SEP_PARSE) - Count: [95], Checking buf_2[60] with value [b].
+	(SIGN_PARSE) - Count: [227], Index: [155], Testing chars [o] & [f].
+	(SEP_PARSE) - Count: [95], Checking buf_2[61] with value [y].
+	(SIGN_PARSE) - Count: [226], Index: [156], Testing chars [f] & [ ].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [225], Index: [157], Testing chars [ ] & [r].
+	(SIGN_PARSE) - Count: [224], Index: [158], Testing chars [r] & [u].
+	(SIGN_PARSE) - Count: [223], Index: [159], Testing chars [u] & [s].
+	(SIGN_PARSE) - Count: [222], Index: [160], Testing chars [s] & [t].
+	(SIGN_PARSE) - Count: [221], Index: [161], Testing chars [t] & [ ].
+	(SIGN_PARSE) - Count: [220], Index: [162], Testing chars [ ] & [a].
+	(SIGN_PARSE) - Count: [219], Index: [163], Testing chars [a] & [r].
+	(SEP_PARSE) - Count: [102], Checking buf_2[62] with value [ ].
+	(SEP_PARSE) - Count: [101], Checking buf_2[63] with value [t].
+	(SEP_PARSE) - Count: [100], Checking buf_2[64] with value [h].
+	(SEP_PARSE) - Count: [99], Checking buf_2[65] with value [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [218], Index: [164], Testing chars [r] & [e].
+	(SIGN_PARSE) - Count: [217], Index: [165], Testing chars [e] & [ ].
+	(SIGN_PARSE) - Count: [216], Index: [166], Testing chars [ ] & [d].
+	(SIGN_PARSE) - Count: [215], Index: [167], Testing chars [d] & [i].
+	(SIGN_PARSE) - Count: [214], Index: [168], Testing chars [i] & [s].
+	(SIGN_PARSE) - Count: [213], Index: [169], Testing chars [s] & [t].
+	(SIGN_PARSE) - Count: [212], Index: [170], Testing chars [t] & [i].
+	(SEP_PARSE) - Count: [105], Checking buf_2[66] with value [ ].
+	(SEP_PARSE) - Count: [104], Checking buf_2[67] with value [^].
+	(SEP_PARSE) - Count: [103], Checking buf_2[68] with value [r].
+	(SEP_PARSE) - Count: [102], Checking buf_2[69] with value [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [211], Index: [171], Testing chars [i] & [n].
+	(SIGN_PARSE) - Count: [210], Index: [172], Testing chars [n] & [g].
+	(SIGN_PARSE) - Count: [209], Index: [173], Testing chars [g] & [u].
+	(SIGN_PARSE) - Count: [208], Index: [174], Testing chars [u] & [i].
+	(SIGN_PARSE) - Count: [207], Index: [175], Testing chars [i] & [s].
+	(SIGN_PARSE) - Count: [206], Index: [176], Testing chars [s] & [h].
+	(SIGN_PARSE) - Count: [205], Index: [177], Testing chars [h] & [a].
+	(SIGN_PARSE) - Count: [204], Index: [178], Testing chars [a] & [b].
+	(SIGN_PARSE) - Count: [203], Index: [179], Testing chars [b] & [l].
+	(SIGN_PARSE) - Count: [202], Index: [180], Testing chars [l] & [e].
+	(SIGN_PARSE) - Count: [201], Index: [181], Testing chars [e] & [ ].
+	(SIGN_PARSE) - Count: [200], Index: [182], Testing chars [ ] & [b].
+	(SIGN_PARSE) - Count: [199], Index: [183], Testing chars [b] & [o].
+	(SIGN_PARSE) - Count: [198], Index: [184], Testing chars [o] & [t].
+	(SIGN_PARSE) - Count: [197], Index: [185], Testing chars [t] & [h].
+	(SIGN_PARSE) - Count: [196], Index: [186], Testing chars [h] & [ ].
+	(SIGN_PARSE) - Count: [195], Index: [187], Testing chars [ ] & [v].
+	(SEP_PARSE) - Count: [118], Checking buf_2[70] with value [a].
+	(SEP_PARSE) - Count: [117], Checking buf_2[71] with value [c].
+	(SEP_PARSE) - Count: [116], Checking buf_2[72] with value [t].
+	(SEP_PARSE) - Count: [115], Checking buf_2[73] with value [i].
+	(SEP_PARSE) - Count: [114], Checking buf_2[74] with value [o].
 	(SIGN_PARSE) - Count: [194], Index: [188], Testing chars [v] & [i].
+	(SEP_PARSE) - Count: [114], Checking buf_2[75] with value [n].
+	(SEP_PARSE) - Count: [113], Checking buf_2[76] with value [^].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEP_PARSE) - Count: [112], Checking buf_2[77] with value [ ].
+	(SEP_PARSE) - Count: [111], Checking buf_2[78] with value [o].
+	(SEP_PARSE) - Count: [110], Checking buf_2[79] with value [f].
+	(SEP_PARSE) - Count: [109], Checking buf_2[80] with value [ ].
+	(SEP_PARSE) - Count: [108], Checking buf_2[81] with value [i].
+	(SEP_PARSE) - Count: [107], Checking buf_2[82] with value [r].
+	(SEP_PARSE) - Count: [106], Checking buf_2[83] with value [o].
+	(SEP_PARSE) - Count: [105], Checking buf_2[84] with value [n].
 	(SIGN_PARSE) - Count: [193], Index: [189], Testing chars [i] & [s].
+	(OUTPUT) - Outputting buf_3 to terminal.
+Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [192], Index: [190], Testing chars [s] & [u].
 	(SIGN_PARSE) - Count: [191], Index: [191], Testing chars [u] & [a].
 	(SIGN_PARSE) - Count: [190], Index: [192], Testing chars [a] & [l].
 	(SIGN_PARSE) - Count: [189], Index: [193], Testing chars [l] & [l].
-	(INPUT) - - EXIT CASE [0].
 	(SIGN_PARSE) - Count: [188], Index: [194], Testing chars [l] & [y].
 	(SIGN_PARSE) - Count: [187], Index: [195], Testing chars [y] & [ ].
 	(SIGN_PARSE) - Count: [186], Index: [196], Testing chars [ ] & [a].
 	(SIGN_PARSE) - Count: [185], Index: [197], Testing chars [a] & [n].
 	(SIGN_PARSE) - Count: [184], Index: [198], Testing chars [n] & [d].
+	(SEP_PARSE) - Count: [114], Checking buf_2[85] with value [ ].
+	(SEP_PARSE) - Count: [113], Checking buf_2[86] with value [^].
+	(SEP_PARSE) - Count: [112], Checking buf_2[87] with value [^].
+	(SEP_PARSE) - Count: [111], Checking buf_2[88] with value [a].
+	(SEP_PARSE) - Count: [110], Checking buf_2[89] with value [n].
+	(SEP_PARSE) - Count: [109], Checking buf_2[90] with value [d].
+	(SEP_PARSE) - Count: [108], Checking buf_2[91] with value [ ].
+	(SEP_PARSE) - Count: [107], Checking buf_2[92] with value [o].
+	(SEP_PARSE) - Count: [106], Checking buf_2[93] with value [x].
+	(SEP_PARSE) - Count: [105], Checking buf_2[94] with value [y].
+	(SEP_PARSE) - Count: [104], Checking buf_2[95] with value [g].
+	(SEP_PARSE) - Count: [103], Checking buf_2[96] with value [e].
+	(SEP_PARSE) - Count: [102], Checking buf_2[97] with value [n].
+	(SEP_PARSE) - Count: [101], Checking buf_2[98] with value [ ].
+	(SEP_PARSE) - Count: [100], Checking buf_2[99] with value [i].
+	(SEP_PARSE) - Count: [99], Checking buf_2[100] with value [n].
+	(SEP_PARSE) - Count: [98], Checking buf_2[101] with value [ ].
+	(SEP_PARSE) - Count: [97], Checking buf_2[102] with value [t].
+	(SEP_PARSE) - Count: [96], Checking buf_2[103] with value [h].
 	(SIGN_PARSE) - Count: [183], Index: [199], Testing chars [d] & [ ].
-	(INPUT) - Input() has terminated.
+	(SEP_PARSE) - Count: [96], Checking buf_2[104] with value [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEP_PARSE) - Count: [95], Checking buf_2[105] with value [ ].
 	(SIGN_PARSE) - Count: [182], Index: [200], Testing chars [ ] & [b].
+	(SEP_PARSE) - Count: [95], Checking buf_2[106] with value [p].
+	(SEP_PARSE) - Count: [94], Checking buf_2[107] with value [r].
 	(SIGN_PARSE) - Count: [181], Index: [201], Testing chars [b] & [y].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [180], Index: [202], Testing chars [y] & [ ].
 	(SIGN_PARSE) - Count: [179], Index: [203], Testing chars [ ] & [s].
 	(SIGN_PARSE) - Count: [178], Index: [204], Testing chars [s] & [p].
@@ -670,9 +748,12 @@
 	(SIGN_PARSE) - Count: [175], Index: [207], Testing chars [c] & [t].
 	(SIGN_PARSE) - Count: [174], Index: [208], Testing chars [t] & [r].
 	(SIGN_PARSE) - Count: [173], Index: [209], Testing chars [r] & [o].
-	(SEP_PARSE) - Count: [162], Checking buf_2[48] with value [x].
-	(SIGN_PARSE) - Count: [172], Index: [210], Testing chars [o] & [s].
+	(SEP_PARSE) - Count: [102], Checking buf_2[108] with value [e].
+	(SEP_PARSE) - Count: [101], Checking buf_2[109] with value [s].
+	(SEP_PARSE) - Count: [100], Checking buf_2[110] with value [e].
+	(SEP_PARSE) - Count: [99], Checking buf_2[111] with value [n].
 	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [172], Index: [210], Testing chars [o] & [s].
 	(SIGN_PARSE) - Count: [171], Index: [211], Testing chars [s] & [c].
 	(SIGN_PARSE) - Count: [170], Index: [212], Testing chars [c] & [o].
 	(SIGN_PARSE) - Count: [169], Index: [213], Testing chars [o] & [p].
@@ -681,6 +762,11 @@
 	(SIGN_PARSE) - Count: [166], Index: [216], Testing chars [,] & [ ].
 	(SIGN_PARSE) - Count: [165], Index: [217], Testing chars [ ] & [a].
 	(SIGN_PARSE) - Count: [164], Index: [218], Testing chars [a] & [n].
+	(SEP_PARSE) - Count: [107], Checking buf_2[112] with value [c].
+	(SEP_PARSE) - Count: [106], Checking buf_2[113] with value [e].
+	(SEP_PARSE) - Count: [105], Checking buf_2[114] with value [ ].
+	(SEP_PARSE) - Count: [104], Checking buf_2[115] with value [o].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [163], Index: [219], Testing chars [n] & [d].
 	(SIGN_PARSE) - Count: [162], Index: [220], Testing chars [d] & [ ].
 	(SIGN_PARSE) - Count: [161], Index: [221], Testing chars [ ] & [f].
@@ -690,17 +776,12 @@
 	(SIGN_PARSE) - Count: [157], Index: [225], Testing chars [m] & [ ].
 	(SIGN_PARSE) - Count: [156], Index: [226], Testing chars [ ] & [u].
 	(SIGN_PARSE) - Count: [155], Index: [227], Testing chars [u] & [n].
-	(SEP_PARSE) - Count: [179], Checking buf_2[49] with value [i].
-	(SEP_PARSE) - Count: [178], Checking buf_2[50] with value [d].
-	(SEP_PARSE) - Count: [177], Checking buf_2[51] with value [e].
-	(SEP_PARSE) - Count: [176], Checking buf_2[52] with value [ ].
-	(SEP_PARSE) - Count: [175], Checking buf_2[53] with value [f].
-	(SEP_PARSE) - Count: [174], Checking buf_2[54] with value [o].
 	(SIGN_PARSE) - Count: [154], Index: [228], Testing chars [n] & [d].
-	(SEP_PARSE) - Count: [174], Checking buf_2[55] with value [r].
-	(SEP_PARSE) - Count: [173], Checking buf_2[56] with value [m].
+	(SEP_PARSE) - Count: [113], Checking buf_2[116] with value [f].
+	(SEP_PARSE) - Count: [112], Checking buf_2[117] with value [ ].
+	(SEP_PARSE) - Count: [111], Checking buf_2[118] with value [w].
+	(SEP_PARSE) - Count: [110], Checking buf_2[119] with value [a].
 	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [172], Checking buf_2[57] with value [e].
 	(SIGN_PARSE) - Count: [153], Index: [229], Testing chars [d] & [e].
 	(SIGN_PARSE) - Count: [152], Index: [230], Testing chars [e] & [r].
 	(SIGN_PARSE) - Count: [151], Index: [231], Testing chars [r] & [ ].
@@ -709,7 +790,6 @@
 	(SIGN_PARSE) - Count: [148], Index: [234], Testing chars [i] & [f].
 	(SIGN_PARSE) - Count: [147], Index: [235], Testing chars [f] & [f].
 	(SIGN_PARSE) - Count: [146], Index: [236], Testing chars [f] & [e].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [145], Index: [237], Testing chars [e] & [r].
 	(SIGN_PARSE) - Count: [144], Index: [238], Testing chars [r] & [e].
 	(SIGN_PARSE) - Count: [143], Index: [239], Testing chars [e] & [n].
@@ -718,8 +798,15 @@
 	(SIGN_PARSE) - Count: [140], Index: [242], Testing chars [ ] & [c].
 	(SIGN_PARSE) - Count: [139], Index: [243], Testing chars [c] & [i].
 	(SIGN_PARSE) - Count: [138], Index: [244], Testing chars [i] & [r].
+	(SEP_PARSE) - Count: [125], Checking buf_2[120] with value [t].
+	(SEP_PARSE) - Count: [124], Checking buf_2[121] with value [e].
+	(SEP_PARSE) - Count: [123], Checking buf_2[122] with value [r].
+	(SEP_PARSE) - Count: [122], Checking buf_2[123] with value [ ].
+	(SEP_PARSE) - Count: [121], Checking buf_2[124] with value [o].
 	(SIGN_PARSE) - Count: [137], Index: [245], Testing chars [r] & [c].
+	(SEP_PARSE) - Count: [121], Checking buf_2[125] with value [r].
 	(SIGN_PARSE) - Count: [136], Index: [246], Testing chars [c] & [u].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [135], Index: [247], Testing chars [u] & [m].
 	(SIGN_PARSE) - Count: [134], Index: [248], Testing chars [m] & [s].
 	(SIGN_PARSE) - Count: [133], Index: [249], Testing chars [s] & [t].
@@ -733,13 +820,13 @@
 ].
 	(SIGN_PARSE) - Count: [125], Index: [257], Testing chars [
 ] & [G].
-	(SEP_PARSE) - Count: [200], Checking buf_2[58] with value [d].
-	(SEP_PARSE) - Count: [199], Checking buf_2[59] with value [ ].
-	(SEP_PARSE) - Count: [198], Checking buf_2[60] with value [b].
-	(SEP_PARSE) - Count: [197], Checking buf_2[61] with value [y].
-	(SEP_PARSE) - Count: [196], Checking buf_2[62] with value [ ].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [124], Index: [258], Testing chars [G] & [i].
+	(SEP_PARSE) - Count: [133], Checking buf_2[126] with value [ ].
+	(SEP_PARSE) - Count: [132], Checking buf_2[127] with value [a].
+	(SEP_PARSE) - Count: [131], Checking buf_2[128] with value [i].
+	(SEP_PARSE) - Count: [130], Checking buf_2[129] with value [r].
+	(SEP_PARSE) - Count: [129], Checking buf_2[130] with value [ ].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [123], Index: [259], Testing chars [i] & [v].
 	(SIGN_PARSE) - Count: [122], Index: [260], Testing chars [v] & [e].
 	(SIGN_PARSE) - Count: [121], Index: [261], Testing chars [e] & [n].
@@ -748,10 +835,10 @@
 	(SIGN_PARSE) - Count: [118], Index: [264], Testing chars [s] & [u].
 	(SIGN_PARSE) - Count: [117], Index: [265], Testing chars [u] & [f].
 	(SIGN_PARSE) - Count: [116], Index: [266], Testing chars [f] & [f].
-	(SEP_PARSE) - Count: [204], Checking buf_2[63] with value [t].
-	(SEP_PARSE) - Count: [203], Checking buf_2[64] with value [h].
-	(SEP_PARSE) - Count: [202], Checking buf_2[65] with value [e].
-	(SEP_PARSE) - Count: [201], Checking buf_2[66] with value [ ].
+	(SEP_PARSE) - Count: [136], Checking buf_2[131] with value [m].
+	(SEP_PARSE) - Count: [135], Checking buf_2[132] with value [o].
+	(SEP_PARSE) - Count: [134], Checking buf_2[133] with value [i].
+	(SEP_PARSE) - Count: [133], Checking buf_2[134] with value [s].
 	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [115], Index: [267], Testing chars [f] & [i].
 	(SIGN_PARSE) - Count: [114], Index: [268], Testing chars [i] & [c].
@@ -760,11 +847,6 @@
 	(SIGN_PARSE) - Count: [111], Index: [271], Testing chars [e] & [n].
 	(SIGN_PARSE) - Count: [110], Index: [272], Testing chars [n] & [t].
 	(SIGN_PARSE) - Count: [109], Index: [273], Testing chars [t] & [ ].
-	(SEP_PARSE) - Count: [207], Checking buf_2[67] with value [^].
-	(SEP_PARSE) - Count: [206], Checking buf_2[68] with value [r].
-	(SEP_PARSE) - Count: [205], Checking buf_2[69] with value [e].
-	(SEP_PARSE) - Count: [204], Checking buf_2[70] with value [a].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [108], Index: [274], Testing chars [ ] & [t].
 	(SIGN_PARSE) - Count: [107], Index: [275], Testing chars [t] & [i].
 	(SIGN_PARSE) - Count: [106], Index: [276], Testing chars [i] & [m].
@@ -772,17 +854,16 @@
 	(SIGN_PARSE) - Count: [104], Index: [278], Testing chars [e] & [,].
 	(SIGN_PARSE) - Count: [103], Index: [279], Testing chars [,] & [ ].
 	(SIGN_PARSE) - Count: [102], Index: [280], Testing chars [ ] & [a].
+	(SEP_PARSE) - Count: [146], Checking buf_2[135] with value [t].
+	(SEP_PARSE) - Count: [145], Checking buf_2[136] with value [u].
+	(SEP_PARSE) - Count: [144], Checking buf_2[137] with value [r].
+	(SEP_PARSE) - Count: [143], Checking buf_2[138] with value [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [101], Index: [281], Testing chars [a] & [n].
 	(SIGN_PARSE) - Count: [100], Index: [282], Testing chars [n] & [y].
 	(SIGN_PARSE) - Count: [99], Index: [283], Testing chars [y] & [ ].
 	(SIGN_PARSE) - Count: [98], Index: [284], Testing chars [ ] & [i].
 	(SIGN_PARSE) - Count: [97], Index: [285], Testing chars [i] & [r].
-	(SEP_PARSE) - Count: [215], Checking buf_2[71] with value [c].
-	(SEP_PARSE) - Count: [214], Checking buf_2[72] with value [t].
-	(SEP_PARSE) - Count: [213], Checking buf_2[73] with value [i].
-	(SEP_PARSE) - Count: [212], Checking buf_2[74] with value [o].
-	(SEP_PARSE) - Count: [211], Checking buf_2[75] with value [n].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [96], Index: [286], Testing chars [r] & [o].
 	(SIGN_PARSE) - Count: [95], Index: [287], Testing chars [o] & [n].
 	(SIGN_PARSE) - Count: [94], Index: [288], Testing chars [n] & [ ].
@@ -792,39 +873,7 @@
 	(SIGN_PARSE) - Count: [90], Index: [292], Testing chars [s] & [s].
 	(SIGN_PARSE) - Count: [89], Index: [293], Testing chars [s] & [,].
 	(SIGN_PARSE) - Count: [88], Index: [294], Testing chars [,] & [ ].
-	(SEP_PARSE) - Count: [219], Checking buf_2[76] with value [^].
-	(SEP_PARSE) - Count: [218], Checking buf_2[77] with value [ ].
-	(SEP_PARSE) - Count: [217], Checking buf_2[78] with value [o].
-	(SEP_PARSE) - Count: [216], Checking buf_2[79] with value [f].
-	(OUTPUT) - Outputting buf_3 to terminal.
-Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
-	(OUTPUT) - Beginning of loop. outputting = [1].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [215], Checking buf_2[80] with value [ ].
-	(SEP_PARSE) - Count: [214], Checking buf_2[81] with value [i].
-	(SEP_PARSE) - Count: [213], Checking buf_2[82] with value [r].
-	(SEP_PARSE) - Count: [212], Checking buf_2[83] with value [o].
-	(SEP_PARSE) - Count: [211], Checking buf_2[84] with value [n].
-	(SEP_PARSE) - Count: [210], Checking buf_2[85] with value [ ].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [209], Checking buf_2[86] with value [^].
-	(SEP_PARSE) - Count: [208], Checking buf_2[87] with value [^].
-	(SEP_PARSE) - Count: [207], Checking buf_2[88] with value [a].
-	(SEP_PARSE) - Count: [206], Checking buf_2[89] with value [n].
-	(SEP_PARSE) - Count: [205], Checking buf_2[90] with value [d].
-	(SEP_PARSE) - Count: [204], Checking buf_2[91] with value [ ].
-	(SEP_PARSE) - Count: [203], Checking buf_2[92] with value [o].
-	(SEP_PARSE) - Count: [202], Checking buf_2[93] with value [x].
-	(SEP_PARSE) - Count: [201], Checking buf_2[94] with value [y].
-	(SEP_PARSE) - Count: [200], Checking buf_2[95] with value [g].
-	(SEP_PARSE) - Count: [199], Checking buf_2[96] with value [e].
-	(SEP_PARSE) - Count: [198], Checking buf_2[97] with value [n].
-	(SEP_PARSE) - Count: [197], Checking buf_2[98] with value [ ].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [196], Checking buf_2[99] with value [i].
-	(SEP_PARSE) - Count: [195], Checking buf_2[100] with value [n].
 	(SIGN_PARSE) - Count: [87], Index: [295], Testing chars [ ] & [i].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [86], Index: [296], Testing chars [i] & [n].
 	(SIGN_PARSE) - Count: [85], Index: [297], Testing chars [n] & [ ].
 	(SIGN_PARSE) - Count: [84], Index: [298], Testing chars [ ] & [t].
@@ -834,26 +883,16 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SIGN_PARSE) - Count: [80], Index: [302], Testing chars [ ] & [p].
 	(SIGN_PARSE) - Count: [79], Index: [303], Testing chars [p] & [r].
 	(SIGN_PARSE) - Count: [78], Index: [304], Testing chars [r] & [e].
+	(SEP_PARSE) - Count: [166], Checking buf_2[139] with value [.].
+	(SEP_PARSE) - Count: [165], Checking buf_2[140] with value [ ].
+	(SEP_PARSE) - Count: [164], Checking buf_2[141] with value [S].
+	(SEP_PARSE) - Count: [163], Checking buf_2[142] with value [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [77], Index: [305], Testing chars [e] & [s].
 	(SIGN_PARSE) - Count: [76], Index: [306], Testing chars [s] & [e].
 	(SIGN_PARSE) - Count: [75], Index: [307], Testing chars [e] & [n].
 	(SIGN_PARSE) - Count: [74], Index: [308], Testing chars [n] & [c].
 	(SIGN_PARSE) - Count: [73], Index: [309], Testing chars [c] & [e].
-	(SEP_PARSE) - Count: [209], Checking buf_2[101] with value [ ].
-	(SEP_PARSE) - Count: [208], Checking buf_2[102] with value [t].
-	(SEP_PARSE) - Count: [207], Checking buf_2[103] with value [h].
-	(SEP_PARSE) - Count: [206], Checking buf_2[104] with value [e].
-	(SEP_PARSE) - Count: [205], Checking buf_2[105] with value [ ].
-	(SEP_PARSE) - Count: [204], Checking buf_2[106] with value [p].
-	(SEP_PARSE) - Count: [203], Checking buf_2[107] with value [r].
-	(SEP_PARSE) - Count: [202], Checking buf_2[108] with value [e].
-	(SEP_PARSE) - Count: [201], Checking buf_2[109] with value [s].
-	(SEP_PARSE) - Count: [200], Checking buf_2[110] with value [e].
-	(SEP_PARSE) - Count: [199], Checking buf_2[111] with value [n].
-	(SEP_PARSE) - Count: [198], Checking buf_2[112] with value [c].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [197], Checking buf_2[113] with value [e].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [72], Index: [310], Testing chars [e] & [ ].
 	(SIGN_PARSE) - Count: [71], Index: [311], Testing chars [ ] & [o].
 	(SIGN_PARSE) - Count: [70], Index: [312], Testing chars [o] & [f].
@@ -861,19 +900,15 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SIGN_PARSE) - Count: [68], Index: [314], Testing chars [ ] & [w].
 	(SIGN_PARSE) - Count: [67], Index: [315], Testing chars [w] & [a].
 	(SIGN_PARSE) - Count: [66], Index: [316], Testing chars [a] & [t].
+	(SEP_PARSE) - Count: [174], Checking buf_2[143] with value [v].
+	(SEP_PARSE) - Count: [173], Checking buf_2[144] with value [e].
+	(SEP_PARSE) - Count: [172], Checking buf_2[145] with value [r].
+	(SEP_PARSE) - Count: [171], Checking buf_2[146] with value [a].
+	(SEP_PARSE) - Count: [170], Checking buf_2[147] with value [l].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [65], Index: [317], Testing chars [t] & [e].
 	(SIGN_PARSE) - Count: [64], Index: [318], Testing chars [e] & [r].
 	(SIGN_PARSE) - Count: [63], Index: [319], Testing chars [r] & [ ].
-	(SEP_PARSE) - Count: [206], Checking buf_2[114] with value [ ].
-	(SEP_PARSE) - Count: [205], Checking buf_2[115] with value [o].
-	(SEP_PARSE) - Count: [204], Checking buf_2[116] with value [f].
-	(SEP_PARSE) - Count: [203], Checking buf_2[117] with value [ ].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [202], Checking buf_2[118] with value [w].
-	(SEP_PARSE) - Count: [201], Checking buf_2[119] with value [a].
-	(SEP_PARSE) - Count: [200], Checking buf_2[120] with value [t].
-	(SEP_PARSE) - Count: [199], Checking buf_2[121] with value [e].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [62], Index: [320], Testing chars [ ] & [a].
 	(SIGN_PARSE) - Count: [61], Index: [321], Testing chars [a] & [n].
 	(SIGN_PARSE) - Count: [60], Index: [322], Testing chars [n] & [d].
@@ -887,13 +922,13 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SIGN_PARSE) - Count: [52], Index: [330], Testing chars [n] & [,].
 	(SIGN_PARSE) - Count: [51], Index: [331], Testing chars [,] & [ ].
 	(SIGN_PARSE) - Count: [50], Index: [332], Testing chars [ ] & [c].
-	(SIGN_PARSE) - Count: [49], Index: [333], Testing chars [c] & [o].
-	(SEP_PARSE) - Count: [212], Checking buf_2[122] with value [r].
-	(SEP_PARSE) - Count: [211], Checking buf_2[123] with value [ ].
-	(SEP_PARSE) - Count: [210], Checking buf_2[124] with value [o].
-	(SEP_PARSE) - Count: [209], Checking buf_2[125] with value [r].
-	(SEP_PARSE) - Count: [208], Checking buf_2[126] with value [ ].
+	(SEP_PARSE) - Count: [185], Checking buf_2[148] with value [ ].
+	(SEP_PARSE) - Count: [184], Checking buf_2[149] with value [f].
+	(SEP_PARSE) - Count: [183], Checking buf_2[150] with value [o].
+	(SEP_PARSE) - Count: [182], Checking buf_2[151] with value [r].
+	(SEP_PARSE) - Count: [181], Checking buf_2[152] with value [m].
 	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Count: [49], Index: [333], Testing chars [c] & [o].
 	(SIGN_PARSE) - Count: [48], Index: [334], Testing chars [o] & [u].
 	(SIGN_PARSE) - Count: [47], Index: [335], Testing chars [u] & [l].
 	(SIGN_PARSE) - Count: [46], Index: [336], Testing chars [l] & [d].
@@ -904,16 +939,13 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SIGN_PARSE) - Count: [42], Index: [340], Testing chars [^] & [e].
 	(SIGN_PARSE) - Count: [41], Index: [341], Testing chars [e] & [v].
 	(SIGN_PARSE) - Count: [40], Index: [342], Testing chars [v] & [e].
-	(SEP_PARSE) - Count: [216], Checking buf_2[127] with value [a].
-	(SEP_PARSE) - Count: [215], Checking buf_2[128] with value [i].
-	(SEP_PARSE) - Count: [214], Checking buf_2[129] with value [r].
-	(SEP_PARSE) - Count: [213], Checking buf_2[130] with value [ ].
-	(SEP_PARSE) - Count: [212], Checking buf_2[131] with value [m].
+	(SEP_PARSE) - Count: [190], Checking buf_2[153] with value [s].
+	(SEP_PARSE) - Count: [189], Checking buf_2[154] with value [ ].
+	(SEP_PARSE) - Count: [188], Checking buf_2[155] with value [o].
+	(SEP_PARSE) - Count: [187], Checking buf_2[156] with value [f].
+	(SEP_PARSE) - Count: [186], Checking buf_2[157] with value [ ].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [39], Index: [343], Testing chars [e] & [n].
-	(SEP_PARSE) - Count: [212], Checking buf_2[132] with value [o].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [211], Checking buf_2[133] with value [i].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [38], Index: [344], Testing chars [n] & [t].
 	(SIGN_PARSE) - Count: [37], Index: [345], Testing chars [t] & [u].
 	(SIGN_PARSE) - Count: [36], Index: [346], Testing chars [u] & [a].
@@ -922,40 +954,28 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SIGN_PARSE) - Count: [33], Index: [349], Testing chars [l] & [y].
 	(SIGN_PARSE) - Count: [32], Index: [350], Testing chars [y] & [ ].
 	(SIGN_PARSE) - Count: [31], Index: [351], Testing chars [ ] & [c].
-	(SEP_PARSE) - Count: [218], Checking buf_2[134] with value [s].
-	(SEP_PARSE) - Count: [217], Checking buf_2[135] with value [t].
-	(SEP_PARSE) - Count: [216], Checking buf_2[136] with value [u].
-	(SEP_PARSE) - Count: [215], Checking buf_2[137] with value [r].
-	(SEP_PARSE) - Count: [214], Checking buf_2[138] with value [e].
 	(SIGN_PARSE) - Count: [30], Index: [352], Testing chars [c] & [o].
-	(SEP_PARSE) - Count: [214], Checking buf_2[139] with value [.].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [213], Checking buf_2[140] with value [ ].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [212], Checking buf_2[141] with value [S].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
-	(SEP_PARSE) - Count: [211], Checking buf_2[142] with value [e].
-	(SEP_PARSE) - Count: [210], Checking buf_2[143] with value [v].
-	(SEP_PARSE) - Count: [209], Checking buf_2[144] with value [e].
-	(SEP_PARSE) - Count: [208], Checking buf_2[145] with value [r].
-	(SEP_PARSE) - Count: [207], Checking buf_2[146] with value [a].
-	(SEP_PARSE) - Count: [206], Checking buf_2[147] with value [l].
 	(SIGN_PARSE) - Count: [29], Index: [353], Testing chars [o] & [n].
-	(SEP_PARSE) - Count: [206], Checking buf_2[148] with value [ ].
-	(SEP_PARSE) - Count: [205], Checking buf_2[149] with value [f].
-	(SEP_PARSE) - Count: [204], Checking buf_2[150] with value [o].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [28], Index: [354], Testing chars [n] & [v].
 	(SIGN_PARSE) - Count: [27], Index: [355], Testing chars [v] & [e].
 	(SIGN_PARSE) - Count: [26], Index: [356], Testing chars [e] & [r].
 	(SIGN_PARSE) - Count: [25], Index: [357], Testing chars [r] & [t].
+	(SEP_PARSE) - Count: [200], Checking buf_2[158] with value [r].
+	(SEP_PARSE) - Count: [199], Checking buf_2[159] with value [u].
+	(SEP_PARSE) - Count: [198], Checking buf_2[160] with value [s].
+	(SEP_PARSE) - Count: [197], Checking buf_2[161] with value [t].
+	(SEP_PARSE) - Count: [196], Checking buf_2[162] with value [ ].
+	(OUTPUT) - Outputting buf_3 to terminal.
+ iron ^^and oxygen in the presence of water or air moisture. Several forms of ru
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEP_PARSE) - Count: [195], Checking buf_2[163] with value [a].
+	(SEP_PARSE) - Count: [194], Checking buf_2[164] with value [r].
+	(SEP_PARSE) - Count: [193], Checking buf_2[165] with value [e].
+	(SEP_PARSE) - Count: [192], Checking buf_2[166] with value [ ].
 	(SIGN_PARSE) - Count: [24], Index: [358], Testing chars [t] & [ ].
 	(SIGN_PARSE) - Count: [23], Index: [359], Testing chars [ ] & [e].
-	(SEP_PARSE) - Count: [209], Checking buf_2[151] with value [r].
-	(SEP_PARSE) - Count: [208], Checking buf_2[152] with value [m].
-	(SEP_PARSE) - Count: [207], Checking buf_2[153] with value [s].
-	(SEP_PARSE) - Count: [206], Checking buf_2[154] with value [ ].
-	(SEP_PARSE) - Count: [205], Checking buf_2[155] with value [o].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [22], Index: [360], Testing chars [e] & [n].
 	(SIGN_PARSE) - Count: [21], Index: [361], Testing chars [n] & [t].
 	(SIGN_PARSE) - Count: [20], Index: [362], Testing chars [t] & [i].
@@ -963,7 +983,6 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SIGN_PARSE) - Count: [18], Index: [364], Testing chars [r] & [e].
 	(SIGN_PARSE) - Count: [17], Index: [365], Testing chars [e] & [l].
 	(SIGN_PARSE) - Count: [16], Index: [366], Testing chars [l] & [y].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SIGN_PARSE) - Count: [15], Index: [367], Testing chars [y] & [ ].
 	(SIGN_PARSE) - Count: [14], Index: [368], Testing chars [ ] & [t].
 	(SIGN_PARSE) - Count: [13], Index: [369], Testing chars [t] & [o].
@@ -976,32 +995,18 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SIGN_PARSE) - Count: [6], Index: [376], Testing chars [.] & [ ].
 	(SIGN_PARSE) - Count: [5], Index: [377], Testing chars [ ] & [D].
 	(SIGN_PARSE) -  - EXIT CASE
-	(SIGN) - Sign() has terminated. Last value in buf_2 was [ ].
-	(SEP_PARSE) - Count: [222], Checking buf_2[156] with value [f].
-	(SEP_PARSE) - Count: [221], Checking buf_2[157] with value [ ].
-	(SEP_PARSE) - Count: [220], Checking buf_2[158] with value [r].
-	(SEP_PARSE) - Count: [219], Checking buf_2[159] with value [u].
-	(SEP_PARSE) - Count: [218], Checking buf_2[160] with value [s].
-	(SEP_PARSE) - Count: [217], Checking buf_2[161] with value [t].
-	(SEP_PARSE) - Count: [216], Checking buf_2[162] with value [ ].
-	(SEP_PARSE) - Count: [215], Checking buf_2[163] with value [a].
-	(SEP_PARSE) - Count: [214], Checking buf_2[164] with value [r].
-	(SEP_PARSE) - Count: [213], Checking buf_2[165] with value [e].
-	(SEP_PARSE) - Count: [212], Checking buf_2[166] with value [ ].
 	(SEP_PARSE) - Count: [211], Checking buf_2[167] with value [d].
+	(SIGN) - Sign() has terminated. Last value in buf_2 was [ ].
 	(SEP_PARSE) - Count: [210], Checking buf_2[168] with value [i].
 	(SEP_PARSE) - Count: [209], Checking buf_2[169] with value [s].
 	(SEP_PARSE) - Count: [208], Checking buf_2[170] with value [t].
 	(SEP_PARSE) - Count: [207], Checking buf_2[171] with value [i].
 	(SEP_PARSE) - Count: [206], Checking buf_2[172] with value [n].
 	(SEP_PARSE) - Count: [205], Checking buf_2[173] with value [g].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [204], Checking buf_2[174] with value [u].
 	(SEP_PARSE) - Count: [203], Checking buf_2[175] with value [i].
 	(SEP_PARSE) - Count: [202], Checking buf_2[176] with value [s].
-	(OUTPUT) - Outputting buf_3 to terminal.
- iron ^^and oxygen in the presence of water or air moisture. Several forms of ru
-	(OUTPUT) - Beginning of loop. outputting = [1].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [201], Checking buf_2[177] with value [h].
 	(SEP_PARSE) - Count: [200], Checking buf_2[178] with value [a].
 	(SEP_PARSE) - Count: [199], Checking buf_2[179] with value [b].
@@ -1011,7 +1016,6 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SEP_PARSE) - Count: [195], Checking buf_2[183] with value [b].
 	(SEP_PARSE) - Count: [194], Checking buf_2[184] with value [o].
 	(SEP_PARSE) - Count: [193], Checking buf_2[185] with value [t].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [192], Checking buf_2[186] with value [h].
 	(SEP_PARSE) - Count: [191], Checking buf_2[187] with value [ ].
 	(SEP_PARSE) - Count: [190], Checking buf_2[188] with value [v].
@@ -1022,9 +1026,9 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SEP_PARSE) - Count: [185], Checking buf_2[193] with value [l].
 	(SEP_PARSE) - Count: [184], Checking buf_2[194] with value [l].
 	(SEP_PARSE) - Count: [183], Checking buf_2[195] with value [y].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [182], Checking buf_2[196] with value [ ].
 	(SEP_PARSE) - Count: [181], Checking buf_2[197] with value [a].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [180], Checking buf_2[198] with value [n].
 	(SEP_PARSE) - Count: [179], Checking buf_2[199] with value [d].
 	(SEP_PARSE) - Count: [178], Checking buf_2[200] with value [ ].
@@ -1032,24 +1036,24 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SEP_PARSE) - Count: [176], Checking buf_2[202] with value [y].
 	(SEP_PARSE) - Count: [175], Checking buf_2[203] with value [ ].
 	(SEP_PARSE) - Count: [174], Checking buf_2[204] with value [s].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [173], Checking buf_2[205] with value [p].
 	(SEP_PARSE) - Count: [172], Checking buf_2[206] with value [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [171], Checking buf_2[207] with value [c].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [170], Checking buf_2[208] with value [t].
 	(SEP_PARSE) - Count: [169], Checking buf_2[209] with value [r].
 	(SEP_PARSE) - Count: [168], Checking buf_2[210] with value [o].
 	(SEP_PARSE) - Count: [167], Checking buf_2[211] with value [s].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [166], Checking buf_2[212] with value [c].
 	(SEP_PARSE) - Count: [165], Checking buf_2[213] with value [o].
 	(SEP_PARSE) - Count: [164], Checking buf_2[214] with value [p].
 	(SEP_PARSE) - Count: [163], Checking buf_2[215] with value [y].
 	(SEP_PARSE) - Count: [162], Checking buf_2[216] with value [,].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [161], Checking buf_2[217] with value [ ].
 	(SEP_PARSE) - Count: [160], Checking buf_2[218] with value [a].
 	(SEP_PARSE) - Count: [159], Checking buf_2[219] with value [n].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [158], Checking buf_2[220] with value [d].
 	(SEP_PARSE) - Count: [157], Checking buf_2[221] with value [ ].
 	(SEP_PARSE) - Count: [156], Checking buf_2[222] with value [f].
@@ -1060,7 +1064,6 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SEP_PARSE) - Count: [151], Checking buf_2[227] with value [u].
 	(SEP_PARSE) - Count: [150], Checking buf_2[228] with value [n].
 	(SEP_PARSE) - Count: [149], Checking buf_2[229] with value [d].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [148], Checking buf_2[230] with value [e].
 	(SEP_PARSE) - Count: [147], Checking buf_2[231] with value [r].
 	(SEP_PARSE) - Count: [146], Checking buf_2[232] with value [ ].
@@ -1077,10 +1080,6 @@ Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
 	(SEP_PARSE) - Count: [135], Checking buf_2[243] with value [c].
 	(SEP_PARSE) - Count: [134], Checking buf_2[244] with value [i].
 	(SEP_PARSE) - Count: [133], Checking buf_2[245] with value [r].
-	(OUTPUT) - Outputting buf_3 to terminal.
-st are distinguishable both visually and by spectroscopy, and form under differe
-	(OUTPUT) - Beginning of loop. outputting = [1].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [132], Checking buf_2[246] with value [c].
 	(SEP_PARSE) - Count: [131], Checking buf_2[247] with value [u].
 	(SEP_PARSE) - Count: [130], Checking buf_2[248] with value [m].
@@ -1091,7 +1090,6 @@ st are distinguishable both visually and by spectroscopy, and form under differe
 	(SEP_PARSE) - Count: [125], Checking buf_2[253] with value [c].
 	(SEP_PARSE) - Count: [124], Checking buf_2[254] with value [e].
 	(SEP_PARSE) - Count: [123], Checking buf_2[255] with value [s].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [122], Checking buf_2[256] with value [.].
 	(SEP_PARSE) - Count: [121], Checking buf_2[257] with value [
 ].
@@ -1106,21 +1104,25 @@ st are distinguishable both visually and by spectroscopy, and form under differe
 	(SEP_PARSE) - Count: [113], Checking buf_2[265] with value [u].
 	(SEP_PARSE) - Count: [112], Checking buf_2[266] with value [f].
 	(SEP_PARSE) - Count: [111], Checking buf_2[267] with value [f].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [110], Checking buf_2[268] with value [i].
 	(SEP_PARSE) - Count: [109], Checking buf_2[269] with value [c].
 	(SEP_PARSE) - Count: [108], Checking buf_2[270] with value [i].
 	(SEP_PARSE) - Count: [107], Checking buf_2[271] with value [e].
+	(OUTPUT) - Outputting buf_3 to terminal.
+st are distinguishable both visually and by spectroscopy, and form under differe
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [106], Checking buf_2[272] with value [n].
 	(SEP_PARSE) - Count: [105], Checking buf_2[273] with value [t].
 	(SEP_PARSE) - Count: [104], Checking buf_2[274] with value [ ].
 	(SEP_PARSE) - Count: [103], Checking buf_2[275] with value [t].
 	(SEP_PARSE) - Count: [102], Checking buf_2[276] with value [i].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [101], Checking buf_2[277] with value [m].
 	(SEP_PARSE) - Count: [100], Checking buf_2[278] with value [e].
 	(SEP_PARSE) - Count: [99], Checking buf_2[279] with value [,].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [98], Checking buf_2[280] with value [ ].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [97], Checking buf_2[281] with value [a].
 	(SEP_PARSE) - Count: [96], Checking buf_2[282] with value [n].
 	(SEP_PARSE) - Count: [95], Checking buf_2[283] with value [y].
@@ -1133,23 +1135,21 @@ st are distinguishable both visually and by spectroscopy, and form under differe
 	(SEP_PARSE) - Count: [88], Checking buf_2[290] with value [m].
 	(SEP_PARSE) - Count: [87], Checking buf_2[291] with value [a].
 	(SEP_PARSE) - Count: [86], Checking buf_2[292] with value [s].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [85], Checking buf_2[293] with value [s].
 	(SEP_PARSE) - Count: [84], Checking buf_2[294] with value [,].
 	(SEP_PARSE) - Count: [83], Checking buf_2[295] with value [ ].
 	(SEP_PARSE) - Count: [82], Checking buf_2[296] with value [i].
 	(SEP_PARSE) - Count: [81], Checking buf_2[297] with value [n].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [80], Checking buf_2[298] with value [ ].
 	(SEP_PARSE) - Count: [79], Checking buf_2[299] with value [t].
 	(SEP_PARSE) - Count: [78], Checking buf_2[300] with value [h].
 	(SEP_PARSE) - Count: [77], Checking buf_2[301] with value [e].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [76], Checking buf_2[302] with value [ ].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [75], Checking buf_2[303] with value [p].
 	(SEP_PARSE) - Count: [74], Checking buf_2[304] with value [r].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [73], Checking buf_2[305] with value [e].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [72], Checking buf_2[306] with value [s].
 	(SEP_PARSE) - Count: [71], Checking buf_2[307] with value [e].
 	(SEP_PARSE) - Count: [70], Checking buf_2[308] with value [n].
@@ -1160,7 +1160,6 @@ st are distinguishable both visually and by spectroscopy, and form under differe
 	(SEP_PARSE) - Count: [65], Checking buf_2[313] with value [f].
 	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [64], Checking buf_2[314] with value [ ].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [63], Checking buf_2[315] with value [w].
 	(SEP_PARSE) - Count: [62], Checking buf_2[316] with value [a].
 	(SEP_PARSE) - Count: [61], Checking buf_2[317] with value [t].
@@ -1169,11 +1168,11 @@ st are distinguishable both visually and by spectroscopy, and form under differe
 	(SEP_PARSE) - Count: [58], Checking buf_2[320] with value [ ].
 	(SEP_PARSE) - Count: [57], Checking buf_2[321] with value [a].
 	(SEP_PARSE) - Count: [56], Checking buf_2[322] with value [n].
-	(SEP_PARSE) - Count: [55], Checking buf_2[323] with value [d].
 	(OUTPUT) - Outputting buf_3 to terminal.
 nt circumstances. Given sufficient time, any iron mass, in the presence of water
 	(OUTPUT) - Beginning of loop. outputting = [1].
 	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEP_PARSE) - Count: [55], Checking buf_2[323] with value [d].
 	(SEP_PARSE) - Count: [54], Checking buf_2[324] with value [ ].
 	(SEP_PARSE) - Count: [53], Checking buf_2[325] with value [o].
 	(SEP_PARSE) - Count: [52], Checking buf_2[326] with value [x].
@@ -1181,6 +1180,7 @@ nt circumstances. Given sufficient time, any iron mass, in the presence of water
 	(SEP_PARSE) - Count: [50], Checking buf_2[328] with value [g].
 	(SEP_PARSE) - Count: [49], Checking buf_2[329] with value [e].
 	(SEP_PARSE) - Count: [48], Checking buf_2[330] with value [n].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [47], Checking buf_2[331] with value [,].
 	(SEP_PARSE) - Count: [46], Checking buf_2[332] with value [ ].
 	(SEP_PARSE) - Count: [45], Checking buf_2[333] with value [c].
@@ -1198,9 +1198,10 @@ nt circumstances. Given sufficient time, any iron mass, in the presence of water
 	(SEP_PARSE) - Count: [34], Checking buf_2[344] with value [n].
 	(SEP_PARSE) - Count: [33], Checking buf_2[345] with value [t].
 	(SEP_PARSE) - Count: [32], Checking buf_2[346] with value [u].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [31], Checking buf_2[347] with value [a].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [30], Checking buf_2[348] with value [l].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [29], Checking buf_2[349] with value [l].
 	(SEP_PARSE) - Count: [28], Checking buf_2[350] with value [y].
 	(SEP_PARSE) - Count: [27], Checking buf_2[351] with value [ ].
@@ -1208,10 +1209,9 @@ nt circumstances. Given sufficient time, any iron mass, in the presence of water
 	(SEP_PARSE) - Count: [25], Checking buf_2[353] with value [o].
 	(SEP_PARSE) - Count: [24], Checking buf_2[354] with value [n].
 	(SEP_PARSE) - Count: [23], Checking buf_2[355] with value [v].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [22], Checking buf_2[356] with value [e].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [21], Checking buf_2[357] with value [r].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [20], Checking buf_2[358] with value [t].
 	(SEP_PARSE) - Count: [19], Checking buf_2[359] with value [ ].
 	(SEP_PARSE) - Count: [18], Checking buf_2[360] with value [e].
@@ -1220,8 +1220,8 @@ nt circumstances. Given sufficient time, any iron mass, in the presence of water
 	(SEP_PARSE) - Count: [15], Checking buf_2[363] with value [i].
 	(SEP_PARSE) - Count: [14], Checking buf_2[364] with value [r].
 	(SEP_PARSE) - Count: [13], Checking buf_2[365] with value [e].
-	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [12], Checking buf_2[366] with value [l].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
 	(SEP_PARSE) - Count: [11], Checking buf_2[367] with value [y].
 	(SEP_PARSE) - Count: [10], Checking buf_2[368] with value [ ].
 	(SEP_PARSE) - Count: [9], Checking buf_2[369] with value [t].
