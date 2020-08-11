@@ -115,18 +115,20 @@ fn main() {
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
 	{
-		thread::spawn(move || {
+		let handle1 = thread::spawn(move || {
 			intermediate_sums.push(map_data(&xs[0]));
 		});
+		let res1 = handle1.join().unwrap();
 		
-		thread::spawn(move || {
+		let handle2 = thread::spawn(move || {
 			intermediate_sums.push(map_data(&xs[1]));
 		});
+		let res2 = handle2.join().unwrap();
 	}
     // CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 
     // Print the vector with the intermediate sums
-    println!("Intermediate sums = {:?}", intermediate_sums);
+    println!("Intermediate sums = {}, {}", res1, res2);
 
     // REDUCE STEP: Process the intermediate result to produce the final result
     let sum = reduce_data(&intermediate_sums);
