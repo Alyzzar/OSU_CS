@@ -111,7 +111,7 @@ void *input(void *args){
 		//Run until exit case => DONE;
 	} while (inp_running > 0);
 	//This should output last value before '\0'.
-	if(DEBUG) printf("	(INPUT) - Input() has terminated. Last value in buf_1 was [%c].\n", buf_1[(inp_idx + SIZE - 1) % SIZE]);
+	if(DEBUG) printf("	(INPUT) - Input() has terminated. Last value in buf_1 was [%c] at index [%d].\n", buf_1[(inp_idx + SIZE - 1) % SIZE], (inp_idx + SIZE - 1) % SIZE);
 	return NULL;
 }
 
@@ -160,7 +160,7 @@ void *output(void *args){
 
 //Main functionality for separator
 int sep_parse(){
-	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - Count: [%d], Checking buf_1[%d] with value [%c].\n", count_1, ((sep_idx + d) % SIZE), buf_1[(sep_idx + d) % SIZE]);
+	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - count_1: [%d], Checking buf_1[%d] with value [%c].\n", count_1, ((sep_idx + d) % SIZE), buf_1[(sep_idx + d) % SIZE]);
 	if (buf_1[(sep_idx + d) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
