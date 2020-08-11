@@ -11,7 +11,6 @@ This program parses and modifies the input
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
-int running = 1;
 char recent [6];	
 int c = 0;			//Count for skipped chars between buf_1 and buf_2
 int d = 0;			//Count for skipped chars between buf_2 and buf_3
@@ -25,6 +24,7 @@ int inp_idx = 0;
 int sign_idx = 0;
 int sep_idx = 0;
 int out_idx = 0;
+int outputting = 1;		//Global, since separator() has to interact with this
 
 // Initialize the mutex
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -78,6 +78,7 @@ int inp_parse(){
 //Input thread
 void *input(void *args){
 	int i;
+	int inp_running = 1;
 	for (i = 0; i < 6; i++){
 		recent[i] = 0;
 	}
@@ -95,7 +96,7 @@ void *input(void *args){
 
 		if (inp_stts == 0){
 			if(DEBUG) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
-			running = 0;
+			inp_running = 0;
 		} else if (inp_stts == 1){
 			if(DEBUG) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
 		}
@@ -104,7 +105,7 @@ void *input(void *args){
 		// Unlock the mutex
 		//if(DEBUG) printf("	(INP_PARSE) - Mutex unlocked.\n");
 		//Run until exit case => DONE;
-	} while (running > 0);
+	} while (inp_running > 0);
 	return NULL;
 }
 
@@ -133,7 +134,7 @@ void *output(void *args){
 		// Signal to the consumer that the buffer has space
 		pthread_cond_signal(&sep_cond);
 		// Unlock the mutex
-	} while (running > 0);
+	} while (outputting > 0);
 	return NULL;
 }
 
@@ -163,7 +164,7 @@ int sign_parse(){
 //Plus sign thread (Buf_2)
 void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
-	//int i;
+	int sign_running = 1;
 	do {
 		//Lock mutex since this will affect buf_1 and buf_2
 		pthread_mutex_lock(&mutex);
@@ -174,6 +175,7 @@ void *sign(void *args){
 		int sign_stts = sign_parse();
 		if (sign_stts == 0){
 			if(DEBUG) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
+			sign_running = 0;
 		} else if (sign_stts == 1){
 			if(DEBUG) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
 		}
@@ -188,7 +190,7 @@ void *sign(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-	} while (running > 0);
+	} while (sign_running > 0);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -214,7 +216,7 @@ int sep_parse(){
 //Separator thread (Buf_3)
 void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
-	//int i;
+	int sep_running = 1;
 	do {
 		//Lock mutex since this will affect buf_2 and buf_3
 		pthread_mutex_lock(&mutex);
@@ -226,6 +228,8 @@ void *separator(void *args){
 		int sep_stts = sep_parse();
 		if (sep_stts == 0){
 			if(DEBUG) printf("	(SEPARATOR) - - EXIT CASE\n");
+			sep_running = 0;
+			pthread_kill(out_t, SIGUSR1);
 		} else if (sep_stts == 1){
 			if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
 		}
@@ -240,7 +244,7 @@ void *separator(void *args){
 		// Unlock the mutex
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
-	} while (running > 0);
+	} while (sep_running > 0);
 	return NULL;
 	//Run forever, exit case = break;
 }
