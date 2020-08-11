@@ -202,7 +202,7 @@ void *sign(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
-	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[sing_idx]);
+	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[sign_idx]);
 	return NULL;
 	//Run forever, exit case = break;
 }
