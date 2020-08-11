@@ -123,8 +123,10 @@ void *output(void *args){
 	//outputs text to stdout. Don't need to lock mutex.
 	do {
 		if(DEBUG && DEBUG_OUT) printf ("	(OUTPUT) - Beginning of loop. outputting = [%d].\n", outputting);
-		if((DEBUG && DEBUG_OUT) && count_3 >= OUT_LEN) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
-		else printf("	(OUTPUT) - count_3 < [%d]. No output.\n", OUT_LEN);
+		if(DEBUG && DEBUG_OUT){
+			if(count_3 >= OUT_LEN) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
+			else printf("	(OUTPUT) - count_3 < [%d]. No output.\n", OUT_LEN);
+		}
 		
 		//Only output if there are more than 80 chars in the buffer
 		while (count_3 >= OUT_LEN){
