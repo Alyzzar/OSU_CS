@@ -114,11 +114,11 @@ fn main() {
 
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
-	thread::spawn(|| {
+	thread::spawn(move || {
 		intermediate_sums.push(map_data(&xs[0]));
 	});
 	
-	thread::spawn(|| {
+	thread::spawn(move || {
 		intermediate_sums.push(map_data(&xs[1]));
 	});
 	
