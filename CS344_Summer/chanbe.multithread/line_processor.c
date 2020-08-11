@@ -9,9 +9,9 @@ This program parses and modifies the input
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
-#define DEBUG_INP 1
+#define DEBUG_INP 0
 #define DEBUG_OUT 1
-#define DEBUG_SIGN 1
+#define DEBUG_SIGN 0
 #define DEBUG_SEP 1
 
 int DEBUG = 0;		// [0 = DEBUG OFF],[1 = DEBUG ON] 
@@ -248,11 +248,11 @@ void *separator(void *args){
 		count_2--;
 
 		// Signal to the consumer that the buffer has been sep parsed
-		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
+		if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
 		pthread_cond_signal(&sign_cond);//Buf_2
 		pthread_cond_signal(&out_cond);	//Output
 		// Unlock the mutex
-		//if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
+		if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
 	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
