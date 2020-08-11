@@ -152,22 +152,22 @@ void *output(void *args){
 //Main functionality for sign
 int sign_parse(){
 	//Check for pairs of '+'
-	if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n", buf_1[sign_idx % SIZE], buf_1[(sign_idx + 1) % SIZE]);
+	if(DEBUG) printf("	(SIGN_PARSE) - Testing chars [%c] & [%c].\n", buf_1[sign_idx], buf_1[(sign_idx + 1) % SIZE]);
 	if (buf_1[(sign_idx + c) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
-		buf_2[(sign_idx) % SIZE] = buf_1 [(sign_idx + c) % SIZE];
+		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
 		return 0;
 	} else if (((sign_idx + c + 1) <= inp_idx)		//Check if next cell is within bounds
 			&& buf_1[(sign_idx + c) % SIZE] == '+'
 			&& buf_1[(sign_idx + c + 1) % SIZE] == '+'){
 		if(DEBUG) printf("	(SIGN_PARSE) - Matching '++' found.\n");
 		//Matching pair found in Buf_1. Set value in Buf_2
-		buf_2[(sign_idx) % SIZE] = '^';
+		buf_2[sign_idx] = '^';
 		c++;
 	} else {
 		//Else, copy value from Buf_1 directly to Buf_2
-		buf_2[(sign_idx) % SIZE] = buf_1 [(sign_idx + c) % SIZE];
+		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
 	}
 	return 1;
 }
@@ -189,8 +189,8 @@ void *sign(void *args){
 			sign_running = 0;
 		} else if (sign_stts == 1){
 			//if(DEBUG) printf("	(SIGN_PARSE) -  - NO EXIT CASE FOUND\n");
+			sign_idx = (sign_idx + 1) % SIZE;
 		}
-		sign_idx = (sign_idx + 1) % SIZE;
 		count_2++;
 		count_1--;
 		
@@ -202,7 +202,7 @@ void *sign(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sign_running > 0);
-	if(DEBUG) printf("	(SIGN) - Sign() has terminated.\n");
+	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[sing_idx]);
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -212,15 +212,15 @@ int sep_parse(){
 	if (buf_2[(sep_idx + d) % SIZE] == '\0'){
 		//Exit case; DONE found by input()
 		//Return 0 to tell parent to 'stop running'. DONE found.
-		buf_3[(sep_idx) % SIZE] = buf_2 [(sep_idx + d) % SIZE];
+		buf_3[sep_idx] = buf_2 [(sep_idx + d) % SIZE];
 		return 0;
 	} else if (buf_2[(sep_idx + d) % SIZE] == '\n'){
 		if(DEBUG) printf("	(SEP_PARSE) - '\\n' found. Replacing with ' '.\n");
 		//Newline found
-		buf_3[(sep_idx) % SIZE] = ' ';
+		buf_3[sep_idx] = ' ';
 	} else {
 		//Else, copy value from Buf_2 directly to Buf_3
-		buf_3[(sep_idx) % SIZE] = buf_2 [(sep_idx + d) % SIZE];
+		buf_3[sep_idx] = buf_2 [(sep_idx + d) % SIZE];
 	}
 	return 1;
 }
@@ -245,8 +245,8 @@ void *separator(void *args){
 			//pthread_kill(out_t, SIGUSR1);
 		} else if (sep_stts == 1){
 			//if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
+			sep_idx = (sep_idx + 1) % SIZE;
 		}
-		sep_idx = (sep_idx + 1) % SIZE;
 		count_3++;
 		count_2--;
 	
@@ -258,7 +258,7 @@ void *separator(void *args){
 		if(DEBUG) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
-	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated.\n");
+	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[sep_idx]);
 	outputting = 0;
 	return NULL;
 	//Run forever, exit case = break;
