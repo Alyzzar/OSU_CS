@@ -30,6 +30,7 @@ int sign_idx = 0;
 int sep_idx = 0;
 int out_idx = 0;
 int outputting = 0;		//Global, since separator() has to interact with this
+int sep_running = 10;
 
 // Initialize the mutex
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -153,6 +154,7 @@ void *output(void *args){
 	} while (outputting > 0);
 	if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Output() has terminated.\n");
 	outputting = -1;
+	sep_running = 0;
 	return NULL;
 }
 
@@ -236,7 +238,6 @@ int sep_parse(){
 //Separator thread (Buf_3)
 void *separator(void *args){
 	if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Starting separator().\n");
-	int sep_running = 5;
 	do {
 		if(outputting < 0){
 			if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - Output() has terminated. Forcing early termination.\n");
