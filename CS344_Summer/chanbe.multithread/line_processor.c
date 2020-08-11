@@ -74,7 +74,7 @@ int inp_parse(){
 		}
 	}
 	
-	return -1;
+	return 1;
 }
 
 //Input thread
@@ -98,15 +98,13 @@ void *input(void *args){
 		if (inp_stts == 0){
 			if(DEBUG && DEBUG_INP) printf("	(INPUT) - - EXIT CASE [%d].\n", inp_stts);
 			inp_running = 0;
-		} else if (inp_stts == 1){
-			if(DEBUG && DEBUG_INP) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
 		}
 		//End this loop by updating values
 		inp_idx = (inp_idx + 1) % SIZE;
 		count_1++;
 	
 		// Signal to the consumer that the buffer is no longer empty
-		pthread_cond_signal(&sign_cond);	//Buf_2
+		pthread_cond_signal(&sep_cond);	//Buf_2
 		// Unlock the mutex
 		//if(DEBUG && DEBUG_OUT) printf("	(INP_PARSE) - Mutex unlocked.\n");
 		//Run until exit case => DONE;
@@ -132,79 +130,25 @@ void *output(void *args){
 		
 		if(DEBUG && DEBUG_OUT) printf("	(OUTPUT) - Outputting buf_3 to terminal.\n");
 		
+		//Only output if there are more than 80 chars in the buffer
 		while (count_3 >= OUT_LEN){
+			//Output 80 chars from the buffer
 			for (i = 0; i < OUT_LEN; i++){
 				putchar(buf_3[out_idx]);
 				out_idx = (out_idx + 1) % SIZE;
 				count_3--;
 			}
+			//Print a new line
 			printf("\n");
 		}
 		
 		//This goes after the while loop, in case separator() terminated while there was more than OUT_LEN chars in the buffer.
 		if (outputting == 0){
 			break;
-		} else pthread_cond_signal(&sep_cond);
+		} else pthread_cond_signal(&sign_cond);
 	} while (outputting > 0);
 	if(DEBUG) printf("	(OUTPUT) - Output() has terminated.\n");
 	return NULL;
-}
-
-//Main functionality for sign
-int sign_parse(){
-	//Check for pairs of '+'
-	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Count: [%d], Index: [%d], Testing chars [%c] & [%c].\n", count_1, sign_idx, buf_1[(sign_idx + c) % SIZE], buf_1[(sign_idx + c + 1) % SIZE]);
-	if (buf_1[(sign_idx + c) % SIZE] == '\0'){
-		//Exit case; DONE found by input()
-		//Return 0 to tell parent to 'stop running'. DONE found.
-		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
-		return 0;
-	} else if (((sign_idx + c + 1) <= inp_idx)		//Check if next cell is within bounds
-			&& buf_1[(sign_idx + c) % SIZE] == '+'
-			&& buf_1[(sign_idx + c + 1) % SIZE] == '+'){
-		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Matching '++' found.\n");
-		//Matching pair found in Buf_1. Set value in Buf_2
-		buf_2[sign_idx] = '^';
-		c++;
-		count_1--;
-	} else {
-		//Else, copy value from Buf_1 directly to Buf_2
-		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
-	}
-	return 1;
-}
-
-//Plus sign thread (Buf_2)
-void *sign(void *args){
-	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
-	int sign_running = 1;
-	do {
-		//Lock mutex since this will affect buf_1 and buf_2
-		pthread_mutex_lock(&mutex);
-		while (count_1 == 0)	// Buffer is empty
-			pthread_cond_wait(&sign_cond, &mutex);
-		
-		//Run
-		int sign_stts = sign_parse();
-		if (sign_stts == 0){
-			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
-			sign_running = 0;
-		}
-		sign_idx = (sign_idx + 1) % SIZE;
-		count_2++;
-		count_1--;
-		
-		// Signal to the consumer that the buffer has been sign parsed
-		//if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - cond_signal sent - ");
-		pthread_cond_signal(&inp_cond);	//Buf_1
-		pthread_cond_signal(&sep_cond);	//Buf_3
-		// Unlock the mutex
-		//if(DEBUG && DEBUG_SIGN) printf("Mutex unlocked.\n");
-		pthread_mutex_unlock(&mutex);
-	} while (sign_running > 0);
-	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
-	return NULL;
-	//Run forever, exit case = break;
 }
 
 //Main functionality for separator
@@ -226,7 +170,7 @@ int sep_parse(){
 	return 1;
 }
 
-//Separator thread (Buf_3)
+//Separator thread (Buf_2)
 void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
 	int sep_running = 1;
@@ -252,14 +196,71 @@ void *separator(void *args){
 
 		// Signal to the consumer that the buffer has been sep parsed
 		//if(DEBUG && DEBUG_SEP) printf("	(SEPARATOR) - cond_signal sent - ");
-		pthread_cond_signal(&sign_cond);//Buf_2
-		pthread_cond_signal(&out_cond);	//Output
+		pthread_cond_signal(&inp_cond);		//Buf_2
+		pthread_cond_signal(&sign_cond);	//Output
 		// Unlock the mutex
 		//if(DEBUG && DEBUG_SEP) printf("Mutex unlocked.\n");
 		pthread_mutex_unlock(&mutex);
 	} while (sep_running > 0);
 	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_3[(sep_idx + SIZE - 1) % SIZE]);
 	outputting = 0;
+	return NULL;
+	//Run forever, exit case = break;
+}
+
+//Main functionality for sign
+int sign_parse(){
+	//Check for pairs of '+'
+	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Count: [%d], Index: [%d], Testing chars [%c] & [%c].\n", count_1, sign_idx, buf_1[(sign_idx + c) % SIZE], buf_1[(sign_idx + c + 1) % SIZE]);
+	if (buf_1[(sign_idx + c) % SIZE] == '\0'){
+		//Exit case; DONE found by input()
+		//Return 0 to tell parent to 'stop running'. DONE found.
+		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
+		return 0;
+	} else if (((sign_idx + c + 1) <= inp_idx)		//Check if next cell is within bounds
+			&& (buf_1[(sign_idx + c) % SIZE] == '+')
+			&& (buf_1[(sign_idx + c + 1) % SIZE] == '+')){
+		if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - Matching '++' found.\n");
+		//Matching pair found in Buf_1. Set value in Buf_2
+		buf_2[sign_idx] = '^';
+		c++;
+		count_1--;
+	} else {
+		//Else, copy value from Buf_1 directly to Buf_2
+		buf_2[sign_idx] = buf_1 [(sign_idx + c) % SIZE];
+	}
+	return 1;
+}
+
+//Plus sign thread (Buf_3)
+void *sign(void *args){
+	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
+	int sign_running = 1;
+	do {
+		//Lock mutex since this will affect buf_1 and buf_2
+		pthread_mutex_lock(&mutex);
+		while (count_1 == 0)	// Buffer is empty
+			pthread_cond_wait(&sign_cond, &mutex);
+		
+		//Run
+		int sign_stts = sign_parse();
+		if (sign_stts == 0){
+			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
+			sign_running = 0;
+		}
+		sign_idx = (sign_idx + 1) % SIZE;
+		count_2++;
+		count_1--;
+		
+		// Signal to the consumer that the buffer has been sign parsed
+		//if(DEBUG && DEBUG_SIGN) printf("	(SIGN) - cond_signal sent - ");
+		pthread_cond_signal(&sep_cond);	//Buf_2
+		pthread_cond_signal(&out_cond);	//Output
+		// Unlock the mutex
+		//if(DEBUG && DEBUG_SIGN) printf("Mutex unlocked.\n");
+		pthread_mutex_unlock(&mutex);
+	} while (sign_running > 0);
+	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sign_idx + SIZE - 1) % SIZE]);
 	return NULL;
 	//Run forever, exit case = break;
 }
