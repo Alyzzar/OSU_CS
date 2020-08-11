@@ -73,9 +73,6 @@ int inp_parse(){
 			}
 		}
 	}
-	//End this loop by updating values
-	inp_idx = (inp_idx + 1) % SIZE;
-	count_1++;
 	
 	return -1;
 }
@@ -104,6 +101,10 @@ void *input(void *args){
 		} else if (inp_stts == 1){
 			if(DEBUG && DEBUG_INP) printf("	(INPUT) - - NO EXIT CASE FOUND. Buf_1 was filled\n");
 		}
+		//End this loop by updating values
+		inp_idx = (inp_idx + 1) % SIZE;
+		count_1++;
+	
 		// Signal to the consumer that the buffer is no longer empty
 		pthread_cond_signal(&sign_cond);	//Buf_2
 		// Unlock the mutex
