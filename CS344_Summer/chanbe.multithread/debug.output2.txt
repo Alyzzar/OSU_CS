@@ -1,0 +1,3072 @@
+	(MAIN) - Program starting.
+	(EXEC) - Creating threads.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN) - Starting sign().
+	(INP_PARSE) - Indx [0] char [R] saved to buf_1.
+	(SEPARATOR) - Starting separator().
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [1] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [2] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [3] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [4] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [5] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [6] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [7] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [8] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [9] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [10] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [11] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [12] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [13] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [14] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [15] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [16] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [17] char [x] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [18] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [19] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [20] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [21] char [,] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [22] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [23] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [24] char [ ] saved to buf_1.
+	(EXEC) - Waiting for threads to complete.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [25] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [26] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(OUTPUT) - Starting output().
+	(INP_PARSE) - Indx [27] char [u] saved to buf_1.
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [28] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [29] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [30] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [31] char [y] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [32] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [33] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [34] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [35] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [36] char [d] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [R] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [37] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [38] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [39] char [h] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [u] & [s].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [40] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [41] char [b] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [42] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [43] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [44] char [w] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [s] & [t].
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [45] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [46] char [ ] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [47] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [48] char [x] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [t] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [n].
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [49] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [50] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [51] char [e] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [r].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [52] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [53] char [f] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [r] & [o].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [54] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [55] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [56] char [m] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [57] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [o] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [x].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [x] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [,].
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Indx [58] char [d] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [59] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [60] char [b] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [61] char [y] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [62] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [,] & [ ].
+	(INP_PARSE) - Indx [63] char [t] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [64] char [h] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [65] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [66] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [67] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [68] char [+] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [l] & [l].
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [69] char [r] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [70] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [71] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [72] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [73] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [74] char [i] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [l] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [y] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [d].
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [75] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [76] char [n] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [d] & [i].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [s].
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+Mutex unlocked.
+	(INP_PARSE) - Indx [77] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [78] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [s] & [h].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [h] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [b].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [b] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [w].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [w] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [79] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [80] char [o] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [x].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [x] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [f].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [m].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [m] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [d].
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [81] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [82] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [83] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [84] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [85] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [86] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [87] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [88] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [89] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [90] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [91] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [d] & [ ].
+	(INP_PARSE) - Indx [92] char [a] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [93] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [94] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [95] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [ ] & [b].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [b] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [y] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [h].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [h] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [+].
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Matching '++' found.
+	(INP_PARSE) - Indx [96] char [o] saved to buf_1.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [97] char [x] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [98] char [y] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [+] & [r].
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Indx [99] char [g] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [100] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [101] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(INP_PARSE) - Indx [102] char [ ] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [103] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [104] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [105] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [e] & [a].
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+Mutex unlocked.
+	(INP_PARSE) - Indx [106] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [107] char [h] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [a] & [c].
+	(INP_PARSE) - Indx [108] char [e] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [109] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [c] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [110] char [p] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [111] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SEPARATOR) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [112] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [113] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [114] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [115] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [116] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [117] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [118] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [119] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [120] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(SEPARATOR) - Parsing.
+	(INP_PARSE) - Indx [121] char [ ] saved to buf_1.
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [122] char [w] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [123] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SEPARATOR) - Parsing.
+	(INP_PARSE) - Indx [124] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [125] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [126] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [127] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [128] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [129] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [130] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [131] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [132] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [133] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [134] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [135] char [m] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [136] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [137] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [138] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SEPARATOR) - Parsing.
+	(INP_PARSE) - Indx [139] char [t] saved to buf_1.
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+Mutex unlocked.
+	(INP_PARSE) - Indx [140] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [141] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [142] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [143] char [.] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [t] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [n].
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Indx [144] char [ ] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [145] char [S] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [146] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [147] char [v] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [n] & [+].
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Matching '++' found.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [f].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [148] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [149] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [ ] & [i].
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [150] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+Mutex unlocked.
+	(INP_PARSE) - Indx [151] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [152] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [153] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [154] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [155] char [r] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [i] & [r].
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [156] char [m] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [157] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [158] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [159] char [o] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [r] & [o].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [160] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [161] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [o] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN_PARSE) - Matching '++' found.
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [162] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [163] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [164] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [165] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [ ] & [+].
+	(SIGN_PARSE) - Matching '++' found.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [+].
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Indx [166] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [167] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [168] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [169] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [170] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [171] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [172] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [173] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [174] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [175] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [176] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [+] & [+].
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [a].
+	(INP_PARSE) - Indx [177] char [g] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [178] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [179] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [180] char [s] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [a] & [n].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [181] char [h] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [182] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [183] char [b] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [n] & [d].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [184] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [185] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [186] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [d] & [ ].
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [187] char [b] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [188] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [189] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [190] char [h] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [191] char [ ] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [192] char [v] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [193] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [194] char [s] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [195] char [u] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [o] & [x].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [x] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [y] & [g].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [g] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [196] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [197] char [l] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [ ] & [i].
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [198] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [199] char [y] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [200] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [201] char [a] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [i] & [n].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [h].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [h] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [p].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - 	(INP_PARSE) - Indx [202] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [203] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [204] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [205] char [b] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [206] char [y] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [207] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [208] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(INP_PARSE) - Indx [209] char [p] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [210] char [e] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [211] char [c] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [212] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [213] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(SEPARATOR) - Parsing.
+	(INPUT) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [214] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [215] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [216] char [c] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [217] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(INP_PARSE) - Indx [218] char [p] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [219] char [y] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [p] & [r].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [220] char [,] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [e] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [c] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [221] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [222] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [223] char [n] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [o] & [f].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [w].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [w] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [r].
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [224] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [225] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [226] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [227] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [228] char [r] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [r] & [ ].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [229] char [m] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [230] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [231] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [232] char [n] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [233] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [234] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [235] char [r] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [ ].
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [236] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [237] char [d] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [ ] & [m].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [m] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [u] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [.].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [.] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [S].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [S] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [v].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [v] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [238] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [239] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [240] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [241] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [242] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [243] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [244] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [245] char [t] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [e] & [r].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [246] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [247] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [248] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [r] & [a].
+	(INP_PARSE) - Indx [249] char [r] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [250] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [251] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [a] & [l].
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Indx [252] char [m] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [253] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [254] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [l] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [f].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [m].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [m] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [255] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [256] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(INP_PARSE) - Indx [257] char [c] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [258] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [259] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [260] char [.] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [o] & [f].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [261] char [
+] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [f] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [262] char [G] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [263] char [i] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [a] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [264] char [v] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [s] & [t].
+	(INP_PARSE) - Indx [265] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [266] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [267] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [268] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [269] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [270] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [271] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Indx [272] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [273] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [t] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [g].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [g] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [274] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [275] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [s] & [h].
+	(INP_PARSE) - Indx [276] char [n] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [277] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [278] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [279] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [280] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [281] char [m] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [282] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [283] char [,] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [284] char [ ] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [285] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [286] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [287] char [y] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [h] & [a].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [288] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [289] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [290] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [291] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [a] & [b].
+	(INP_PARSE) - Indx [292] char [n] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [293] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [294] char [m] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [295] char [a] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [b] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [l] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [b].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [b] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [h].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [296] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [297] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [h] & [ ].
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [v].
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+Mutex unlocked.
+	(INP_PARSE) - Indx [298] char [,] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [299] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [v] & [i].
+	(INP_PARSE) - Indx [300] char [i] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [301] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [302] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [i] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [l] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [l] & [y].
+	(INP_PARSE) - Indx [303] char [t] saved to buf_1.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [304] char [h] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [305] char [e] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [y] & [ ].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [306] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [307] char [p] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [b].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [b] & [y].
+	(INP_PARSE) - Indx [308] char [r] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [309] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [310] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [311] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [312] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [313] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [314] char [e] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [y] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [p].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [p] & [e].
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [315] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [316] char [o] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [e] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [c] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [c].
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [317] char [f] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [318] char [ ] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [c] & [o].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [p].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [p] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [y] & [,].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [,] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [319] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [320] char [+] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [a] & [n].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [321] char [^] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [322] char [w] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [n] & [d].
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Indx [323] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [324] char [t] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [d] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [f].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [m].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [m] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [325] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [ ] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [ ].
+	(INP_PARSE) - Indx [326] char [r] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [327] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [ ] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [f].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [f].
+	(INP_PARSE) - Indx [328] char [a] saved to buf_1.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SEPARATOR) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SEPARATOR) - cond_signal sent - 	(INP_PARSE) - Indx [329] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [330] char [d] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [331] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [332] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [333] char [x] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [334] char [y] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [335] char [g] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [336] char [e] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [337] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [338] char [,] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - 	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [339] char [ ] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [340] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [341] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [342] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [343] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [344] char [d] saved to buf_1.
+	(SEPARATOR) - Parsing.
+	(INPUT) - Starting input().
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [345] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [346] char [+] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [ ] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [c] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [c] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [m].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [m] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [s] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [c] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [s].
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [347] char [+] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [348] char [^] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [s] & [.].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [.] & [
+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [
+] & [G].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [G] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [v].
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Indx [349] char [e] saved to buf_1.
+Mutex unlocked.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [350] char [v] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [351] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [352] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [353] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [354] char [u] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [v] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [f].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [f].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [i].
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+Mutex unlocked.
+	(INP_PARSE) - Indx [355] char [a] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [356] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [357] char [l] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [i] & [c].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [c] & [i].
+	(INPUT) - Parsing.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [358] char [y] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [359] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [360] char [c] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(SIGN_PARSE) - Testing chars [i] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [m].
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Starting inp_parse().
+Mutex unlocked.
+	(INP_PARSE) - Indx [361] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [362] char [n] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [363] char [v] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [m] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [,].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [,] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [n].
+	(INPUT) - Starting input().
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [364] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [n] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [y] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(INP_PARSE) - Indx [365] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [366] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [367] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [368] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [369] char [n] saved to buf_1.
+	(SIGN) - cond_signal sent - 	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [370] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(SIGN_PARSE) - Testing chars [ ] & [m].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [m] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [,].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [,] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [n].
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Indx [371] char [i] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [372] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [373] char [e] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [374] char [l] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [375] char [y] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [376] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [377] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [378] char [o] saved to buf_1.
+	(INPUT) - Starting input().
+Mutex unlocked.
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [379] char [ ] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [380] char [r] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [381] char [u] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [382] char [s] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [383] char [t] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [384] char [.] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [385] char [
+] saved to buf_1.
+	(INPUT) - Starting input().
+	(SIGN_PARSE) - Testing chars [n] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [h].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [h] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - 	(INPUT) - Parsing.
+Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [p].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [p] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [s].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [s] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(INP_PARSE) - Starting inp_parse().
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(INP_PARSE) - Indx [386] char [D] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [387] char [O] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [388] char [N] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [389] char [E] saved to buf_1.
+	(INPUT) - Starting input().
+	(INPUT) - Parsing.
+	(INP_PARSE) - Starting inp_parse().
+	(INP_PARSE) - Indx [390] char [
+] saved to buf_1.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [c] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN_PARSE) - Matching '++' found.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [f].
+	(SIGN) - cond_signal sent - 	(INP_PARSE) - Endcase was found on loop # [5]. Last value in buf_1 was [.]
+	(INPUT) - - EXIT CASE [0].
+	(INPUT) - Input() has terminated.
+Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [f] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [^].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [^] & [w].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [w] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [n] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [x].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [x] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [y] & [g].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [g] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [,].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [,] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [c] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [u].
+	(SIGN_PARSE) - Matching '++' found.
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [l] & [d].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [d] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [+] & [+].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [+] & [^].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [^] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [v].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [v] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [u].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [u] & [a].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [a] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [l] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [l] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [y] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [c].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [c] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [v].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [v] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Outputting buf_3 to terminal.
+Rust is an iron oxide, a usually reddish brown oxide formed by the ^reaction^ of
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [e] & [n].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [n] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [t] & [i].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [i] & [r].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [r] & [e].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [e] & [l].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [l] & [y].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [y] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [t].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SIGN_PARSE) - Testing chars [t] & [o].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [o] & [ ].
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN_PARSE) - Testing chars [ ] & [r].
+	(SIGN_PARSE) -  - EXIT CASE
+	(SIGN) - cond_signal sent - Mutex unlocked.
+	(SIGN) - Sign() has terminated. Last value in buf_2 was [.].
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Outputting buf_3 to terminal.
+ iron ^^and oxygen in the presence of water or air moisture. Several forms of ru
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Outputting buf_3 to terminal.
+st are distinguishable both visually and by spectroscopy, and form under differe
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEP_PARSE) - '\n' found. Replacing with ' '.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unlocked.
+	(OUTPUT) - Outputting buf_3 to terminal.
+nt circumstances. Given sufficient time, any iron mass, in the presence of ^^wat
+	(OUTPUT) - Beginning of loop. outputting = [1].
+	(OUTPUT) - Awaiting sep_parse(). outputting = [1]
+	(SEPARATOR) - Parsing.
+	(SEPARATOR) - cond_signal sent - Mutex unl
