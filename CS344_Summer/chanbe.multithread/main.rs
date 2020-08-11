@@ -1,3 +1,5 @@
+extern crate rayon;
+use rayon::prelude::*;
 use std::env; // to get arugments passed to the program
 use std::thread;
 
