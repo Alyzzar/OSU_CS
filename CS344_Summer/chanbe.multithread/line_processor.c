@@ -229,7 +229,7 @@ void *separator(void *args){
 		if (sep_stts == 0){
 			if(DEBUG) printf("	(SEPARATOR) - - EXIT CASE\n");
 			sep_running = 0;
-			pthread_kill(out_t, SIGUSR1);
+			//pthread_kill(out_t, SIGUSR1);
 		} else if (sep_stts == 1){
 			if(DEBUG) printf("	(SEPARATOR) - - NO EXIT CASE FOUND\n");
 		}
