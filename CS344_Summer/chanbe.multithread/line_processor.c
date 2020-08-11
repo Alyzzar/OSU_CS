@@ -9,10 +9,10 @@ This program parses and modifies the input
 #define SIZE 10000	// Assignment recommends size = 10000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
-#define DEBUG_INP 1
+#define DEBUG_INP 0
 #define DEBUG_OUT 1
-#define DEBUG_SIGN 1
-#define DEBUG_SEP 1
+#define DEBUG_SIGN 0
+#define DEBUG_SEP 0
 
 int DEBUG = 0;		// [0 = DEBUG OFF],[1 = DEBUG ON] 
 
