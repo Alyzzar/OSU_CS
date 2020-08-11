@@ -60,7 +60,7 @@ int inp_parse(){
 			if (i == 5){
 				//Endcase found. Wipe 'DONE' from buffer, and return to parent
 				inp_idx = (inp_idx + SIZE - 5) % SIZE;
-				count_1 -= 5;
+				count_1 -= 4;
 				buf_1[inp_idx] = '\0';
 				if(DEBUG) printf("	(INP_PARSE) - Endcase was found on loop # [%d]. Last value in buf_1 was [%c]\n", i, buf_1[(inp_idx + SIZE - 1) % SIZE]);
 				//Program terminating.
@@ -121,10 +121,10 @@ void *output(void *args){
 		while (count_3 < OUT_LEN){
 			// Buffer is empty
 			if(outputting == 0){
-				if(DEBUG) printf("	(OUTPUT) - Break: outputting = 0.\n");
+				if(DEBUG) printf("	(OUTPUT) - Break: outputting = [0].\n");
 				break;
 			}
-			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse(). outputting = %d\n", outputting);
+			if(DEBUG) printf("	(OUTPUT) - Awaiting sep_parse(). outputting = [%d]\n", outputting);
 			pthread_cond_wait(&out_cond, &mutex);
 		}
 		
