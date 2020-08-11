@@ -202,7 +202,6 @@ void *separator(void *args){
 	} while (sep_running > 0);
 	//This should output last value before '\0'.
 	if(DEBUG) printf("	(SEPARATOR) - Separator() has terminated. Last value in buf_2 was [%c].\n", buf_2[(sep_idx + SIZE - 1) % SIZE]);
-	outputting = 0;
 	return NULL;
 	//Run forever, exit case = break;
 }
@@ -249,7 +248,6 @@ void *sign(void *args){
 		if (sign_stts == 0){
 			if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) -  - EXIT CASE\n");
 			sign_running = 0;
-			outputting = 0;
 		}
 		sign_idx = (sign_idx + 1) % SIZE;
 		count_3++;
@@ -265,6 +263,7 @@ void *sign(void *args){
 	} while (sign_running > 0);
 	//This should output last value before '\0'.
 	if(DEBUG) printf("	(SIGN) - Sign() has terminated. Last value in buf_3 was [%c].\n", buf_3[(sign_idx + SIZE - 1) % SIZE]);
+	outputting = 0;	
 	return NULL;
 	//Run forever, exit case = break;
 }
