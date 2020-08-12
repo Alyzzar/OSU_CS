@@ -123,10 +123,12 @@ fn main() {
 			let counter = Arc::clone(&counter);
 			let handle = thread::spawn(move || {
 				let mut num = counter.lock().unwrap();
-				intermediate_sums.push(map_data(&xs[i]));
+				map_data(&xs[i]);
 			});
 			handles.push(handle);
 		}
+		intermediate_sums.push(num);
+		
 	    for handle in handles {
 			handle.join().unwrap();
 		}
