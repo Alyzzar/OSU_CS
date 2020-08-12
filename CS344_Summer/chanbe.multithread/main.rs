@@ -115,7 +115,6 @@ fn main() {
 	
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
-
 	{
 		for i in 0..xs.len(){
 			let xs_clone = xs.clone();
@@ -156,6 +155,7 @@ fn main() {
 	println!("Sum = {}", v_total_sum);
 }
 
+//This function returns a vector containing a 'partition' of the input vector.
 fn get_inter_sum (index: usize, v: &Vec<Vec<usize>>) -> usize{
 	return map_data(&v[index]);
 }
@@ -177,7 +177,9 @@ fn get_inter_sum (index: usize, v: &Vec<Vec<usize>>) -> usize{
 * 
 */
 fn partition_data(num_partitions: usize, v: &Vec<usize>) -> Vec<Vec<usize>>{
+	//Calculate size of the partition
     let part_size = v.len()/num_partitions;
-    let v_chunks: Vec<Vec<usize>> = v.chunks(part_size).map(|x| x.to_vec()).collect();
+	//Chunkify the vector using the given partition size
+	let v_chunks: Vec<Vec<usize>> = v.chunks(part_size).map(|x| x.to_vec()).collect();
     return v_chunks;
 }
