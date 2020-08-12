@@ -130,7 +130,7 @@ fn main() {
 				*sub_sum = map_data(&xs_clone[i]);
 				println!("*sub_sum = {}", *sub_sum);
 			});
-			intermediate_sums.push(*counter.lock().unwrap());		
+			intermediate_sums.lock().unwrap().push(*counter.lock().unwrap());		
 			handles.push(handle);
 		}
 	    for handle in handles {
