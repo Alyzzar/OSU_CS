@@ -125,12 +125,12 @@ fn main() {
     // function to process one of the two partition
 	{
 		let handle1 = thread::spawn(move || {
-			intermediate_sums1.push(map_data(&xs[0]));
+			intermediate_sums_1.push(map_data(&xs[0]));
 		});
 		let res1 = handle1.join().unwrap();
 		
 		let handle2 = thread::spawn(move || {
-			intermediate_sums2.push(map_data(&xs[1]));
+			intermediate_sums_2.push(map_data(&xs[1]));
 		});
 		let res2 = handle2.join().unwrap();
 	
