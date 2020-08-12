@@ -120,7 +120,7 @@ fn main() {
 		let mut handles = vec![];
 		
 		for i in 0..10 {
-		let xs_clone = xs.clone();
+		let xs_clone = &xs.clone();
 			let counter = Arc::clone(&counter);
 			let handle = thread::spawn(move || {
 				let mut num = counter.lock().unwrap();
