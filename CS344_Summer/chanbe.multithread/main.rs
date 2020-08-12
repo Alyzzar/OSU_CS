@@ -118,6 +118,7 @@ fn main() {
 	{
 		let counter = Arc::new(Mutex::new(0));
 		let mut handles = vec![];
+		let mut thread_sums = vec![];
 		
 		//xs.len() should be 2
 		for i in 0..xs.len() {
@@ -129,12 +130,17 @@ fn main() {
 				*num = map_data(&xs_clone[i]);
 				println!("*num = {}", *num);
 			});
+			//Push to a temporary vector
+			thread_sums.push(*counter.lock().unwrap());
 			handles.push(handle);
 		}
 	    for handle in handles {
 			handle.join().unwrap();
 		}
-		intermediate_sums.push(*counter.lock().unwrap());
+		for i in 0..thread_sums.len(){
+			//Push to the final vector
+			intermediate_sums.push(thread_sums[i]);
+		}
 	}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
