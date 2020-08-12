@@ -116,7 +116,6 @@ fn main() {
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
 
-
 	{
 		for i in 0..xs.len(){
 			let xs_clone = xs.clone();
@@ -125,34 +124,7 @@ fn main() {
 			intermediate_sums.push(res);
 		}
 	}
-	/*{
-		let counter = Arc::new(Mutex::new(0));
-		let mut handles = vec![];
-		//let mut thread_sums : Vec<usize> = vec![];
-		
-		//xs.len() should be 2
-		for i in 0..xs.len() {
-			println!("Thread {}", i);
-			let counter = Arc::clone(&counter);
-			let xs_clone = xs.clone();	
-			let handle = thread::spawn(move || {
-				let mut sub_sum = counter.lock().unwrap();
-				*sub_sum = map_data(&xs_clone[i]);
-				println!("*sub_sum = {}", *sub_sum);
-			});
-			//thread_sums.push(*counter.lock().unwrap());
-			intermediate_sums.push(*counter.lock().unwrap());				
-			handles.push(handle);
-		}
-	    for handle in handles {
-			handle.join().unwrap();
-		}
-		//for i in 0..thread_sums.len(){
-			//Push to the final vector
-			//intermediate_sums.push(thread_sums[i]);
-		//}
-		//intermediate_sums.push(*counter.lock().unwrap());
-	}*/
+	
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
     println!("Intermediate sums = {:?}", intermediate_sums);
@@ -163,27 +135,24 @@ fn main() {
 	
     // CHANGE CODE: Add code that does the following:
     // 1. Calls partition_data to partition the data into equal partitions
-	let v_partitioned: Vec<Vec<usize>> = partition_data(num_partitions, &v);
+	let v_partitioned = partition_data(num_partitions, &v);
     // 2. Calls print_partiion_info to print info on the partitions that have been created
 	print_partition_info(&v_partitioned);
     // 3. Creates one thread per partition and uses each thread to process one partition
-	/*
-	let mut v_sums: Vec<usize> = Vec::new();
-	for i in 0..v_partitioned.len(){
-		//Create the thread
-		thread::spawn( || {
-		    // 4. Collects the intermediate sums from all the threads
-			v_sums.push(map_data(&v_partitioned[i]));
-		});
+	{
+		for i in 0..v_partitioned.len(){
+			let vp_clone = v_partitioned.clone();
+			let handle = thread::spawn(move || get_inter_sum(i, &vp_clone));
+			let res = handle.join().unwrap();
+			v_sums.push(res);
+		}
 	}
     // 5. Prints information about the intermediate sums
-	println!("Intermediate sums:");
-	println!("{:?}", v_sums);
+	println!("Intermediate sums = {:?}", v_sums);
 	// 5. Calls reduce_data to process the intermediate sums
 	let v_total_sum = reduce_data(&v_sums);
     // 6. Prints the final sum computed by reduce_data
-	println!("Reduced data from intermediate sums: {}", v_total_sum);
-	*/
+	println!("Total sum: {}", v_total_sum);
 }
 
 fn get_inter_sum (index: usize, v: &Vec<Vec<usize>>) -> usize{
