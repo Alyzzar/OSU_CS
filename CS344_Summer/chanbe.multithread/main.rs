@@ -131,7 +131,8 @@ fn main() {
 				println!("*num = {}", *num);
 			});
 			//Push to a temporary vector
-			thread_sums.push(*counter.lock().unwrap());
+			let mut num = *counter.lock().unwrap();
+			thread_sums.push(num);
 			handles.push(handle);
 		}
 	    for handle in handles {
