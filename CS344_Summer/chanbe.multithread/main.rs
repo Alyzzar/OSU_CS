@@ -189,7 +189,7 @@ fn main() {
 	*/
 }
 
-fn getInterSum (index: usize, v: &Vec<Vec<usize>) -> usize{
+fn getInterSum (index: usize, v: &Vec<Vec<usize>>) -> usize{
 	return map_data(&v[index]);
 }
 
