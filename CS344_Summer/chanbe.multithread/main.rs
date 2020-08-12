@@ -115,19 +115,19 @@ fn main() {
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
 	{
-		let mut children = vec![];
+		let counter = Arc::new(Mutex::new(0));
+		let mut handles = vec![];
 		
-		for i in 0..2{
-			//Create the thread
-			children.push(thread::spawn(move || {
-				// 4. Collects the intermediate sums from all the threads
+		for _ in 0..10 {
+			let counter = Arc::clone(&counter);
+			let handle = thread::spawn(move || {
+				let mut num = counter.lock().unwrap();
 				intermediate_sums.push(map_data(&xs[i]));
-			}));
-		} 	
-		
-		 for child in children {
-			// Wait for the thread to finish. Returns a result.
-			let _ = child.join();
+			});
+			handles.push(handle);
+		}
+	    for handle in handles {
+			handle.join().unwrap();
 		}
 	}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
