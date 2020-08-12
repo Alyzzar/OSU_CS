@@ -126,13 +126,13 @@ fn main() {
 			let counter = Arc::clone(&counter);
 			let xs_clone = xs.clone();	
 			let handle = thread::spawn(move || {
-				let mut num = counter.lock().unwrap();
-				*num = map_data(&xs_clone[i]);
-				println!("*num = {}", *num);
+				let mut sub_sum = counter.lock().unwrap();
+				*sub_sum = map_data(&xs_clone[i]);
+				println!("*sub_sum = {}", *sub_sum);
 			});
 			//Push to a temporary vector
-			let mut num = *counter.lock().unwrap();
-			thread_sums.push(num);
+			//let to_push = *counter.lock().unwrap();
+			//thread_sums.push(to_push);
 			handles.push(handle);
 		}
 	    for handle in handles {
@@ -142,6 +142,7 @@ fn main() {
 			//Push to the final vector
 			intermediate_sums.push(thread_sums[i]);
 		}
+		intermediate_sums.push(*counter.lock().unwrap());
 	}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
