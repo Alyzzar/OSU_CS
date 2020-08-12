@@ -123,15 +123,14 @@ fn main() {
 			let counter = Arc::clone(&counter);
 			let handle = thread::spawn(move || {
 				let mut num = counter.lock().unwrap();
-				map_data(&xs[i]);
+				*num = map_data(&xs[i]);
 			});
 			handles.push(handle);
 		}
-		intermediate_sums.push(num);
-		
 	    for handle in handles {
 			handle.join().unwrap();
 		}
+		intermediate_sums.push(num);
 	}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
