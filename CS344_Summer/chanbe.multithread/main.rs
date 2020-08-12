@@ -111,17 +111,26 @@ fn main() {
     // MAP STEP: Process each partition
 
     // CHANGE CODE START: Don't change any code above this line
-
+	
+	 let mut intermediate_sums_1 : Vec<usize> = Vec::new();
+	 let mut intermediate_sums_2 : Vec<usize> = Vec::new();
+	 
+	 //Create two copies (get around mut not allowing moves)
+	  for i in 0..intermediate_sums.len() {
+		intermediate_sums_1[i] = intermediate_sums[i];
+		intermediate_sums_2[i] = intermediate_sums[i];
+	  }
+	  
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
 	{
 		let handle1 = thread::spawn(move || {
-			intermediate_sums.push(map_data(&xs[0]));
+			intermediate_sums1.push(map_data(&xs[0]));
 		});
 		let res1 = handle1.join().unwrap();
 		
 		let handle2 = thread::spawn(move || {
-			intermediate_sums.push(map_data(&xs[1]));
+			intermediate_sums2.push(map_data(&xs[1]));
 		});
 		let res2 = handle2.join().unwrap();
 	
