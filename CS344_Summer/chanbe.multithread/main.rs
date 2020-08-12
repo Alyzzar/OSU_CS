@@ -116,7 +116,19 @@ fn main() {
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
 
+
 	{
+		let handle = thread::spawn(move || getInterSum(0, &xs));
+		let res = handle.join().unwrap();
+		intermediate_sums.push(res);
+	}
+	
+	{
+		let handle = thread::spawn(move || getInterSum(1, &xs));
+		let res = handle.join().unwrap();
+		intermediate_sums.push(res);
+	}
+	/*{
 		let counter = Arc::new(Mutex::new(0));
 		let mut handles = vec![];
 		//let mut thread_sums : Vec<usize> = vec![];
@@ -143,7 +155,7 @@ fn main() {
 			//intermediate_sums.push(thread_sums[i]);
 		//}
 		//intermediate_sums.push(*counter.lock().unwrap());
-	}
+	*/}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
     println!("Intermediate sums = {:?}", intermediate_sums);
@@ -175,6 +187,10 @@ fn main() {
     // 6. Prints the final sum computed by reduce_data
 	println!("Reduced data from intermediate sums: {}", v_total_sum);
 	*/
+}
+
+fn getInterSum (index: usize, v: &Vec<usize>) -> usize{
+	map_data(v[index]);
 }
 
 /*
