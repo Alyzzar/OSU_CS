@@ -130,7 +130,7 @@ fn main() {
 	    for handle in handles {
 			handle.join().unwrap();
 		}
-		intermediate_sums.push(num);
+		intermediate_sums.push(*counter.lock().unwrap());
 	}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
