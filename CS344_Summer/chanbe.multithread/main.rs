@@ -1,6 +1,6 @@
 use std::env; // to get arugments passed to the program
 use std::thread;
-use std::sync::{Arc, Mutex};
+//use std::sync::{Arc, Mutex};
 
 /*
 * Print the number of partitions and the size of each partition
@@ -118,15 +118,12 @@ fn main() {
 
 
 	{
-		let handle = thread::spawn(move || getInterSum(0, &xs));
-		let res = handle.join().unwrap();
-		intermediate_sums.push(res);
-	}
-	
-	{
-		let handle = thread::spawn(move || getInterSum(1, &xs));
-		let res = handle.join().unwrap();
-		intermediate_sums.push(res);
+		for i in 0..xs.len(){
+			let xs_clone = xs.clone();
+			let handle = thread::spawn(move || getInterSum(i, &xs_clone));
+			let res = handle.join().unwrap();
+			intermediate_sums.push(res);
+		}
 	}
 	/*{
 		let counter = Arc::new(Mutex::new(0));
