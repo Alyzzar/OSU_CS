@@ -115,22 +115,24 @@ fn main() {
 	
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
+
 	{
 		let counter = Arc::new(Mutex::new(0));
 		let mut handles = vec![];
-		//let mut thread_sums = vec![];
+		let mut thread_sums = vec![];
 		
 		//xs.len() should be 2
 		for i in 0..xs.len() {
 			println!("Thread {}", i);
 			let counter = Arc::clone(&counter);
-			let xs_clone = xs.clone();	
+			let xs_clone = xs.clone();
+			let mut sub_sum = 0;		
 			let handle = thread::spawn(move || {
-				let mut sub_sum = counter.lock().unwrap();
+				sub_sum = counter.lock().unwrap();
 				*sub_sum = map_data(&xs_clone[i]);
 				println!("*sub_sum = {}", *sub_sum);
 			});
-			intermediate_sums.lock().unwrap().push(*counter.lock().unwrap());		
+			thread_sums.push(*sub_sum);		
 			handles.push(handle);
 		}
 	    for handle in handles {
