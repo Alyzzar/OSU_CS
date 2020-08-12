@@ -119,7 +119,7 @@ fn main() {
 	{
 		let counter = Arc::new(Mutex::new(0));
 		let mut handles = vec![];
-		let mut thread_sums : Vec<usize> = vec![];
+		//let mut thread_sums : Vec<usize> = vec![];
 		
 		//xs.len() should be 2
 		for i in 0..xs.len() {
@@ -131,7 +131,8 @@ fn main() {
 				*sub_sum = map_data(&xs_clone[i]);
 				println!("*sub_sum = {}", *sub_sum);
 			});
-			intermediate_sums.push(*counter.lock().unwrap());		
+			//thread_sums.push(*counter.lock().unwrap());
+			intermediate_sums.push(*counter.lock().unwrap());				
 			handles.push(handle);
 		}
 	    for handle in handles {
