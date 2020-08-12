@@ -8,7 +8,7 @@ re-run a couple of times. Interestingly, the code has a 98% success rate when pr
 This can be done by running the code with the parameter '1'.  
   
 To run normally:  
-> $ line_processor 0 < input.txt > output.txt  
+> $ line_processor < input.txt > output.txt  
   
 To run with debugging info:  
 > $ line_processor 1 < input.txt > output.txt  
