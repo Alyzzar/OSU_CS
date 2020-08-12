@@ -124,7 +124,7 @@ fn main() {
 			let counter = Arc::clone(&counter);
 			let handle = thread::spawn(move || {
 				let mut num = counter.lock().unwrap();
-				*num = map_data(xs_clone[i]);
+				*num = map_data(&xs_clone[i]);
 			});
 			handles.push(handle);
 		}
