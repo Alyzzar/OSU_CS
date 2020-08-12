@@ -155,7 +155,7 @@ fn main() {
 			//intermediate_sums.push(thread_sums[i]);
 		//}
 		//intermediate_sums.push(*counter.lock().unwrap());
-	*/}
+	}*/
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
     println!("Intermediate sums = {:?}", intermediate_sums);
