@@ -120,7 +120,7 @@ fn main() {
 	{
 		for i in 0..xs.len(){
 			let xs_clone = xs.clone();
-			let handle = thread::spawn(move || getInterSum(i, &xs_clone));
+			let handle = thread::spawn(move || get_inter_sum(i, &xs_clone));
 			let res = handle.join().unwrap();
 			intermediate_sums.push(res);
 		}
