@@ -114,22 +114,22 @@ fn main() {
 	
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
-	
-	let mut children = vec![];
-	
-	for i in 0..2{
-		//Create the thread
-		children.push(thread::spawn(move || {
-		    // 4. Collects the intermediate sums from all the threads
-			intermediate_sums.push(map_data(&xs[i]));
-		}));
-	} 	
-	
-	 for child in children {
-        // Wait for the thread to finish. Returns a result.
-        let _ = child.join();
-    }
-	
+	{
+		let mut children = vec![];
+		
+		for i in 0..2{
+			//Create the thread
+			children.push(thread::spawn(move || {
+				// 4. Collects the intermediate sums from all the threads
+				intermediate_sums.push(map_data(&xs[i]));
+			}));
+		} 	
+		
+		 for child in children {
+			// Wait for the thread to finish. Returns a result.
+			let _ = child.join();
+		}
+	}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
     println!("Intermediate sums = {:?}", intermediate_sums);
@@ -137,7 +137,7 @@ fn main() {
     // REDUCE STEP: Process the intermediate result to produce the final result
     let sum = reduce_data(&intermediate_sums);
     println!("Sum = {}", sum);
-
+	/*
     // CHANGE CODE: Add code that does the following:
     // 1. Calls partition_data to partition the data into equal partitions
 	let v_partitioned: Vec<Vec<usize>> = partition_data(num_partitions, &v);
@@ -151,7 +151,7 @@ fn main() {
 		    // 4. Collects the intermediate sums from all the threads
 			v_sums.push(map_data(&v_partitioned[i]));
 		});
-	} 	
+	}
     // 5. Prints information about the intermediate sums
 	println!("Intermediate sums:");
 	println!("{:?}", v_sums);
@@ -159,6 +159,7 @@ fn main() {
 	let v_total_sum = reduce_data(&v_sums);
     // 6. Prints the final sum computed by reduce_data
 	println!("Reduced data from intermediate sums: {}", v_total_sum);
+	*/
 }
 
 /*
