@@ -6,7 +6,7 @@ This program parses and modifies the input
 #include <pthread.h>
 #include <unistd.h>
 
-#define SIZE 10000	// Assignment recommends size = 10000
+#define SIZE 1000	// Assignment recommends size = 1000
 #define OUT_LEN 80	// Assignment requires this to be 80
 
 #define DEBUG_INP 0
@@ -40,6 +40,13 @@ pthread_cond_t sign_cond = PTHREAD_COND_INITIALIZER;
 pthread_cond_t sep_cond = PTHREAD_COND_INITIALIZER;
 pthread_cond_t out_cond = PTHREAD_COND_INITIALIZER;
 
+/*
+*	Detail: Input parser. Reads input from the terminal one character per loop.
+*			Stores the most recent six characters read to find '\nDONE\n'. This signifies
+*			the end condition, and triggers each thread to begin termination.
+*	Params: None
+*	Return: 0 on exit case, 1 on normal loop completion
+*/
 int inp_parse(){
 	int i;
 	// Initialize the recent array. Keeps track of DONE
@@ -78,7 +85,11 @@ int inp_parse(){
 	return 1;
 }
 
-//Input thread
+/*
+*	Detail: Input thread
+*	Params: None
+*	Return: NULL on termination
+*/
 void *input(void *args){
 	int i;
 	int inp_running = 1;
@@ -115,6 +126,11 @@ void *input(void *args){
 	return NULL;
 }
 
+/*
+*	Detail: Output thread. Only outputs characters if there are at least 80 in the buffer.
+*	Params: None
+*	Return: NULL on termination
+*/
 //Output thread
 void *output(void *args){
 	int i = 0;
@@ -158,7 +174,13 @@ void *output(void *args){
 	return NULL;
 }
 
-//Main functionality for separator
+
+/*
+*	Detail: Separator parser. Reads values in buf_1 to buf_2. Looks for '\n' newline
+*			characters, and replaces them with ' ' spaces.
+*	Params: None
+*	Return: 0 on exit case, 1 on normal loop completion
+*/
 int sep_parse(){
 	if(DEBUG && DEBUG_SEP) printf("	(SEP_PARSE) - count_1: [%d], Checking buf_1[%d] with value [%c].\n", count_1, ((sep_idx + d) % SIZE), buf_1[(sep_idx + d) % SIZE]);
 	if (buf_1[(sep_idx + d) % SIZE] == '\0'){
@@ -177,7 +199,12 @@ int sep_parse(){
 	return 1;
 }
 
-//Separator thread (Buf_2)
+
+/*
+*	Detail: Separator thread. Calls sep_parse().
+*	Params: None
+*	Return: NULL on termination
+*/
 void *separator(void *args){
 	if(DEBUG) printf("	(SEPARATOR) - Starting separator().\n");
 	int sep_running = 1;
@@ -214,7 +241,12 @@ void *separator(void *args){
 	//Run forever, exit case = break;
 }
 
-//Main functionality for sign
+/*
+*	Detail: Sign parser. Reads values in buf_2 to buf_3. Looks for pairs of '+' signs. 
+*			Converts the value in the first index to '^' and skips the second value.
+*	Params: None
+*	Return: 0 on exit case, 1 on normal loop completion
+*/
 int sign_parse(){
 	//Check for pairs of '+'
 	if(DEBUG && DEBUG_SIGN) printf("	(SIGN_PARSE) - count_3: [%d], Index: [%d], Testing chars [%c] & [%c].\n", count_3, sign_idx, buf_2[(sign_idx + c) % SIZE], buf_2[(sign_idx + c + 1) % SIZE]);
@@ -240,7 +272,11 @@ int sign_parse(){
 	return 1;
 }
 
-//Plus sign thread (Buf_3)
+/*
+*	Detail: Sign thread. Calls sign_parse().
+*	Params: None
+*	Return: NULL on termination
+*/
 void *sign(void *args){
 	if(DEBUG) printf("	(SIGN) - Starting sign().\n");
 	int sign_running = 1;
@@ -277,6 +313,11 @@ void *sign(void *args){
 	//Run forever, exit case = break;
 }
 
+/*
+*	Detail: Creates and joins all threads.
+*	Params: None
+*	Return: void
+*/
 void exec(){
 	//Do the fork part here. Call relevant program.
 	//Create input thread
@@ -299,6 +340,11 @@ void exec(){
 	pthread_join(out_t, NULL);
 }
 
+/*
+*	Detail: Main function. Sets value of the DEBUG flag, and runs exec().
+*	Params:	argv[1]
+*	Return: 0 on success
+*/
 int main (int argc, char* argv[]){
 	//Run exec to do all the thread stuff
 	if (argc == 2) DEBUG = atoi(argv[1]);
