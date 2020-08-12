@@ -140,13 +140,14 @@ fn main() {
     // REDUCE STEP: Process the intermediate result to produce the final result
     let sum = reduce_data(&intermediate_sums);
     println!("Sum = {}", sum);
-	/*
+	
     // CHANGE CODE: Add code that does the following:
     // 1. Calls partition_data to partition the data into equal partitions
 	let v_partitioned: Vec<Vec<usize>> = partition_data(num_partitions, &v);
     // 2. Calls print_partiion_info to print info on the partitions that have been created
 	print_partition_info(&v_partitioned);
     // 3. Creates one thread per partition and uses each thread to process one partition
+	/*
 	let mut v_sums: Vec<usize> = Vec::new();
 	for i in 0..v_partitioned.len(){
 		//Create the thread
