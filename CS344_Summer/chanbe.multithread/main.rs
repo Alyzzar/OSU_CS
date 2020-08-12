@@ -119,7 +119,8 @@ fn main() {
 		let counter = Arc::new(Mutex::new(0));
 		let mut handles = vec![];
 		
-		for i in 0..10 {
+		//xs.len() should be 2
+		for i in 0..xs.len() {
 			let counter = Arc::clone(&counter);
 			let xs_clone = xs.clone();	
 			let handle = thread::spawn(move || {
