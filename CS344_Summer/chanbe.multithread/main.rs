@@ -130,19 +130,17 @@ fn main() {
 				*sub_sum = map_data(&xs_clone[i]);
 				println!("*sub_sum = {}", *sub_sum);
 			});
-			//Push to a temporary vector
-			//let to_push = *counter.lock().unwrap();
-			//thread_sums.push(to_push);
+			intermediate_sums.push(*counter.lock().unwrap());		
 			handles.push(handle);
 		}
 	    for handle in handles {
 			handle.join().unwrap();
 		}
-		for i in 0..thread_sums.len(){
+		//for i in 0..thread_sums.len(){
 			//Push to the final vector
-			intermediate_sums.push(thread_sums[i]);
-		}
-		intermediate_sums.push(*counter.lock().unwrap());
+			//intermediate_sums.push(thread_sums[i]);
+		//}
+		//intermediate_sums.push(*counter.lock().unwrap());
 	}
 	// CHANGE CODE END: Don't change any code below this line until the next CHANGE CODE comment
 	// Print the vector with the intermediate sums
