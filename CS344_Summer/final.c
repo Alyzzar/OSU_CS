@@ -5,7 +5,8 @@
 #include <unistd.h>
 
 int main (int argc, char* argv[]){
-	char* aStr = malloc(2*sizeof(char));
-	strcat(aStr, "OregonStateUniversityCorvallisGoBeavers");
-	printf("%s", aStr);
+	char* str1 = "Foo";
+char* str2 = "FooBar";
+int n = strlen(str1) < strlen(str2) ? strlen(str1) : strlen(str2);
+printf("%d, %d\n", n, strncmp(str1, str2, n));
 }
