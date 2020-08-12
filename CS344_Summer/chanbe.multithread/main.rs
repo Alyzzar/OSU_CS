@@ -125,14 +125,13 @@ fn main() {
 		for i in 0..xs.len() {
 			println!("Thread {}", i);
 			let counter = Arc::clone(&counter);
-			let xs_clone = xs.clone();
-			let mut sub_sum = 0;		
+			let xs_clone = xs.clone();	
 			let handle = thread::spawn(move || {
-				sub_sum = counter.lock().unwrap();
+				let mut sub_sum = counter.lock().unwrap();
 				*sub_sum = map_data(&xs_clone[i]);
 				println!("*sub_sum = {}", *sub_sum);
 			});
-			thread_sums.push(*sub_sum);		
+			intermediate_sums.push(*counter.lock().unwrap());		
 			handles.push(handle);
 		}
 	    for handle in handles {
