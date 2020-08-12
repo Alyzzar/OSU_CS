@@ -121,6 +121,7 @@ fn main() {
 		
 		//xs.len() should be 2
 		for i in 0..xs.len() {
+			println("Thread {}", i);
 			let counter = Arc::clone(&counter);
 			let xs_clone = xs.clone();	
 			let handle = thread::spawn(move || {
