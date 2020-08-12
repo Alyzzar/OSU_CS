@@ -121,7 +121,7 @@ fn main() {
 		
 		for i in 0..10 {
 			let counter = Arc::clone(&counter);
-			let xs_clone = &xs.clone();	
+			let xs_clone = xs.clone();	
 			let handle = thread::spawn(move || {
 				let mut num = counter.lock().unwrap();
 				*num = map_data(&xs_clone[i]);
