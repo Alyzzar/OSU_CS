@@ -139,6 +139,7 @@ fn main() {
     // 2. Calls print_partiion_info to print info on the partitions that have been created
 	print_partition_info(&v_partitioned);
     // 3. Creates one thread per partition and uses each thread to process one partition
+	let mut v_sums : Vec<usize> = Vec::new();
 	{
 		for i in 0..v_partitioned.len(){
 			let vp_clone = v_partitioned.clone();
