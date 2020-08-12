@@ -112,15 +112,6 @@ fn main() {
 
     // CHANGE CODE START: Don't change any code above this line
 	
-	/*let mut intermediate_sums_1 : Vec<usize> = Vec::new();
-	let mut intermediate_sums_2 : Vec<usize> = Vec::new();
-	 
-	//Create two copies (get around mut not allowing moves)
-		for i in 0..intermediate_sums.len() {
-		intermediate_sums_1[i] = intermediate_sums[i];
-		intermediate_sums_2[i] = intermediate_sums[i];
-	}
-	*/
     // Change the following code to create 2 threads each of which must use map_data()
     // function to process one of the two partition
 	
@@ -130,7 +121,7 @@ fn main() {
 		//Create the thread
 		children.push(thread::spawn(move || {
 		    // 4. Collects the intermediate sums from all the threads
-			intermediate_sums.push(map_data(&v_partitioned[i]));
+			intermediate_sums.push(map_data(&xs[i]));
 		}));
 	} 	
 	
