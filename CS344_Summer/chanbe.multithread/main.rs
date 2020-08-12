@@ -177,7 +177,7 @@ fn get_inter_sum (index: usize, v: &Vec<Vec<usize>>) -> usize{
 * 
 */
 fn partition_data(num_partitions: usize, v: &Vec<usize>) -> Vec<Vec<usize>>{
-    let part_size = (v.len()/num_partitions).floor();
+    let part_size = (v.len()/num_partitions);
     let v_chunks: Vec<Vec<usize>> = v.chunks(part_size).map(|x| x.to_vec()).collect();
     return v_chunks;
 }
