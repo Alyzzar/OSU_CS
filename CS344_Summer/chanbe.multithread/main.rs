@@ -127,6 +127,7 @@ fn main() {
 			let handle = thread::spawn(move || {
 				let mut num = counter.lock().unwrap();
 				*num = map_data(&xs_clone[i]);
+				prinln("*num = {}", *num);
 			});
 			handles.push(handle);
 		}
