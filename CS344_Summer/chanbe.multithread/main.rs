@@ -153,7 +153,7 @@ fn main() {
 	// 5. Calls reduce_data to process the intermediate sums
 	let v_total_sum = reduce_data(&v_sums);
     // 6. Prints the final sum computed by reduce_data
-	println!("Total sum: {}", v_total_sum);
+	println!("Sum = {}", v_total_sum);
 }
 
 fn get_inter_sum (index: usize, v: &Vec<Vec<usize>>) -> usize{
@@ -177,7 +177,7 @@ fn get_inter_sum (index: usize, v: &Vec<Vec<usize>>) -> usize{
 * 
 */
 fn partition_data(num_partitions: usize, v: &Vec<usize>) -> Vec<Vec<usize>>{
-    let part_size = (v.len()/num_partitions);
+    let part_size = v.len()/num_partitions;
     let v_chunks: Vec<Vec<usize>> = v.chunks(part_size).map(|x| x.to_vec()).collect();
     return v_chunks;
 }
