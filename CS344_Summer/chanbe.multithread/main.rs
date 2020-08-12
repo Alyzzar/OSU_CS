@@ -1,5 +1,6 @@
 use std::env; // to get arugments passed to the program
 use std::thread;
+use std::sync::{Arc, Mutex};
 
 /*
 * Print the number of partitions and the size of each partition
