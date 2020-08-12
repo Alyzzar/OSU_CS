@@ -118,7 +118,7 @@ fn main() {
 	{
 		let counter = Arc::new(Mutex::new(0));
 		let mut handles = vec![];
-		let mut thread_sums = vec![];
+		//let mut thread_sums = vec![];
 		
 		//xs.len() should be 2
 		for i in 0..xs.len() {
